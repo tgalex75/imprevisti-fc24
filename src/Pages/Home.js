@@ -21,15 +21,18 @@ const Home = () => {
             {dettagliImprevisti.map((el) => (
                 <div
                     key={el.id}
-                    className="group flex items-center justify-start w-1/6 hover:w-full h-full cursor-pointer transition-all
-                        border-yellow-600 hover:text-gray-300 hover:border-8"
+                    style={{
+                        boxShadow: "-12px 0px 10px -3px rgba(2,2,2,0.5)", zIndex: el.id
+                    }}
+                    className="group flex items-center justify-start w-1/6 hover:w-full h-full cursor-pointer transition-all duration-500 ease-[cubic-bezier(0.770, 0.000, 0.175, 1.000)] hover:text-gray-300"
                 >
                     <h2
                         style={{
-                            writingMode: "sideways-lr",
+                            writingMode: "vertical-lr",
+                            transform: "rotate(180deg)",
                             textShadow: "rgb(34, 34, 34) 0px 4px 4px",
                         }}
-                        className="uppercase font-bold text-[2.2vw] text-left pb-12 text-gray-200 drop-shadow-lg bg-[rgb(16,84,66,.95)] h-full px-4"
+                        className="group-hover:border-l-[1rem] border-[--clr-prim] uppercase font-bold text-[2.2vw] text-left ps-8 text-gray-200 drop-shadow-lg bg-[rgb(16,84,66,.95)] h-full px-2"
                     >
                         {el.impr}
                     </h2>
