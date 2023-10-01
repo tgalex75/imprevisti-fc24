@@ -32,7 +32,7 @@ export default function App() {
             <div className="w-1/2 mx-auto my-6 p-8 border border-teal-500 shadow-lg flex items-center justify-center">
                 <h5 className="font-bold my-8 uppercase">{imprevisto.name}</h5>
             </div>
-            <button className="mt-6 inline-block border-2 text-white shadow-md bg-orange-700 p-4 font-bold rounded-md" onClick={delElemento}>
+            <button className="mt-6 inline-block text-white shadow-md bg-[--clr-prim] hover:bg-red-900 p-4 font-bold rounded-md" onClick={delElemento}>
                 Click me
             </button>
         </div>
