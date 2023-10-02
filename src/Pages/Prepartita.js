@@ -3,6 +3,7 @@ import { GiPerspectiveDiceSixFacesRandom } from "react-icons/gi";
 import { randomNumber } from "../Funzioni/RandomNumber";
 import datiPrepartita from "../Data/datiPrepartita";
 import SecondaEstrazione from "../Components/SecondaEstrazione";
+import ImprevistoCommunity from "../Components/ImprevistoCommunity";
 
 const Prepartita = () => {
     //const [counter, setCounter] = useState(0);
@@ -43,6 +44,7 @@ const Prepartita = () => {
                         : ""}
                 </p>
                 {ultEstrazione ? <SecondaEstrazione /> : ""}
+                {title === "PAROLA ALLA COMMUNITY!" ? <ImprevistoCommunity /> : ""}
             </div>
 
             <div className="cursor-pointer flex h-auto items-center justify-center rounded-full p-2 hover:bg-black/30 absolute right-48 bottom-36">

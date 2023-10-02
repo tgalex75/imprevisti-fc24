@@ -1,91 +1,19 @@
 import React, { useState } from "react";
-import FetchData from "../Funzioni/FetchData"
-import {
-    TERipple,
-    TEModal,
-    TEModalDialog,
-    TEModalContent,
-    TEModalHeader,
-    TEModalBody,
-    TEModalFooter,
-} from "tw-elements-react";
+import FetchData from "../Funzioni/FetchData";
 
-const ImprevistoCommunity = () => {
-    const [showVerticalyCenteredModal, setShowVerticalyCenteredModal] =
-        useState(false);
+const ImprevistoCommunity = (props) => {
+    const [showModal, setShowModal] = useState(true);
+
+    const changeModalState = () => {
+        setShowModal((prevModal) => !prevModal);
+    };
+
     return (
-        <div>
-            <div className="space-x-2 fixed top-60 ">
-                {/* <!-- Button trigger vertically centered modal--> */}
-                <TERipple rippleColor="white">
-                    <button
-                        type="button"
-                        className="inline-block rounded bg-primary px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
-                        onClick={() => setShowVerticalyCenteredModal(true)}
-                    >
-                        Vertically centered modal
-                    </button>
-                </TERipple>
-            </div>
-
-            {/* <!--Verically centered modal--> */}
-            <TEModal
-                show={showVerticalyCenteredModal}
-                setShow={setShowVerticalyCenteredModal}
-            >
-                <TEModalDialog centered size="xl">
-                    <TEModalContent >
-                        <TEModalHeader className="bg-[--clr-sec]">
-                            {/* <!--Modal title--> */}
-                            <h5 className="text-xl font-medium leading-normal text-neutral-200">
-                                Modal title
-                            </h5>
-                            {/* <!--Close button--> */}
-                            <button
-                                type="button"
-                                className="box-content rounded-none border-none hover:no-underline hover:opacity-75 focus:opacity-100 focus:shadow-none focus:outline-none"
-                                onClick={() =>
-                                    setShowVerticalyCenteredModal(false)
-                                }
-                                aria-label="Close"
-                            >
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    strokeWidth="1.5"
-                                    stroke="currentColor"
-                                    className="h-6 w-6"
-                                >
-                                    <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        d="M6 18L18 6M6 6l12 12"
-                                    />
-                                </svg>
-                            </button>
-                        </TEModalHeader>
-                        {/* <!--Modal body--> */}
-                        <TEModalBody className="bg-[#444]">
-                            <FetchData />
-                        </TEModalBody>
-                        <TEModalFooter className="bg-[#444]">
-                            <TERipple rippleColor="light">
-                                <button
-                                    type="button"
-                                    className="inline-block rounded bg-primary px-6 pb-2 pt-2.5 text-xs font-bold uppercase leading-normal text-primary-100 transition duration-150 ease-in-out hover:bg-primary-accent-100 focus:bg-primary-accent-100 focus:outline-none focus:ring-0 active:bg-primary-accent-200"
-                                    onClick={() =>
-                                        setShowVerticalyCenteredModal(false)
-                                    }
-                                >
-                                    Chiudi
-                                </button>
-                            </TERipple>
-                        </TEModalFooter>
-                    </TEModalContent>
-                </TEModalDialog>
-            </TEModal>
-        </div>
+        showModal && (
+            <section className="z-[2000] w-[75vw] h-[75vh] p-12 flex flex-col items-center justify-center absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 bg-slate-700/95 rounded-xl shadow-xl">
+                <FetchData changeModalState={changeModalState} />
+            </section>
+        )
     );
 };
 

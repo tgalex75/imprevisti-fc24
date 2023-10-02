@@ -1,8 +1,9 @@
 import "./App.css";
-import Home from "./Pages/Home";
+//import Home from "./Pages/Home";
 import Navbar from "./Components/Navbar";
-import Prepartita from "./Pages/Prepartita"
-import ImprevistoCommunity from "./Components/ImprevistoCommunity";
+//import Prepartita from "./Pages/Prepartita"
+//import ImprevistoCommunity from "./Components/ImprevistoCommunity";
+import SerieNegativa from "./Pages/SerieNegativa";
 
 function App() {
     return (
@@ -10,7 +11,7 @@ function App() {
             <Navbar />
             {/* <Home /> */}
             {/* <Prepartita /> */}
-            <ImprevistoCommunity />
+            <SerieNegativa />
 
 
         </div>
