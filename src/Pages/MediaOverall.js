@@ -11,9 +11,21 @@ const MediaOverall = () => {
 
     let valori = arrayRange(40, 99, 1);
 
-    const [values, setValues] = useState([
-        40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50,
-    ]);
+    const defaultValues = {
+      p1: 60,
+      p2: 60,
+      p3: 60,
+      p4: 60,
+      p5: 60,
+      p6: 60,
+      p7: 60,
+      p8: 60,
+      p9: 60,
+      p10: 60,
+      p11: 60,
+  };
+
+    const [values, setValues] = useState(defaultValues);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -35,16 +47,18 @@ const MediaOverall = () => {
 
     const result = calcolaMedia();
 
-    console.log(result);
+    console.log(values);
+    console.log(typeof(values.p9))
 
     const renderedInputs = players.map((el) => (
         <div key={el} className="relative flex gap-2">
-            <label htmlFor={`label-${el}`} className="text-gray-200">
+            <label htmlFor={`p${el}`} className="text-gray-200">
                 G n. {el}
             </label>
             <select
                 type="number"
-                id="name-with-label"
+                id={`p${el}`}
+                name={`p${el}`}
                 onChange={handleChange}
                 className="rounded-md min-w-[5rem] bg-zinc-900 "
             >
