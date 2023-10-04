@@ -3,9 +3,12 @@ import "./App.css";
 import Navbar from "./Components/Navbar";
 //import Prepartita from "./Pages/Prepartita"
 //import ImprevistoCommunity from "./Components/ImprevistoCommunity";
-import SerieNegativa from "./Pages/SerieNegativa";
+//import SerieNegativa from "./Pages/SerieNegativa";
 //import Ingaggio from "./Pages/Ingaggio";
-import RiepilogoImprevisti from "./Components/RiepilogoImprevisti";
+//import RiepilogoImprevisti from "./Components/RiepilogoImprevisti";
+import MediaOverall from "./Pages/MediaOverall";
+
+
 
 function App() {
     return (
@@ -13,9 +16,11 @@ function App() {
             <Navbar />
             {/* <Home /> */}
             {/* <Prepartita /> */}
-            <SerieNegativa />
+            {/* <SerieNegativa /> */}
             {/* <Ingaggio /> */}
             {/* <RiepilogoImprevisti /> */}
+            <MediaOverall />
+
 
 
 

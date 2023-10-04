@@ -5,10 +5,9 @@ import { CartContext } from "../context/cart";
 import datiSerieNegativa from "../Data/datiSerieNegativa";
 import SecondaEstrazione from "../Components/SecondaEstrazione";
 import RiepilogoImprevisti from "../Components/RiepilogoImprevisti";
-import { inputSN, selectSN } from "../Components/Elements";
 
 const SerieNegativa = () => {
-    const [casuale, setCasuale] = useState(6);
+    const [casuale, setCasuale] = useState(null);
 
     const inputRef = useRef(null);
     const selectRef = useRef(null);
@@ -36,14 +35,6 @@ const SerieNegativa = () => {
     return (
         <section className="font-bold flex flex-col justify-around gap-12 items-center min-h-[75vh] w-full py-4">
             <h1 className="text-3xl select-none">Imprevisto Serie Negativa</h1>
-            {!showModal && (
-                <button
-                    className="px-4 py-2 bg-gray-800 text-white text-xs font-bold uppercase rounded hover:bg-gray-700 focus:outline-none focus:bg-gray-700"
-                    onClick={toggle}
-                >
-                    Cart ({cartItems.length})
-                </button>
-            )}
 
             {/* BOX PRIMA ESTRAZIONE */}
             <div
@@ -114,8 +105,16 @@ const SerieNegativa = () => {
                                 })
                             }
                         >
-                            Valider
+                            Invia
                         </button>
+                        {!showModal && (
+                            <button
+                                className="px-4 py-2 bg-gray-800 text-white text-xs font-bold uppercase rounded hover:bg-gray-700 focus:outline-none focus:bg-gray-700"
+                                onClick={toggle}
+                            >
+                                Cart ({cartItems.length})
+                            </button>
+                        )}
                     </div>
                 )}
             </div>
