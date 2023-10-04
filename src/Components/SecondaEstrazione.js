@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { TERipple, TEInput } from "tw-elements-react";
 import firstkit from "../assets/imgs/firstKit.png";
 import awaykit from "../assets/imgs/awayKit.png";
 import thirdkit from "../assets/imgs/thirdKit.png";
@@ -31,42 +30,40 @@ const SecondaEstrazione = () => {
         setRandomJersey(Math.floor(Math.random() * 3) + 1);
     };
 
-    console.log(randomJersey);
+    // console.log(randomJersey);
 
     return (
         <section className="px-12 py-2 w-3/4 h-[30vh] flex items-center justify-around border rounded-md">
             <div className="flex flex-col items-center justify-around h-full">
-                <TEInput
-                    type="number"
-                    id="input-estrazione-giocatore"
-                    name="randomPlayerNum"
-                    value={inputField.randomPlayerNum}
-                    onChange={handleChange}
-                    label="A chi toccherà oggi?"
-                    className="text-center text-3xl p-2 w-1/3"
+                <div className=" relative ">
+                    <label for="name-with-label" className="text-gray-300">
+                        A chi toccherà oggi?
+                    </label>
+                    <input
+                        onChange={handleChange}
+                        value={inputField.randomPlayerNum}
+                        type="number"
+                        id="input-estrazione-giocatore"
+                        className=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+                        name="randomPlayerNum"
+                        placeholder="11 o 18?"
+                    />
+                </div>
+                <button
+                    type="button"
+                    onClick={genSecondRandomNumber}
+                    className="py-2 px-4  bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500 focus:ring-offset-indigo-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg "
                 >
-                    <div className="absolute w-full text-xs text-neutral-500 peer-focus:text-primary dark:text-neutral-200 dark:peer-focus:text-primary">
-                        Inserisci un numero: 11 per i soli titolari, 18 per
-                        comprendere la panchina
-                    </div>
-                </TEInput>
-                <TERipple rippleColor="light">
-                    <button
-                        type="button"
-                        onClick={genSecondRandomNumber}
-                        className="inline-block rounded bg-primary px-6 pb-2 pt-2.5 text-md font-bold uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
-                    >
-                        Estrai
-                    </button>
-                </TERipple>
+                    Estrai
+                </button>
             </div>
-            <div
-                className="p-12 rounded bg-no-repeat bg-contain bg-center overflow-hidden flex items-center justify-center w-1/3 h-full"
-                style={{
-                    backgroundImage: `url(${teamKits[randomJersey - 1]})`,
-                }}
-            >
-                {secondExtractedNumber && (
+            {secondExtractedNumber && (
+                <div
+                    className="transition-all p-12 rounded bg-no-repeat bg-contain bg-center overflow-hidden flex items-center justify-center w-1/3 h-full"
+                    style={{
+                        backgroundImage: `url(${teamKits[randomJersey - 1]})`,
+                    }}
+                >
                     <span
                         style={
                             randomJersey === 2 ? { color: "var(--clr-sec" } : {}
@@ -75,8 +72,8 @@ const SecondaEstrazione = () => {
                     >
                         {secondExtractedNumber}
                     </span>
-                )}
-            </div>
+                </div>
+            )}
         </section>
     );
 };

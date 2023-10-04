@@ -16,6 +16,8 @@ body {
     -moz-osx-font-smoothing: grayscale;
     background-color: #222;
     color: #eeeeee;
+    --clr-prim: #c9182c;
+    --clr-sec: #105442;
 }
 
 code {
