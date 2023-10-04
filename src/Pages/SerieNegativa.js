@@ -1,36 +1,46 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext, useRef } from "react";
 import { GiPerspectiveDiceSixFacesRandom } from "react-icons/gi";
 import { randomNumber } from "../Funzioni/RandomNumber";
+import { CartContext } from "../context/cart";
 import datiSerieNegativa from "../Data/datiSerieNegativa";
 import SecondaEstrazione from "../Components/SecondaEstrazione";
+import RiepilogoImprevisti from "../Components/RiepilogoImprevisti";
 
 const SerieNegativa = () => {
-    const [casuale, setCasuale] = useState(null);
+    const [casuale, setCasuale] = useState(6);
 
-    const [counterNotteBrava, setCounterNotteBrava] = useState(0);
+    const inputRef = useRef(null);
+
+    const { cartItems, addToCart } = useContext(CartContext);
+
+    const [showModal, setShowModal] = useState(false);
+
+    const toggle = () => {
+        setShowModal(!showModal);
+    };
 
     // Prima Estrazione
 
     const estraiNumeroCasuale = () => {
         setCasuale(randomNumber(datiSerieNegativa));
-        aumentaNotteBrava();
     };
 
     const { id, title, description, isImprev, ultEstrazione } = casuale
         ? datiSerieNegativa[casuale - 1]
         : {};
 
-    const aumentaNotteBrava = () => {
-        if (id === 6) {
-            setCounterNotteBrava((prevCounter) => prevCounter + 1);
-        } else {
-            return counterNotteBrava;
-        }
-    };
-    console.log(counterNotteBrava);
     return (
         <section className="font-bold flex flex-col justify-around gap-12 items-center min-h-[75vh] w-full py-4">
             <h1 className="text-3xl select-none">Imprevisto Serie Negativa</h1>
+            {!showModal && (
+                <button
+                    className="px-4 py-2 bg-gray-800 text-white text-xs font-bold uppercase rounded hover:bg-gray-700 focus:outline-none focus:bg-gray-700"
+                    onClick={toggle}
+                >
+                    Cart ({cartItems.length})
+                </button>
+            )}
+
             {/* BOX PRIMA ESTRAZIONE */}
             <div
                 id="containerPrimaEstrazione"
@@ -50,13 +60,30 @@ const SerieNegativa = () => {
                 <h3 className="text-5xl font-extrabold uppercase">{title}</h3>
                 <p className="text-2xl">{description}</p>
                 {/* Eccezione Notte Brava */}
-                <p className="italic">
-                    {id === 6 && counterNotteBrava > 0
-                        ? "Attenzione! Non si applica alle partite determinanti (es. turni di ritorno, partite secche, scontri diretti)"
-                        : ""}
-                </p>
+                {
+                    <p className="italic">
+                        {id === 6
+                            ? "Attenzione! Non si applica alle partite determinanti (es. turni di ritorno, partite secche, scontri diretti)"
+                            : ""}
+                    </p>
+                }
                 {ultEstrazione ? <SecondaEstrazione /> : ""}
-
+                {id === 6 && (
+                    <div>
+                        <input
+                            ref={inputRef}
+                            type="text"
+                            name="inputValore"
+                            className="rounded focus:ring-teal-700 m-2"
+                        />
+                        <button
+                            onClick={() => addToCart("product")}
+                            className="px-4 py-2 bg-gray-800 text-white text-xs font-bold uppercase rounded hover:bg-gray-700 focus:outline-none focus:bg-gray-700"
+                        >
+                            Add to cart
+                        </button>
+                    </div>
+                )}
             </div>
 
             <div className="cursor-pointer flex h-auto items-center justify-center rounded-full p-2 hover:bg-black/30 absolute right-48 bottom-36">
@@ -69,6 +96,7 @@ const SerieNegativa = () => {
                     onClick={estraiNumeroCasuale}
                 />
             </div>
+            <RiepilogoImprevisti showModal={showModal} toggle={toggle} />
         </section>
     );
 };
