@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { MdHome, MdMenu, MdClose } from "react-icons/md";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
     const [openMenu, setOpenMenu] = useState(false);
@@ -15,16 +16,16 @@ const Navbar = () => {
         {
             id: 4,
             voceLi: "Imprevisto Serie Negativa",
-            linkTo: "/serieNegativa",
+            linkTo: "/serie-negativa",
         },
         {
             id: 5,
             voceLi: "Imprevisto Calciomercato: offerte ricevute",
-            linkTo: "/offerteCalciomercato",
+            linkTo: "/offerte-mercato",
         },
         { id: 6, voceLi: "Imprevisto di Ingaggio", linkTo: "/ingaggio" },
         { id: 7, voceLi: "Imprevisto Rinnovi", linkTo: "/rinnovi" },
-        { id: 8, voceLi: "Media Overall ", linkTo: "/media-overall" },
+        { id: 8, voceLi: "Media Overall ", linkTo: "/calcolo-media" },
         { id: 9, voceLi: "Regolamento Carriera FC24 ", linkTo: "/regolamento" },
     ];
 
@@ -32,9 +33,11 @@ const Navbar = () => {
     const linksMenu = dettagliMenu.map((voce) => {
         return (
             <div key={voce.id}>
-                <li className="hover:text-yellow-600 py-6 text-xl font-bold uppercase">
-                    {voce.voceLi}
-                </li>
+                <Link to={voce.linkTo}>
+                    <li className="hover:text-yellow-600 py-6 text-xl font-bold uppercase">
+                        {voce.voceLi}
+                    </li>
+                </Link>
             </div>
         );
     });
@@ -42,13 +45,15 @@ const Navbar = () => {
     return (
         <nav className="w-full h-auto py-3 px-6 fixed flex items-center justify-between z-[1000]">
             <div className="cursor-pointer flex items-center justify-center rounded-full p-2 hover:bg-black/30">
-                <MdHome
-                    size={36}
-                    style={{
-                        filter: "drop-shadow(.25rem .25rem 0.15rem #222)",
-                    }}
-                    className="fill-gray-300 hover:fill-gray-200"
-                />
+                <Link to="/">
+                    <MdHome
+                        size={36}
+                        style={{
+                            filter: "drop-shadow(.25rem .25rem 0.15rem #222)",
+                        }}
+                        className="fill-gray-300 hover:fill-gray-200"
+                    />
+                </Link>
             </div>
             <div className="cursor-pointer flex items-center justify-center rounded-full p-2 hover:bg-black/30">
                 {!openMenu ? (

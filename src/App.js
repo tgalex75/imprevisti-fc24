@@ -1,30 +1,17 @@
 import "./App.css";
 //import Home from "./Pages/Home";
 import Navbar from "./Components/Navbar";
-//import Prepartita from "./Pages/Prepartita"
-//import ImprevistoCommunity from "./Components/ImprevistoCommunity";
-//import SerieNegativa from "./Pages/SerieNegativa";
-//import Ingaggio from "./Pages/Ingaggio";
-//import RiepilogoImprevisti from "./Components/RiepilogoImprevisti";
-import MediaOverall from "./Pages/MediaOverall";
-
-
+import { BrowserRouter as Router } from "react-router-dom";
+import AnimatedRoutes from "./Components/AnimatedRoutes";
 
 function App() {
     return (
-        <div className="App">
-            <Navbar />
-            {/* <Home /> */}
-            {/* <Prepartita /> */}
-            {/* <SerieNegativa /> */}
-            {/* <Ingaggio /> */}
-            {/* <RiepilogoImprevisti /> */}
-            <MediaOverall />
-
-
-
-
-        </div>
+        <>
+            <Router>
+                <Navbar />
+                <AnimatedRoutes />
+            </Router>
+        </>
     );
 }
 

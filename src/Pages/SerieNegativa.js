@@ -63,7 +63,7 @@ const SerieNegativa = () => {
                     </p>
                 }
                 {ultEstrazione ? <SecondaEstrazione /> : ""}
-                {id === 6 && (
+                {id > 3 && (
                     <div className="p-4 flex justify-around gap-2">
                         <div className=" relative ">
                             <label
