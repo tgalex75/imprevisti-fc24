@@ -742,14 +742,19 @@ export const s3421 = (arr, func, val) => {
 
 export const mySelect = (ref, func) => {
     return (
-        <div className="flex justify-end w-4/5">
+        <div className="flex flex-col w-4/5 items-end ">
+            <label
+                htmlFor="tattica"
+                className="block text-sm font-medium text-gray-300"
+            >
+                Seleziona la tattica
+            </label>
             <select
                 className="block px-3 py-2 text-gray-200 bg-transparent border border-gray-300 rounded-md shadow-sm w-52 focus:outline-none focus:ring-primary-500 focus:border-primary-500"
-                name="animals"
+                name="tattica"
                 ref={ref}
                 onChange={func}
             >
-                <option value="">Seleziona lo schema</option>
                 <option value="442">4-4-2</option>
                 <option value="433">4-3-3</option>
                 <option value="4312">4-3-1-2</option>

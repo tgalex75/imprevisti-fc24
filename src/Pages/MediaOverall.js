@@ -63,8 +63,8 @@ const MediaOverall = () => {
     const result = calcolaMedia();
 
     return (
-        <main className="w-full h-full flex flex-col items-center justify-around overflow-hidden p-12">
-            <div className="w-full h-full mx-auto flex items-center gap-4 flex-col">
+        <main className="w-full flex flex-col items-center justify-around overflow-hidden p-2">
+            <div className="w-full flex items-center flex-col">
                 <h1 className="text-4xl font-bold">Media Overall</h1>
                 {mySelect(selectRef, getSchema)}
                 {schema === "442" && s442(data, handleChange, valori)}
@@ -73,12 +73,13 @@ const MediaOverall = () => {
                 {schema === "3412" && s3412(data, handleChange, valori)}
                 {schema === "3421" && s3421(data, handleChange, valori)}
                 {schema === "343" && s343(data, handleChange, valori)}
-                {values && (
+                {values || schema ? (
                     <div className="py-6 px-20 border-8 border-[--clr-prim] rounded-lg font-bold">
                         <span className="text-xl">Media:</span>
                         <h4 className="text-9xl">{result}</h4>
-                         
                     </div>
+                ) : (
+                    ""
                 )}
             </div>
         </main>
