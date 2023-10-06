@@ -119,12 +119,12 @@ const SerieNegativa = () => {
                 )}
             </div>
 
-            <div className="cursor-pointer flex h-auto items-center justify-center rounded-full p-2 hover:bg-black/30 absolute right-48 bottom-36">
+            <div className="cursor-pointer flex h-auto items-center justify-center rounded-full p-2 hover:bg-black/30 absolute right-48 bottom-28">
                 <GiPerspectiveDiceSixFacesRandom
                     style={{
                         filter: "drop-shadow(.25rem .25rem 0.15rem #222)",
                     }}
-                    size={72}
+                    size={96}
                     className="hover:fill-gray-200 transition-all  active:scale-125 active:-rotate-12 hover:rotate-6 hover:ease-[cubic-bezier(0.680, -0.550, 0.265, 1.550)]"
                     onClick={estraiNumeroCasuale}
                 />

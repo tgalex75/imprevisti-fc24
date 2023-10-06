@@ -11,7 +11,7 @@ export const CartProvider = ({ children }) => {
     if (isItemInCart) {
       setCartItems(
         cartItems.map((cartItem) =>
-          cartItem.title === item.title
+          cartItem.title === item.title && cartItem.tipoImprevisto === item.tipoImprevisto
             ? { ...cartItem, quantity: cartItem.quantity + 1 }
             : cartItem
         )
@@ -22,14 +22,14 @@ export const CartProvider = ({ children }) => {
   };
 
   const removeFromCart = (item) => {
-    const isItemInCart = cartItems.find((cartItem) => cartItem.title === item.title);
+    const isItemInCart = cartItems.find((cartItem) => cartItem.title === item.title && cartItem.tipoImprevisto === item.tipoImprevisto);
 
     if (isItemInCart.quantity === 1) {
-      setCartItems(cartItems.filter((cartItem) => cartItem.title !== item.title));
+      setCartItems(cartItems.filter((cartItem) => cartItem.title !== item.title && cartItem.tipoImprevisto !== item.tipoImprevisto));
     } else {
       setCartItems(
         cartItems.map((cartItem) =>
-          cartItem.title === item.title
+          cartItem.title === item.title && cartItem.tipoImprevisto === item.tipoImprevisto
             ? { ...cartItem, quantity: cartItem.quantity - 1 }
             : cartItem
         )

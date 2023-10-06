@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
 import { supabase } from "../supabaseClient";
-import {MdClose} from "react-icons/md"
+import { MdClose } from "react-icons/md";
+import deadpool from "../assets/imgs/deadpool.png";
 
 export default function FetchData(props) {
     const [imprevisto, setImprevisto] = useState([]);
 
-    const {changeModalState} = props
+    const { changeModalState } = props;
 
     useEffect(() => {
         fetchLista();
@@ -26,17 +27,30 @@ export default function FetchData(props) {
             .from("imprevisti")
             .delete("id")
             .eq("id", imprevisto.id);
-            console.log(error ? error : "");
-            changeModalState();
-            fetchLista();
+        console.log(error ? error : "");
+        changeModalState();
+        fetchLista();
     };
 
     return (
-        <div className="App">
-            <div className="w-full mx-auto my-6 p-8 border border-teal-500 shadow-lg flex items-center justify-center">
-                <h5 className="font-bold my-8 uppercase">{imprevisto.name}</h5>
-            </div>
-            <MdClose size={"3rem"} onClick={delElemento} className="absolute top-0 right-0 m-4 cursor-pointer"/>
+        <div
+            style={{
+                backgroundImage: `url(${deadpool})`,
+                backgroundSize: "20%",
+            }}
+            className="bg-left-bottom bg-no-repeat w-full h-full mx-auto my-6 p-8 ring ring-inset ring-white/75 border-8 border-[--clr-prim] shadow-lg flex items-center justify-center rounded-xl"
+        >
+            <h3
+                style={{ fontFamily: "'Handlee', cursive" }}
+                className="text-4xl ps-[30%] italic text-center my-8 uppercase"
+            >
+                {imprevisto.name}
+            </h3>
+            <MdClose
+                size={"3rem"}
+                onClick={delElemento}
+                className="absolute top-0 right-0 m-4 cursor-pointer hover:fill-[--clr-sec] fill-gray-300"
+            />
         </div>
     );
 }

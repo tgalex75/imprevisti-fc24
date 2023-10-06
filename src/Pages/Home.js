@@ -43,32 +43,35 @@ const Home = () => {
                     }}
                     className="group flex items-center justify-start w-1/6 hover:w-full h-full cursor-pointer transition-all duration-500 ease-[cubic-bezier(0.770, 0.000, 0.175, 1.000)] hover:text-gray-300"
                 >
-                    <Link
-                        to={el.link}
-                        className="w-full h-full block bg-transparent"
+                    <h2
+                        style={{
+                            writingMode: "vertical-lr",
+                            transform: "rotate(180deg)",
+                            textShadow: "rgb(34, 34, 34) 0px 4px 4px",
+                        }}
+                        className="group-hover:border-l-[1rem] border-[--clr-prim] uppercase font-bold text-[2.2vw] text-left ps-8 text-gray-200 drop-shadow-lg bg-[rgb(16,84,66,.95)] h-full px-2"
                     >
-                        <h2
-                            style={{
-                                writingMode: "vertical-lr",
-                                transform: "rotate(180deg)",
-                                textShadow: "rgb(34, 34, 34) 0px 4px 4px",
-                            }}
-                            className="group-hover:border-l-[1rem] border-[--clr-prim] uppercase font-bold text-[2.2vw] text-left ps-8 text-gray-200 drop-shadow-lg bg-[rgb(16,84,66,.95)] h-full px-2"
+                        {el.impr}
+                    </h2>
+                    <div
+                        style={{
+                            backgroundImage: `url(${el.img})`,
+                            height: "100vh",
+                        }}
+                        className="bg-center bg-cover bg-no-repeat grayscale hover:grayscale-0 w-full h-full bg-black/20 flex justify-end items-end "
+                    >
+                        <Link
+                            to={el.link}
+                            className="w-full h-full block bg-transparent"
                         >
-                            {el.impr}
-                        </h2>
-                        <div
-                            style={{ backgroundImage: `url(${el.img})` }}
-                            className="bg-center bg-cover bg-no-repeat grayscale hover:grayscale-0 w-full h-full bg-black/20 flex justify-end items-end "
-                        >
-                            <button
+                            {/* <button
                                 type="button"
                                 className="invisible group-hover:visible p-4 mb-2 mr-4 drop-shadow-lg me-4 rounded-md border-gray-300 z-[100] bg-gradient-to-b from-[rgb(16,84,66)] to-green-950 hover:from-green-950 hover:to-[rgb(16,84,66)]"
                             >
                                 Vai alla sezione
-                            </button>
-                        </div>
-                    </Link>
+                            </button> */}
+                        </Link>
+                    </div>
                 </div>
             ))}
         </section>

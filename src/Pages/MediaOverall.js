@@ -1,6 +1,8 @@
 import React, { useState, useRef } from "react";
 import {
     s343,
+    s532,
+    s5212,
     s3412,
     s3421,
     s4312,
@@ -12,7 +14,7 @@ import {
 
 const MediaOverall = () => {
     const selectRef = useRef(null);
-    const [schema, setSchema] = useState("4312");
+    const [schema, setSchema] = useState("532");
 
     const getSchema = () => {
         setSchema(selectRef.current.value);
@@ -24,21 +26,7 @@ const MediaOverall = () => {
             (value, index) => start + index * step
         );
 
-    let valori = arrayRange(40, 99, 1);
-
-    const defaultValues = {
-        p1: 60,
-        p2: 60,
-        p3: 60,
-        p4: 60,
-        p5: 60,
-        p6: 60,
-        p7: 60,
-        p8: 60,
-        p9: 60,
-        p10: 60,
-        p11: 60,
-    };
+    let valori = arrayRange(55, 99, 1);
 
     const [values, setValues] = useState(null);
 
@@ -63,10 +51,12 @@ const MediaOverall = () => {
     const result = calcolaMedia();
 
     return (
-        <main className="w-full flex flex-col items-center justify-around overflow-hidden p-2">
-            <div className="w-full flex items-center flex-col">
-                <h1 className="text-4xl font-bold">Media Overall</h1>
+        <main className="w-full h-screen flex flex-col items-center justify-around overflow-hidden p-2">
+            <div className="w-full h-full justify-center gap-4 flex items-center flex-col">
+                <h1>Media Overall</h1>
                 {mySelect(selectRef, getSchema)}
+                {schema === "532" && s532(data, handleChange, valori)}
+                {schema === "5212" && s5212(data, handleChange, valori)}
                 {schema === "442" && s442(data, handleChange, valori)}
                 {schema === "433" && s433(data, handleChange, valori)}
                 {schema === "4312" && s4312(data, handleChange, valori)}
@@ -74,7 +64,7 @@ const MediaOverall = () => {
                 {schema === "3421" && s3421(data, handleChange, valori)}
                 {schema === "343" && s343(data, handleChange, valori)}
                 {values || schema ? (
-                    <div className="py-6 px-20 border-8 border-[--clr-prim] rounded-lg font-bold">
+                    <div className="py-6 px-20 border-8 border-[--clr-prim] ring-4 ring-inset ring-white/75 rounded-lg font-bold">
                         <span className="text-xl">Media:</span>
                         <h4 className="text-9xl">{result}</h4>
                     </div>

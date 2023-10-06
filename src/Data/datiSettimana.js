@@ -22,7 +22,7 @@ const settimana = [
     },
     {
         id: 4,
-        title: "PAROLA ALLA COMMUNITY",
+        title: "PAROLA ALLA COMMUNITY!",
         description: "Sarà applicato l'imprevisto scelto dalla Community.",
         isImprev: true,
     },
@@ -118,7 +118,7 @@ const settimana = [
     },
     {
         id: 18,
-        title: "PAROLA ALLA COMMUNITY",
+        title: "PAROLA ALLA COMMUNITY!",
         description: "Sarà applicato l'imprevisto scelto dalla Community.",
         isImprev: true,
     },
@@ -197,6 +197,12 @@ const settimana = [
         description:
             "Il giocatore passerà in tribuna le partite giocate questa settimana.",
         isImprev: false,
+    },
+    {
+        id: 30,
+        title: "PAROLA ALLA COMMUNITY!",
+        description: "Sarà applicato l'imprevisto scelto dalla Community.",
+        isImprev: true,
     },
 ];
 
