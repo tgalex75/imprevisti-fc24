@@ -6,12 +6,12 @@ export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState(localStorage.getItem('cartItems') ? JSON.parse(localStorage.getItem('cartItems')) : [])
 
   const addToCart = (item) => {
-    const isItemInCart = cartItems.find((cartItem) => cartItem.title === item.title && cartItem.tipoImprevisto === item.tipoImprevisto);
+    const isItemInCart = cartItems.find((cartItem) => cartItem.title === item.title);
 
     if (isItemInCart) {
       setCartItems(
         cartItems.map((cartItem) =>
-          cartItem.title === item.title && cartItem.tipoImprevisto === item.tipoImprevisto
+          cartItem.title === item.title
             ? { ...cartItem, quantity: cartItem.quantity + 1 }
             : cartItem
         )
@@ -22,14 +22,14 @@ export const CartProvider = ({ children }) => {
   };
 
   const removeFromCart = (item) => {
-    const isItemInCart = cartItems.find((cartItem) => cartItem.title === item.title && cartItem.tipoImprevisto === item.tipoImprevisto);
+    const isItemInCart = cartItems.find((cartItem) => cartItem.title === item.title);
 
     if (isItemInCart.quantity === 1) {
-      setCartItems(cartItems.filter((cartItem) => cartItem.title !== item.title && cartItem.tipoImprevisto !== item.tipoImprevisto));
+      setCartItems(cartItems.filter((cartItem) => cartItem.title !== item.title));
     } else {
       setCartItems(
         cartItems.map((cartItem) =>
-          cartItem.title === item.title && cartItem.tipoImprevisto === item.tipoImprevisto
+          cartItem.title === item.title
             ? { ...cartItem, quantity: cartItem.quantity - 1 }
             : cartItem
         )
