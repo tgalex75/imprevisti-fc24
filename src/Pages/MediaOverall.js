@@ -63,13 +63,11 @@ const MediaOverall = () => {
                 {schema === "3412" && s3412(data, handleChange, valori)}
                 {schema === "3421" && s3421(data, handleChange, valori)}
                 {schema === "343" && s343(data, handleChange, valori)}
-                {values || schema ? (
+                {result > 0 && (
                     <div className="py-6 px-20 border-8 border-[--clr-prim] ring-4 ring-inset ring-white/75 rounded-lg font-bold">
                         <span className="text-xl">Media:</span>
                         <h4 className="text-9xl">{result}</h4>
                     </div>
-                ) : (
-                    ""
                 )}
             </div>
         </main>

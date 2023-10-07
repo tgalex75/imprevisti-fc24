@@ -1,0 +1,26 @@
+import React from "react";
+//import logoSfondoFalco from "../assets/imgs/logo900.png";
+import logoWr from "../assets/imgs/wrexham-afc.png";
+
+const Sfondo = () => {
+  return (
+    <section className="absolute left-1/2 top-1/2 -z-50 h-screen w-screen -translate-x-1/2 -translate-y-1/2 overflow-hidden bg-transparent">
+<div className="h-full w-full opacity-[.05]" style={{
+      backgroundPositionX: "center",
+      backgroundSize: "contain",
+      backgroundRepeat: "no-repeat",
+      backgroundImage: `url(${logoWr})`,
+    }}></div>
+{/* <div className="h-full w-full" style={{
+      backgroundPositionX: "center",
+      backgroundPositionY: "right",
+      backgroundSize: "contain",
+      backgroundRepeat: "no-repeat",
+      backgroundImage: `url(${logoSfondoFalco})`,
+    }}></div> */}
+
+    </section>
+  );
+};
+
+export default Sfondo;

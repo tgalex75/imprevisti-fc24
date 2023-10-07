@@ -42,7 +42,7 @@ const datiSerieNegativa = [
         id: 6,
         title: "Notte brava",
         description:
-            "il giocatore estratto è arrivato tardi agli allenamenti. Tribuna per una partita. Se capita una seconda volta in stagione fuori un mese. Se capita una terza, cessione obbligatoria.",
+            "Il giocatore estratto è arrivato tardi agli allenamenti. Tribuna per una partita. Se capita una seconda volta in stagione fuori un mese. Se capita una terza, cessione obbligatoria.",
         isImprev: true,
         ultEstrazione: true
     },

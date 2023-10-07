@@ -20,7 +20,7 @@ export const s442 = (arr, func, val) => {
                             >
                                 <option value="">Overall</option>
                                 {val.map((num) => (
-                                    <option value={num}>{num}</option>
+                                    <option key={num} value={num}>{num}</option>
                                 ))}
                             </select>
                         </div>
@@ -46,7 +46,7 @@ export const s442 = (arr, func, val) => {
                             >
                                 <option value="">Overall</option>
                                 {val.map((num) => (
-                                    <option value={num}>{num}</option>
+                                    <option key={num} value={num}>{num}</option>
                                 ))}
                             </select>
                         </div>
@@ -72,7 +72,7 @@ export const s442 = (arr, func, val) => {
                             >
                                 <option value="">Overall</option>
                                 {val.map((num) => (
-                                    <option value={num}>{num}</option>
+                                    <option key={num} value={num}>{num}</option>
                                 ))}
                             </select>
                         </div>
@@ -98,7 +98,7 @@ export const s442 = (arr, func, val) => {
                             >
                                 <option value="">Overall</option>
                                 {val.map((num) => (
-                                    <option value={num}>{num}</option>
+                                    <option key={num} value={num}>{num}</option>
                                 ))}
                             </select>
                         </div>
@@ -131,7 +131,7 @@ export const s532 = (arr, func, val) => {
                             >
                                 <option value="">Overall</option>
                                 {val.map((num) => (
-                                    <option value={num}>{num}</option>
+                                    <option key={num} value={num}>{num}</option>
                                 ))}
                             </select>
                         </div>
@@ -157,7 +157,7 @@ export const s532 = (arr, func, val) => {
                             >
                                 <option value="">Overall</option>
                                 {val.map((num) => (
-                                    <option value={num}>{num}</option>
+                                    <option key={num} value={num}>{num}</option>
                                 ))}
                             </select>
                         </div>
@@ -183,7 +183,7 @@ export const s532 = (arr, func, val) => {
                             >
                                 <option value="">Overall</option>
                                 {val.map((num) => (
-                                    <option value={num}>{num}</option>
+                                    <option key={num} value={num}>{num}</option>
                                 ))}
                             </select>
                         </div>
@@ -209,7 +209,7 @@ export const s532 = (arr, func, val) => {
                             >
                                 <option value="">Overall</option>
                                 {val.map((num) => (
-                                    <option value={num}>{num}</option>
+                                    <option key={num} value={num}>{num}</option>
                                 ))}
                             </select>
                         </div>
@@ -242,7 +242,7 @@ export const s433 = (arr, func, val) => {
                             >
                                 <option value="">Overall</option>
                                 {val.map((num) => (
-                                    <option value={num}>{num}</option>
+                                    <option key={num} value={num}>{num}</option>
                                 ))}
                             </select>
                         </div>
@@ -268,7 +268,7 @@ export const s433 = (arr, func, val) => {
                             >
                                 <option value="">Overall</option>
                                 {val.map((num) => (
-                                    <option value={num}>{num}</option>
+                                    <option key={num} value={num}>{num}</option>
                                 ))}
                             </select>
                         </div>
@@ -294,7 +294,7 @@ export const s433 = (arr, func, val) => {
                             >
                                 <option value="">Overall</option>
                                 {val.map((num) => (
-                                    <option value={num}>{num}</option>
+                                    <option key={num} value={num}>{num}</option>
                                 ))}
                             </select>
                         </div>
@@ -320,7 +320,7 @@ export const s433 = (arr, func, val) => {
                             >
                                 <option value="">Overall</option>
                                 {val.map((num) => (
-                                    <option value={num}>{num}</option>
+                                    <option key={num} value={num}>{num}</option>
                                 ))}
                             </select>
                         </div>
@@ -353,7 +353,7 @@ export const s4312 = (arr, func, val) => {
                             >
                                 <option value="">Overall</option>
                                 {val.map((num) => (
-                                    <option value={num}>{num}</option>
+                                    <option key={num} value={num}>{num}</option>
                                 ))}
                             </select>
                         </div>
@@ -379,7 +379,7 @@ export const s4312 = (arr, func, val) => {
                             >
                                 <option value="">Overall</option>
                                 {val.map((num) => (
-                                    <option value={num}>{num}</option>
+                                    <option key={num} value={num}>{num}</option>
                                 ))}
                             </select>
                         </div>
@@ -405,7 +405,7 @@ export const s4312 = (arr, func, val) => {
                             >
                                 <option value="">Overall</option>
                                 {val.map((num) => (
-                                    <option value={num}>{num}</option>
+                                    <option key={num} value={num}>{num}</option>
                                 ))}
                             </select>
                         </div>
@@ -431,7 +431,7 @@ export const s4312 = (arr, func, val) => {
                             >
                                 <option value="">Overall</option>
                                 {val.map((num) => (
-                                    <option value={num}>{num}</option>
+                                    <option key={num} value={num}>{num}</option>
                                 ))}
                             </select>
                         </div>
@@ -457,7 +457,7 @@ export const s4312 = (arr, func, val) => {
                             >
                                 <option value="">Overall</option>
                                 {val.map((num) => (
-                                    <option value={num}>{num}</option>
+                                    <option key={num} value={num}>{num}</option>
                                 ))}
                             </select>
                         </div>
@@ -490,7 +490,7 @@ export const s3412 = (arr, func, val) => {
                             >
                                 <option value="">Overall</option>
                                 {val.map((num) => (
-                                    <option value={num}>{num}</option>
+                                    <option key={num} value={num}>{num}</option>
                                 ))}
                             </select>
                         </div>
@@ -516,7 +516,7 @@ export const s3412 = (arr, func, val) => {
                             >
                                 <option value="">Overall</option>
                                 {val.map((num) => (
-                                    <option value={num}>{num}</option>
+                                    <option key={num} value={num}>{num}</option>
                                 ))}
                             </select>
                         </div>
@@ -542,7 +542,7 @@ export const s3412 = (arr, func, val) => {
                             >
                                 <option value="">Overall</option>
                                 {val.map((num) => (
-                                    <option value={num}>{num}</option>
+                                    <option key={num} value={num}>{num}</option>
                                 ))}
                             </select>
                         </div>
@@ -568,7 +568,7 @@ export const s3412 = (arr, func, val) => {
                             >
                                 <option value="">Overall</option>
                                 {val.map((num) => (
-                                    <option value={num}>{num}</option>
+                                    <option key={num} value={num}>{num}</option>
                                 ))}
                             </select>
                         </div>
@@ -594,7 +594,7 @@ export const s3412 = (arr, func, val) => {
                             >
                                 <option value="">Overall</option>
                                 {val.map((num) => (
-                                    <option value={num}>{num}</option>
+                                    <option key={num} value={num}>{num}</option>
                                 ))}
                             </select>
                         </div>
@@ -626,7 +626,7 @@ export const s343 = (arr, func, val) => {
                             >
                                 <option value="">Overall</option>
                                 {val.map((num) => (
-                                    <option value={num}>{num}</option>
+                                    <option key={num} value={num}>{num}</option>
                                 ))}
                             </select>
                         </div>
@@ -652,7 +652,7 @@ export const s343 = (arr, func, val) => {
                             >
                                 <option value="">Overall</option>
                                 {val.map((num) => (
-                                    <option value={num}>{num}</option>
+                                    <option key={num} value={num}>{num}</option>
                                 ))}
                             </select>
                         </div>
@@ -678,7 +678,7 @@ export const s343 = (arr, func, val) => {
                             >
                                 <option value="">Overall</option>
                                 {val.map((num) => (
-                                    <option value={num}>{num}</option>
+                                    <option key={num} value={num}>{num}</option>
                                 ))}
                             </select>
                         </div>
@@ -704,7 +704,7 @@ export const s343 = (arr, func, val) => {
                             >
                                 <option value="">Overall</option>
                                 {val.map((num) => (
-                                    <option value={num}>{num}</option>
+                                    <option key={num} value={num}>{num}</option>
                                 ))}
                             </select>
                         </div>
@@ -736,7 +736,7 @@ export const s3421 = (arr, func, val) => {
                             >
                                 <option value="">Overall</option>
                                 {val.map((num) => (
-                                    <option value={num}>{num}</option>
+                                    <option key={num} value={num}>{num}</option>
                                 ))}
                             </select>
                         </div>
@@ -762,7 +762,7 @@ export const s3421 = (arr, func, val) => {
                             >
                                 <option value="">Overall</option>
                                 {val.map((num) => (
-                                    <option value={num}>{num}</option>
+                                    <option key={num} value={num}>{num}</option>
                                 ))}
                             </select>
                         </div>
@@ -788,7 +788,7 @@ export const s3421 = (arr, func, val) => {
                             >
                                 <option value="">Overall</option>
                                 {val.map((num) => (
-                                    <option value={num}>{num}</option>
+                                    <option key={num} value={num}>{num}</option>
                                 ))}
                             </select>
                         </div>
@@ -814,7 +814,7 @@ export const s3421 = (arr, func, val) => {
                             >
                                 <option value="">Overall</option>
                                 {val.map((num) => (
-                                    <option value={num}>{num}</option>
+                                    <option key={num} value={num}>{num}</option>
                                 ))}
                             </select>
                         </div>
@@ -840,7 +840,7 @@ export const s3421 = (arr, func, val) => {
                             >
                                 <option value="">Overall</option>
                                 {val.map((num) => (
-                                    <option value={num}>{num}</option>
+                                    <option key={num} value={num}>{num}</option>
                                 ))}
                             </select>
                         </div>
@@ -873,7 +873,7 @@ export const s5212 = (arr, func, val) => {
                             >
                                 <option value="">Overall</option>
                                 {val.map((num) => (
-                                    <option value={num}>{num}</option>
+                                    <option key={num} value={num}>{num}</option>
                                 ))}
                             </select>
                         </div>
@@ -899,7 +899,7 @@ export const s5212 = (arr, func, val) => {
                             >
                                 <option value="">Overall</option>
                                 {val.map((num) => (
-                                    <option value={num}>{num}</option>
+                                    <option key={num} value={num}>{num}</option>
                                 ))}
                             </select>
                         </div>
@@ -925,7 +925,7 @@ export const s5212 = (arr, func, val) => {
                             >
                                 <option value="">Overall</option>
                                 {val.map((num) => (
-                                    <option value={num}>{num}</option>
+                                    <option key={num} value={num}>{num}</option>
                                 ))}
                             </select>
                         </div>
@@ -951,7 +951,7 @@ export const s5212 = (arr, func, val) => {
                             >
                                 <option value="">Overall</option>
                                 {val.map((num) => (
-                                    <option value={num}>{num}</option>
+                                    <option key={num} value={num}>{num}</option>
                                 ))}
                             </select>
                         </div>
@@ -977,7 +977,7 @@ export const s5212 = (arr, func, val) => {
                             >
                                 <option value="">Overall</option>
                                 {val.map((num) => (
-                                    <option value={num}>{num}</option>
+                                    <option key={num} value={num}>{num}</option>
                                 ))}
                             </select>
                         </div>

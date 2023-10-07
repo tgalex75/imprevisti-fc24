@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { MdHome, MdMenu, MdClose } from "react-icons/md";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
-    const [openMenu, setOpenMenu] = useState(false);
+    const [isOpenMenu, setIsOpenMenu] = useState(false);
+
 
     const handleClick = () => {
-        setOpenMenu((prevMenu) => !prevMenu);
+        setIsOpenMenu((prevMenu) => !prevMenu);
     };
 
     const dettagliMenu = [
@@ -56,7 +57,7 @@ const Navbar = () => {
                 </Link>
             </div>
             <div className="cursor-pointer flex items-center justify-center rounded-full p-2 hover:bg-black/30">
-                {!openMenu ? (
+                {!isOpenMenu ? (
                     <MdMenu
                         size={36}
                         style={{
@@ -75,7 +76,7 @@ const Navbar = () => {
                 <ul
                     onClick={handleClick}
                     className={
-                        openMenu
+                        isOpenMenu
                             ? "h-screen w-full absolute top-0 right-0 text-center flex flex-col justify-around items-center bg-black/95 text-gray-300 z-[-1] transition-[0.5s] py-20 px-28"
                             : "h-screen w-full absolute top-0 right-[-100%] text-center flex flex-col justify-around items-center bg-black/95 text-gray-300 z-[-1] transition-[0.5s] py-20 px-28"
                     }
