@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { MdHome, MdMenu, MdClose } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";

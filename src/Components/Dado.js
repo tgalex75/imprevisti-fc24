@@ -1,7 +1,6 @@
 import React from "react";
 import { GiPerspectiveDiceSixFacesRandom } from "react-icons/gi";
-import {motion, spring} from 'framer-motion'
-import { type } from "@testing-library/user-event/dist/type";
+import {motion} from 'framer-motion'
 
 const Dado = (clickFunc) => {
   return (

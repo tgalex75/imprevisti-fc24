@@ -32,6 +32,7 @@ const BonusAnnuali = () => {
       .from("bonus-imprevisti")
       .delete("id")
       .lt("id", 4);
+      console.log(error)
   };
 
   console.log(vociBonus);
