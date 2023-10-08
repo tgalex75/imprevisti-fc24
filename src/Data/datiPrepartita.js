@@ -156,7 +156,7 @@ const datiPrepartita = [
     {
         id: 23,
         title: "Presuntuoso",
-        description: "Se il giocatore dovesse segnare, ridiscuti il suo contratto o cedi",
+        description: "Se il giocatore dovesse segnare, ridiscuti il suo contratto, altrimenti cedilo",
         isImprev: true,
         ultEstrazione: true
     },

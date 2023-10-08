@@ -5,6 +5,7 @@ import { CartContext } from "../context/cart";
 import datiSerieNegativa from "../Data/datiSerieNegativa";
 import SecondaEstrazione from "../Components/SecondaEstrazione";
 import RegistroImprevisti from "../Components/RegistroImprevisti";
+import { motion } from "framer-motion";
 
 const SerieNegativa = () => {
   const [casuale, setCasuale] = useState(null);
@@ -35,7 +36,11 @@ const SerieNegativa = () => {
       <h1 className="select-none text-3xl">Imprevisto Serie Negativa</h1>
 
       {/* BOX PRIMA ESTRAZIONE */}
-      <div
+      <motion.div
+        initial={{ opacity: 0, x: "-10vw" }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ delay: 0.4, duration: 0.4, type: "spring" }}
+        key={casuale}
         id="containerPrimaEstrazione"
         style={isImprev ? { color: "var(--clr-prim)" } : {}}
         className="flex min-h-[50vh] w-3/4 bg-black/50 select-none flex-col items-center justify-around gap-4 rounded-xl border-8 border-[--clr-sec] px-12 py-8 shadow-lg ring ring-inset ring-white/75"
@@ -115,7 +120,7 @@ const SerieNegativa = () => {
             )}
           </>
         )}
-      </div>
+      </motion.div>
 
       {Dado(estraiNumeroCasuale)}
       <RegistroImprevisti showModal={showModal} toggle={toggle} />

@@ -10,6 +10,7 @@ import Ingaggio from "../Pages/Ingaggio";
 import MediaOverall from "../Pages/MediaOverall";
 import OfferteMercato from "../Pages/OfferteMercato";
 import SerieNegativa from "../Pages/SerieNegativa";
+import BonusAnnuali from '../Pages/BonusAnnuali'
 import ErrorPage from "../Pages/ErrorPage";
 
 const AnimatedRoutes = () => {
@@ -27,6 +28,7 @@ const AnimatedRoutes = () => {
                 <Route path="/rinnovi" element={<Rinnovi />} />
                 <Route path="/serie-negativa" element={<SerieNegativa />} />
                 <Route path="/offerte-mercato" element={<OfferteMercato />} />
+                <Route path="/bonus-annuali" element={<BonusAnnuali />} />
                 <Route path="*" element={<ErrorPage />} />
             </Routes>
         </AnimatePresence>

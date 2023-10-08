@@ -5,7 +5,6 @@ import Footer from "./Components/Footer";
 import Sfondo from "./Components/Sfondo";
 import { BrowserRouter as Router } from "react-router-dom";
 import AnimatedRoutes from "./Components/AnimatedRoutes";
-import BonusAnnuali from './Components/BonusAnnuali'
 
 function App() {
     return (
@@ -14,7 +13,6 @@ function App() {
                 <Navbar />
                 <AnimatedRoutes />
             </Router>
-            <BonusAnnuali />
             <Footer />
             <Sfondo />
         </>

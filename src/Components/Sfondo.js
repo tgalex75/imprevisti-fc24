@@ -11,14 +11,6 @@ const Sfondo = () => {
       backgroundRepeat: "no-repeat",
       backgroundImage: `url(${logoWr})`,
     }}></div>
-{/* <div className="h-full w-full" style={{
-      backgroundPositionX: "center",
-      backgroundPositionY: "right",
-      backgroundSize: "contain",
-      backgroundRepeat: "no-repeat",
-      backgroundImage: `url(${logoSfondoFalco})`,
-    }}></div> */}
-
     </section>
   );
 };

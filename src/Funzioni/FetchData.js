@@ -19,8 +19,7 @@ export default function FetchData(props) {
       .select("*")
       .limit(1)
       .single();
-    setImprevisto(data ? data : ["LISTA VUOTA!!!"]);
-    console.log("data => ", data);
+    setImprevisto(data ? data : {id: 0, name: "LISTA VUOTA!!!"});
   };
 
   const delElemento = async () => {
@@ -32,6 +31,8 @@ export default function FetchData(props) {
     changeModalState();
     fetchLista();
   };
+
+  console.log(imprevisto)
 
   return (
     <motion.div

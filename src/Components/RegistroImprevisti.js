@@ -19,7 +19,7 @@ const RegistroImprevisti = ({ showModal, toggle }) => {
           backgroundRepeat: "no-repeat",
           backgroundImage: `url(${logoSfondo})`,
         }}
-        className="absolute left-1/2 top-1/2 z-[900] flex h-[75vh] w-[85vw] -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-32 rounded-xl border-8 border-[--clr-sec] bg-gray-800 p-12 uppercase shadow-xl ring ring-inset ring-white/75"
+        className="absolute left-1/2 top-1/2 z-[900] flex h-[75vh] w-[85vw] -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-between gap-2 rounded-xl border-8 border-[--clr-sec] bg-gray-800 p-12 uppercase shadow-xl ring ring-inset ring-white/75"
       >
         <h3
           style={{
