@@ -32,7 +32,7 @@ const SerieNegativa = () => {
     : {};
 
   return (
-    <section className="flex min-h-[75vh] w-full flex-col items-center justify-around gap-12 py-4 font-bold">
+    <section className="flex h-full w-full select-none flex-col items-center justify-around gap-2 p-12 font-bold">
       <h1 className="select-none text-3xl">Imprevisto Serie Negativa</h1>
 
       {/* BOX PRIMA ESTRAZIONE */}
@@ -43,7 +43,7 @@ const SerieNegativa = () => {
         key={casuale}
         id="containerPrimaEstrazione"
         style={isImprev ? { color: "var(--clr-prim)" } : {}}
-        className="flex min-h-[50vh] w-3/4 bg-black/50 select-none flex-col items-center justify-around gap-4 rounded-xl border-8 border-[--clr-sec] px-12 py-8 shadow-lg ring ring-inset ring-white/75"
+        className="flex h-full w-3/4 select-none flex-col text-center items-center justify-around rounded-xl border-8 border-[--clr-sec] bg-black/50 px-10 shadow-lg ring ring-inset ring-white/75"
       >
         {!casuale ? (
           <h2

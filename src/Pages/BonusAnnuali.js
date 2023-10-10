@@ -23,7 +23,7 @@ const BonusAnnuali = () => {
       .from("bonus-imprevisti")
       .insert([{ id: list.id, episodio: list.episodio }])
       .select();
-    data? console.log("data: ", data) : console.log("error: ", error);
+    data? console.log("data: ", data) :console.log("error: ", error);
   };
 
   const deleteListDB = async () => {
@@ -47,9 +47,9 @@ const BonusAnnuali = () => {
   };
 
   return (
-    <section className="flex min-h-[75vh] w-full flex-col items-center justify-around gap-12 py-4 font-bold">
+    <section className="flex h-full w-full select-none flex-col items-center justify-around gap-2 p-12 font-bold">
       <h1>Bonus Imprevisti</h1>
-      <div className="flex min-h-[50vh] w-3/4 select-none flex-col items-center justify-around gap-4 rounded-xl border-8 border-[--clr-sec] bg-black/50 px-12 py-8 shadow-lg ring ring-inset ring-white/75">
+      <div className="flex min-h-[60vh] w-3/4 select-none flex-col items-center justify-around gap-8 rounded-xl border-8 border-[--clr-sec] bg-black/50 px-12 py-8 shadow-lg ring ring-inset ring-white/75">
         <div className="flex w-3/4 justify-around">
           <div className="w-1/2">
             <label
@@ -88,7 +88,7 @@ const BonusAnnuali = () => {
             </div>
           </div>
         </div>
-        <div className="flex min-h-[30vh] w-3/4 flex-col justify-around gap-4 overflow-y-auto border-2 border-gray-300/20 p-4">
+        <div className="flex h-full w-3/4 flex-col justify-around gap-4 overflow-y-auto border-2 border-gray-300/20 p-4">
           {vociBonus.map((item, index) => (
             <motion.div
               initial={{ opacity: 0 }}

@@ -6,7 +6,6 @@ import ImprevistoCommunity from "../Components/ImprevistoCommunity";
 import { motion } from "framer-motion";
 
 const Settimana = () => {
-
   const [casuale, setCasuale] = useState(null);
 
   // Prima Estrazione
@@ -20,7 +19,7 @@ const Settimana = () => {
     : {};
 
   return (
-    <section className=" flex min-h-[75vh] w-full select-none flex-col items-center justify-around gap-12 py-4 font-bold">
+    <section className="flex h-full w-full select-none flex-col items-center justify-around gap-2 p-12 font-bold">
       <h1 className="">Imprevisto Settimana</h1>
       {/* BOX PRIMA ESTRAZIONE */}
       <motion.div
@@ -29,7 +28,7 @@ const Settimana = () => {
         id="containerPrimaEstrazione"
         key={casuale}
         style={isImprev ? { color: "var(--clr-prim)" } : {}}
-        className="flex min-h-[50vh] w-3/4 select-none flex-col items-center justify-around gap-4 rounded-xl border-8 border-[--clr-sec] bg-black/50 px-12 py-8 shadow-lg ring ring-inset ring-white/75"
+        className="flex h-full w-3/4 select-none flex-col items-center justify-around rounded-xl border-8 border-[--clr-sec] bg-black/50 px-10 text-center shadow-lg ring ring-inset ring-white/75"
       >
         {!casuale ? (
           <h2
@@ -43,7 +42,7 @@ const Settimana = () => {
             <motion.p
               initial={{ opacity: 0, x: "50vw" }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ type: "spring"}}
+              transition={{ type: "spring" }}
               className="flex h-8 w-8 items-center justify-center self-start rounded-full bg-gray-300/20 p-8 text-4xl"
             >
               {id}
