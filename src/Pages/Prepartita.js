@@ -20,7 +20,7 @@ const Prepartita = () => {
     : {};
 
   return (
-    <section className="flex min-h-[75vh] w-full select-none flex-col items-center justify-around gap-12 py-4 font-bold">
+    <section className="flex h-full w-full select-none flex-col items-center justify-around gap-2 p-12 font-bold">
       <h1>Imprevisto Prepartita</h1>
       {/* BOX PRIMA ESTRAZIONE */}
       <motion.div
@@ -30,7 +30,7 @@ const Prepartita = () => {
         key={casuale}
         id="containerPrimaEstrazione"
         style={isImprev ? { color: "var(--clr-prim)" } : {}}
-        className="flex min-h-[50vh] w-3/4 select-none flex-col items-center justify-around gap-4 rounded-xl border-8 border-[--clr-sec] bg-black/50 px-12 py-8 shadow-lg ring ring-inset ring-white/75"
+        className="flex h-full w-3/4 select-none flex-col text-center items-center justify-around rounded-xl border-8 border-[--clr-sec] bg-black/50 px-10 shadow-lg ring ring-inset ring-white/75"
       >
         {!casuale ? (
           <h2
@@ -42,9 +42,9 @@ const Prepartita = () => {
         ) : (
           <>
             <motion.p
-              initial={{ opacity: 0, x: "50vw"}}
-              animate={{ opacity: 1, x: 0}}
-              transition={{ type: "spring"}}
+              initial={{ opacity: 0, x: "50vw" }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ type: "spring" }}
               className="flex h-8 w-8 items-center justify-center self-start rounded-full bg-gray-300/20 p-8 text-4xl"
             >
               {id}

@@ -23,8 +23,7 @@ const BonusAnnuali = () => {
       .from("bonus-imprevisti")
       .insert([{ id: list.id, episodio: list.episodio }])
       .select();
-    console.log("data: ", data);
-    console.log("error: ", error);
+    data? console.log("data: ", data) : console.log("error: ", error);
   };
 
   const deleteListDB = async () => {
@@ -35,7 +34,6 @@ const BonusAnnuali = () => {
       console.log(error)
   };
 
-  console.log(vociBonus);
 
   const addVociBonus = (element) => {
     setVociBonus([...vociBonus, { ...element }]);

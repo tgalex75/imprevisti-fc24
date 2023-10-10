@@ -13,9 +13,10 @@ export default function FetchData(props) {
     fetchLista();
   }, []);
 
+
   const fetchLista = async () => {
     const { data } = await supabase
-      .from("random_sort")
+      .from("ordine_casuale")
       .select("*")
       .limit(1)
       .single();
@@ -58,6 +59,7 @@ export default function FetchData(props) {
       >
         {imprevisto.name}
       </h3>
+      <p>{imprevisto.id}</p>
       <motion.div
         className="absolute right-0 top-0 m-4 cursor-pointer"
           whileHover={{

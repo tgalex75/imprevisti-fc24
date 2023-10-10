@@ -6,20 +6,20 @@ const Dado = (clickFunc) => {
   return (
     <motion.div
     whileHover={{
-      scale: 1.2,
-      rotate: 45,
+      rotate: 30,
       }}
       whileTap={{
-        rotate: -45
+        rotate: -90,
+        scale: 1.2
       }}
       transition={{type: "spring", stiffness: 300 }}
-    className="absolute bottom-16 right-48 flex h-auto cursor-pointer items-center justify-center rounded-full p-2 hover:bg-gray-500/10">
+    className="absolute bottom-0 right-0 flex h-auto select-none cursor-pointer items-center justify-center rounded-full p-3 m-4 hover:bg-gray-500/10">
       <GiPerspectiveDiceSixFacesRandom
         /* ==> framer-motion */
         style={{
           filter: "drop-shadow(.25rem .25rem 0.15rem #222)",
         }}
-        size={"8rem"}
+        size={"7rem"}
         onClick={clickFunc}
       />
     </motion.div>
