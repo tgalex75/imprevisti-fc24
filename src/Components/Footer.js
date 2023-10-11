@@ -2,9 +2,8 @@ import { color } from "framer-motion";
 import React from "react";
 
 const Footer = (props) => {
-  const { session } = props;
+  // const { session } = props;
 
-  console.log(session);
   return (
     <div className="absolute bottom-0 right-0 m-1 flex w-full justify-start">
      {/*  <small
