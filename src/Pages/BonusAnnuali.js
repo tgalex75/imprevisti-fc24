@@ -1,48 +1,30 @@
 import React, { useRef, useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { supabase } from "../supabaseClient";
 
 const BonusAnnuali = () => {
   const inputRef = useRef(null);
 
-  const [vociBonus, setVociBonus] = useState([]);
+  const [vociBonus, setVociBonus] = useState(localStorage.getItem('vociBonus') ? JSON.parse(localStorage.getItem('vociBonus')) : [])
 
   const limiteRaggiunto = vociBonus.length > 2;
 
   useEffect(() => {
-    fetchLista();
+    localStorage.setItem("vociBonus", JSON.stringify(vociBonus));
   }, [vociBonus]);
 
-  const fetchLista = async () => {
-    const { data } = await supabase.from("bonus-imprevisti").select("*");
-    setVociBonus(data ? data : {});
-  };
-
-  const uploadListDB = async (list) => {
-    const { data, error } = await supabase
-      .from("bonus-imprevisti")
-      .insert([{ id: list.id, episodio: list.episodio }])
-      .select();
-    data? console.log("data: ", data) :console.log("error: ", error);
-  };
-
-  const deleteListDB = async () => {
-    const { error } = await supabase
-      .from("bonus-imprevisti")
-      .delete("id")
-      .lt("id", 4);
-      console.log(error)
-  };
-
+  useEffect(() => {
+    const vociBonus = localStorage.getItem("vociBonus");
+    if (vociBonus) {
+      setVociBonus(JSON.parse(vociBonus));
+    }
+  }, []);
 
   const addVociBonus = (element) => {
     setVociBonus([...vociBonus, { ...element }]);
-    uploadListDB(element);
   };
 
   const azzeraVociBonus = () => {
     setVociBonus([]);
-    deleteListDB();
   };
 
   return (
