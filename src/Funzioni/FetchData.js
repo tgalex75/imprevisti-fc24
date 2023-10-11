@@ -16,7 +16,7 @@ export default function FetchData(props) {
 
   const fetchLista = async () => {
     const { data } = await supabase
-      .from("ordine_casuale")
+      .from("random_sort")
       .select("*")
       .limit(1)
       .single();
