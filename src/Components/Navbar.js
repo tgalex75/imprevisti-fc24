@@ -86,6 +86,7 @@ const Navbar = () => {
       </div>
       <div className="flex cursor-pointer items-center justify-center rounded-full p-2 hover:bg-gray-300/30">
         {!isOpenMenu ? (
+          
           <MdMenu
             size={36}
             style={{
