@@ -57,10 +57,10 @@ const Rinnovi = () => {
             >
               imprevisto!
             </h2>
-            <h3 className="text-5xl font-extrabold uppercase">Mercenario</h3>
+            <h3 className="text-6xl font-extrabold uppercase">Mercenario</h3>
             <p
               style={{ fontFamily: "'Handlee', cursive" }}
-              className="mt-4 text-3xl"
+              className="mt-4 text-4xl"
             >
               Raddoppia l'ingaggio o cessione obbligatoria
             </p>
@@ -76,12 +76,12 @@ const Rinnovi = () => {
               >
                 {casuale}
               </motion.p>
-              <h3 className="text-5xl font-extrabold uppercase">
+              <h3 className="text-6xl font-extrabold uppercase">
                 Nessun problema
               </h3>
               <p
                 style={{ fontFamily: "'Handlee', cursive" }}
-                className="mt-4 text-3xl"
+                className="mt-4 text-4xl"
               >
                 Gestisci la trattativa liberamente
               </p>

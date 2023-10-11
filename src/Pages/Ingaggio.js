@@ -61,7 +61,7 @@ const Ingaggio = () => {
             </h3>
             <p
               style={{ fontFamily: "'Handlee', cursive" }}
-              className="mt-4 text-3xl"
+              className="mt-4 text-4xl"
             >
               la trattativa salta e non può essere ritentata fino alla prossima
               finestra di mercato.
@@ -78,12 +78,12 @@ const Ingaggio = () => {
               >
                 {casuale}
               </motion.p>
-              <h3 className="text-5xl font-extrabold uppercase">
+              <h3 className="text-6xl font-extrabold uppercase">
                 Nessun problema
               </h3>
               <p
                 style={{ fontFamily: "'Handlee', cursive" }}
-                className="mt-4 text-3xl"
+                className="mt-4 text-4xl"
               >
                 La trattativa viene chiusa senza conseguenze.
               </p>

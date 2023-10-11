@@ -57,10 +57,10 @@ const OfferteMercato = () => {
             >
               imprevisto!
             </h2>
-            <h3 className="text-5xl font-extrabold uppercase">Mercenario</h3>
+            <h3 className="text-6xl font-extrabold uppercase">Mercenario</h3>
             <p
               style={{ fontFamily: "'Handlee', cursive" }}
-              className="mt-4 text-3xl"
+              className="mt-4 text-4xl"
             >
               Accetta l'offerta o raddoppia l'ingaggio appena possibile
             </p>
@@ -77,12 +77,12 @@ const OfferteMercato = () => {
                 {casuale}
               </motion.p>
 
-              <h3 className="text-5xl font-extrabold uppercase">
+              <h3 className="text-6xl font-extrabold uppercase">
                 Bilancio in ordine
               </h3>
               <p
                 style={{ fontFamily: "'Handlee', cursive" }}
-                className="mt-4 text-3xl"
+                className="mt-4 text-4xl"
               >
                 Totale libertà di scelta
               </p>

@@ -40,3 +40,20 @@ h1 {
     font-family: "Paytone One", sans-serif;
     font-size: calc(2vw + .5rem);
 }
+
+.t-dOnDMp{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 25vw;
+    height: 40vh;
+    border: .3rem solid var(--clr-sec);
+    padding: 1rem;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    justify-items: center;
+
+}

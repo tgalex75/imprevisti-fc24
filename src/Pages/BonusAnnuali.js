@@ -11,7 +11,7 @@ const BonusAnnuali = () => {
 
   useEffect(() => {
     fetchLista();
-  }, []);
+  }, [vociBonus]);
 
   const fetchLista = async () => {
     const { data } = await supabase.from("bonus-imprevisti").select("*");
@@ -38,7 +38,6 @@ const BonusAnnuali = () => {
   const addVociBonus = (element) => {
     setVociBonus([...vociBonus, { ...element }]);
     uploadListDB(element);
-    fetchLista();
   };
 
   const azzeraVociBonus = () => {

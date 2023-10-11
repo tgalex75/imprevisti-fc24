@@ -28,7 +28,7 @@ const dettagliImprevisti = [
         img: logoStadio,
         link: "/ingaggio",
     },
-    { id: 6, impr: "Rinnovi", img: rinnovi, link: "/rinnovi" },
+    { id: 6, impr: "Imprevisto sui Rinnovi", img: rinnovi, link: "/rinnovi" },
 ];
 
 const Home = () => {

@@ -32,7 +32,7 @@ const SecondaEstrazione = () => {
 
   return (
     <section className="flex min-h-[20vh] w-3/4 items-center justify-around rounded-md border-2 border-gray-300/20 px-12 py-2">
-      <div className="flex h-full flex-col items-center justify-between gap-4 rounded-lg">
+      <div className="flex h-full flex-col items-center justify-around gap-4 rounded-lg">
         <div className="flex flex-col items-center justify-around">
           <label
             htmlFor="name-with-label"

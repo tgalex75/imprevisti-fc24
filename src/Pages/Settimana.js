@@ -61,10 +61,10 @@ const Settimana = () => {
             >
               imprevisto!
             </h2>
-            <h3 className="text-5xl font-extrabold uppercase">{title}</h3>
+            <h3 className="text-6xl font-extrabold uppercase">{title}</h3>
             <p
               style={{ fontFamily: "'Handlee', cursive" }}
-              className="mt-4 text-3xl"
+              className="mt-4 text-4xl"
             >
               {description}
             </p>
