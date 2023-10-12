@@ -1,4 +1,9 @@
-# Getting Started with Create React App
+# Gestione degli imprevisti Falconero Community Edition
+## Leggi le istruzioni nel menu accessibile in alto a destra
+
+NB: * Al momento il sito non è ottimizato per dispositivi mobili
+
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
