@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { MdClose } from "react-icons/md";
-import deadpool from "../assets/imgs/deadpool.png";
 import { motion } from "framer-motion";
 import datiBackupIC from "../Data/datiBackupIC";
 import { randomNumber } from "../Funzioni/RandomNumber";
@@ -29,18 +28,14 @@ export default function FetchData(props) {
         type: "spring",
         stiffness: 200,
       }}
-      style={{
-        backgroundImage: `url(${deadpool})`,
-        backgroundSize: "20%",
-      }}
-      className="mx-auto my-6 flex h-full w-full items-center justify-center rounded-xl border-8 border-[--clr-prim] bg-left-bottom bg-no-repeat p-2 shadow-lg ring ring-inset ring-white/75"
+      className="mx-auto my-6 flex h-full w-full items-center justify-center rounded-xl border-8 border-[--clr-prim] p-2 shadow-lg ring ring-inset ring-white/75"
     >
       <h3
         style={{
           fontFamily: "'Handlee', cursive",
           filter: "drop-shadow(.05rem .05rem 0.2rem #000)",
         }}
-        className="my-8 ps-[30%] text-center text-3xl uppercase italic text-gray-300 w-fit"
+        className="my-8 w-fit ps-[30%] text-center text-3xl uppercase italic text-gray-300"
       >
         {name}
       </h3>

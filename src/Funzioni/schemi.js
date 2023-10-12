@@ -1003,14 +1003,14 @@ export const mySelect = (ref, func) => {
                 ref={ref}
                 onChange={func}
             >
-                <option value="532">5-3-2</option>
-                <option value="5212">5-2-1-2</option>
-                <option value="442">4-4-2</option>
                 <option value="433">4-3-3</option>
+                <option value="442">4-4-2</option>
                 <option value="4312">4-3-1-2</option>
                 <option value="3412">3-4-1-2</option>
                 <option value="3421">3-4-2-1</option>
                 <option value="343">3-4-3</option>
+                <option value="532">5-3-2</option>
+                <option value="5212">5-2-1-2</option>
             </select>
         </div>
     );

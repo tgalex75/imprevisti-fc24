@@ -28,7 +28,6 @@ const Navbar = () => {
     { id: 7, voceLi: "Imprevisto Rinnovi", linkTo: "/rinnovi" },
     { id: 8, voceLi: "Media Overall ", linkTo: "/calcolo-media" },
     { id: 9, voceLi: "Bonus Annuali ", linkTo: "/bonus-annuali" },
-    { id: 10, voceLi: "Regolamento Carriera FC24 ", linkTo: "/regolamento" },
   ];
 
   //Sostituire div con <Link> from react-router

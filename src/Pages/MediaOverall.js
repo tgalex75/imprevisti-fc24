@@ -14,7 +14,7 @@ import {
 
 const MediaOverall = () => {
     const selectRef = useRef(null);
-    const [schema, setSchema] = useState("532");
+    const [schema, setSchema] = useState("433");
 
     const getSchema = () => {
         setSchema(selectRef.current.value);
@@ -55,14 +55,14 @@ const MediaOverall = () => {
             <div className="w-full h-full justify-center gap-4 flex items-center flex-col">
                 <h1>Media Overall</h1>
                 {mySelect(selectRef, getSchema)}
-                {schema === "532" && s532(data, handleChange, valori)}
-                {schema === "5212" && s5212(data, handleChange, valori)}
                 {schema === "442" && s442(data, handleChange, valori)}
                 {schema === "433" && s433(data, handleChange, valori)}
                 {schema === "4312" && s4312(data, handleChange, valori)}
                 {schema === "3412" && s3412(data, handleChange, valori)}
                 {schema === "3421" && s3421(data, handleChange, valori)}
                 {schema === "343" && s343(data, handleChange, valori)}
+                {schema === "532" && s532(data, handleChange, valori)}
+                {schema === "5212" && s5212(data, handleChange, valori)}
                 {result > 0 && (
                     <div className="py-6 px-20 border-8 border-[--clr-prim] ring-4 ring-inset ring-white/75 rounded-lg font-bold">
                         <span className="text-xl">Media:</span>

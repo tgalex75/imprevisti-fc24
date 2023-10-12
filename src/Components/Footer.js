@@ -2,18 +2,16 @@
 import React from "react";
 
 const Footer = (props) => {
-  // const { session } = props;
 
   return (
-    <div className="absolute bottom-0 right-0 m-1 flex w-full justify-start">
-     {/*  <small
-        className="z-10 pe-4 opacity-20"
-        style={session ? { color: "green" } : { color: "red" }}
-      >
-        {session ? "logged in" : "not logged"}
-      </small> */}
-      <small className="z-10 ps-4 opacity-20">
+    <div className="absolute bottom-0 right-0 m-1 flex w-full items-center justify-between">
+      <small className="z-10 ps-4 opacity-50">
         coded by tgalex75 - Falconero Community - beta version
+      </small>
+      <small
+        className="z-10 pe-4 italic text-xl"
+      >
+        Community Edition
       </small>
     </div>
   );
