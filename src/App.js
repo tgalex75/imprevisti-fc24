@@ -27,7 +27,7 @@ function App() {
       <h3 className="text-xl z-10">
         ... ma questa App al momento non è ottimizzata per dispositivi mobili
       </h3>
-      {!isMobile && <motion.div
+      {!window.innerWidth < 768 && <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1, rotate: -45 }}
         transition={{ duration: 2.5, repeat: Infinity }}
