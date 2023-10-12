@@ -35,7 +35,7 @@ export default function FetchData(props) {
           fontFamily: "'Handlee', cursive",
           filter: "drop-shadow(.05rem .05rem 0.2rem #000)",
         }}
-        className="my-8 w-fit ps-[30%] text-center text-3xl uppercase italic text-gray-300"
+        className="my-8 w-fit p-8 text-center text-4xl uppercase italic text-gray-300"
       >
         {name}
       </h3>

@@ -67,7 +67,7 @@ const SecondaEstrazione = () => {
         >
           <span
             style={randomJersey === 2 ? { color: "var(--clr-sec" } : {}}
-            className="block pt-5 font-['Oswald'] text-6xl font-bold text-gray-300"
+            className="block mt-8 font-['Oswald'] text-7xl font-bold text-gray-300"
           >
             {secondExtractedNumber}
           </span>
