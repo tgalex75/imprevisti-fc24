@@ -20,7 +20,7 @@ const Prepartita = () => {
     : {};
 
   return (
-    <section className="flex h-full w-full select-none flex-col items-center justify-between md:justify-around gap-2 px-4 pt-2 pb-32 md:py-8 md:p-12 font-bold">
+    <section className="flex h-full w-full select-none flex-col items-center justify-around gap-2 p-12 font-bold">
       <h1>Imprevisto Prepartita</h1>
       {/* BOX PRIMA ESTRAZIONE */}
       <motion.div
@@ -56,16 +56,16 @@ const Prepartita = () => {
               }}
               className={
                 isImprev
-                  ? "text-4xl md:text-7xl font-extrabold uppercase tracking-wider"
+                  ? "text text-7xl font-extrabold uppercase tracking-wider"
                   : "hidden"
               }
             >
               imprevisto!
             </h2>
-            <h3 className="text-3xl md:text-6xl font-extrabold uppercase">{title}</h3>
+            <h3 className="text-6xl font-extrabold uppercase">{title}</h3>
             <p
               style={{ fontFamily: "'Handlee', cursive" }}
-              className="mt-4 text-xl md:text-4xl"
+              className="mt-4 text-4xl"
             >
               {description}
             </p>

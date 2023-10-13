@@ -28,19 +28,10 @@ export default function FetchData(props) {
         type: "spring",
         stiffness: 200,
       }}
-      className="mx-auto my-6 flex h-full w-full items-center justify-center rounded-xl border-8 border-[--clr-prim] p-2 shadow-lg ring ring-inset ring-white/75"
+      className="mx-auto flex h-full w-full flex-col items-center justify-between rounded-xl gap-4 p-4 shadow-lg ring ring-inset ring-white/75"
     >
-      <h3
-        style={{
-          fontFamily: "'Handlee', cursive",
-          filter: "drop-shadow(.05rem .05rem 0.2rem #000)",
-        }}
-        className="my-8 w-fit p-8 text-center text-4xl uppercase italic text-gray-300"
-      >
-        {name}
-      </h3>
       <motion.div
-        className="absolute right-0 top-0 m-4 cursor-pointer"
+        className="cursor-pointer self-end"
         whileHover={{
           scale: 1.2,
           rotate: 90,
@@ -53,6 +44,15 @@ export default function FetchData(props) {
           className=" fill-gray-300 hover:fill-[--clr-sec]"
         />
       </motion.div>
+      <h3
+        style={{
+          fontFamily: "'Handlee', cursive",
+          filter: "drop-shadow(.05rem .05rem 0.2rem #000)",
+        }}
+        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-fit p-2 text-center text-xl uppercase italic text-gray-300 md:p-8 md:text-4xl"
+      >
+        {name}
+      </h3>
     </motion.div>
   );
 }

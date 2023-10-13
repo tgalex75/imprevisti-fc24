@@ -19,7 +19,7 @@ const Settimana = () => {
     : {};
 
   return (
-    <section className="flex h-full w-full select-none flex-col items-center justify-around gap-2 p-12 font-bold">
+    <section className="flex h-full w-full select-none flex-col items-center justify-between md:justify-around gap-4 pb-24 md:pb-12 px-4 font-bold">
       <h1 className="">Imprevisto Settimana</h1>
       {/* BOX PRIMA ESTRAZIONE */}
       <motion.div
@@ -28,7 +28,7 @@ const Settimana = () => {
         id="containerPrimaEstrazione"
         key={casuale}
         style={isImprev ? { color: "var(--clr-prim)" } : {}}
-        className="flex h-full w-3/4 select-none flex-col items-center justify-around rounded-xl border-8 border-[--clr-sec] bg-black/50 px-10 text-center shadow-lg ring ring-inset ring-white/75"
+        className="flex h-full w-full md:w-3/4 select-none flex-col items-center justify-around rounded-xl border-4 md:border-8 border-[--clr-sec] bg-black/50 px-10 text-center shadow-lg ring ring-inset ring-white/75"
       >
         {!casuale ? (
           <h2
@@ -43,7 +43,7 @@ const Settimana = () => {
               initial={{ opacity: 0, x: "50vw" }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ type: "spring" }}
-              className="flex h-8 w-8 items-center justify-center self-start rounded-full bg-gray-300/20 p-8 text-4xl"
+              className="flex h-8 w-8 items-center justify-center md:self-start rounded-full bg-gray-300/20 p-8 text-4xl"
             >
               {id}
             </motion.p>
@@ -55,16 +55,16 @@ const Settimana = () => {
               }}
               className={
                 isImprev
-                  ? "text-7xl font-extrabold uppercase tracking-wider"
+                  ? "text-5xl md:text-7xl font-extrabold uppercase tracking-wider"
                   : "hidden"
               }
             >
               imprevisto!
             </h2>
-            <h3 className="text-6xl font-extrabold uppercase">{title}</h3>
+            <h3 className="text-4xl md:text-6xl font-extrabold uppercase">{title}</h3>
             <p
               style={{ fontFamily: "'Handlee', cursive" }}
-              className="mt-4 text-4xl"
+              className="mt-4 text-2xl md:text-4xl"
             >
               {description}
             </p>

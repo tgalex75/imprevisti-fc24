@@ -67,7 +67,7 @@ const Navbar = () => {
           />
         </Link>
       </div>
-      <div className="flex cursor-pointer items-center justify-center rounded-full p-0 hover:bg-gray-300/30 md:p-2">
+      <div className="flex cursor-pointer items-center justify-center rounded-full p-2 hover:bg-gray-300/30">
         {!isOpenMenu ? (
           <MdMenu
             size={36}

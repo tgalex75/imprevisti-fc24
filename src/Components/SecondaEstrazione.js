@@ -31,7 +31,7 @@ const SecondaEstrazione = () => {
   };
 
   return (
-    <section className="flex min-h-[20vh] w-3/4 items-center justify-around rounded-md border-2 border-gray-300/20 px-12 py-2">
+    <section className="flex min-h-[20vh] w-full md:w-3/4 items-center justify-center rounded-md border-2 gap-4 md:gap-12 border-gray-300/20 px-4 md:px-12 py-2">
       <div className="flex h-full flex-col items-center justify-around gap-4 rounded-lg">
         <div className="flex flex-col items-center justify-around">
           <label
@@ -67,7 +67,7 @@ const SecondaEstrazione = () => {
         >
           <span
             style={randomJersey === 2 ? { color: "var(--clr-sec" } : {}}
-            className="block mt-8 font-['Oswald'] text-7xl font-bold text-gray-300"
+            className="block mt-6 md:mt-8 font-['Oswald'] text-6xl md:text-7xl font-bold text-gray-300"
           >
             {secondExtractedNumber}
           </span>

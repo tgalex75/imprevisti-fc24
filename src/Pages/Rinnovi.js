@@ -12,7 +12,7 @@ const Rinnovi = () => {
   const isImpr = casuale === 8;
 
   return (
-    <section className="flex min-h-[75vh] w-full flex-col items-center justify-around gap-12 py-4 font-bold">
+    <section className="flex h-full w-full flex-col text-center items-center justify-around p-4 font-bold">
       <h1>Imprevisto Rinnovi</h1>
       {/* BOX PRIMA ESTRAZIONE */}
       <motion.div
@@ -22,7 +22,7 @@ const Rinnovi = () => {
         key={casuale}
         id="containerPrimaEstrazione"
         style={isImpr ? { color: "var(--clr-prim)" } : {}}
-        className="flex min-h-[50vh] w-3/4 select-none flex-col items-center justify-around gap-4 rounded-xl border-8 border-[--clr-sec] bg-black/50 px-12 py-8 shadow-lg ring ring-inset ring-white/75"
+        className="flex h-[70vh] md:min-h-[60vh] w-full md:w-3/4 select-none flex-col items-center justify-around gap-2 rounded-xl border-8 border-[--clr-sec] bg-black/50 px-12 py-8 shadow-lg ring ring-inset ring-white/75"
       >
         {!casuale && (
           <h2
@@ -51,16 +51,16 @@ const Rinnovi = () => {
               }}
               className={
                 isImpr
-                  ? "text text-7xl font-extrabold uppercase tracking-wider"
+                  ? "text-6xl md:text-7xl font-extrabold uppercase tracking-wider"
                   : "hidden"
               }
             >
               imprevisto!
             </h2>
-            <h3 className="text-6xl font-extrabold uppercase">Mercenario</h3>
+            <h3 className="text-5xl md:text-7xl font-extrabold uppercase">Mercenario</h3>
             <p
               style={{ fontFamily: "'Handlee', cursive" }}
-              className="mt-4 text-4xl"
+              className="mt-4 text-2xl md:text-4xl"
             >
               Raddoppia l'ingaggio o cessione obbligatoria
             </p>
@@ -72,16 +72,16 @@ const Rinnovi = () => {
                 initial={{ opacity: 0, x: "50vw" }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ type: "spring" }}
-                className="flex h-8 w-8 items-center justify-center self-start rounded-full bg-gray-300/20 p-8 text-4xl"
+                className="flex h-8 w-8 items-center justify-center md:self-start rounded-full bg-gray-300/20 p-8 text-4xl"
               >
                 {casuale}
               </motion.p>
-              <h3 className="text-6xl font-extrabold uppercase">
+              <h3 className="text-5xl md:text-7xl font-extrabold uppercase">
                 Nessun problema
               </h3>
               <p
                 style={{ fontFamily: "'Handlee', cursive" }}
-                className="mt-4 text-4xl"
+                className="mt-4 text-2xl md:text-4xl"
               >
                 Gestisci la trattativa liberamente
               </p>

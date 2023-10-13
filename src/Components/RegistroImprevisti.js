@@ -4,6 +4,7 @@ import { CartContext } from "../context/cart";
 import uuid from "react-uuid";
 import { BiPlusCircle, BiMinusCircle } from "react-icons/bi";
 import logoSfondo from "../assets/imgs/falco_nocornice.png";
+import { MdClose } from "react-icons/md";
 
 const RegistroImprevisti = ({ showModal, toggle }) => {
   const { cartItems, addToCart, removeFromCart, clearCart } =
@@ -19,31 +20,34 @@ const RegistroImprevisti = ({ showModal, toggle }) => {
           backgroundRepeat: "no-repeat",
           backgroundImage: `url(${logoSfondo})`,
         }}
-        className="absolute left-1/2 top-1/2 z-[900] flex h-[75vh] w-[85vw] -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-between gap-2 rounded-xl border-8 border-[--clr-sec] bg-gray-800 p-12 uppercase shadow-xl ring ring-inset ring-white/75"
+        className="absolute left-1/2 top-1/2 z-[900] flex h-[75vh] w-[85vw] -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-between rounded-xl border-4 border-[--clr-sec] bg-gray-800 p-3 text-center uppercase shadow-xl ring ring-inset ring-white/75 md:h-[75vh] md:w-[85vw] md:border-8"
       >
+        <div
+          className="cursor-pointer self-end"
+          whileHover={{
+            scale: 1.2,
+            rotate: 90,
+          }}
+          transition={{ type: "spring", stiffness: 300 }}
+        >
+          <MdClose
+            size={"3rem"}
+            onClick={toggle}
+            className=" fill-gray-300 hover:fill-[--clr-sec]"
+          />
+        </div>
         <h3
           style={{
             fontFamily: "'Gochi Hand', cursive",
             filter: "drop-shadow(.05rem .05rem 0.1rem #000)",
           }}
-          className="text-5xl text-[--clr-prim]"
+          className="text-3xl text-[--clr-prim] md:text-5xl"
         >
           Registro degli Imprevisti{" "}
         </h3>{" "}
         {/* Pulsante chiusura Modale */}
-        <div className="absolute right-16 top-10">
-          <button
-            className="rounded bg-orange-700 px-4 py-2 text-xs font-bold uppercase text-white hover:bg-orange-600 focus:bg-orange-600 focus:outline-none"
-            onClick={toggle}
-          >
-            chiudi
-          </button>
-        </div>
         {/* Registro */}
-        <div
-          className="flex min-h-[30vh] w-3/4 flex-col-reverse gap-1 overflow-y-auto border-2 border-gray-300/20 p-4"
-          style={cartItems.length > 6 ? {} : { justifyContent: "flex-end" }}
-        >
+        <div className="flex min-h-[70%] w-full flex-col-reverse justify-end gap-1 overflow-y-auto border-2 border-gray-300/20 p-2 md:min-h-[45vh] md:w-3/4">
           {cartItems.map((item) => (
             <div
               style={
@@ -83,7 +87,7 @@ const RegistroImprevisti = ({ showModal, toggle }) => {
           ))}
         </div>
         {cartItems.length > 0 ? (
-          <div className="flex flex-col items-center justify-between">
+          <div className="flex flex-col items-center justify-between pb-6">
             <button
               className="rounded bg-sky-700 px-4 py-2 text-xs font-bold uppercase text-white hover:bg-sky-600 focus:bg-sky-600 focus:outline-none"
               onClick={() => {
@@ -96,7 +100,7 @@ const RegistroImprevisti = ({ showModal, toggle }) => {
         ) : (
           <h1
             style={{ fontFamily: "'Handlee', cursive" }}
-            className="text-lg font-bold"
+            className="text-lg font-bold pb-4"
           >
             La lista è vuota
           </h1>

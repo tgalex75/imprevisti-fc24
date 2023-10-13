@@ -50,6 +50,14 @@ const Home = () => {
           className="ease-[cubic-bezier(0.770, 0.000, 0.175, 1.000)] group flex h-1/6 w-full cursor-pointer flex-col transition-all duration-500 hover:h-full hover:text-gray-300 md:h-full md:w-1/6 md:flex-row md:items-center md:justify-start md:hover:w-full"
         >
           <h2
+<<<<<<< Updated upstream
+            style={{
+              writingMode: "vertical-lr",
+              transform: "rotate(180deg)",
+              textShadow: "rgb(34, 34, 34) 0px 4px 4px",
+            }}
+            className="h-full border-[--clr-prim] bg-[rgb(16,84,66,.95)] px-2 ps-8 text-left text-[2.2vw] font-bold uppercase text-gray-200 drop-shadow-lg group-hover:border-l-[1rem]"
+=======
             style={
               !isMobile
                 ? {
@@ -61,7 +69,8 @@ const Home = () => {
                     textShadow:  "rgb(34, 34, 34) 1px 1px 3px"
                   }
             }
-            className="border-[--clr-prim] bg-[rgb(16,84,66,.95)] px-4 py-1 text-left text-sm font-bold uppercase text-gray-200 drop-shadow-lg group-hover:border-b-[.5rem] md:h-full md:py-0 md:ps-8 md:text-[2.2vw] md:group-hover:border-l-[1rem] md:group-hover:border-b-0"
+            className="border-[--clr-prim] bg-[rgb(16,84,66,.95)] px-4 py-1 text-left text-sm font-bold uppercase text-gray-200 drop-shadow-lg group-hover:border-b-[.5rem] md:h-full md:py-0 md:ps-10 md:text-[2.2vw] md:group-hover:border-l-[1rem] md:group-hover:border-b-0"
+>>>>>>> Stashed changes
           >
             {el.impr}
           </h2>
