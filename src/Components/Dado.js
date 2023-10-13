@@ -3,6 +3,8 @@ import { GiPerspectiveDiceSixFacesRandom } from "react-icons/gi";
 import {motion} from 'framer-motion'
 
 const Dado = (clickFunc) => {
+
+  const a= true
   return (
     <motion.div
     whileHover={{
