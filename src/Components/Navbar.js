@@ -38,7 +38,7 @@ const Navbar = () => {
           <motion.li
             whileHover={{ scale: 1.4 }}
             transition={{ type: "spring", stiffness: 200, bounce: 0.6 }}
-            className=" py-6 text-xl font-bold uppercase hover:text-[--clr-sec]"
+            className="text-md md:text-xl font-bold uppercase hover:text-[--clr-prim]"
           >
             {voce.voceLi}
           </motion.li>
@@ -48,8 +48,11 @@ const Navbar = () => {
   });
 
   return (
-    <nav className="fixed z-[1000] flex h-auto w-full items-center justify-between px-6 py-3">
-      <div className="flex cursor-pointer items-center justify-center rounded-full p-2 hover:bg-gray-300/30">
+    <nav
+      id="Navbar"
+      className="fixed z-[1000] flex h-auto w-full items-center justify-between px-6 py-3"
+    >
+      <div className="flex cursor-pointer items-center justify-center rounded-full hover:bg-gray-300/30">
         <Link to="/">
           <MdHome
             size={36}
@@ -60,11 +63,11 @@ const Navbar = () => {
                     filter: "drop-shadow(.25rem .25rem 0.15rem #222)",
                   }
             }
-            className="fill-gray-300 hover:fill-gray-200"
+            className="hidden fill-gray-300 hover:fill-gray-200 md:block"
           />
         </Link>
       </div>
-      <div className="flex cursor-pointer items-center justify-center rounded-full p-2 hover:bg-gray-300/30">
+      <div className="flex cursor-pointer items-center justify-center rounded-full p-0 hover:bg-gray-300/30 md:p-2">
         {!isOpenMenu ? (
           <MdMenu
             size={36}
@@ -83,11 +86,8 @@ const Navbar = () => {
         )}
         <ul
           onClick={handleClick}
-          className={
-            isOpenMenu
-              ? "absolute right-0 top-0 z-[-1] flex h-screen w-full flex-col items-center justify-around bg-black/95 px-28 py-20 text-center text-gray-300 transition-[0.5s]"
-              : "absolute right-[-100%] top-0 z-[-1] flex h-screen w-full flex-col items-center justify-around bg-black/95 px-28 py-20 text-center text-gray-300 transition-[0.5s]"
-          }
+          style={isOpenMenu ? { right: 0 } : { right: "-100%" }}
+          className="group absolute gap-8 md:gap-12 top-0 z-[-1] flex h-screen w-full flex-col items-center justify-around bg-black/95 px-12 md:px-28 py-20 text-center text-gray-300 transition-[0.5s]"
         >
           {linksMenu}
         </ul>
