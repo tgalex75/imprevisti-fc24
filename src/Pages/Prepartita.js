@@ -30,7 +30,7 @@ const Prepartita = () => {
         key={casuale}
         id="containerPrimaEstrazione"
         style={isImprev ? { color: "var(--clr-prim)" } : {}}
-        className="flex h-full w-full md:w-3/4 select-none flex-col items-center justify-around rounded-xl border-4 md:border-8 border-[--clr-sec] bg-black/50 px-10 text-center shadow-lg ring ring-inset ring-white/75"
+        className="flex h-full w-3/4 select-none flex-col text-center items-center justify-around rounded-xl border-8 border-[--clr-sec] bg-black/50 px-10 shadow-lg ring ring-inset ring-white/75"
       >
         {!casuale ? (
           <h2
@@ -45,7 +45,7 @@ const Prepartita = () => {
               initial={{ opacity: 0, x: "50vw" }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ type: "spring" }}
-              className="flex h-8 w-8 items-center justify-center md:self-start rounded-full bg-gray-300/20 p-8 text-4xl"
+              className="flex h-8 w-8 items-center justify-center self-start rounded-full bg-gray-300/20 p-8 text-4xl"
             >
               {id}
             </motion.p>
