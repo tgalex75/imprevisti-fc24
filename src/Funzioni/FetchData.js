@@ -26,9 +26,9 @@ export default function FetchData(props) {
       transition={{
         delay: 1,
         type: "spring",
-        stiffness: 200,
+        // stiffness: 200,
       }}
-      className="mx-auto flex h-full w-full flex-col items-center justify-between rounded-xl gap-4 p-4 shadow-lg ring ring-inset ring-white/75"
+      className="flex h-full w-full flex-col items-center justify-start gap-16 rounded-xl p-1 md:p-4 shadow-lg ring ring-inset overflow-y-auto ring-white/75"
     >
       <motion.div
         className="cursor-pointer self-end"
@@ -49,7 +49,7 @@ export default function FetchData(props) {
           fontFamily: "'Handlee', cursive",
           filter: "drop-shadow(.05rem .05rem 0.2rem #000)",
         }}
-        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-fit p-2 text-center text-xl uppercase italic text-gray-300 md:p-8 md:text-4xl"
+        className="w-fit p-2 text-center text-md uppercase italic text-gray-300 md:p-8 md:text-4xl"
       >
         {name}
       </h3>

@@ -51,13 +51,13 @@ const OfferteMercato = () => {
               }}
               className={
                 isImpr
-                  ? "text-6xl md:text-7xl font-extrabold uppercase tracking-wider"
+                  ? "text-5xl md:text-7xl font-extrabold uppercase tracking-wider"
                   : "hidden"
               }
             >
               imprevisto!
             </h2>
-            <h3 className="text-5xl md:text-7xl font-extrabold uppercase">Mercenario</h3>
+            <h3 className="text-4xl md:text-7xl font-extrabold uppercase">Mercenario</h3>
             <p
               style={{ fontFamily: "'Handlee', cursive" }}
               className="mt-4 text-2xl md:text-4xl"
@@ -77,7 +77,7 @@ const OfferteMercato = () => {
                 {casuale}
               </motion.p>
 
-              <h3 className="text-5xl md:text-7xl font-extrabold uppercase">
+              <h3 className="text-4xl md:text-7xl font-extrabold uppercase">
                 Bilancio in ordine
               </h3>
               <p

@@ -3,6 +3,8 @@ import { GiPerspectiveDiceSixFacesRandom } from "react-icons/gi";
 import { motion } from "framer-motion";
 
 const Dado = (clickFunc) => {
+
+  const isMobile = window.innerWidth < 768
   return (
     <motion.div
       whileHover={{

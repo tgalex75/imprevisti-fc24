@@ -50,13 +50,13 @@ const Ingaggio = () => {
               }}
               className={
                 isImpr
-                  ? "text-6xl md:text-7xl font-extrabold uppercase tracking-wider"
+                  ? "text-5xl md:text-7xl font-extrabold uppercase tracking-wider"
                   : "hidden"
               }
             >
               imprevisto!
             </h2>
-            <h3 className="text-5xl md:text-7xl font-extrabold uppercase">
+            <h3 className="text-4xl md:text-7xl font-extrabold uppercase">
               VISITE NON SUPERATE
             </h3>
             <p
@@ -78,7 +78,7 @@ const Ingaggio = () => {
               >
                 {casuale}
               </motion.p>
-              <h3 className="text-5xl md:text-7xl font-extrabold uppercase">
+              <h3 className="text-4xl md:text-7xl font-extrabold uppercase">
                 Nessun problema
               </h3>
               <p
