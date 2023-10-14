@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import img1 from "../assets/imgs/img1.jpg";
 import img2 from "../assets/imgs/img2.jpg";
@@ -37,14 +37,14 @@ const Home = () => {
   return (
     <section
       id="Hero"
-      className="select-none flex h-screen w-full flex-col items-center justify-around overflow-hidden bg-stone-950 font-bold text-gray-800 md:flex-row "
+      className="flex h-screen w-full select-none flex-col items-center justify-around overflow-hidden bg-stone-950 font-bold text-gray-800 md:flex-row "
     >
       {dettagliImprevisti.map((el) => (
         <div
           key={el.id}
           style={{
             boxShadow: "-12px 0px 10px -3px rgba(2,2,2,0.5)",
-            zIndex: el.id
+            zIndex: el.id,
           }}
           id="Main--Container"
           className="ease-[cubic-bezier(0.770, 0.000, 0.175, 1.000)] group flex h-1/6 w-full cursor-pointer flex-col transition-all duration-500 hover:h-full hover:text-gray-300 md:h-full md:w-1/6 md:flex-row md:items-center md:justify-start md:hover:w-full"
@@ -58,10 +58,10 @@ const Home = () => {
                     textShadow: "rgb(34, 34, 34) 0px 4px 4px",
                   }
                 : {
-                    textShadow:  "rgb(34, 34, 34) 1px 1px 3px"
+                    textShadow: "rgb(34, 34, 34) 1px 1px 3px",
                   }
             }
-            className="border-[--clr-prim] bg-[rgb(16,84,66,.95)] px-4 py-1 text-left text-sm font-bold uppercase text-gray-200 drop-shadow-lg group-hover:border-b-[.5rem] md:h-full md:py-0 md:ps-8 md:text-[2.2vw] md:group-hover:border-l-[1rem] md:group-hover:border-b-0"
+            className="border-[--clr-prim] bg-[rgb(16,84,66,.95)] px-4 py-1 text-left text-sm font-bold uppercase text-gray-200 drop-shadow-lg group-hover:border-b-[.5rem] md:h-full md:py-0 md:ps-8 md:text-[2.2vw] md:group-hover:border-b-0 md:group-hover:border-l-[1rem]"
           >
             {el.impr}
           </h2>

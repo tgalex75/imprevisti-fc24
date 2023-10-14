@@ -5,6 +5,8 @@ import { motion } from "framer-motion";
 
 const Navbar = () => {
   const [isOpenMenu, setIsOpenMenu] = useState(false);
+  const isMobile = window.innerWidth < 768
+  const iconSize = !isMobile ? 36 : 28
 
   const handleClick = () => {
     setIsOpenMenu((prevMenu) => !prevMenu);
@@ -30,7 +32,6 @@ const Navbar = () => {
     { id: 9, voceLi: "Bonus Annuali ", linkTo: "/bonus-annuali" },
   ];
 
-  //Sostituire div con <Link> from react-router
   const linksMenu = dettagliMenu.map((voce) => {
     return (
       <div key={voce.id}>
@@ -52,10 +53,10 @@ const Navbar = () => {
       id="Navbar"
       className="fixed z-[1000] flex h-auto w-full items-center justify-between px-6 py-3"
     >
-      <div className="flex cursor-pointer items-center justify-center rounded-full hover:bg-gray-300/30">
+      <div className="flex cursor-pointer items-center justify-center rounded-full p-2 hover:bg-gray-300/30">
         <Link to="/">
-          <MdHome
-            size={36}
+          {!isMobile && <MdHome
+            size={iconSize}
             style={
               isOpenMenu
                 ? { display: "none" }
@@ -63,14 +64,14 @@ const Navbar = () => {
                     filter: "drop-shadow(.25rem .25rem 0.15rem #222)",
                   }
             }
-            className="hidden fill-gray-300 hover:fill-gray-200 md:block"
-          />
+            className="fill-gray-300 hover:fill-gray-200 md:block"
+          />}
         </Link>
       </div>
       <div className="flex cursor-pointer items-center justify-center rounded-full p-2 hover:bg-gray-300/30">
         {!isOpenMenu ? (
           <MdMenu
-            size={36}
+            size={iconSize}
             style={{
               filter: "drop-shadow(.25rem .25rem 0.15rem #222)",
             }}
@@ -79,7 +80,7 @@ const Navbar = () => {
           />
         ) : (
           <MdClose
-            size={36}
+            size={iconSize}
             className="fill-gray-300 hover:fill-gray-200"
             onClick={handleClick}
           />
