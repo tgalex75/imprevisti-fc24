@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
-import img1 from "../assets/imgs/img1.jpg";
-import img2 from "../assets/imgs/img2.jpg";
-import img3 from "../assets/imgs/img3.jpg";
-import img4 from "../assets/imgs/img4.jpg";
-import img5 from "../assets/imgs/img5.jpg";
-import img6 from "../assets/imgs/img6.jpg";
+import img1 from "../assets/imgs/ramsey.jpg";
+import img2 from "../assets/imgs/stadio_cardiff.jpg";
+import img3 from "../assets/imgs/serie_negativa.jpg";
+import img4 from "../assets/imgs/logo_storico.png";
+import img5 from "../assets/imgs/stadio_cardiff.jpg";
+import img6 from "../assets/imgs/stadio_cardiff.jpg";
 
 const dettagliImprevisti = [
   { id: 1, impr: "Imprevisto prepartita", img: img1, link: "/prepartita" },
@@ -60,7 +60,7 @@ const Home = () => {
                     textShadow: "rgb(34, 34, 34) 1px 1px 3px",
                   }
             }
-            className="border-[--clr-prim] bg-[rgb(16,84,66,.95)] px-4 py-1 text-left text-sm font-bold uppercase text-gray-200 drop-shadow-lg group-hover:border-b-[.5rem] md:h-full md:py-0 md:ps-8 md:text-[2.2vw] md:group-hover:border-b-0 md:group-hover:border-l-[1rem]"
+            className="border-[--clr-sec] bg-[--clr-prim] px-4 py-1 text-left text-sm font-bold uppercase text-gray-200 drop-shadow-lg group-hover:border-b-[.5rem] md:h-full md:py-0 md:ps-8 md:text-[2.2vw] md:group-hover:border-b-0 md:group-hover:border-l-[1rem]"
           >
             {el.impr}
           </h2>

@@ -42,7 +42,7 @@ const SerieNegativa = () => {
         key={casuale}
         id="containerPrimaEstrazione"
         style={isImprev ? { color: "var(--clr-prim)" } : {}}
-        className="flex h-full w-full select-none flex-col items-center justify-around rounded-xl border-4 border-[--clr-sec] bg-black/50 px-8 md:px-10 py-4 text-center shadow-lg ring ring-inset ring-white/75 md:w-3/4 md:border-8"
+        className="flex h-full w-full select-none flex-col items-center justify-around rounded-xl border-4 border-[--clr-prim-fade] bg-black/50 px-8 md:px-10 py-4 text-center shadow-lg ring ring-inset ring-white/75 md:w-3/4 md:border-8"
       >
         {!casuale ? (
           <h2

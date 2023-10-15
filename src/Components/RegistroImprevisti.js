@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { CartContext } from "../context/cart";
 import uuid from "react-uuid";
 import { BiPlusCircle, BiMinusCircle } from "react-icons/bi";
-import logoSfondo from "../assets/imgs/falco_nocornice.png";
+import logoSfondo from "../assets/imgs/logo_storico.png";
 import { MdClose } from "react-icons/md";
 
 const RegistroImprevisti = ({ showModal, toggle }) => {
@@ -20,7 +20,7 @@ const RegistroImprevisti = ({ showModal, toggle }) => {
           backgroundRepeat: "no-repeat",
           backgroundImage: `url(${logoSfondo})`,
         }}
-        className="absolute left-1/2 top-1/2 z-[900] flex h-[75vh] w-[85vw] -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-between rounded-xl border-4 border-[--clr-sec] bg-gray-800 p-3 text-center uppercase shadow-xl ring ring-inset ring-white/75 md:h-[75vh] md:w-[85vw] md:border-8"
+        className="absolute left-1/2 top-1/2 z-[900] flex h-[75vh] w-[85vw] -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-between rounded-xl border-4 border-[--clr-prim-fade] bg-gray-800 p-3 text-center uppercase shadow-xl ring ring-inset ring-white/75 md:h-[75vh] md:w-[85vw] md:border-8"
       >
         <div
           className="cursor-pointer self-end"

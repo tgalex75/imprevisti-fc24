@@ -28,7 +28,7 @@ const Settimana = () => {
         id="containerPrimaEstrazione"
         key={casuale}
         style={isImprev ? { color: "var(--clr-prim)" } : {}}
-        className="flex h-full w-full md:w-3/4 select-none flex-col items-center justify-around rounded-xl border-4 md:border-8 border-[--clr-sec] bg-black/50 px-10 text-center shadow-lg ring ring-inset ring-white/75"
+        className="flex h-full w-full md:w-3/4 select-none flex-col items-center justify-around rounded-xl border-4 md:border-8 border-[--clr-prim-fade] bg-black/50 px-10 text-center shadow-lg ring ring-inset ring-white/75"
       >
         {!casuale ? (
           <h2

@@ -34,7 +34,7 @@ const BonusAnnuali = () => {
   return (
     <section className="flex h-full w-full select-none flex-col items-center justify-around gap-6 px-4 pb-12 font-bold md:justify-around md:pb-12">
       <h1>Bonus Imprevisti</h1>
-      <div className="flex h-[80vh] w-full select-none flex-col items-center justify-around gap-8 rounded-xl border-4 border-[--clr-sec] bg-black/50 px-4 md:px-12 p-4 md:py-8 shadow-lg ring ring-inset ring-white/75 md:min-h-[60vh] md:w-3/4 md:border-8">
+      <div className="flex h-[80vh] w-full select-none flex-col items-center justify-around gap-8 rounded-xl border-4 border-[--clr-prim-fade] bg-black/50 px-4 md:px-12 p-4 md:py-8 shadow-lg ring ring-inset ring-white/75 md:min-h-[60vh] md:w-3/4 md:border-8">
         <div className="flex w-full items-center justify-around md:w-3/4">
           <div className="flex w-full h-18 flex-col items-center text-center md:w-3/4">
             <label

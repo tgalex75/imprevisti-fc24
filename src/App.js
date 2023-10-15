@@ -7,7 +7,7 @@ import AnimatedRoutes from "./Components/AnimatedRoutes";
 
 function App() {
   return (
-    <main className="h-screen w-full">
+    <main id="App" className="h-screen w-full">
       <Router>
         <Navbar />
         <AnimatedRoutes />

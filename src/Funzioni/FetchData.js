@@ -28,7 +28,7 @@ export default function FetchData(props) {
         type: "spring",
         // stiffness: 200,
       }}
-      className="flex h-full w-full flex-col items-center justify-start gap-16 rounded-xl p-1 md:p-4 shadow-lg ring ring-inset overflow-y-auto ring-white/75"
+      className="flex h-full w-full flex-col items-center justify-start gap-16 md:gap-8 rounded-xl p-1 md:p-4 shadow-lg ring ring-inset overflow-y-auto ring-white/75"
     >
       <motion.div
         className="cursor-pointer self-end"
@@ -49,7 +49,7 @@ export default function FetchData(props) {
           fontFamily: "'Handlee', cursive",
           filter: "drop-shadow(.05rem .05rem 0.2rem #000)",
         }}
-        className="w-fit p-2 text-center text-md uppercase italic text-gray-300 md:p-8 md:text-4xl"
+        className="w-fit p-2 text-center text-md uppercase italic text-gray-300 md:p-8 md:text-2xl"
       >
         {name}
       </h3>

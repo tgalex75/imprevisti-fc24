@@ -22,7 +22,7 @@ const Ingaggio = () => {
         key={casuale}
         id="containerPrimaEstrazione"
         style={isImpr ? { color: "var(--clr-prim)" } : {}}
-        className="flex h-[70vh] md:min-h-[60vh] w-full md:w-3/4 select-none flex-col items-center justify-around gap-2 rounded-xl border-8 border-[--clr-sec] bg-black/50 px-12 py-8 shadow-lg ring ring-inset ring-white/75"
+        className="flex h-[70vh] md:min-h-[60vh] w-full md:w-3/4 select-none flex-col items-center justify-around gap-2 rounded-xl border-8 border-[--clr-prim-fade] bg-black/50 px-12 py-8 shadow-lg ring ring-inset ring-white/75"
       >
         {!casuale && (
           <h2

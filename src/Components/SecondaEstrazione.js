@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import firstkit from "../assets/imgs/firstKit.png";
-import awaykit from "../assets/imgs/awayKit.png";
-import thirdkit from "../assets/imgs/thirdKit.png";
+import firstkit from "../assets/imgs/first_kit_back.png";
+import awaykit from "../assets/imgs/away_kit_back.png";
+import thirdkit from "../assets/imgs/third_kit_back.png";
+import gkkit from "../assets/imgs/gk_kit_back.png";
 
 const SecondaEstrazione = () => {
   const [inputField, setInputField] = useState({
@@ -21,7 +22,7 @@ const SecondaEstrazione = () => {
 
   const [randomJersey, setRandomJersey] = useState(null);
 
-  const teamKits = [firstkit, awaykit, thirdkit];
+  const teamKits = [firstkit, awaykit, thirdkit, gkkit];
 
   const genSecondRandomNumber = () => {
     setSecondExtractedNumber(
@@ -31,7 +32,7 @@ const SecondaEstrazione = () => {
   };
 
   return (
-    <section className="flex min-h-[20vh] w-full md:w-3/4 items-center justify-center rounded-md border-2 gap-4 md:gap-12 border-gray-300/20 px-4 md:px-12 py-2">
+    <section className="flex min-h-[20vh] w-full items-center justify-center gap-4 rounded-md border-2 border-gray-300/20 px-4 py-2 md:w-3/4 md:gap-12 md:px-12">
       <div className="flex h-full flex-col items-center justify-around gap-4 rounded-lg">
         <div className="flex flex-col items-center justify-around">
           <label
@@ -61,13 +62,19 @@ const SecondaEstrazione = () => {
       {secondExtractedNumber && (
         <div
           className="flex h-full w-1/3 flex-col items-center overflow-hidden rounded bg-contain bg-center bg-no-repeat p-12 transition-all"
-          style={{
-            backgroundImage: `url(${teamKits[randomJersey - 1]})`,
-          }}
+          style={
+            secondExtractedNumber === 1
+              ? {
+                  backgroundImage: `url(${teamKits[3]})`,
+                }
+              : {
+                  backgroundImage: `url(${teamKits[randomJersey - 1]})`,
+                }
+          }
         >
           <span
             style={randomJersey === 2 ? { color: "var(--clr-sec" } : {}}
-            className="block mt-6 md:mt-8 font-['Oswald'] text-5xl md:text-7xl font-bold text-gray-300"
+            className="mt-6 block font-['Oswald'] text-5xl font-bold text-gray-300 md:mt-8 md:text-7xl"
           >
             {secondExtractedNumber}
           </span>
