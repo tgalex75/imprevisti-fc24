@@ -48,13 +48,13 @@ const SecondaEstrazione = () => {
             id="input-estrazione-giocatore"
             className="min-h-[3rem] w-full flex-1 appearance-none rounded-lg border-gray-300 border-transparent bg-white px-4 py-2 text-lg text-gray-700 placeholder-gray-400 shadow-sm focus:border-transparent focus:outline-none focus:ring-4 focus:ring-sky-700 "
             name="randomPlayerNum"
-            placeholder="11 o 18 giocatori?"
+            placeholder="Quanti giocatori?"
           />
         </div>
         <button
           type="button"
           onClick={genSecondRandomNumber}
-          className="min-h-[3rem] w-full rounded-lg bg-[--clr-sec] px-4 py-2 text-center text-base font-semibold text-white shadow-md transition duration-200 ease-in hover:bg-[--clr-prim] focus:outline-none focus:ring-2 focus:ring-[--clr-prim] focus:ring-offset-2  focus:ring-offset-green-200 "
+          className="min-h-[3rem] w-full rounded-lg bg-[--clr-prim] px-4 py-2 text-center text-base font-semibold text-white shadow-md transition duration-200 ease-in hover:bg-[--clr-prim-fade] focus:outline-none focus:ring-2 focus:ring-[--clr-prim] focus:ring-offset-2  focus:ring-offset-green-200 "
         >
           Estrai
         </button>
@@ -73,8 +73,8 @@ const SecondaEstrazione = () => {
           }
         >
           <span
-            style={randomJersey === 2 ? { color: "var(--clr-sec" } : {}}
-            className="mt-6 block font-['Oswald'] text-5xl font-bold text-gray-300 md:mt-8 md:text-7xl"
+            style={randomJersey === 3 ? { color: "#111" } : {}}
+            className="mb-4 md:mb-6 block font-['Oswald'] text-4xl font-bold text-white md:text-7xl"
           >
             {secondExtractedNumber}
           </span>

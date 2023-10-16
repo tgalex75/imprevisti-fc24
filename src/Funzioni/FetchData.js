@@ -3,6 +3,7 @@ import { MdClose } from "react-icons/md";
 import { motion } from "framer-motion";
 import datiBackupIC from "../Data/datiBackupIC";
 import { randomNumber } from "../Funzioni/RandomNumber";
+import SecondaEstrazione from "../Components/SecondaEstrazione";
 
 export default function FetchData(props) {
   const { changeModalState } = props;
@@ -13,7 +14,7 @@ export default function FetchData(props) {
     setCasuale(randomNumber(datiBackupIC));
   };
 
-  const { name } = casuale ? datiBackupIC[casuale - 1] : {};
+  const { id, title, name } = casuale ? datiBackupIC[casuale - 1] : {};
 
   useEffect(() => {
     estraiNumeroCasuale();
@@ -28,7 +29,7 @@ export default function FetchData(props) {
         type: "spring",
         // stiffness: 200,
       }}
-      className="flex h-full w-full flex-col items-center justify-start gap-16 md:gap-8 rounded-xl p-1 md:p-4 shadow-lg ring ring-inset overflow-y-auto ring-white/75"
+      className="flex h-full w-full flex-col items-center justify-start gap-16 overflow-y-auto rounded-xl p-1 shadow-lg ring ring-inset ring-white/75 md:gap-8 md:p-4"
     >
       <motion.div
         className="cursor-pointer self-end"
@@ -46,13 +47,21 @@ export default function FetchData(props) {
       </motion.div>
       <h3
         style={{
-          fontFamily: "'Handlee', cursive",
           filter: "drop-shadow(.05rem .05rem 0.2rem #000)",
         }}
-        className="w-fit p-2 text-center text-md uppercase italic text-gray-300 md:p-8 md:text-2xl"
+        className="w-fit p-2 text-center text-lg uppercase italic text-gray-300 md:p-8 md:text-3xl"
+      >
+        {title}
+      </h3>
+      <h4
+        style={{
+          filter: "drop-shadow(.05rem .05rem 0.2rem #000)",
+        }}
+        className="text-md w-fit p-2 text-center uppercase italic text-gray-300 md:p-8 md:text-xl"
       >
         {name}
-      </h3>
+      </h4>
+      {(id === 6 || id === 2) && <SecondaEstrazione />}
     </motion.div>
   );
 }

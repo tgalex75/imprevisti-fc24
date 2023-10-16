@@ -21,12 +21,11 @@ const Rinnovi = () => {
         transition={{ delay: 0.4, duration: 0.4, type: "spring" }}
         key={casuale}
         id="containerPrimaEstrazione"
-        style={isImpr ? { color: "var(--clr-prim)" } : {}}
+        style={isImpr ? { color: "var(--clr-sec)" } : {}}
         className="flex h-[70vh] md:min-h-[60vh] w-full md:w-3/4 select-none flex-col items-center justify-around gap-2 rounded-xl border-8 border-[--clr-prim-fade] bg-black/50 px-12 py-8 shadow-lg ring ring-inset ring-white/75"
       >
         {!casuale && (
           <h2
-            style={{ fontFamily: "'Handlee', cursive" }}
             className="text-5xl italic"
           >
             Lancia il dado...
@@ -46,7 +45,7 @@ const Rinnovi = () => {
 
             <h2
               style={{
-                fontFamily: "'Gochi Hand', cursive",
+                fontFamily: "'Orbitron', sans-serif",
                 filter: "drop-shadow(.05rem .05rem 0.1rem #000)",
               }}
               className={
@@ -57,9 +56,8 @@ const Rinnovi = () => {
             >
               imprevisto!
             </h2>
-            <h3 className="text-4xl md:text-7xl font-extrabold uppercase">Mercenario</h3>
+            <h3 className="text-3xl  md:text-7xl font-extrabold uppercase">Mercenario</h3>
             <p
-              style={{ fontFamily: "'Handlee', cursive" }}
               className="mt-4 text-2xl md:text-4xl"
             >
               Raddoppia l'ingaggio o cessione obbligatoria
@@ -80,7 +78,6 @@ const Rinnovi = () => {
                 Nessun problema
               </h3>
               <p
-                style={{ fontFamily: "'Handlee', cursive" }}
                 className="mt-4 text-2xl md:text-4xl"
               >
                 Gestisci la trattativa liberamente

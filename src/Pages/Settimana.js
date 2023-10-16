@@ -27,12 +27,11 @@ const Settimana = () => {
         animate={{ opacity: 1, x: 0 }}
         id="containerPrimaEstrazione"
         key={casuale}
-        style={isImprev ? { color: "var(--clr-prim)" } : {}}
+        style={isImprev ? { color: "var(--clr-sec)" } : {}}
         className="flex h-full w-full md:w-3/4 select-none flex-col items-center justify-around rounded-xl border-4 md:border-8 border-[--clr-prim-fade] bg-black/50 px-10 text-center shadow-lg ring ring-inset ring-white/75"
       >
         {!casuale ? (
           <h2
-            style={{ fontFamily: "'Handlee', cursive" }}
             className="text-5xl italic"
           >
             Lancia il dado...
@@ -50,20 +49,19 @@ const Settimana = () => {
 
             <h2
               style={{
-                fontFamily: "'Gochi Hand', cursive",
+                fontFamily: "'Orbitron', sans-serif",
                 filter: "drop-shadow(.05rem .05rem 0.1rem #000)",
               }}
               className={
                 isImprev
-                  ? "text-5xl md:text-7xl font-extrabold uppercase tracking-wider"
+                  ? "text-3xl md:text-7xl font-extrabold uppercase tracking-wider"
                   : "hidden"
               }
             >
               imprevisto!
             </h2>
-            <h3 className="text-4xl md:text-6xl font-extrabold uppercase">{title}</h3>
+            <h3 className="text-3xl  md:text-6xl font-extrabold uppercase">{title}</h3>
             <p
-              style={{ fontFamily: "'Handlee', cursive" }}
               className="mt-4 text-2xl md:text-4xl"
             >
               {description}

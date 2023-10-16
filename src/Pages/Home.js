@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
-import img1 from "../assets/imgs/ramsey.jpg";
+import img1 from "../assets/imgs/ramsey_10.jpg";
 import img2 from "../assets/imgs/stadio_cardiff.jpg";
 import img3 from "../assets/imgs/serie_negativa.jpg";
 import img4 from "../assets/imgs/logo_storico.png";
-import img5 from "../assets/imgs/stadio_cardiff.jpg";
-import img6 from "../assets/imgs/stadio_cardiff.jpg";
+import img5 from "../assets/imgs/contract.jpg";
+import img6 from "../assets/imgs/rinnovo.jpg";
 
 const dettagliImprevisti = [
   { id: 1, impr: "Imprevisto prepartita", img: img1, link: "/prepartita" },

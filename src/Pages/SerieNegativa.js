@@ -41,12 +41,11 @@ const SerieNegativa = () => {
         transition={{ delay: 0.4, duration: 0.4, type: "spring" }}
         key={casuale}
         id="containerPrimaEstrazione"
-        style={isImprev ? { color: "var(--clr-prim)" } : {}}
+        style={isImprev ? { color: "var(--clr-sec)" } : {}}
         className="flex h-full w-full select-none flex-col items-center justify-around rounded-xl border-4 border-[--clr-prim-fade] bg-black/50 px-8 md:px-10 py-4 text-center shadow-lg ring ring-inset ring-white/75 md:w-3/4 md:border-8"
       >
         {!casuale ? (
           <h2
-            style={{ fontFamily: "'Handlee', cursive" }}
             className="text-5xl italic"
           >
             Lancia il dado...
@@ -55,22 +54,21 @@ const SerieNegativa = () => {
           <>
             <h2
               style={{
-                fontFamily: "'Gochi Hand', cursive",
+                fontFamily: "'Orbitron' sans-serif",
                 filter: "drop-shadow(.05rem .05rem 0.1rem #000)",
               }}
               className={
                 isImprev
-                  ? "text-5xl font-extrabold uppercase tracking-wider md:text-7xl"
+                  ? "text-3xl font-extrabold uppercase md:text-7xl"
                   : "invisible"
               }
             >
               imprevisto!
             </h2>
-            <h3 className="text-4xl font-extrabold uppercase md:text-6xl">
+            <h3 className="text-3xl  font-extrabold uppercase md:text-6xl">
               {title}
             </h3>
             <p
-              style={{ fontFamily: "'Handlee', cursive" }}
               className="mt-4 text-xl md:text-4xl"
             >
               {description}

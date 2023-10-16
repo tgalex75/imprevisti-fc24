@@ -10,50 +10,24 @@
 
 body {
     margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
-        "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
-        "Helvetica Neue", sans-serif;
+    font-family: 'Roboto', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background-color: #111;
+    background-color: #171614;
     color: #eeeeee;
+    
 }
+
 
 code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-        monospace;
+    monospace;
 }
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,500;1,400&display=swap');
 
 /* Tshirt estrazione */
 @import url("https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap");
 
 /* IMPREVISTO TIMBRO */
-@import url('https://fonts.googleapis.com/css2?family=Gochi+Hand&display=swap');
-
-/* Imprevisti della Community - Testo */
-@import url("https://fonts.googleapis.com/css2?family=Handlee&display=swap");
-
-/* Titoli H1 */
-@import url("https://fonts.googleapis.com/css2?family=Handlee&family=Paytone+One&display=swap");
-
-h1 {
-    font-family: "Paytone One", sans-serif;
-    font-size: calc(3vw + .5rem);
-}
-
-.t-dOnDMp{
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    width: 25vw;
-    height: 40vh;
-    border: .3rem solid var(--clr-sec);
-    padding: 1rem;
-    border-radius: 1rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    justify-items: center;
-
-}
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;800;900&display=swap');

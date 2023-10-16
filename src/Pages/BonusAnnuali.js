@@ -60,7 +60,7 @@ const BonusAnnuali = () => {
               />
               <button
                 type="button"
-                className="w-1/2 h-10 rounded-lg bg-sky-700 px-2 py-2 text-center text-sm font-semibold text-white shadow-md transition duration-200 ease-in hover:bg-sky-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2  focus:ring-offset-indigo-200 "
+                className="w-1/2 h-10 rounded-lg bg-[--clr-prim] px-2 py-2 text-center text-sm font-semibold text-white shadow-md transition duration-200 ease-in hover:bg-[--clr-prim-fade] focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2  focus:ring-offset-indigo-200 "
                 onClick={() =>
                   addVociBonus({
                     id: vociBonus.length + 1,

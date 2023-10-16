@@ -17,7 +17,7 @@ const ErrorPage = () => {
         to="/home"
         style={{
           fontSize: "1rem",
-          color: "var(--clr-primary)",
+          color: "var(--clr-sec)",
           fontWeight: "600",
           padding: "2rem",
         }}

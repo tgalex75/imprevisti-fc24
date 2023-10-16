@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import { CartContext } from "../context/cart";
 import uuid from "react-uuid";
 import { BiPlusCircle, BiMinusCircle } from "react-icons/bi";
-import logoSfondo from "../assets/imgs/logo_storico.png";
 import { MdClose } from "react-icons/md";
 
 const RegistroImprevisti = ({ showModal, toggle }) => {
@@ -12,16 +11,7 @@ const RegistroImprevisti = ({ showModal, toggle }) => {
 
   return (
     showModal && (
-      <section
-        style={{
-          backgroundPositionX: "-30%",
-          backgroundPositionY: "center",
-          backgroundSize: "contain",
-          backgroundRepeat: "no-repeat",
-          backgroundImage: `url(${logoSfondo})`,
-        }}
-        className="absolute left-1/2 top-1/2 z-[900] flex h-[75vh] w-[85vw] -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-between rounded-xl border-4 border-[--clr-prim-fade] bg-gray-800 p-3 text-center uppercase shadow-xl ring ring-inset ring-white/75 md:h-[75vh] md:w-[85vw] md:border-8"
-      >
+      <section className="absolute left-1/2 top-1/2 z-[900] flex h-[75vh] w-[85vw] -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-between rounded-xl border-4 border-[--clr-prim-fade] bg-gray-800 p-3 text-center uppercase shadow-xl ring ring-inset ring-white/75 md:h-[75vh] md:w-[85vw] md:border-8">
         <div
           className="cursor-pointer self-end"
           whileHover={{
@@ -38,10 +28,10 @@ const RegistroImprevisti = ({ showModal, toggle }) => {
         </div>
         <h3
           style={{
-            fontFamily: "'Gochi Hand', cursive",
+            fontFamily: "'Orbitron', sans-serif",
             filter: "drop-shadow(.05rem .05rem 0.1rem #000)",
           }}
-          className="text-3xl text-[--clr-prim] md:text-5xl"
+          className="text-2xl text-[--clr-sec] md:text-5xl"
         >
           Registro degli Imprevisti{" "}
         </h3>{" "}
@@ -55,7 +45,7 @@ const RegistroImprevisti = ({ showModal, toggle }) => {
                   ? { backgroundColor: "orange", color: "black" }
                   : {}
               }
-              className="flex items-center justify-between bg-teal-800 py-1 odd:bg-teal-600 "
+              className="odd:[--clr-prim-fade] flex items-center justify-between bg-[--clr-prim] py-1 "
               key={uuid()}
             >
               <div className="flex gap-4">
@@ -99,8 +89,7 @@ const RegistroImprevisti = ({ showModal, toggle }) => {
           </div>
         ) : (
           <h1
-            style={{ fontFamily: "'Handlee', cursive" }}
-            className="text-lg font-bold pb-4"
+            className="pb-4 text-lg font-bold"
           >
             La lista è vuota
           </h1>

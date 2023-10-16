@@ -39,7 +39,7 @@ const Navbar = () => {
           <motion.li
             whileHover={{ scale: 1.4 }}
             transition={{ type: "spring", stiffness: 200, bounce: 0.6 }}
-            className="text-md md:text-xl font-bold uppercase hover:text-[--clr-prim]"
+            className="text-md md:text-xl font-bold uppercase hover:text-[--clr-sec]"
           >
             {voce.voceLi}
           </motion.li>
