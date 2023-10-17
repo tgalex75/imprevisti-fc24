@@ -71,7 +71,7 @@ const MediaOverall = () => {
       {schema === "5212" && s5212(data, handleChange, valori)}
       <div
         style={result < 1 ? { visibility: "hidden" } : {}}
-        className="rounded-xl border-2 border-[--clr-prim] px-8 py-2 text-center font-bold ring ring-inset ring-white/75 md:me-8 md:self-end md:border-8 md:px-20"
+        className="rounded-xl mb-4 border-2 border-[--clr-sec] px-8 py-2 text-center font-bold ring ring-inset ring-white/75 md:me-8 md:self-end md:border-8 md:px-20"
       >
         <span className="text-md md:text-xl">Media:</span>
         <h4 className="text-6xl md:text-9xl">{result}</h4>
