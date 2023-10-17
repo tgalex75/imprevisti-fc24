@@ -47,7 +47,7 @@ const SecondaEstrazione = () => {
             id="input-estrazione-giocatore"
             className="min-h-[3rem] w-full flex-1 appearance-none rounded-lg border-gray-300 border-transparent bg-white px-4 py-2 text-lg text-gray-700 placeholder-gray-400 shadow-sm focus:border-transparent focus:outline-none focus:ring-4 focus:ring-sky-700 "
             name="randomPlayerNum"
-            placeholder="11 o 18 giocatori?"
+            placeholder="Quanti giocatori?"
           />
         </div>
         <button

@@ -1,7 +1,7 @@
 //import { color } from "framer-motion";
 import React from "react";
 
-const Footer = (props) => {
+const Footer = () => {
 
   return (
     <footer id="Footer" className="z-10 fixed bottom-0 right-0 text-sm flex w-full items-center justify-center md:justify-between">

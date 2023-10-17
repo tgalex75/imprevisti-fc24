@@ -1,7 +1,5 @@
 # Gestione degli imprevisti Falconero Community Edition
 
-### NB: Al momento il sito non è ottimizzato per dispositivi mobili
-
 Per chi avesse voglia di personalizzare la lista degli imprevisti, può farlo senza problemi,
 aggiornando i file nelle cartella Data, modificando le stringhe di testo all'interno degli apici (o doppi apici).
 

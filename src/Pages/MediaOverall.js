@@ -7,6 +7,7 @@ import {
   s3412,
   s3421,
   s4312,
+  s4321,
   s433,
   s442,
   mySelect,
@@ -52,26 +53,28 @@ const MediaOverall = () => {
   const result = calcolaMedia();
 
   return (
-    <main className="flex h-screen w-full flex-col items-center justify-around overflow-hidden p-2">
-      <div className="flex h-full w-full flex-col items-center justify-around gap-4">
-        <h1>Media Overall</h1>
-        {mySelect(selectRef, getSchema)}
-        {schema === "442" && s442(data, handleChange, valori)}
-        {schema === "433" && s433(data, handleChange, valori)}
-        {schema === "4312" && s4312(data, handleChange, valori)}
-        {schema === "352" && s352(data, handleChange, valori)}
-        {schema === "3412" && s3412(data, handleChange, valori)}
-        {schema === "3421" && s3421(data, handleChange, valori)}
-        {schema === "343" && s343(data, handleChange, valori)}
-        {schema === "532" && s532(data, handleChange, valori)}
-        {schema === "5212" && s5212(data, handleChange, valori)}
-        <div
-          style={result < 1 ? { visibility: "hidden" } : {}}
-          className="rounded-lg border-4 border-[--clr-prim] px-20 py-6 font-bold ring-4 ring-inset ring-white/75 md:border-8"
-        >
-          <span className="text-lg md:text-xl">Media:</span>
-          <h4 className="text-8xl md:text-9xl">{result}</h4>
-        </div>
+    <main
+      id="media--overall"
+      className="flex h-full w-full flex-col items-center justify-around gap-2"
+    >
+      <h1>Media Overall</h1>
+      {mySelect(selectRef, getSchema)}
+      {schema === "442" && s442(data, handleChange, valori)}
+      {schema === "433" && s433(data, handleChange, valori)}
+      {schema === "4312" && s4312(data, handleChange, valori)}
+      {schema === "4321" && s4321(data, handleChange, valori)}
+      {schema === "352" && s352(data, handleChange, valori)}
+      {schema === "3412" && s3412(data, handleChange, valori)}
+      {schema === "3421" && s3421(data, handleChange, valori)}
+      {schema === "343" && s343(data, handleChange, valori)}
+      {schema === "532" && s532(data, handleChange, valori)}
+      {schema === "5212" && s5212(data, handleChange, valori)}
+      <div
+        style={result < 1 ? { visibility: "hidden" } : {}}
+        className="rounded-xl border-2 border-[--clr-prim] px-8 py-2 text-center font-bold ring ring-inset ring-white/75 md:me-8 md:self-end md:border-8 md:px-20"
+      >
+        <span className="text-md md:text-xl">Media:</span>
+        <h4 className="text-6xl md:text-9xl">{result}</h4>
       </div>
     </main>
   );
