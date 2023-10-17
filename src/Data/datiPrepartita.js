@@ -57,9 +57,9 @@ const datiPrepartita = [
     },
     {
         id: 9,
-        title: "PAROLA ALLA COMMUNITY!",
-        description: "Estrazione di uno degli imprevisti proposti dalla Comunity.",
-        isImprev: true,
+        title: "nessun imprevisto",
+        description: "Ogni maledetta domenica si vince o si perde, resta da vedere se si vince o si perde da uomini.",
+        isImprev: false,
         ultEstrazione: false
     },
     {
@@ -99,9 +99,9 @@ const datiPrepartita = [
     },
     {
         id: 15,
-        title: "PAROLA ALLA COMMUNITY!",
-        description: "Verrà estratto uno degli Imprevisti della Community",
-        isImprev: true,
+        title: "nessun imprevisto",
+        description: "Ogni maledetta domenica si vince o si perde, resta da vedere se si vince o si perde da uomini.",
+        isImprev: false,
         ultEstrazione: false
     },
     {
@@ -127,9 +127,9 @@ const datiPrepartita = [
     },
     {
         id: 19,
-        title: "PAROLA ALLA COMMUNITY!",
-        description: "Verrà estratto uno degli Imprevisti della Community",
-        isImprev: true,
+        title: "nessun imprevisto",
+        description: "Ogni maledetta domenica si vince o si perde, resta da vedere se si vince o si perde da uomini.",
+        isImprev: false,
         ultEstrazione: false
     },
     {
@@ -206,6 +206,62 @@ const datiPrepartita = [
         id: 30,
         title: "Paurissima",
         description: "Gioca con il 5-4-1 e la difesa al minimo della profondità",
+        isImprev: true,
+        ultEstrazione: false
+    },
+    {
+        id: 31,
+        title: "nessun imprevisto",
+        description: "È il football ragazzi, è tutto qui. Allora, che cosa volete fare?",
+        isImprev: false,
+        ultEstrazione: false
+    },
+    {
+        id: 32,
+        title: "nessun imprevisto",
+        description: "È il football ragazzi, è tutto qui. Allora, che cosa volete fare?",
+        isImprev: false,
+        ultEstrazione: false
+    },
+    {
+        id: 33,
+        title: "PAROLA ALLA COMMUNITY!",
+        description: "Estrazione di uno degli imprevisti proposti dalla Comunity.",
+        isImprev: true,
+        ultEstrazione: false
+    },
+    {
+        id: 34,
+        title: "nessun imprevisto",
+        description: "È il football ragazzi, è tutto qui. Allora, che cosa volete fare?",
+        isImprev: false,
+        ultEstrazione: false
+    },
+    {
+        id: 35,
+        title: "PAROLA ALLA COMMUNITY!",
+        description: "Verrà estratto uno degli Imprevisti della Community",
+        isImprev: true,
+        ultEstrazione: false
+    },
+    {
+        id: 36,
+        title: "nessun imprevisto",
+        description: "È il football ragazzi, è tutto qui. Allora, che cosa volete fare?",
+        isImprev: false,
+        ultEstrazione: false
+    },
+    {
+        id: 37,
+        title: "nessun imprevisto",
+        description: "È il momento della verità? Non lo so, però...",
+        isImprev: false,
+        ultEstrazione: false
+    },
+    {
+        id: 38,
+        title: "PAROLA ALLA COMMUNITY!",
+        description: "Verrà estratto uno degli Imprevisti della Community",
         isImprev: true,
         ultEstrazione: false
     },
