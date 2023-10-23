@@ -72,7 +72,7 @@ const datiPrepartita = [
     {
         id: 11,
         title: "nessun imprevisto",
-        description: "",
+        description: "... tanto je la paro!",
         isImprev: false,
         ultEstrazione: false
     },
@@ -86,7 +86,7 @@ const datiPrepartita = [
     {
         id: 13,
         title: "nessun imprevisto",
-        description: "",
+        description: "... tanto je la paro!",
         isImprev: false,
         ultEstrazione: false
     },

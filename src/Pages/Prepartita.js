@@ -7,7 +7,7 @@ import ImprevistoCommunity from "../Components/ImprevistoCommunity";
 import { motion } from "framer-motion";
 
 const Prepartita = () => {
-  const [casuale, setCasuale] = useState(null);
+  const [casuale, setCasuale] = useState(17);
 
   // Prima Estrazione
 
@@ -20,7 +20,7 @@ const Prepartita = () => {
     : {};
 
   return (
-    <section className="flex h-full w-full select-none flex-col items-center justify-around gap-2 p-12 font-bold">
+    <section className="flex h-full w-full select-none flex-col items-center justify-around gap-2 px-4 py-6 font-bold md:p-8">
       <h1>Imprevisto Prepartita</h1>
       {/* BOX PRIMA ESTRAZIONE */}
       <motion.div
@@ -30,7 +30,7 @@ const Prepartita = () => {
         key={casuale}
         id="containerPrimaEstrazione"
         style={isImprev ? { color: "var(--clr-prim)" } : {}}
-        className="flex h-full w-3/4 select-none flex-col text-center items-center justify-around rounded-xl border-8 border-[--clr-sec] bg-black/50 px-10 shadow-lg ring ring-inset ring-white/75"
+        className="flex h-full w-full select-none flex-col items-center justify-evenly gap-2 rounded-xl bg-black/50 px-4 py-2 text-center shadow-lg ring ring-inset ring-white/75 md:px-10"
       >
         {!casuale ? (
           <h2
@@ -42,10 +42,10 @@ const Prepartita = () => {
         ) : (
           <>
             <motion.p
-              initial={{ opacity: 0, x: "50vw" }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ type: "spring" }}
-              className="flex h-8 w-8 items-center justify-center self-start rounded-full bg-gray-300/20 p-8 text-4xl"
+              initial={{ opacity: 0, x: "50vw", rotate: 0 }}
+              animate={{ opacity: 1, x: 0, rotate: 360 }}
+              transition={{ type: "spring", duration: 0.5, stiffness: 400 }}
+              className="flex h-8 w-8 items-center justify-center rounded-full bg-gray-300/20 p-8 text-4xl md:self-start md:p-12 md:text-6xl"
             >
               {id}
             </motion.p>
@@ -56,16 +56,18 @@ const Prepartita = () => {
               }}
               className={
                 isImprev
-                  ? "text text-7xl font-extrabold uppercase tracking-wider"
+                  ? "flex-1 text-5xl font-extrabold uppercase md:text-7xl"
                   : "hidden"
               }
             >
               imprevisto!
             </h2>
-            <h3 className="text-6xl font-extrabold uppercase">{title}</h3>
+            <h3 className="flex-1 text-4xl font-extrabold uppercase md:text-6xl">
+              {title}
+            </h3>
             <p
               style={{ fontFamily: "'Handlee', cursive" }}
-              className="mt-4 text-4xl"
+              className="mt-4 flex-1 text-2xl md:text-4xl px-4"
             >
               {description}
             </p>

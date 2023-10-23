@@ -2,33 +2,39 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  margin: 0;
+  padding: 0;
+}
+
 :root {
-    --clr-prim: #c9182c;
-    --clr-sec: #105442;
+  --clr-prim: #c9182c;
+  --clr-sec: #105442;
+  --clr-ter: #fdc90c;
 }
 
 body {
-    margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
-        "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
-        "Helvetica Neue", sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    background-color: #111;
-    color: #eeeeee;
-    overflow: hidden;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #0c5542;
+  color: #eeeeee;
+  overflow: hidden;
 }
 
 code {
-    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-        monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
 }
 
 /* Tshirt estrazione */
 @import url("https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap");
 
 /* IMPREVISTO TIMBRO */
-@import url('https://fonts.googleapis.com/css2?family=Gochi+Hand&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Gochi+Hand&display=swap");
 
 /* Imprevisti della Community - Testo */
 @import url("https://fonts.googleapis.com/css2?family=Handlee&display=swap");
@@ -37,23 +43,29 @@ code {
 @import url("https://fonts.googleapis.com/css2?family=Handlee&family=Paytone+One&display=swap");
 
 h1 {
-    font-family: "Paytone One", sans-serif;
-    font-size: calc(2vw + .5rem);
+  font-family: "Paytone One", sans-serif;
+  font-size: clamp(1.2rem, 2.5vw, 3rem);
 }
 
-.t-dOnDMp{
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    width: 25vw;
-    height: 40vh;
-    border: .3rem solid var(--clr-sec);
-    padding: 1rem;
-    border-radius: 1rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    justify-items: center;
+.t-dOnDMp {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 25vw;
+  height: 40vh;
+  border: 0.3rem solid var(--clr-ter);
+  padding: 1rem;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  justify-items: center;
+}
 
+@media screen and (max-width: 767px) {
+  .t-dOnDMp {
+    width: 75vw;
+    height: 70vh;
+  }
 }

@@ -31,7 +31,7 @@ const SecondaEstrazione = () => {
   };
 
   return (
-    <section className="flex min-h-[20vh] w-3/4 items-center justify-around rounded-md border-2 border-gray-300/20 px-12 py-2">
+    <section className="flex min-h-[30vh] w-full md:w-3/4 items-center justify-around rounded-md border-2 border-gray-300/20 px-2 md:px-12 py-2">
       <div className="flex h-full flex-col items-center justify-around gap-4 rounded-lg">
         <div className="flex flex-col items-center justify-around">
           <label
@@ -45,15 +45,15 @@ const SecondaEstrazione = () => {
             value={inputField.randomPlayerNum}
             type="number"
             id="input-estrazione-giocatore"
-            className="min-h-[3rem] w-full flex-1 appearance-none rounded-lg border-gray-300 border-transparent bg-white px-4 py-2 text-lg text-gray-700 placeholder-gray-400 shadow-sm focus:border-transparent focus:outline-none focus:ring-4 focus:ring-sky-700 "
+            className="min-h-[3rem] w-full flex-1 appearance-none rounded-lg border-gray-300 border-transparent bg-white px-4 py-2 text-md md:text-lg text-gray-800 placeholder-gray-400 shadow-sm focus:border-transparent focus:outline-none focus:ring-4 focus:ring-sky-700 "
             name="randomPlayerNum"
-            placeholder="11 o 18 giocatori?"
+            placeholder="Quanti giocatori?"
           />
         </div>
         <button
           type="button"
           onClick={genSecondRandomNumber}
-          className="min-h-[3rem] w-full rounded-lg bg-[--clr-sec] px-4 py-2 text-center text-base font-semibold text-white shadow-md transition duration-200 ease-in hover:bg-[--clr-prim] focus:outline-none focus:ring-2 focus:ring-[--clr-prim] focus:ring-offset-2  focus:ring-offset-green-200 "
+          className="min-h-[3rem] w-full rounded-lg bg-sky-700 px-4 py-2 text-center text-base font-semibold text-gray-100 shadow-md transition duration-200 ease-in hover:bg-sky-600 focus:outline-none focus:ring-2 focus:ring-[--clr-ter] focus:ring-offset-2  focus:ring-offset-sky-800 "
         >
           Estrai
         </button>

@@ -3,6 +3,7 @@ import { supabase } from "../supabaseClient";
 import { MdClose } from "react-icons/md";
 import deadpool from "../assets/imgs/deadpool.png";
 import { motion } from "framer-motion";
+import { isMobile } from "react-device-detect";
 
 export default function FetchData(props) {
   const [imprevisto, setImprevisto] = useState([]);
@@ -46,21 +47,12 @@ export default function FetchData(props) {
       }}
       style={{
         backgroundImage: `url(${deadpool})`,
-        backgroundSize: "20%",
+        backgroundSize: isMobile ? "40%" : "20%",
       }}
-      className="mx-auto my-6 flex h-full w-full items-center justify-center rounded-xl border-8 border-[--clr-prim] bg-left-bottom bg-no-repeat p-8 shadow-lg ring ring-inset ring-white/75"
+      className="mx-auto flex flex-col gap-2 md:gap-4 h-full w-full items-center justify-between rounded-xl bg-left-bottom bg-no-repeat px-6 py-4 md:p-8 shadow-lg ring ring-inset ring-white/75"
     >
-      <h3
-        style={{
-          fontFamily: "'Handlee', cursive",
-          filter: "drop-shadow(.05rem .05rem 0.2rem #000)",
-        }}
-        className="my-8 ps-[30%] text-center text-3xl uppercase italic"
-      >
-        {imprevisto.name}
-      </h3>
       <motion.div
-        className="absolute right-0 top-0 m-4 cursor-pointer"
+        className="self-end cursor-pointer"
           whileHover={{
           scale: 1.2,
           rotate: 90,
@@ -73,6 +65,15 @@ export default function FetchData(props) {
           className=" fill-gray-300 hover:fill-[--clr-sec]"
         />
       </motion.div>
+      <h3
+        style={{
+          fontFamily: "'Handlee', cursive",
+          filter: "drop-shadow(.05rem .05rem 0.2rem #000)",
+        }}
+        className="my-8 md:ps-[30%] text-center text-gray-200 text-lg md:text-2xl uppercase italic flex-1 flex items-center"
+      >
+        {imprevisto.name}
+      </h3>
     </motion.div>
   );
 }

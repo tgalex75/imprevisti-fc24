@@ -1,8 +1,9 @@
-import React from "react";
 import { GiPerspectiveDiceSixFacesRandom } from "react-icons/gi";
 import {motion} from 'framer-motion'
+import { isMobile } from "react-device-detect";
 
 const Dado = (clickFunc) => {
+  
   return (
     <motion.div
     whileHover={{
@@ -19,7 +20,7 @@ const Dado = (clickFunc) => {
         style={{
           filter: "drop-shadow(.25rem .25rem 0.15rem #222)",
         }}
-        size={"7rem"}
+        size= {isMobile ? 72 : 112}
         onClick={clickFunc}
       />
     </motion.div>

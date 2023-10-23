@@ -23,14 +23,14 @@ const ImprevistoCommunity = (props) => {
           backgroundRepeat: "no-repeat",
           backgroundImage: `url(${logoSfondo})`,
         }}
-        className="absolute left-1/2 top-1/2 z-[900] flex h-[75vh] w-[85vw] -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center gap-4 rounded-xl border-8 border-[--clr-sec] bg-gray-800 p-24 uppercase text-[--clr-prim] shadow-xl ring ring-inset ring-white/75"
+        className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-[1200] flex md:p-8 -mt-6 h-[90vh] w-[95vw] md:w-screen flex-col items-center justify-center gap-4 rounded-xl border-2 md:border-4 border-[--clr-prim] bg-gray-800 uppercase text-[--clr-prim]"
       >
         <h3
           style={{
             fontFamily: "'Gochi Hand', cursive",
             filter: "drop-shadow(.05rem .05rem 0.1rem #000)",
           }}
-          className="text-5xl"
+          className="text-2xl md:text-5xl"
         >
           Imprevisto della Community{" "}
         </h3>
