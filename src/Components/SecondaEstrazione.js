@@ -31,12 +31,12 @@ const SecondaEstrazione = () => {
   };
 
   return (
-    <section className="flex min-h-[30vh] w-full md:w-3/4 items-center justify-around rounded-md border-2 border-gray-300/20 px-2 md:px-12 py-2">
-      <div className="flex h-full flex-col items-center justify-around gap-4 rounded-lg">
-        <div className="flex flex-col items-center justify-around">
+    <section className="flex h-[35vh] md:min-h-[30vh] w-full md:w-3/4 items-center justify-around rounded-md border-2 gap-2 border-gray-300/20 px-1 md:px-12 bg-yellow-500">
+      <div className="flex h-full flex-col items-center justify-around rounded-lg px-2">
+        <div className="flex flex-col w-full items-center justify-around">
           <label
             htmlFor="name-with-label"
-            className="mb-1 self-start text-gray-300"
+            className="mb-1 self-start text-xs md:text-sm text-gray-300"
           >
             A chi toccherà oggi?
           </label>
@@ -45,7 +45,7 @@ const SecondaEstrazione = () => {
             value={inputField.randomPlayerNum}
             type="number"
             id="input-estrazione-giocatore"
-            className="min-h-[3rem] w-full flex-1 appearance-none rounded-lg border-gray-300 border-transparent bg-white px-4 py-2 text-md md:text-lg text-gray-800 placeholder-gray-400 shadow-sm focus:border-transparent focus:outline-none focus:ring-4 focus:ring-sky-700 "
+            className="min-h-[2rem] md:h-12 w-full flex-1 appearance-none rounded-lg border-gray-300 border-transparent bg-white px-4 text-sm md:text-md text-gray-800 placeholder-gray-400 shadow-sm focus:border-transparent focus:outline-none focus:ring-4 focus:ring-sky-700 "
             name="randomPlayerNum"
             placeholder="Quanti giocatori?"
           />
@@ -53,21 +53,21 @@ const SecondaEstrazione = () => {
         <button
           type="button"
           onClick={genSecondRandomNumber}
-          className="min-h-[3rem] w-full rounded-lg bg-sky-700 px-4 py-2 text-center text-base font-semibold text-gray-100 shadow-md transition duration-200 ease-in hover:bg-sky-600 focus:outline-none focus:ring-2 focus:ring-[--clr-ter] focus:ring-offset-2  focus:ring-offset-sky-800 "
+          className="min-h-[2rem] md:h-12 w-full rounded-lg bg-sky-700 px-4 text-center text-sm font-semibold text-gray-100 shadow-md transition duration-200 ease-in hover:bg-sky-600 focus:outline-none focus:ring-2 focus:ring-[--clr-ter] focus:ring-offset-2  focus:ring-offset-sky-800 "
         >
           Estrai
         </button>
       </div>
       {secondExtractedNumber && (
         <div
-          className="flex h-full w-1/3 flex-col items-center overflow-hidden rounded bg-contain bg-center bg-no-repeat p-12 transition-all"
+          className="flex h-full w-1/2 flex-col items-center justify-center overflow-hidden rounded bg-contain bg-center bg-no-repeat p-6 transition-all bg-green-600"
           style={{
             backgroundImage: `url(${teamKits[randomJersey - 1]})`,
           }}
         >
           <span
             style={randomJersey === 2 ? { color: "var(--clr-sec" } : {}}
-            className="block pt-5 font-['Oswald'] text-6xl font-bold text-gray-300"
+            className="block pt-2 font-['Oswald'] text-4xl md:text-7xl font-bold text-gray-300"
           >
             {secondExtractedNumber}
           </span>

@@ -22,7 +22,7 @@ const ErrorPage = () => {
           padding: "2rem",
         }}
       >
-        <p>Torna alla Homepage</p>
+        <p className="hover:underline">Torna alla Homepage</p>
       </Link>
     </div>
   );

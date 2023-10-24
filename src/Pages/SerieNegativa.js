@@ -6,6 +6,7 @@ import datiSerieNegativa from "../Data/datiSerieNegativa";
 import SecondaEstrazione from "../Components/SecondaEstrazione";
 import RegistroImprevisti from "../Components/RegistroImprevisti";
 import { motion } from "framer-motion";
+import { isMobile } from "react-device-detect";
 
 const SerieNegativa = () => {
   const [casuale, setCasuale] = useState(null);
@@ -15,7 +16,6 @@ const SerieNegativa = () => {
   const { cartItems, addToCart } = useContext(CartContext);
 
   const [showModal, setShowModal] = useState(false);
-
 
   const toggle = () => {
     setShowModal(!showModal);
@@ -32,8 +32,8 @@ const SerieNegativa = () => {
     : {};
 
   return (
-    <section className="flex h-full w-full select-none flex-col items-center justify-around gap-2 p-12 font-bold">
-      <h1 className="select-none text-3xl">Imprevisto Serie Negativa</h1>
+    <section className="flex h-full w-full select-none flex-col items-center justify-around gap-2 px-4 py-6 font-bold md:p-8">
+      <h1>{isMobile ? "Serie Negativa" : "Imprevisto Serie Negativa"}</h1>
 
       {/* BOX PRIMA ESTRAZIONE */}
       <motion.div
@@ -43,7 +43,7 @@ const SerieNegativa = () => {
         key={casuale}
         id="containerPrimaEstrazione"
         style={isImprev ? { color: "var(--clr-prim)" } : {}}
-        className="flex h-full w-3/4 select-none flex-col text-center items-center justify-around rounded-xl border-8 border-[--clr-sec] bg-black/50 px-10 shadow-lg ring ring-inset ring-white/75"
+        className="flex h-full w-full select-none flex-col items-center justify-evenly rounded-xl bg-black/50 px-4 py-2 text-center shadow-lg ring ring-inset ring-white/75 md:px-10"
       >
         {!casuale ? (
           <h2
@@ -54,38 +54,42 @@ const SerieNegativa = () => {
           </h2>
         ) : (
           <>
-            <h2
-              style={{
-                fontFamily: "'Gochi Hand', cursive",
-                filter: "drop-shadow(.05rem .05rem 0.1rem #000)",
-              }}
-              className={
-                isImprev
-                  ? "text text-7xl font-extrabold uppercase tracking-wider"
-                  : "hidden"
-              }
-            >
-              imprevisto!
-            </h2>
-            <h3 className="text-6xl font-extrabold uppercase">{title}</h3>
-            <p
-              style={{ fontFamily: "'Handlee', cursive" }}
-              className="mt-4 text-4xl"
-            >
-              {description}
-            </p>
+            <div className="flex flex-col items-center justify-center h-full w-full gap-2 py-4 md:py-2">
+              <h2
+                style={{
+                  fontFamily: "'Gochi Hand', cursive",
+                  filter: "drop-shadow(.05rem .05rem 0.1rem #000)",
+                }}
+                className={
+                  isImprev
+                    ? "flex-1 text-3xl font-extrabold uppercase md:text-7xl"
+                    : "hidden"
+                }
+              >
+                imprevisto!
+              </h2>
+              <h3 className="flex-1 text-3xl font-extrabold uppercase md:text-6xl">
+                {title}
+              </h3>
+              <p
+                style={{ fontFamily: "'Handlee', cursive" }}
+                className="text-md px-4 md:flex-1 md:text-4xl"
+              >
+                {description}
+              </p>
+            </div>
 
             {ultEstrazione ? <SecondaEstrazione /> : ""}
             {id > 3 && (
-              <div className="flex justify-around w-3/4">
-                <div className="w-3/4">
+              <div className="w-full md:w-3/4">
+                <div className="w-full md:w-3/4">
                   <label
                     htmlFor="nome-giocatore"
-                    className="mb-1 inline-block text-sm text-gray-300"
+                    className="mb-1 inline-block text-xs text-gray-300 md:text-sm"
                   >
                     Giocatore da iscrivere sul registro
                   </label>
-                  <div className="flex items-center justify-between gap-2">
+                  <div className="flex items-center justify-between gap-2 border">
                     <input
                       ref={inputRef}
                       type="text"
