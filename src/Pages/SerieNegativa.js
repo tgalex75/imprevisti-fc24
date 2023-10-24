@@ -9,7 +9,7 @@ import { motion } from "framer-motion";
 import { isMobile } from "react-device-detect";
 
 const SerieNegativa = () => {
-  const [casuale, setCasuale] = useState(4);
+  const [casuale, setCasuale] = useState(null);
 
   const inputRef = useRef(null);
 

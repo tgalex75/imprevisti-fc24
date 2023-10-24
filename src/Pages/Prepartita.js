@@ -7,7 +7,7 @@ import ImprevistoCommunity from "../Components/ImprevistoCommunity";
 import { motion } from "framer-motion";
 
 const Prepartita = () => {
-  const [casuale, setCasuale] = useState(17);
+  const [casuale, setCasuale] = useState(null);
 
   // Prima Estrazione
 
