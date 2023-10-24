@@ -68,15 +68,15 @@ const SerieNegativa = () => {
               >
                 imprevisto!
               </h2>
-              <h3 className="flex-1 text-3xl font-extrabold uppercase md:text-6xl">
+              <h3 className="flex-1 flex items-center justify-center text-3xl font-extrabold uppercase md:text-6xl">
                 {title}
               </h3>
-              <p
+              {isImprev && <p
                 style={{ fontFamily: "'Handlee', cursive" }}
                 className="text-md px-4 md:flex-1 md:text-4xl"
               >
                 {description}
-              </p>
+              </p>}
             </div>
 
             {ultEstrazione ? <SecondaEstrazione /> : ""}
