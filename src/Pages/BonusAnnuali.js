@@ -74,7 +74,7 @@ const BonusAnnuali = () => {
           </div>
         </div>
         <div className="flex h-full w-full md:w-3/4 flex-col justify-around gap-4 overflow-y-auto border-2 border-gray-300/20 p-4">
-          {vociBonus.map((item, index) => (
+          {Object.entries(vociBonus).map((item, index) => (
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
