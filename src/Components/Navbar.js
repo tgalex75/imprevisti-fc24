@@ -51,7 +51,7 @@ const Navbar = () => {
   return (
     <nav
       id="Navbar"
-      className="fixed z-[1000] flex h-auto w-full items-center justify-between px-6 py-3"
+      className="fixed z-[900] flex h-auto w-full items-center justify-between px-6 py-3"
     >
       <div className="flex cursor-pointer items-center justify-center rounded-full p-2 hover:bg-gray-300/30">
         <Link to="/">

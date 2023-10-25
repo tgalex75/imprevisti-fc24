@@ -1338,7 +1338,7 @@ export const mySelect = (ref, func) => {
         Seleziona la tattica
       </label>
       <select
-        className="focus:ring-primary-500 focus:border-primary-500 block w-48 rounded-md border border-gray-300 bg-gray-900 px-3 py-2 text-gray-200 shadow-sm focus:outline-none"
+        className="focus:ring-primary-500 focus:border-primary-500 block w-48 rounded-md border border-gray-300 bg-transparent hover:border-gray-200 px-3 py-2 text-gray-200 shadow-sm focus:outline-none"
         name="tattica"
         ref={ref}
         onChange={func}

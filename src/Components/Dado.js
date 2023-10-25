@@ -22,7 +22,7 @@ const Dado = (clickFunc) => {
         style={{
           filter: "drop-shadow(.25rem .25rem 0.15rem #222)",
         }}
-        size={!isMobile ? "7rem" : "5rem"}
+        size={!isMobile ? 112 : 80}
         onClick={clickFunc}
       />
     </motion.div>
