@@ -68,12 +68,18 @@ const SerieNegativa = () => {
               >
                 imprevisto!
               </h2>
-              <h3 className="flex md:flex-1 items-center justify-center text-3xl font-extrabold uppercase md:text-6xl">
+              <h3
+                style={{ filter: "drop-shadow(.05rem .05rem 0.1rem #000)" }}
+                className="flex items-center justify-center text-3xl font-extrabold uppercase md:flex-1 md:text-6xl"
+              >
                 {title}
               </h3>
               {isImprev && (
                 <p
-                  style={{ fontFamily: "'Handlee', cursive" }}
+                  style={{
+                    fontFamily: "'Handlee', cursive",
+                    filter: "drop-shadow(.05rem .05rem 0.1rem #000)",
+                  }}
                   className="text-md px-4 md:flex-1 md:text-4xl"
                 >
                   {description}

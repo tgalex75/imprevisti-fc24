@@ -62,12 +62,18 @@ const Prepartita = () => {
             >
               imprevisto!
             </h2>
-            <h3 className="flex-1 text-4xl font-extrabold uppercase md:text-6xl">
+            <h3
+              style={{ filter: "drop-shadow(.05rem .05rem 0.1rem #000)" }}
+              className="flex-1 text-4xl font-extrabold uppercase md:text-6xl"
+            >
               {title}
             </h3>
             <p
-              style={{ fontFamily: "'Handlee', cursive" }}
-              className="mt-4 flex-1 text-2xl md:text-4xl px-4"
+              style={{
+                fontFamily: "'Handlee', cursive",
+                filter: "drop-shadow(.05rem .05rem 0.1rem #000)",
+              }}
+              className="mt-4 flex-1 px-4 text-2xl md:text-4xl"
             >
               {description}
             </p>
