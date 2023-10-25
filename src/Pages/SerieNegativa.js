@@ -43,7 +43,7 @@ const SerieNegativa = () => {
         key={casuale}
         id="containerPrimaEstrazione"
         style={isImprev ? { color: "var(--clr-prim)" } : {}}
-        className="flex h-full w-full select-none flex-col items-center justify-evenly rounded-xl bg-black/50 gap-2 px-4 py-2 text-center shadow-lg ring ring-inset ring-white/75 md:px-10"
+        className="flex h-full w-full select-none flex-col items-center justify-evenly gap-2 rounded-xl bg-black/50 px-4 py-2 text-center shadow-lg ring ring-inset ring-white/75 md:px-10"
       >
         {!casuale ? (
           <h2
@@ -54,7 +54,7 @@ const SerieNegativa = () => {
           </h2>
         ) : (
           <>
-            <div className="flex flex-col items-center justify-center h-full w-full gap-2 py-4 md:py-2">
+            <div className="flex h-full w-full flex-col items-center justify-around py-4 md:py-2">
               <h2
                 style={{
                   fontFamily: "'Gochi Hand', cursive",
@@ -62,63 +62,66 @@ const SerieNegativa = () => {
                 }}
                 className={
                   isImprev
-                    ? "flex-1 text-3xl font-extrabold uppercase md:text-7xl"
+                    ? "text-3xl font-extrabold uppercase md:flex-1 md:text-7xl"
                     : "hidden"
                 }
               >
                 imprevisto!
               </h2>
-              <h3 className="flex-1 flex items-center justify-center text-3xl font-extrabold uppercase md:text-6xl">
+              <h3 className="flex md:flex-1 items-center justify-center text-3xl font-extrabold uppercase md:text-6xl">
                 {title}
               </h3>
-              {isImprev && <p
-                style={{ fontFamily: "'Handlee', cursive" }}
-                className="text-md px-4 md:flex-1 md:text-4xl"
-              >
-                {description}
-              </p>}
+              {isImprev && (
+                <p
+                  style={{ fontFamily: "'Handlee', cursive" }}
+                  className="text-md px-4 md:flex-1 md:text-4xl"
+                >
+                  {description}
+                </p>
+              )}
             </div>
 
-            {ultEstrazione ? <SecondaEstrazione /> : ""}
+            {ultEstrazione && <SecondaEstrazione />}
             {id > 3 && (
-                <div className="w-full md:w-3/4">
-                  <label
-                    htmlFor="nome-giocatore"
-                    className="mb-1 inline-block text-xs text-gray-300 md:text-sm"
+              <div className="w-full md:w-3/4">
+                <label
+                  htmlFor="nome-giocatore"
+                  className="mb-1 inline-block text-xs text-gray-300 md:text-sm"
+                >
+                  Giocatore da iscrivere sul registro
+                </label>
+                <div className="flex h-1/2 items-center justify-between gap-1 md:gap-2">
+                  <input
+                    ref={inputRef}
+                    type="text"
+                    id="nome-giocatore"
+                    className="h-full w-1/3 appearance-none rounded-lg border border-gray-300 border-transparent bg-white px-1 py-2 text-xs text-gray-700 placeholder-gray-400 shadow-sm focus:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 md:w-2/5 md:px-4 md:text-sm"
+                    name="nomeGiocatore"
+                    placeholder={isMobile ? "Nome..." : "Fuori il nome..."}
+                  />
+                  <button
+                    type="button"
+                    className="flex h-full flex-1 items-center justify-center rounded-lg bg-sky-700 px-4 py-2 text-center text-xs font-semibold text-white shadow-md transition duration-200 ease-in hover:bg-sky-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-indigo-200 md:text-sm "
+                    onClick={() =>
+                      addToCart({
+                        title: `${title} - ${inputRef.current.value}`,
+                      })
+                    }
                   >
-                    Giocatore da iscrivere sul registro
-                  </label>
-                  <div className="flex h-1/2 items-center justify-between gap-1 md:gap-2">
-                    <input
-                      ref={inputRef}
-                      type="text"
-                      id="nome-giocatore"
-                      className="w-1/3 md:w-2/5 h-full appearance-none rounded-lg border border-gray-300 border-transparent bg-white px-1 md:px-4 py-2 text-xs md:text-sm text-gray-700 placeholder-gray-400 shadow-sm focus:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600"
-                      name="nomeGiocatore"
-                      placeholder={isMobile ? "Nome..." : "Fuori il nome..."}
-                    />
+                    Invia
+                  </button>
+                  {!showModal && (
                     <button
                       type="button"
-                      className="flex-1 flex items-center justify-center h-full rounded-lg bg-sky-700 px-4 py-2 text-center text-xs md:text-sm font-semibold text-white shadow-md transition duration-200 ease-in hover:bg-sky-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-indigo-200 "
-                      onClick={() =>
-                        addToCart({
-                          title: `${title} - ${inputRef.current.value}`,
-                        })
-                      }
+                      className="flex h-full flex-1 items-center justify-center rounded-lg bg-orange-700 px-2 py-2 text-center text-xs font-semibold text-white shadow-md transition duration-200 ease-in hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-indigo-200 md:text-sm "
+                      onClick={toggle}
                     >
-                      Invia
+                      {isMobile ? "Registro" : "Apri Registro"} (
+                      {cartItems.length})
                     </button>
-                    {!showModal && (
-                      <button
-                        type="button"
-                        className="flex-1 flex items-center justify-center h-full rounded-lg bg-orange-700 px-2 py-2 text-center text-xs md:text-sm font-semibold text-white shadow-md transition duration-200 ease-in hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-indigo-200 "
-                        onClick={toggle}
-                      >
-                        {isMobile ? "Registro" : "Apri Registro"} ({cartItems.length})
-                      </button>
-                    )}
-                  </div>
+                  )}
                 </div>
+              </div>
             )}
           </>
         )}

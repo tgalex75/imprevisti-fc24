@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Dado from "../Components/Dado";
 import { motion } from "framer-motion";
+import { isMobile } from "react-device-detect";
 
 const Ingaggio = () => {
   const [casuale, setCasuale] = useState(null);
@@ -12,8 +13,8 @@ const Ingaggio = () => {
   const isImpr = casuale === 7;
 
   return (
-    <section className="flex min-h-[75vh] w-full flex-col items-center justify-around gap-12 py-4 font-bold">
-      <h1>Imprevisto Ingaggio</h1>
+    <section className="flex h-full w-full select-none flex-col items-center justify-around gap-2 px-4 py-6 font-bold md:p-8">
+      <h1>{isMobile ? "Ingaggio" : "Imprevisti Ingaggio"}</h1>
       {/* BOX PRIMA ESTRAZIONE */}
       <motion.div
         initial={{ opacity: 0, x: "-10vw" }}
@@ -22,7 +23,7 @@ const Ingaggio = () => {
         key={casuale}
         id="containerPrimaEstrazione"
         style={isImpr ? { color: "var(--clr-prim)" } : {}}
-        className="flex min-h-[50vh] w-3/4 select-none flex-col items-center justify-around gap-4 rounded-xl border-8 border-[--clr-sec] bg-black/50 px-12 py-8 shadow-lg ring ring-inset ring-white/75"
+        className="flex h-full w-full select-none flex-col items-center justify-around rounded-xl bg-black/50 px-4 pb-4 text-center shadow-lg ring ring-inset ring-white/75 md:px-10 md:pb-8"
       >
         {!casuale && (
           <h2
@@ -33,16 +34,17 @@ const Ingaggio = () => {
           </h2>
         )}
 
-        {casuale && isImpr ? (
+        {casuale && (
           <>
             <motion.p
               initial={{ opacity: 0, x: "50vw" }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ type: "spring" }}
-              className="flex h-8 w-8 items-center justify-center self-start rounded-full bg-gray-300/20 p-8 text-4xl"
+              className="flex h-8 w-8 items-center justify-around rounded-full bg-gray-300/20 p-8 text-4xl md:self-start md:p-12 md:text-6xl"
             >
               {casuale}
             </motion.p>
+
             <h2
               style={{
                 fontFamily: "'Gochi Hand', cursive",
@@ -50,48 +52,26 @@ const Ingaggio = () => {
               }}
               className={
                 isImpr
-                  ? "text text-7xl font-extrabold uppercase tracking-wider"
+                  ? "text-5xl font-extrabold uppercase md:text-7xl"
                   : "hidden"
               }
             >
               imprevisto!
             </h2>
-            <h3 className="text-5xl font-extrabold uppercase">
-              VISITE NON SUPERATE
+            <h3 className="text-4xl font-extrabold uppercase md:text-6xl">
+              {isImpr ? "VISITE NON SUPERATE" : "Nessun problema"}
             </h3>
             <p
               style={{ fontFamily: "'Handlee', cursive" }}
-              className="mt-4 text-4xl"
+              className="mt-4 px-4 text-2xl md:w-3/5 md:text-4xl"
             >
-              la trattativa salta e non può essere ritentata fino alla prossima
-              finestra di mercato.
+              {isImpr
+                ? "La trattativa salta e non può essere ritentata fino alla prossima finestra di mercato."
+                : "La trattativa viene chiusa senza conseguenze."}
             </p>
           </>
-        ) : (
-          casuale && (
-            <>
-              <motion.p
-                initial={{ opacity: 0, x: "50vw" }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ type: "spring" }}
-                className="flex h-8 w-8 items-center justify-center self-start rounded-full bg-gray-300/20 p-8 text-4xl"
-              >
-                {casuale}
-              </motion.p>
-              <h3 className="text-6xl font-extrabold uppercase">
-                Nessun problema
-              </h3>
-              <p
-                style={{ fontFamily: "'Handlee', cursive" }}
-                className="mt-4 text-4xl"
-              >
-                La trattativa viene chiusa senza conseguenze.
-              </p>
-            </>
-          )
         )}
       </motion.div>
-
       {Dado(estraiNumeroCasuale)}
     </section>
   );

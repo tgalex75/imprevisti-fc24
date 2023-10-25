@@ -14,9 +14,8 @@ const Dado = (clickFunc) => {
         scale: 1.2
       }}
       transition={{type: "spring", stiffness: 300 }}
-    className="absolute bottom-0 right-0 flex h-auto select-none cursor-pointer items-center justify-center rounded-full p-3 m-4 hover:bg-gray-500/10">
+    className="absolute bottom-0 right-0 flex h-auto select-none cursor-pointer items-center justify-center rounded-full md:p-3 me-4 mb-14 md:m-4 md:hover:bg-gray-500/10">
       <GiPerspectiveDiceSixFacesRandom
-        /* ==> framer-motion */
         style={{
           filter: "drop-shadow(.25rem .25rem 0.15rem #222)",
         }}

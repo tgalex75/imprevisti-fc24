@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 import { CartContext } from "../context/cart";
 import uuid from "react-uuid";
 import { BiPlusCircle, BiMinusCircle } from "react-icons/bi";
+import { MdClose } from "react-icons/md";
+import {motion} from "framer-motion"
 import logoSfondo from "../assets/imgs/falco_nocornice.png";
 
 const RegistroImprevisti = ({ showModal, toggle }) => {
@@ -19,29 +21,36 @@ const RegistroImprevisti = ({ showModal, toggle }) => {
           backgroundRepeat: "no-repeat",
           backgroundImage: `url(${logoSfondo})`,
         }}
-        className="absolute left-1/2 top-1/2 z-[900] flex h-[75vh] w-[85vw] -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-between gap-2 rounded-xl border-8 border-[--clr-sec] bg-gray-800 p-12 uppercase shadow-xl ring ring-inset ring-white/75"
+        className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-[1200] flex p-1 md:p-8 -mt-2 h-[95vh] w-[95vw] md:w-screen flex-col items-center justify-between gap-4 rounded-xl border-2 md:border-4 border-[--clr-ter] bg-gray-800 uppercase"
       >
+        {/* Pulsante chiusura Modale */}
+        <motion.div
+          className="cursor-pointer self-end"
+          whileHover={{
+            scale: 1.2,
+            rotate: 90,
+          }}
+          transition={{ type: "spring", stiffness: 300 }}
+        >
+          {" "}
+          <MdClose
+            size={48}
+            onClick={toggle}
+            className="fill-gray-300 hover:fill-[--clr-sec]"
+          />
+        </motion.div>
         <h3
           style={{
             fontFamily: "'Gochi Hand', cursive",
             filter: "drop-shadow(.05rem .05rem 0.1rem #000)",
           }}
-          className="text-5xl text-[--clr-prim]"
+          className="text-2xl md:text-5xl text-[--clr-prim]"
         >
           Registro degli Imprevisti{" "}
         </h3>{" "}
-        {/* Pulsante chiusura Modale */}
-        <div className="absolute right-16 top-10">
-          <button
-            className="rounded bg-orange-700 px-4 py-2 text-xs font-bold uppercase text-white hover:bg-orange-600 focus:bg-orange-600 focus:outline-none"
-            onClick={toggle}
-          >
-            chiudi
-          </button>
-        </div>
         {/* Registro */}
         <div
-          className="flex min-h-[30vh] w-3/4 flex-col-reverse gap-1 overflow-y-auto border-2 border-gray-300/20 p-4"
+          className="flex min-h-[65vh] md:min-h-[40vh] w-full md:w-4/5 flex-col-reverse gap-1 overflow-y-auto border-2 p-2 border-gray-300/20"
           style={cartItems.length > 6 ? {} : { justifyContent: "flex-end" }}
         >
           {cartItems.map((item) => (
@@ -51,15 +60,13 @@ const RegistroImprevisti = ({ showModal, toggle }) => {
                   ? { backgroundColor: "orange", color: "black" }
                   : {}
               }
-              className="flex items-center justify-between bg-teal-800 py-1 odd:bg-teal-600 "
+              className="flex items-center justify-between bg-teal-800 py-1 odd:bg-teal-600 rounded-sm px-1 md:px-2" 
               key={uuid()}
             >
-              <div className="flex gap-4">
-                <h2 className="mx-2 text-lg font-bold uppercase">
+                <h2 className="text-sm md:text-lg font-semibold uppercase">
                   {item.title}
                 </h2>
-              </div>
-              <div className="flex items-center gap-4 pr-2">
+              <div className="flex items-center gap-1 md:gap-4 pr-2">
                 <BiPlusCircle
                   size={"1.8rem"}
                   style={item.quantity > 2 ? { visibility: "hidden" } : {}}

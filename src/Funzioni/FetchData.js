@@ -60,7 +60,7 @@ export default function FetchData(props) {
         transition={{type: "spring", stiffness: 300 }}
       >
         <MdClose
-          size={"3rem"}
+          size={48}
           onClick={delElemento}
           className=" fill-gray-300 hover:fill-[--clr-sec]"
         />
@@ -70,7 +70,7 @@ export default function FetchData(props) {
           fontFamily: "'Handlee', cursive",
           filter: "drop-shadow(.05rem .05rem 0.2rem #000)",
         }}
-        className="my-8 md:ps-[30%] text-center text-gray-200 text-lg md:text-2xl uppercase italic flex-1 flex items-center"
+        className="my-8 md:ps-[30%] text-center text-gray-200 text-md md:text-2xl uppercase italic flex-1 flex items-center"
       >
         {imprevisto.name}
       </h3>
