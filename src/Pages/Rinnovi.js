@@ -58,11 +58,17 @@ const Rinnovi = () => {
             >
               imprevisto!
             </h2>
-            <h3 className="text-4xl font-extrabold uppercase md:text-6xl">
+            <h3
+              style={{ filter: "drop-shadow(.05rem .05rem 0.1rem #000)" }}
+              className="text-4xl font-extrabold uppercase md:text-6xl"
+            >
               {isImpr ? "Mercenario" : "Nessun problema"}
             </h3>
             <p
-              style={{ fontFamily: "'Handlee', cursive" }}
+              style={{
+                fontFamily: "'Handlee', cursive",
+                filter: "drop-shadow(.05rem .05rem 0.1rem #000)",
+              }}
               className="mt-4 px-4 text-2xl md:w-3/5 md:text-4xl"
             >
               {isImpr
