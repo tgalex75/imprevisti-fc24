@@ -22,7 +22,7 @@ const OfferteMercato = () => {
         transition={{ delay: 0.4, duration: 0.4, type: "spring" }}
         key={casuale}
         id="containerPrimaEstrazione"
-        style={isImpr ? { color: "var(--clr-prim)" } : {}}
+        style={isImpr ? { color: "var(--clr-ter)" } : {}}
         className="flex h-full w-full select-none flex-col items-center justify-around rounded-xl bg-black/50 px-4 pb-4 text-center shadow-lg ring ring-inset ring-white/75 md:px-10 md:pb-8"
       >
         {!casuale && (
@@ -40,6 +40,9 @@ const OfferteMercato = () => {
               initial={{ opacity: 0, x: "50vw" }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ type: "spring" }}
+              style={{
+                filter: "drop-shadow(.05rem .05rem 0.1rem #000)",
+              }}
               className="flex h-8 w-8 items-center justify-around rounded-full bg-gray-300/20 p-8 text-4xl md:self-start md:p-12 md:text-6xl"
             >
               {casuale}
@@ -58,17 +61,11 @@ const OfferteMercato = () => {
             >
               imprevisto!
             </h2>
-            <h3
-              style={{ filter: "drop-shadow(.05rem .05rem 0.1rem #000)" }}
-              className="text-4xl font-extrabold uppercase md:text-6xl"
-            >
+            <h3 className="text-4xl font-extrabold uppercase md:text-6xl">
               {isImpr ? "Mercenario" : "Bilancio in Ordine"}
             </h3>
             <p
-              style={{
-                fontFamily: "'Handlee', cursive",
-                filter: "drop-shadow(.05rem .05rem 0.1rem #000)",
-              }}
+              style={{ fontFamily: "'Handlee', cursive" }}
               className="mt-4 px-4 text-2xl md:w-3/5 md:text-4xl"
             >
               {isImpr

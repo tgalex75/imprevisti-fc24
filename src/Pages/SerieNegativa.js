@@ -42,7 +42,7 @@ const SerieNegativa = () => {
         transition={{ delay: 0.4, duration: 0.4, type: "spring" }}
         key={casuale}
         id="containerPrimaEstrazione"
-        style={isImprev ? { color: "var(--clr-prim)" } : {}}
+        style={isImprev ? { color: "var(--clr-ter)" } : {}}
         className="flex h-full w-full select-none flex-col items-center justify-evenly gap-2 rounded-xl bg-black/50 px-4 py-2 text-center shadow-lg ring ring-inset ring-white/75 md:px-10"
       >
         {!casuale ? (

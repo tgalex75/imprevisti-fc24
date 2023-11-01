@@ -13,10 +13,11 @@ import {
   mySelect,
   data,
 } from "../Funzioni/schemi";
+import LayoutBase from "../Components/LayoutBase";
 
 const MediaOverall = () => {
   const selectRef = useRef(null);
-  const [schema, setSchema] = useState("433");
+  const [schema, setSchema] = useState("442");
 
   const getSchema = () => {
     setSchema(selectRef.current.value);
@@ -55,7 +56,7 @@ const MediaOverall = () => {
   return (
     <main
       id="media--overall"
-      className="flex h-full w-full flex-col items-center justify-around gap-2"
+      className="flex h-full w-full flex-col items-center justify-around gap-2 bg-black/30 "
     >
       <h1>Media Overall</h1>
       {mySelect(selectRef, getSchema)}

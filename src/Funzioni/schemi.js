@@ -1338,13 +1338,13 @@ export const mySelect = (ref, func) => {
         Seleziona la tattica
       </label>
       <select
-        className="focus:ring-primary-500 focus:border-primary-500 block w-48 rounded-md border border-gray-300 bg-gray-900 px-3 py-2 text-gray-200 shadow-sm focus:outline-none"
+        className="focus:ring-primary-500 focus:border-primary-500 block w-48 rounded-md border border-gray-300 bg-black/50 px-3 py-2 text-gray-200 shadow-sm focus:outline-none"
         name="tattica"
         ref={ref}
         onChange={func}
       >
-        <option value="433">4-3-3</option>
         <option value="442">4-4-2</option>
+        <option value="433">4-3-3</option>
         <option value="4312">4-3-1-2</option>
         <option value="4321">4-3-2-1</option>
         <option value="352">3-5-2</option>

@@ -1,12 +1,13 @@
 import React, { useState } from "react";
-import Dado from "../Components/Dado";
 import { randomNumber } from "../Funzioni/RandomNumber";
 import datiPrepartita from "../Data/datiPrepartita";
 import SecondaEstrazione from "../Components/SecondaEstrazione";
 import ImprevistoCommunity from "../Components/ImprevistoCommunity";
 import { motion } from "framer-motion";
+import LayoutBase from "../Components/LayoutBase";
+import Dado from "../Components/Dado";
 
-const Prepartita = () => {
+const PrepartitaCopy = () => {
   const [casuale, setCasuale] = useState(null);
 
   // Prima Estrazione
@@ -19,32 +20,25 @@ const Prepartita = () => {
     ? datiPrepartita[casuale - 1]
     : {};
 
+  const titoloH1 = "Imprevisto Prepartita";
+
   return (
-    <section className="flex h-full w-full select-none flex-col items-center justify-around gap-2 px-4 py-6 font-bold md:p-8">
-      <h1>Imprevisto Prepartita</h1>
-      {/* BOX PRIMA ESTRAZIONE */}
-      <motion.div
-        initial={{ opacity: 0, x: "-10vw" }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ delay: 0.4, duration: 0.4, type: "spring" }}
-        key={casuale}
-        id="containerPrimaEstrazione"
-        style={isImprev ? { color: "var(--clr-prim)" } : {}}
-        className="flex h-full w-full select-none flex-col items-center justify-evenly gap-2 rounded-xl bg-black/50 px-4 py-2 text-center shadow-lg ring ring-inset ring-white/75 md:px-10"
+    <>
+      <LayoutBase
+        titoloH1={titoloH1}
+        id={id}
+        isImprev={isImprev}
+        casuale={casuale}
       >
-        {!casuale ? (
-          <h2
-            style={{ fontFamily: "'Handlee', cursive" }}
-            className="text-5xl italic"
-          >
-            Lancia il dado...
-          </h2>
-        ) : (
+        {casuale && (
           <>
             <motion.p
               initial={{ opacity: 0, x: "50vw", rotate: 0 }}
               animate={{ opacity: 1, x: 0, rotate: 360 }}
               transition={{ type: "spring", duration: 0.5, stiffness: 400 }}
+              style={{
+                filter: "drop-shadow(.05rem .05rem 0.1rem #000)",
+              }}
               className="flex h-8 w-8 items-center justify-center rounded-full bg-gray-300/20 p-8 text-4xl md:self-start md:p-12 md:text-6xl"
             >
               {id}
@@ -62,17 +56,11 @@ const Prepartita = () => {
             >
               imprevisto!
             </h2>
-            <h3
-              style={{ filter: "drop-shadow(.05rem .05rem 0.1rem #000)" }}
-              className="flex-1 text-4xl font-extrabold uppercase md:text-6xl"
-            >
+            <h3 className="flex-1 text-4xl font-extrabold uppercase md:text-6xl">
               {title}
             </h3>
             <p
-              style={{
-                fontFamily: "'Handlee', cursive",
-                filter: "drop-shadow(.05rem .05rem 0.1rem #000)",
-              }}
+              style={{ fontFamily: "'Handlee', cursive" }}
               className="mt-4 flex-1 px-4 text-2xl md:text-4xl"
             >
               {description}
@@ -91,11 +79,10 @@ const Prepartita = () => {
             )}{" "}
           </>
         )}
-      </motion.div>
-
+      </LayoutBase>
       {Dado(estraiNumeroCasuale)}
-    </section>
+    </>
   );
 };
 
-export default Prepartita;
+export default PrepartitaCopy;
