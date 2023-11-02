@@ -34,8 +34,6 @@ export default function FetchData(props) {
     fetchLista();
   };
 
-  console.log(imprevisto)
-
   return (
     <motion.div
       initial={{ opacity: 0, x: -200 }}

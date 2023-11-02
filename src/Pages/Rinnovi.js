@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Dado from "../Components/Dado";
 import { motion } from "framer-motion";
 import { isMobile } from "react-device-detect";
+import RegistroRinnovi from "../Components/RegistroRinnovi";
+import { supabase } from "../supabaseClient";
 
 const Rinnovi = () => {
   const [casuale, setCasuale] = useState(null);
@@ -11,6 +13,45 @@ const Rinnovi = () => {
   };
 
   const isImpr = casuale === 8;
+
+  const inputRef = useRef(null);
+
+  const [vociRegistro, setVociRegistro] = useState([]);
+
+  useEffect(() => {
+    fetchRegistryList();
+  }, [vociRegistro]);
+
+  const fetchRegistryList = async () => {
+    const { data } = await supabase.from("regrinnovi").select("*");
+    setVociRegistro(data ? data : []);
+  };
+
+  const uploadListDB = async (list) => {
+    const { data, error } = await supabase
+      .from("regrinnovi")
+      .insert([{ id: list.id, name: list.name }])
+      .select();
+    data ? console.log("data: ", data) : console.log("error: ", error);
+  };
+
+  const deleteListDB = async () => {
+    const { error } = await supabase
+      .from("regrinnovi")
+      .delete("id")
+      .lt("id", 1000);
+    console.log(error);
+  };
+
+  const addVociRegistro = (element) => {
+    setVociRegistro([...vociRegistro, { ...element }]);
+    uploadListDB(element);
+  };
+
+  const azzeraVociRegistro = () => {
+    setVociRegistro([]);
+    deleteListDB();
+  };
 
   return (
     <section className="flex h-full w-full select-none flex-col items-center justify-around gap-2 px-4 py-6 font-bold md:p-8">
@@ -43,7 +84,7 @@ const Rinnovi = () => {
               style={{
                 filter: "drop-shadow(.05rem .05rem 0.1rem #000)",
               }}
-              className="flex h-8 w-8 items-center justify-around rounded-full bg-gray-300/20 p-8 text-4xl md:self-start md:p-12 md:text-6xl"
+              className="flex h-8 w-8 items-center justify-around rounded-full bg-gray-300/20 p-8 text-4xl md:p-12 md:text-6xl"
             >
               {casuale}
             </motion.p>
@@ -78,6 +119,33 @@ const Rinnovi = () => {
                 ? "Raddoppia l'ingaggio o cessione obbligatoria"
                 : "Gestisci la trattativa liberamente"}
             </p>
+
+            <div className="hidden items-center justify-between gap-2 md:flex md:w-1/3">
+              <input
+                ref={inputRef}
+                type="text"
+                id="nome-giocatore"
+                className="h-10 w-1/2 appearance-none rounded-lg border border-gray-300 border-transparent bg-white px-2 py-2 text-sm text-gray-700 placeholder-gray-400 shadow-sm focus:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600"
+                name="nomeGiocatore"
+                placeholder="Nome del giocatore"
+              />
+              <button
+                type="button"
+                className="h-10 w-1/2 rounded-lg bg-sky-700 px-2 py-2 text-center text-sm font-semibold text-white shadow-md transition duration-200 ease-in hover:bg-sky-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2  focus:ring-offset-indigo-200 "
+                onClick={() =>
+                  addVociRegistro({
+                    id: vociRegistro.length + 1,
+                    name: `${inputRef.current.value} - ${
+                      isImpr ? "Mercenario" : "Trattativa libera"
+                    }`,
+                  })
+                }
+              >
+                Aggiungi al Registro
+              </button>
+            </div>
+
+            <RegistroRinnovi vociRegistro={vociRegistro} azzeraVociRegistro={azzeraVociRegistro} />
           </>
         )}
       </motion.div>
