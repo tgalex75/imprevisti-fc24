@@ -18,7 +18,8 @@
     "react-scripts": "5.0.1",
     "react-uuid": "^2.0.0",
     "tailwindcss": "^3.3.3",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "@babel/plugin-proposal-private-property-in-object": "7.21.0-placeholder-for-preset-env.2"
   },
   "scripts": {
     "start": "react-scripts start",
