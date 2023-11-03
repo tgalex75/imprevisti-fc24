@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import { CartContext } from "../context/cart";
 import uuid from "react-uuid";
-import { BiPlusCircle, BiMinusCircle } from "react-icons/bi";
+import { MdAddCircleOutline, MdRemoveCircleOutline } from "react-icons/md";
 import { MdClose } from "react-icons/md";
 import { motion, AnimatePresence } from "framer-motion";
 import logoSfondo from "../assets/imgs/falco_nocornice.png";
@@ -73,7 +73,7 @@ const RegistroImprevisti = ({ showModal, toggle }) => {
                   {item.title}
                 </h2>
                 <div className="flex items-center gap-1 pr-2 md:gap-4">
-                  <BiPlusCircle
+                  <MdAddCircleOutline
                     size={"1.8rem"}
                     style={item.quantity > 2 ? { visibility: "hidden" } : {}}
                     className="rounded-full hover:scale-110"
@@ -84,7 +84,7 @@ const RegistroImprevisti = ({ showModal, toggle }) => {
                   <h2 className="mx-2 text-lg font-bold uppercase">
                     {item.quantity}
                   </h2>
-                  <BiMinusCircle
+                  <MdRemoveCircleOutline
                     onClick={() => {
                       removeFromCart(item);
                     }}

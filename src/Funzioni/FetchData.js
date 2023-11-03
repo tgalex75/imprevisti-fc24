@@ -55,12 +55,13 @@ export default function FetchData(props) {
           scale: 1.2,
           rotate: 90,
         }}
+        animate={{padding: [0, 1, 1.5, 1, 0], border: [0, 1, 1.5, 1, 0] }}
         transition={{type: "spring", stiffness: 300 }}
       >
         <MdClose
           size={48}
           onClick={delElemento}
-          className=" fill-gray-300 hover:fill-[--clr-sec]"
+          className=" fill-gray-300 hover:fill-[--clr-ter]"
         />
       </motion.div>
       <h3

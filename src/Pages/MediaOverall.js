@@ -13,7 +13,6 @@ import {
   mySelect,
   data,
 } from "../Funzioni/schemi";
-import LayoutBase from "../Components/LayoutBase";
 
 const MediaOverall = () => {
   const selectRef = useRef(null);

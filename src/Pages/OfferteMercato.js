@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Dado from "../Components/Dado";
 import { motion } from "framer-motion";
 import { isMobile } from "react-device-detect";
+import RegistroMercato from "../Components/RegistroMercato";
+import { supabase } from "../supabaseClient";
 
 const OfferteMercato = () => {
   const [casuale, setCasuale] = useState(null);
@@ -11,6 +13,43 @@ const OfferteMercato = () => {
   };
 
   const isImpr = casuale === 5;
+
+  const inputRef = useRef(null);
+
+  const [vociRegistro, setVociRegistro] = useState([]);
+
+  useEffect(() => {
+    fetchRegistryList();
+  }, [vociRegistro]);
+
+  const fetchRegistryList = async () => {
+    const { data } = await supabase.from("regmercato").select("*");
+    setVociRegistro(data ? data : []);
+  };
+
+  const uploadListDB = async (list) => {
+    const { data, error } = await supabase
+      .from("regmercato")
+      .insert([{ id: list.id, name: list.name }])
+      .select();
+    data ? console.log("data: ", data) : console.log("error: ", error);
+  };
+
+  const deleteListDB = async () => {
+    const { error } = await supabase
+      .from("regmercato")
+      .delete("id")
+      .lt("id", 1000);
+    error ? console.log(error) : null;
+  };
+
+  const removeVociRegistro = async (element) => {
+    const { error } = await supabase
+      .from("regmercato")
+      .delete()
+      .eq("id", element)
+    error ? console.log(error) : null;
+  };
 
   return (
     <section className="flex h-full w-full select-none flex-col items-center justify-around gap-2 px-4 py-6 font-bold md:p-8">
@@ -43,7 +82,7 @@ const OfferteMercato = () => {
               style={{
                 filter: "drop-shadow(.05rem .05rem 0.1rem #000)",
               }}
-              className="flex h-8 w-8 items-center justify-around rounded-full bg-gray-300/20 p-8 text-4xl md:self-start md:p-12 md:text-6xl"
+              className="flex h-8 w-8 items-center justify-around rounded-full bg-gray-300/20 p-8 text-4xl md:p-12 md:text-6xl"
             >
               {casuale}
             </motion.p>
@@ -72,10 +111,48 @@ const OfferteMercato = () => {
                 ? "Accetta l'offerta o raddoppia l'ingaggio appena possibile"
                 : "Totale libertà di scelta"}
             </p>
+            {/* Pulsanti per inserimento nome giocatore nel registro */}
+            <div className="hidden text-start md:flex md:w-1/3 md:flex-col">
+              <label
+                htmlFor="nome-giocatore"
+                className="mb-1 inline-block text-xs text-gray-300 md:text-sm"
+              >
+                Giocatore da annotare nel registro
+              </label>
+              <div className="hidden items-center justify-between gap-2 md:flex">
+                <input
+                  ref={inputRef}
+                  type="text"
+                  id="nome-giocatore"
+                  className="h-10 w-1/2 appearance-none rounded-lg border border-gray-300 border-transparent bg-white px-2 py-2 text-sm text-gray-700 placeholder-gray-400 shadow-sm focus:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600"
+                  name="nomeGiocatore"
+                  placeholder="Nome del giocatore"
+                />
+                <button
+                  type="button"
+                  className="h-10 w-1/2 rounded-lg bg-sky-700 px-2 py-2 text-center text-sm font-semibold text-white shadow-md transition duration-200 ease-in hover:bg-sky-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2  focus:ring-offset-indigo-200 "
+                  onClick={() =>
+                    uploadListDB({
+                      id: vociRegistro.length + 1,
+                      name: `${inputRef.current.value} - ${
+                        isImpr ? "Mercenario" : "Libertà di scelta"
+                      }`,
+                    })
+                  }
+                >
+                  Aggiungi al Registro
+                </button>
+              </div>
+            </div>
+
+            <RegistroMercato
+              vociRegistro={vociRegistro}
+              deleteListDB={deleteListDB}
+              removeVociRegistro={removeVociRegistro}
+            />
           </>
         )}
       </motion.div>
-
       {Dado(estraiNumeroCasuale)}
     </section>
   );

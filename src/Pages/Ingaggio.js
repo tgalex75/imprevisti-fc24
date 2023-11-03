@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Dado from "../Components/Dado";
 import { motion } from "framer-motion";
 import { isMobile } from "react-device-detect";
+import RegistroIngaggi from "../Components/RegistroIngaggi";
+import { supabase } from "../supabaseClient";
 
 const Ingaggio = () => {
   const [casuale, setCasuale] = useState(null);
@@ -11,6 +13,43 @@ const Ingaggio = () => {
   };
 
   const isImpr = casuale === 7;
+
+  const inputRef = useRef(null);
+
+  const [vociRegistro, setVociRegistro] = useState([]);
+
+  useEffect(() => {
+    fetchRegistryList();
+  }, [vociRegistro]);
+
+  const fetchRegistryList = async () => {
+    const { data } = await supabase.from("regingaggi").select("*");
+    setVociRegistro(data ? data : []);
+  };
+
+  const uploadListDB = async (list) => {
+    const { data, error } = await supabase
+      .from("regingaggi")
+      .insert([{ id: list.id, name: list.name }])
+      .select();
+    data ? console.log("data: ", data) : console.log("error: ", error);
+  };
+
+  const deleteListDB = async () => {
+    const { error } = await supabase
+      .from("regingaggi")
+      .delete("id")
+      .lt("id", 1000);
+      error ? console.log(error) : null;
+    };
+
+  const removeVociRegistro = async (element) => {
+    const { error } = await supabase
+      .from("regingaggi")
+      .delete()
+      .eq("id", element)
+    error ? console.log(error) : null;
+  };
 
   return (
     <section className="flex h-full w-full select-none flex-col items-center justify-around gap-2 px-4 py-6 font-bold md:p-8">
@@ -42,7 +81,7 @@ const Ingaggio = () => {
               style={{
                 filter: "drop-shadow(.05rem .05rem 0.1rem #000)",
               }}
-              className="flex h-8 w-8 items-center justify-around rounded-full bg-gray-300/20 p-8 text-4xl md:self-start md:p-12 md:text-6xl"
+              className="flex h-8 w-8 items-center justify-around rounded-full bg-gray-300/20 p-8 text-4xl md:p-12 md:text-6xl"
             >
               {casuale}
             </motion.p>
@@ -60,8 +99,9 @@ const Ingaggio = () => {
               imprevisto!
             </h2>
             <h3
-            style={{ filter: "drop-shadow(.05rem .05rem 0.1rem #000)" }}
-            className="text-4xl font-extrabold uppercase md:text-6xl">
+              style={{ filter: "drop-shadow(.05rem .05rem 0.1rem #000)" }}
+              className="text-4xl font-extrabold uppercase md:text-6xl"
+            >
               {isImpr ? "VISITE NON SUPERATE" : "Nessun problema"}
             </h3>
             <p
@@ -75,6 +115,45 @@ const Ingaggio = () => {
                 ? "La trattativa salta e non può essere ritentata fino alla prossima finestra di mercato."
                 : "La trattativa viene chiusa senza conseguenze."}
             </p>
+            {/* Pulsanti per inserimento nome giocatore nel registro */}
+            <div className="hidden text-start md:flex md:w-1/3 md:flex-col">
+              <label
+                htmlFor="nome-giocatore"
+                className="mb-1 inline-block text-xs text-gray-300 md:text-sm"
+              >
+                Giocatore da annotare nel registro
+              </label>
+              <div className="hidden items-center justify-between gap-2 md:flex">
+                <input
+                  ref={inputRef}
+                  type="text"
+                  id="nome-giocatore"
+                  className="h-10 w-1/2 appearance-none rounded-lg border border-gray-300 border-transparent bg-white px-2 py-2 text-sm text-gray-700 placeholder-gray-400 shadow-sm focus:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600"
+                  name="nomeGiocatore"
+                  placeholder="Nome del giocatore"
+                />
+                <button
+                  type="button"
+                  className="h-10 w-1/2 rounded-lg bg-sky-700 px-2 py-2 text-center text-sm font-semibold text-white shadow-md transition duration-200 ease-in hover:bg-sky-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2  focus:ring-offset-indigo-200 "
+                  onClick={() =>
+                    uploadListDB({
+                      id: vociRegistro.length + 1,
+                      name: `${inputRef.current.value} - ${
+                        isImpr ? "Mercenario" : "Trattativa OK"
+                      }`,
+                    })
+                  }
+                >
+                  Aggiungi al Registro
+                </button>
+              </div>
+            </div>
+
+            <RegistroIngaggi
+              vociRegistro={vociRegistro}
+              deleteListDB={deleteListDB}
+              removeVociRegistro={removeVociRegistro}
+            />
           </>
         )}
       </motion.div>

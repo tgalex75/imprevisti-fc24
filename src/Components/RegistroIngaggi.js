@@ -2,7 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { MdClear } from "react-icons/md";
 
-const RegistroRinnovi = (props) => {
+const RegistroIngaggi = (props) => {
   const { vociRegistro, deleteListDB, removeVociRegistro } = props;
   return (
     <motion.div
@@ -11,7 +11,7 @@ const RegistroRinnovi = (props) => {
       transition={{ delay: 0.7, duration: 0.7 }}
       className="absolute bottom-1 left-1 top-1 hidden h-[98%] w-[18vw] items-center gap-2 overflow-hidden rounded-lg bg-black/50 text-gray-300 md:flex md:flex-col"
     >
-      <h6 className="uppercase text-yellow-600">Registro Rinnovi</h6>
+      <h6 className="uppercase text-yellow-600">Registro Ingaggi</h6>
       <ul className="flex h-full w-full flex-col gap-1 overflow-y-auto px-2 pb-2">
         {vociRegistro.map((el) => (
           <li
@@ -37,4 +37,4 @@ const RegistroRinnovi = (props) => {
   );
 };
 
-export default RegistroRinnovi;
+export default RegistroIngaggi;

@@ -30,11 +30,11 @@ const Navbar = () => {
     },
     {
       id: 5,
-      voceLi: "Imprevisto Calciomercato: offerte ricevute",
+      voceLi: "Imprevisti Calciomercato",
       linkTo: "/offerte-mercato",
     },
-    { id: 6, voceLi: "Imprevisto di Ingaggio", linkTo: "/ingaggio" },
-    { id: 7, voceLi: "Imprevisto Rinnovi", linkTo: "/rinnovi" },
+    { id: 6, voceLi: "Imprevisti di Ingaggio", linkTo: "/ingaggio" },
+    { id: 7, voceLi: "Imprevisti Rinnovi", linkTo: "/rinnovi" },
     { id: 8, voceLi: "Media Overall ", linkTo: "/calcolo-media" },
     { id: 9, voceLi: "Bonus Annuali ", linkTo: "/bonus-annuali" },
     { id: 10, voceLi: "Regolamento Carriera FC24 ", linkTo: "/regolamento" },
@@ -46,9 +46,10 @@ const Navbar = () => {
       <div key={voce.id}>
         <Link to={voce.linkTo}>
           <motion.li
-            whileHover={{ scale: isMobile ? 1.2 : 1.4 }}
-            transition={{ type: "spring", stiffness: 200, bounce: 0.6 }}
-            className="text-lg px-8 md:text-xl font-bold uppercase hover:text-[--clr-sec]"
+            layout
+            whileHover={{ scale: isMobile ? 1.2 : 1.5 }}
+            transition={{ type: "spring", duration: 0.4, ease: "easeIn", stiffness: 200 }}
+            className="text-lg px-8 md:text-xl font-bold uppercase hover:text-[--clr-sec] p-4"
           >
             {voce.voceLi}
           </motion.li>
