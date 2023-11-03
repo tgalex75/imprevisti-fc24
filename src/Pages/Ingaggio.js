@@ -40,7 +40,7 @@ const Ingaggio = () => {
       .from("regingaggi")
       .delete("id")
       .lt("id", 1000);
-      error ? console.log(error) : null;
+      error && console.log(error);
     };
 
   const removeVociRegistro = async (element) => {
@@ -48,7 +48,7 @@ const Ingaggio = () => {
       .from("regingaggi")
       .delete()
       .eq("id", element)
-    error ? console.log(error) : null;
+    error && console.log(error);
   };
 
   return (
