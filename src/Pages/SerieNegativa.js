@@ -57,7 +57,7 @@ const SerieNegativa = () => {
             <div className="flex h-full w-full flex-col items-center justify-around py-4 md:py-2">
               <h2
                 style={{
-                  fontFamily: "'Gochi Hand', cursive",
+                  fontFamily: "'Boogaloo', sans-serif",
                   filter: "drop-shadow(.05rem .05rem 0.1rem #000)",
                 }}
                 className={

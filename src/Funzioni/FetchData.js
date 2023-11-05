@@ -4,16 +4,21 @@ import { MdClose } from "react-icons/md";
 import deadpool from "../assets/imgs/deadpool.png";
 import { motion } from "framer-motion";
 import { isMobile } from "react-device-detect";
+import SecondaEstrazione from "../Components/SecondaEstrazione";
 
 export default function FetchData(props) {
   const [imprevisto, setImprevisto] = useState([]);
+  const [isEstrazione, setIsEstrazione] = useState(false);
 
   const { changeModalState } = props;
+
+  const showEstrazione = () => {
+    setIsEstrazione(!isEstrazione);
+  };
 
   useEffect(() => {
     fetchLista();
   }, []);
-
 
   const fetchLista = async () => {
     const { data } = await supabase
@@ -21,7 +26,7 @@ export default function FetchData(props) {
       .select("*")
       .limit(1)
       .single();
-    setImprevisto(data ? data : {id: 0, name: "LISTA VUOTA!!!"});
+    setImprevisto(data ? data : { id: 0, name: "LISTA VUOTA!!!" });
   };
 
   const delElemento = async () => {
@@ -47,16 +52,16 @@ export default function FetchData(props) {
         backgroundImage: `url(${deadpool})`,
         backgroundSize: isMobile ? "40%" : "20%",
       }}
-      className="mx-auto flex flex-col gap-2 md:gap-4 h-full w-full items-center justify-between rounded-xl bg-left-bottom bg-no-repeat px-6 py-4 md:p-8 shadow-lg ring ring-inset ring-white/75"
+      className="mx-auto flex h-full w-full flex-col items-center justify-between gap-2 rounded-xl bg-left-bottom bg-no-repeat px-6 py-4 shadow-lg ring ring-inset ring-white/75 md:gap-4 md:p-8"
     >
       <motion.div
-        className="self-end cursor-pointer"
-          whileHover={{
+        className="cursor-pointer self-end"
+        whileHover={{
           scale: 1.2,
           rotate: 90,
         }}
-        animate={{padding: [0, 1, 1.5, 1, 0], border: [0, 1, 1.5, 1, 0] }}
-        transition={{type: "spring", stiffness: 300 }}
+        animate={{ padding: [0, 1, 1.5, 1, 0], border: [0, 1, 1.5, 1, 0] }}
+        transition={{ type: "spring", stiffness: 300 }}
       >
         <MdClose
           size={48}
@@ -69,10 +74,25 @@ export default function FetchData(props) {
           fontFamily: "'Handlee', cursive",
           filter: "drop-shadow(.05rem .05rem 0.2rem #000)",
         }}
-        className="my-8 md:ps-[30%] text-center text-gray-200 text-md md:text-2xl uppercase italic flex-1 flex items-center"
+        className="text-md my-8 flex flex-1 items-center text-center uppercase italic text-gray-200 md:ps-[30%] md:text-2xl"
       >
-        {imprevisto.name}
+        {imprevisto.name}*
       </h3>
+      {!isEstrazione && (
+        <>
+          <small className="text-[--clr-ter]">
+            * SE NECESSARIA UNA SECONDA ESTRAZIONE
+          </small>
+
+          <button
+            className="flex h-12 w-24 items-center justify-center rounded-lg bg-sky-700 px-2 py-2 text-center text-xs font-semibold text-white shadow-md transition duration-200 ease-in hover:bg-sky-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-indigo-200 md:text-sm"
+            onClick={showEstrazione}
+          >
+            CLICCA QUI
+          </button>
+        </>
+      )}
+      {isEstrazione && <SecondaEstrazione />}
     </motion.div>
   );
 }
