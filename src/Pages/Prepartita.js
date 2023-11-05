@@ -46,12 +46,15 @@ const Prepartita = () => {
               animate={{ opacity: 1, x: 0, rotate: 360 }}
               transition={{ type: "spring", duration: 0.5, stiffness: 400 }}
               className="flex h-8 w-8 items-center justify-center rounded-full bg-gray-300/20 p-8 text-4xl md:self-start md:p-12 md:text-6xl"
+              style={{
+                filter: "drop-shadow(.05rem .05rem 0.1rem #000)",
+              }}
             >
               {id}
             </motion.p>
             <h2
               style={{
-                fontFamily: "'Gochi Hand', cursive",
+                fontFamily: "'Boogaloo', sans-serif",
                 filter: "drop-shadow(.05rem .05rem 0.1rem #000)",
               }}
               className={

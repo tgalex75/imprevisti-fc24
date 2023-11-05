@@ -41,13 +41,16 @@ const Ingaggio = () => {
               animate={{ opacity: 1, x: 0 }}
               transition={{ type: "spring" }}
               className="flex h-8 w-8 items-center justify-around rounded-full bg-gray-300/20 p-8 text-4xl md:self-start md:p-12 md:text-6xl"
+              style={{
+                filter: "drop-shadow(.05rem .05rem 0.1rem #000)",
+              }}
             >
               {casuale}
             </motion.p>
 
             <h2
               style={{
-                fontFamily: "'Gochi Hand', cursive",
+                fontFamily: "'Boogaloo', sans-serif",
                 filter: "drop-shadow(.05rem .05rem 0.1rem #000)",
               }}
               className={
@@ -59,8 +62,9 @@ const Ingaggio = () => {
               imprevisto!
             </h2>
             <h3
-            style={{ filter: "drop-shadow(.05rem .05rem 0.1rem #000)" }}
-            className="text-4xl font-extrabold uppercase md:text-6xl">
+              style={{ filter: "drop-shadow(.05rem .05rem 0.1rem #000)" }}
+              className="text-4xl font-extrabold uppercase md:text-6xl"
+            >
               {isImpr ? "VISITE NON SUPERATE" : "Nessun problema"}
             </h3>
             <p

@@ -105,7 +105,7 @@ const BonusAnnuali = () => {
               </div>
             </motion.div>
           ))}
-        </div>
+n        </div>
         <button
           type="button"
           className="flex-1 rounded-lg bg-yellow-500 px-4 py-2 text-center text-sm font-semibold text-gray-900 shadow-md transition duration-200 ease-in hover:bg-[--clr-ter] focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2  focus:ring-offset-gray-900 "

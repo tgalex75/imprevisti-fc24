@@ -23,11 +23,11 @@ const ImprevistoCommunity = (props) => {
           backgroundRepeat: "no-repeat",
           backgroundImage: `url(${logoSfondo})`,
         }}
-        className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-[1200] flex md:p-8 -mt-6 h-[90vh] w-[95vw] md:w-screen flex-col items-center justify-center gap-4 rounded-xl border-2 md:border-4 border-[--clr-prim] bg-gray-800 uppercase text-[--clr-prim]"
+        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-[1200] flex md:p-8 -mt-4 md:-mt-10 h-screen w-screen flex-col items-center justify-center gap-4 rounded-xl border-2 md:border-4 border-[--clr-prim] bg-gray-800 uppercase text-[--clr-prim]"
       >
         <h3
           style={{
-            fontFamily: "'Gochi Hand', cursive",
+            fontFamily: "'Boogaloo', sans-serif",
             filter: "drop-shadow(.05rem .05rem 0.1rem #000)",
           }}
           className="text-2xl md:text-5xl"
