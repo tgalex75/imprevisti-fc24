@@ -8,8 +8,13 @@ import SecondaEstrazione from "../Components/SecondaEstrazione";
 
 export default function FetchData(props) {
   const [imprevisto, setImprevisto] = useState([]);
+  const [isEstrazione, setIsEstrazione] = useState(false);
 
   const { changeModalState } = props;
+
+  const showEstrazione = () => {
+    setIsEstrazione(!isEstrazione);
+  };
 
   useEffect(() => {
     fetchLista();
@@ -74,7 +79,21 @@ export default function FetchData(props) {
       >
         {imprevisto.name}
       </h3>
-        <SecondaEstrazione />
+      {!isEstrazione && (
+        <>
+          <small className="text-[--clr-ter]">
+            * SE NECESSARIA UNA SECONDA ESTRAZIONE
+          </small>
+
+          <button
+            className="flex h-12 w-24 items-center justify-center rounded-lg bg-sky-700 px-2 py-2 text-center text-xs font-semibold text-white shadow-md transition duration-200 ease-in hover:bg-sky-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-indigo-200 md:text-sm"
+            onClick={showEstrazione}
+          >
+            CLICCA QUI
+          </button>
+        </>
+      )}
+      {isEstrazione && <SecondaEstrazione />}
     </motion.div>
   );
 }
