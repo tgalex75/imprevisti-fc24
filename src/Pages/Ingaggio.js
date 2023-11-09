@@ -23,31 +23,38 @@ const Ingaggio = () => {
   }, [vociRegistro]);
 
   const fetchRegistryList = async () => {
-    const { data } = await supabase.from("regingaggi").select("*");
+    const { data } = await supabase.from("registro").select("*");
     setVociRegistro(data ? data : []);
   };
 
   const uploadListDB = async (list) => {
     const { data, error } = await supabase
-      .from("regingaggi")
-      .insert([{ id: list.id, name: list.name }])
+      .from("registro")
+      .insert([
+        {
+          id: list.id,
+          name: list.name,
+          description: list.description,
+          tipo: list.tipo,
+        },
+      ])
       .select();
     data ? console.log("data: ", data) : console.log("error: ", error);
   };
 
   const deleteListDB = async () => {
     const { error } = await supabase
-      .from("regingaggi")
+      .from("registro")
       .delete("id")
       .lt("id", 1000);
-      error && console.log(error);
-    };
+    error && console.log(error);
+  };
 
   const removeVociRegistro = async (element) => {
     const { error } = await supabase
-      .from("regingaggi")
+      .from("registro")
       .delete()
-      .eq("id", element)
+      .eq("id", element);
     error && console.log(error);
   };
 
@@ -138,9 +145,9 @@ const Ingaggio = () => {
                   onClick={() =>
                     uploadListDB({
                       id: vociRegistro.length + 1,
-                      name: `${inputRef.current.value} - ${
-                        isImpr ? "Mercenario" : "Trattativa OK"
-                      }`,
+                      name: inputRef.current.value,
+                      description: isImpr ? "Visite non superate" : "Visite OK",
+                      tipo: "Ingaggio",
                     })
                   }
                 >

@@ -16,9 +16,9 @@ const RegistroRinnovi = (props) => {
         {vociRegistro.map((el) => (
           <li
             key={el.id}
-            className="flex items-center justify-between bg-gray-700/20 ps-1 text-left text-[0.8rem] uppercase"
+            className="flex items-center justify-between bg-gray-700/20 ps-1 text-left text-[0.6rem] uppercase"
           >
-            {el.name}{" "}
+            {el.name} - {el.description} - {el.tipo}
             <MdClear
               size={18}
               className="cursor-pointer fill-red-700 transition-all hover:scale-125 hover:fill-red-600"
