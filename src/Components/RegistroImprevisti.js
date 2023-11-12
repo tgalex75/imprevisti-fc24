@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import PropTypes from "prop-types";
-import { CartContext } from "../context/cart";
+import { CartContext } from "../context/regContext";
 import uuid from "react-uuid";
 import { MdAddCircleOutline, MdRemoveCircleOutline } from "react-icons/md";
 import { MdClose } from "react-icons/md";
@@ -82,7 +82,7 @@ const RegistroImprevisti = ({ showModal, toggle }) => {
                     }}
                   />
                   <h2 className="mx-2 text-lg font-bold uppercase">
-                    {item.quantity}
+                    {item.quantity >= 3 ? 3 : item.quantity}
                   </h2>
                   <MdRemoveCircleOutline
                     onClick={() => {

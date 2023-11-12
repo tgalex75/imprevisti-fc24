@@ -30,16 +30,23 @@ const Rinnovi = () => {
   const uploadListDB = async (list) => {
     const { data, error } = await supabase
       .from("registro")
-      .insert([{ id: list.id, name: list.name, description: list.description, tipo: list.tipo }])
+      .insert([
+        {
+          id: list.id,
+          name: list.name,
+          description: list.description,
+          tipo: list.tipo,
+        },
+      ])
       .select();
     data ? console.log("data: ", data) : console.log("error: ", error);
   };
 
-  const deleteListDB = async () => {
+  const deleteListDB = async (item) => {
     const { error } = await supabase
-      .from("registro")
-      .delete("id")
-      .lt("id", 1000);
+      .from("registroimprevisti")
+      .delete()
+      .eq("title", "someValue");
     error && console.log(error);
   };
 
