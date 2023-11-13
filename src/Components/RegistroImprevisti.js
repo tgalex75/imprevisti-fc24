@@ -44,7 +44,7 @@ const RegistroImprevisti = ({ showModal, toggle }) => {
             fontFamily: "'Boogaloo', sans-serif",
             filter: "drop-shadow(.05rem .05rem 0.1rem #000)",
           }}
-          className="text-2xl text-[--clr-prim] md:text-5xl"
+          className="text-2xl text-[--clr-ter] md:text-5xl"
         >
           Registro degli Imprevisti{" "}
         </h3>{" "}
@@ -57,9 +57,9 @@ const RegistroImprevisti = ({ showModal, toggle }) => {
             {cartItems.map((item) => (
               <motion.div
                 layout
-                initial={{ opacity: 0, scale: 0 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0 }}
+                initial={{ opacity: 0,}}
+                animate={{ opacity: 1,}}
+                exit={{ opacity: 0,}}
                 transition={{ duration: 0.7, type: "spring" }}
                 style={
                   item.quantity > 2
