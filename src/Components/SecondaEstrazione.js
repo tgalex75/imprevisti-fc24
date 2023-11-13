@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import firstkit from "../assets/imgs/firstKit.png";
 import awaykit from "../assets/imgs/awayKit.png";
 import thirdkit from "../assets/imgs/thirdKit.png";
+import gkKit from "../assets/imgs/gkKit.png"
 
 const SecondaEstrazione = () => {
   const [inputField, setInputField] = useState({
@@ -62,11 +63,11 @@ const SecondaEstrazione = () => {
         <div
           className="flex h-full w-1/2 flex-col items-center justify-center overflow-hidden rounded bg-contain bg-center bg-no-repeat p-6 transition-all"
           style={{
-            backgroundImage: `url(${teamKits[randomJersey - 1]})`,
+            backgroundImage: secondExtractedNumber === 1 ? `url(${gkKit})` : `url(${teamKits[randomJersey - 1]})`,
           }}
         >
           <span
-            style={randomJersey === 2 ? { color: "var(--clr-sec" } : {}}
+            style={(secondExtractedNumber > 1 && randomJersey) === 2 ? { color: "var(--clr-sec" } : {}}
             className="block pt-2 font-['Oswald'] text-4xl md:text-7xl font-bold text-gray-300"
           >
             {secondExtractedNumber}
