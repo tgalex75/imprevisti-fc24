@@ -42,11 +42,11 @@ const Rinnovi = () => {
     data ? console.log("data: ", data) : console.log("error: ", error);
   };
 
-  const deleteListDB = async (item) => {
+  const deleteListDB = async () => {
     const { error } = await supabase
       .from("registro")
-      .delete()
-      .eq("title", "someValue");
+      .delete("id")
+      .lt("id", 1000);
     error && console.log(error);
   };
 
