@@ -44,7 +44,7 @@ const Rinnovi = () => {
 
   const deleteListDB = async (item) => {
     const { error } = await supabase
-      .from("registroimprevisti")
+      .from("registro")
       .delete()
       .eq("title", "someValue");
     error && console.log(error);
@@ -158,7 +158,6 @@ const Rinnovi = () => {
                 </button>
               </div>
             </div>
-
             <RegistroRinnovi
               vociRegistro={vociRegistro}
               deleteListDB={deleteListDB}
