@@ -39,8 +39,6 @@ export default function FetchData(props) {
     fetchLista();
   };
 
-  console.log(imprevisto);
-
   return (
     <motion.div
       initial={{ opacity: 0, x: -200 }}
@@ -54,7 +52,7 @@ export default function FetchData(props) {
         backgroundImage: `url(${deadpool})`,
         backgroundSize: isMobile ? "40%" : "20%",
       }}
-      className="mx-auto flex h-full w-full flex-col items-center justify-between gap-2 rounded-xl bg-left-bottom bg-no-repeat px-6 py-4 shadow-lg ring ring-inset ring-white/75 md:gap-4 md:p-6"
+      className="mx-auto flex h-full w-full flex-col items-center justify-between gap-2 rounded-xl bg-left-bottom bg-no-repeat px-6 py-4 shadow-lg ring ring-inset ring-white/75 md:gap-4 md:p-8"
     >
       <motion.div
         className="cursor-pointer self-end"
@@ -62,12 +60,13 @@ export default function FetchData(props) {
           scale: 1.2,
           rotate: 90,
         }}
+        animate={{ padding: [0, 1, 1.5, 1, 0], border: [0, 1, 1.5, 1, 0] }}
         transition={{ type: "spring", stiffness: 300 }}
       >
         <MdClose
           size={48}
           onClick={delElemento}
-          className=" fill-gray-300 hover:fill-[--clr-sec]"
+          className=" fill-gray-300 hover:fill-[--clr-ter]"
         />
       </motion.div>
       <h3
@@ -75,9 +74,9 @@ export default function FetchData(props) {
           fontFamily: "'Handlee', cursive",
           filter: "drop-shadow(.05rem .05rem 0.2rem #000)",
         }}
-        className="text-sm my-8 flex flex-1 items-center text-center uppercase italic text-gray-200 md:ps-[30%] md:text-2xl"
+        className="text-md my-8 flex flex-1 items-center text-center uppercase italic text-gray-200 md:ps-[30%] md:text-2xl"
       >
-        {imprevisto.name}
+        {imprevisto.name}*
       </h3>
       {!isEstrazione && (
         <>

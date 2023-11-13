@@ -11,24 +11,19 @@ import {
   s433,
   s442,
   mySelect,
+  arrayRange,
   data,
 } from "../Funzioni/schemi";
 
 const MediaOverall = () => {
   const selectRef = useRef(null);
-  const [schema, setSchema] = useState("433");
+  const [schema, setSchema] = useState("442");
 
   const getSchema = () => {
     setSchema(selectRef.current.value);
   };
 
-  const arrayRange = (start, stop, step) =>
-    Array.from(
-      { length: (stop - start) / step + 1 },
-      (value, index) => start + index * step,
-    );
-
-  let valori = arrayRange(55, 99, 1);
+  let valori = arrayRange(58, 99, 1);
 
   const [values, setValues] = useState(null);
 
@@ -55,7 +50,7 @@ const MediaOverall = () => {
   return (
     <main
       id="media--overall"
-      className="flex h-full w-full flex-col items-center justify-around gap-2"
+      className="flex h-full w-full flex-col items-center justify-around gap-2 bg-black/30 "
     >
       <h1>Media Overall</h1>
       {mySelect(selectRef, getSchema)}
@@ -71,7 +66,7 @@ const MediaOverall = () => {
       {schema === "5212" && s5212(data, handleChange, valori)}
       <div
         style={result < 1 ? { visibility: "hidden" } : {}}
-        className="rounded-xl mb-4 border-2 border-[--clr-sec] px-8 py-2 text-center font-bold ring ring-inset ring-white/75 md:me-8 md:self-end md:border-8 md:px-20"
+        className="rounded-xl mb-4 border-2 border-[--clr-prim] px-8 py-2 text-center font-bold ring ring-inset ring-white/75 md:me-8 md:self-end md:border-8 md:px-20"
       >
         <span className="text-md md:text-xl">Media:</span>
         <h4 className="text-6xl md:text-9xl">{result}</h4>

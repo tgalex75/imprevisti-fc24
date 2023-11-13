@@ -1,7 +1,7 @@
 import React, { useState, useContext, useRef } from "react";
 import Dado from "../Components/Dado";
 import { randomNumber } from "../Funzioni/RandomNumber";
-import { CartContext } from "../context/cart";
+import { CartContext } from "../context/regContext";
 import datiSerieNegativa from "../Data/datiSerieNegativa";
 import SecondaEstrazione from "../Components/SecondaEstrazione";
 import RegistroImprevisti from "../Components/RegistroImprevisti";
@@ -42,7 +42,7 @@ const SerieNegativa = () => {
         transition={{ delay: 0.4, duration: 0.4, type: "spring" }}
         key={casuale}
         id="containerPrimaEstrazione"
-        style={isImprev ? { color: "var(--clr-prim)" } : {}}
+        style={isImprev ? { color: "var(--clr-ter)" } : {}}
         className="flex h-full w-full select-none flex-col items-center justify-evenly gap-2 rounded-xl bg-black/50 px-4 py-2 text-center shadow-lg ring ring-inset ring-white/75 md:px-10"
       >
         {!casuale ? (
@@ -110,7 +110,8 @@ const SerieNegativa = () => {
                     className="flex h-full flex-1 items-center justify-center rounded-lg bg-sky-700 px-4 py-2 text-center text-xs font-semibold text-white shadow-md transition duration-200 ease-in hover:bg-sky-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-indigo-200 md:text-sm "
                     onClick={() =>
                       addToCart({
-                        title: `${title} - ${inputRef.current.value}`,
+                        title: `${inputRef.current.value} - ${title}`.toUpperCase(),
+                        quantity: 1,
                       })
                     }
                   >

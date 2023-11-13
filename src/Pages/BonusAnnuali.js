@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { supabase } from "../supabaseClient";
 
 const BonusAnnuali = () => {
@@ -87,25 +87,29 @@ const BonusAnnuali = () => {
           </div>
         </div>
         <div className="flex h-full w-full flex-col justify-around gap-4 overflow-y-auto border-2 border-gray-300/20 p-4 md:w-3/4">
-          {vociBonus.map((item, index) => (
-            <motion.div
-              initial={{ opacity: 0}}
-              animate={{ opacity: 1}}
-              transition={{ delay: 0.3, duration: 0.4, type: "spring" }}
-              className="flex items-center justify-center gap-14 rounded-lg bg-orange-600 py-1 md:py-4"
-              key={index}
-            >
-              <div className="flex items-center gap-6 text-center md:gap-14">
-                <h2 className="text-md mx-2 font-bold uppercase md:text-lg">
-                  Bonus n.{index + 1}
-                </h2>
-                <h2 className="text-md mx-2 font-bold uppercase md:text-lg">
-                  Utilizzato durante l'episodio n. {item.episodio}
-                </h2>
-              </div>
-            </motion.div>
-          ))}
-n        </div>
+          <AnimatePresence initial={false} mode="popLayout">
+            {vociBonus.map((item, index) => (
+              <motion.div
+                layout
+                initial={{ opacity: 0, scale: 0 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{opacity: 0, scale: 0}}
+                transition={{ duration: 0.5, type: "spring" }}
+                className="flex items-center justify-center gap-14 rounded-lg bg-orange-600 py-1 md:py-4"
+                key={index}
+              >
+                <div className="flex items-center gap-6 text-center md:gap-14">
+                  <h2 className="text-md mx-2 font-bold uppercase md:text-lg">
+                    Bonus n.{index + 1}
+                  </h2>
+                  <h2 className="text-md mx-2 font-bold uppercase md:text-lg">
+                    Utilizzato durante l'episodio n. {item.episodio}
+                  </h2>
+                </div>
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </div>
         <button
           type="button"
           className="flex-1 rounded-lg bg-yellow-500 px-4 py-2 text-center text-sm font-semibold text-gray-900 shadow-md transition duration-200 ease-in hover:bg-[--clr-ter] focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2  focus:ring-offset-gray-900 "
