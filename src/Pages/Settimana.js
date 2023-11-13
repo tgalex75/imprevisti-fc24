@@ -72,7 +72,7 @@ const Settimana = () => {
               {description}
             </p>
             {/* Eccezione imprevisto n. 28 */}
-            <p className="italic">
+            <p className="italic text-xl">
               {id === 8 || id === 16
                 ? "Non applicabile se il giocatore estratto è in prestito. In tal caso si ripete l’estrazione."
                 : ""}
