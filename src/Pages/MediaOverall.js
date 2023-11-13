@@ -11,6 +11,7 @@ import {
   s433,
   s442,
   mySelect,
+  arrayRange,
   data,
 } from "../Funzioni/schemi";
 
@@ -22,13 +23,7 @@ const MediaOverall = () => {
     setSchema(selectRef.current.value);
   };
 
-  const arrayRange = (start, stop, step) =>
-    Array.from(
-      { length: (stop - start) / step + 1 },
-      (value, index) => start + index * step,
-    );
-
-  let valori = arrayRange(55, 99, 1);
+  let valori = arrayRange(58, 99, 1);
 
   const [values, setValues] = useState(null);
 
