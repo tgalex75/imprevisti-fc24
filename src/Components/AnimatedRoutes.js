@@ -4,7 +4,7 @@ import { AnimatePresence } from "framer-motion";
 import Home from "../Pages/Home";
 import Prepartita from "../Pages/Prepartita";
 import Settimana from "../Pages/Settimana";
-import Regolamento from "../Pages/Regolamento";
+import RegistroRiepilogo from "../Pages/RegistroRiepilogo";
 import Rinnovi from "../Pages/Rinnovi";
 import Ingaggio from "../Pages/Ingaggio";
 import MediaOverall from "../Pages/MediaOverall";
@@ -22,7 +22,7 @@ const AnimatedRoutes = () => {
                 <Route path="/home" element={<Home />} />
                 <Route path="/prepartita" element={<Prepartita />} />
                 <Route path="/settimana" element={<Settimana />} />
-                <Route path="/regolamento" element={<Regolamento />} />
+                <Route path="/registro-giocatori" element={<RegistroRiepilogo />} />
                 <Route path="/calcolo-media" element={<MediaOverall />} />
                 <Route path="/ingaggio" element={<Ingaggio />} />
                 <Route path="/rinnovi" element={<Rinnovi />} />

@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import Dado from "../Components/Dado";
 import { motion } from "framer-motion";
 import { isMobile } from "react-device-detect";
-import RegistroRinnovi from "../Components/RegistroRinnovi";
+import RegistroGiocatori from "../Components/RegistroGiocatori";
 import { supabase } from "../supabaseClient";
 
 const Rinnovi = () => {
@@ -17,6 +17,8 @@ const Rinnovi = () => {
   const inputRef = useRef(null);
 
   const [vociRegistro, setVociRegistro] = useState([]);
+
+  const tipoImprevisto = "Rinnovi"
 
   useEffect(() => {
     fetchRegistryList();
@@ -150,7 +152,7 @@ const Rinnovi = () => {
                       id: vociRegistro.length + 1,
                       name: inputRef.current.value,
                       description: isImpr ? "Mercenario" : "Trattativa libera",
-                      tipo: "Rinnovi",
+                      tipo: tipoImprevisto,
                     })
                   }
                 >
@@ -158,10 +160,11 @@ const Rinnovi = () => {
                 </button>
               </div>
             </div>
-            <RegistroRinnovi
+            <RegistroGiocatori
               vociRegistro={vociRegistro}
               deleteListDB={deleteListDB}
               removeVociRegistro={removeVociRegistro}
+              tipoImprevisto={tipoImprevisto}
             />
           </>
         )}
