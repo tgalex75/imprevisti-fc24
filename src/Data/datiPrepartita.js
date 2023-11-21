@@ -39,7 +39,7 @@ const datiPrepartita = [
         title: "PAROLA ALLA COMMUNITY!",
         description: "L'avete voluto voi...",
         isImprev: true,
-        ultEstrazione: false
+        ultEstrazione: true
     },
     {
         id: 7,
@@ -116,7 +116,7 @@ const datiPrepartita = [
         title: "PAROLA ALLA COMMUNITY!",
         description: "Verrà estratto uno degli Imprevisti della Community",
         isImprev: true,
-        ultEstrazione: false
+        ultEstrazione: true
     },
     {
         id: 18,
@@ -165,7 +165,7 @@ const datiPrepartita = [
         title: "PAROLA ALLA COMMUNITY!",
         description: "Estrazione di uno degli imprevisti proposti dalla Comunity.",
         isImprev: true,
-        ultEstrazione: false
+        ultEstrazione: true
     },
     {
         id: 25,
@@ -228,7 +228,7 @@ const datiPrepartita = [
         title: "PAROLA ALLA COMMUNITY!",
         description: "Estrazione di uno degli imprevisti proposti dalla Comunity.",
         isImprev: true,
-        ultEstrazione: false
+        ultEstrazione: true
     },
     {
         id: 34,
@@ -242,7 +242,7 @@ const datiPrepartita = [
         title: "PAROLA ALLA COMMUNITY!",
         description: "Verrà estratto uno degli Imprevisti della Community",
         isImprev: true,
-        ultEstrazione: false
+        ultEstrazione: true
     },
     {
         id: 36,
@@ -263,7 +263,7 @@ const datiPrepartita = [
         title: "PAROLA ALLA COMMUNITY!",
         description: "Verrà estratto uno degli Imprevisti della Community",
         isImprev: true,
-        ultEstrazione: false
+        ultEstrazione: true
     },
 ]
 
