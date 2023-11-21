@@ -28,7 +28,7 @@ export default function FetchData() {
       .from("imprevisti")
       .delete("id")
       .eq("id", imprevisto.id);
-    console.log(error ? error : "");
+    error && console.log(error);
   };
 
   return (

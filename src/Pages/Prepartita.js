@@ -21,6 +21,7 @@ const PrepartitaCopy = () => {
     : {};
 
   const titoloH1 = "Imprevisto Prepartita";
+  const isImpCommunity = title === "PAROLA ALLA COMMUNITY!"
 
   return (
     <>
@@ -54,10 +55,10 @@ const PrepartitaCopy = () => {
                   : "hidden"
               }
             >
-              {title === "PAROLA ALLA COMMUNITY!" ? 'Imprevisto della Community' : "IMPREVISTO!"}
+              {isImpCommunity ? 'Imprevisto della Community' : "IMPREVISTO!"}
             </h2>
             
-            {title !== "PAROLA ALLA COMMUNITY!" ? 
+            {!isImpCommunity ? 
             <>
             <h3
               style={{ filter: "drop-shadow(.05rem .05rem 0.1rem #000)" }}
