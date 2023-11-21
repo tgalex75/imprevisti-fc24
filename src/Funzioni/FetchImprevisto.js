@@ -6,10 +6,13 @@ export default function FetchData() {
 
   useEffect(() => {
     fetchLista();
+  }, []);
+
+  useEffect(()=> {
     setTimeout(() => {
         delElemento()
     }, 3000);
-  }, []);
+  })
 
   const fetchLista = async () => {
     const { data } = await supabase
@@ -28,15 +31,10 @@ export default function FetchData() {
     console.log(error ? error : "");
   };
 
-   setTimeout(() => {
-     delElemento()
- }, 3000);
-    console.log(imprevisto.id);
-
   return (
   <p
   style={{ fontFamily: "'Handlee', cursive" }}
-  className="mt-4 flex-1 px-4 text-xl md:text-3xl">
+  className="flex-1 px-4 text-xl md:text-3xl">
     {imprevisto.name}
     </p>)
 }
