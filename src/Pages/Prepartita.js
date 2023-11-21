@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { randomNumber } from "../Funzioni/RandomNumber";
 import datiPrepartita from "../Data/datiPrepartita";
 import SecondaEstrazione from "../Components/SecondaEstrazione";
-import ImprevistoCommunity from "../Components/ImprevistoCommunity";
+import FetchImprevisto from "../Funzioni/FetchImprevisto"
 import { motion } from "framer-motion";
 import LayoutBase from "../Components/LayoutBase";
 import Dado from "../Components/Dado";
@@ -54,16 +54,18 @@ const PrepartitaCopy = () => {
                   : "hidden"
               }
             >
-              imprevisto!
+              {title === "PAROLA ALLA COMMUNITY!" ? 'Imprevisto della Community' : "IMPREVISTO!"}
             </h2>
+            
+            {title !== "PAROLA ALLA COMMUNITY!" ? 
+            <>
             <h3
               style={{ filter: "drop-shadow(.05rem .05rem 0.1rem #000)" }}
-              className="flex-1 text-4xl font-extrabold uppercase md:text-6xl"
+              className={`flex-1 text-4xl font-extrabold uppercase md:text-6xl ${title === "PAROLA ALLA COMMUNITY!" && 'hidden'}`}
             >
               {title}
             </h3>
-            <p
-              style={{ fontFamily: "'Handlee', cursive" }}
+            <p style={{ fontFamily: "'Handlee', cursive" } }
               className="mt-4 flex-1 px-4 text-2xl md:text-4xl"
             >
               {description}
@@ -74,12 +76,13 @@ const PrepartitaCopy = () => {
                 ? "Attenzione! Non si applica alle partite determinanti (es. turni di ritorno, partite secche, scontri diretti)"
                 : ""}
             </p>
+            </>
+            :
+            <>
+            <FetchImprevisto />
+            </>
+            }
             {ultEstrazione ? <SecondaEstrazione /> : ""}
-            {title === "PAROLA ALLA COMMUNITY!" ? (
-              <ImprevistoCommunity />
-            ) : (
-              ""
-            )}{" "}
           </>
         )}
       </LayoutBase>
