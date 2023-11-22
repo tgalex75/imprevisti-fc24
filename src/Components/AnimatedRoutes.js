@@ -11,9 +11,9 @@ import MediaOverall from "../Pages/MediaOverall";
 import OfferteMercato from "../Pages/OfferteMercato";
 import SerieNegativa from "../Pages/SerieNegativa";
 import BonusAnnuali from "../Pages/BonusAnnuali";
-import Dashboard from "../Pages/Auth/Dashboard";
-import Login from "../Pages/Auth/Login";
-import Signup from "../Pages/Auth/Signup";
+// import Dashboard from "../Pages/Auth/Dashboard";
+// import Login from "../Pages/Auth/Login";
+// import Signup from "../Pages/Auth/Signup";
 import ErrorPage from "../Pages/ErrorPage";
 
 const AnimatedRoutes = () => {
@@ -32,9 +32,9 @@ const AnimatedRoutes = () => {
         <Route path="/serie-negativa" element={<SerieNegativa />} />
         <Route path="/offerte-mercato" element={<OfferteMercato />} />
         <Route path="/bonus-annuali" element={<BonusAnnuali />} />
-        <Route path="/dashboard" element={<Dashboard />} />
+        {/* <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/login" element={<Login />} /> */}
         <Route path="*" element={<ErrorPage />} />
       </Routes>
     </AnimatePresence>
