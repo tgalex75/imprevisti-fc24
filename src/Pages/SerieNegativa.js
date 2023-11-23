@@ -4,7 +4,7 @@ import { randomNumber } from "../Funzioni/RandomNumber";
 import { CartContext } from "../context/regContext";
 import datiSerieNegativa from "../Data/datiSerieNegativa";
 import SecondaEstrazione from "../Components/SecondaEstrazione";
-import RegistroImprevisti from "../Components/RegistroImprevisti";
+import RegistroSerieNegativa from "../Components/RegistroSerieNegativa";
 import { motion } from "framer-motion";
 import { isMobile } from "react-device-detect";
 
@@ -135,7 +135,7 @@ const SerieNegativa = () => {
       </motion.div>
 
       {Dado(estraiNumeroCasuale)}
-      <RegistroImprevisti showModal={showModal} toggle={toggle} />
+      <RegistroSerieNegativa />
     </section>
   );
 };
