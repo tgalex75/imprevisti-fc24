@@ -54,10 +54,10 @@ const MediaOverall = () => {
     >
       <h1>Media Overall</h1>
       {mySelect("Scegli la tattica", selectRef, getSchema, tattiche)}
-      {schema === "4-4-2" && s442(data, handleChange, valori)}
-      {schema === "4-3-3" && s433(data, handleChange, valori)}
       {schema === "4-3-1-2" && s4312(data, handleChange, valori)}
+      {schema === "4-4-2" && s442(data, handleChange, valori)}
       {schema === "4-3-2-1" && s4321(data, handleChange, valori)}
+      {schema === "4-3-3" && s433(data, handleChange, valori)}
       {schema === "3-5-2" && s352(data, handleChange, valori)}
       {schema === "3-4-1-2" && s3412(data, handleChange, valori)}
       {schema === "3-4-2-1" && s3421(data, handleChange, valori)}

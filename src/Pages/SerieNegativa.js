@@ -4,7 +4,7 @@ import { randomNumber } from "../Funzioni/RandomNumber";
 import { CartContext } from "../context/regContext";
 import datiSerieNegativa from "../Data/datiSerieNegativa";
 import SecondaEstrazione from "../Components/SecondaEstrazione";
-import RegistroImprevisti from "../Components/RegistroImprevisti";
+import RegistroSerieNegativa from "../Components/RegistroSerieNegativa";
 import { motion } from "framer-motion";
 import { isMobile } from "react-device-detect";
 
@@ -13,13 +13,7 @@ const SerieNegativa = () => {
 
   const inputRef = useRef(null);
 
-  const { cartItems, addToCart } = useContext(CartContext);
-
-  const [showModal, setShowModal] = useState(false);
-
-  const toggle = () => {
-    setShowModal(!showModal);
-  };
+  const { addToCart } = useContext(CartContext);
 
   // Prima Estrazione
 
@@ -54,7 +48,7 @@ const SerieNegativa = () => {
           </h2>
         ) : (
           <>
-            <div className="flex h-full w-full flex-col items-center justify-around py-4 md:py-2">
+            <div className="flex h-full w-full md:w-3/4 flex-col items-center justify-around py-4 md:self-end md:py-2">
               <h2
                 style={{
                   fontFamily: "'Boogaloo', sans-serif",
@@ -80,34 +74,34 @@ const SerieNegativa = () => {
                     fontFamily: "'Handlee', cursive",
                     filter: "drop-shadow(.05rem .05rem 0.1rem #000)",
                   }}
-                  className="text-md px-4 md:flex-1 md:text-4xl"
+                  className="text-md px-4 md:flex-1 md:text-2xl md:w-3/4"
                 >
                   {description}
                 </p>
               )}
-            </div>
+            
 
             {ultEstrazione && <SecondaEstrazione />}
             {id > 3 && (
-              <div className="w-full md:w-3/4">
+              <div className="w-full md:w-3/4 flex flex-col items-center">
                 <label
                   htmlFor="nome-giocatore"
                   className="mb-1 inline-block text-xs text-gray-300 md:text-sm"
                 >
                   Giocatore da iscrivere sul registro
                 </label>
-                <div className="flex h-1/2 items-center justify-between gap-1 md:gap-2">
+                <div className="flex w-1/2 h-1/2 items-center justify-between gap-1">
                   <input
                     ref={inputRef}
                     type="text"
                     id="nome-giocatore"
-                    className="h-full w-1/3 appearance-none rounded-lg border border-gray-300 border-transparent bg-white px-1 py-2 text-xs text-gray-700 placeholder-gray-400 shadow-sm focus:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 md:w-2/5 md:px-4 md:text-sm"
+                    className="h-full w-full appearance-none rounded-lg border border-gray-300 border-transparent bg-white px-1 py-2 text-xs text-gray-700 placeholder-gray-400 shadow-sm focus:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 md:px-4 md:text-sm"
                     name="nomeGiocatore"
                     placeholder={isMobile ? "Nome..." : "Fuori il nome..."}
                   />
                   <button
                     type="button"
-                    className="flex h-full flex-1 items-center justify-center rounded-lg bg-sky-700 px-4 py-2 text-center text-xs font-semibold text-white shadow-md transition duration-200 ease-in hover:bg-sky-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-indigo-200 md:text-sm "
+                    className="flex h-full w-full items-center justify-center rounded-lg bg-sky-700 px-4 py-2 text-center text-xs font-semibold text-white shadow-md transition duration-200 ease-in hover:bg-sky-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-indigo-200 md:text-sm "
                     onClick={() =>
                       addToCart({
                         title: `${inputRef.current.value} - ${title}`.toUpperCase(),
@@ -117,25 +111,16 @@ const SerieNegativa = () => {
                   >
                     Invia
                   </button>
-                  {!showModal && (
-                    <button
-                      type="button"
-                      className="flex h-full flex-1 items-center justify-center rounded-lg bg-orange-700 px-2 py-2 text-center text-xs font-semibold text-white shadow-md transition duration-200 ease-in hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-indigo-200 md:text-sm "
-                      onClick={toggle}
-                    >
-                      {isMobile ? "Registro" : "Apri Registro"} (
-                      {cartItems.length})
-                    </button>
-                  )}
                 </div>
               </div>
             )}
+            <RegistroSerieNegativa />
+        </div>
           </>
         )}
       </motion.div>
 
       {Dado(estraiNumeroCasuale)}
-      <RegistroImprevisti showModal={showModal} toggle={toggle} />
     </section>
   );
 };
