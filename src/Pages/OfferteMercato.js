@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import Dado from "../Components/Dado";
 import { motion } from "framer-motion";
 import { isMobile } from "react-device-detect";
-import RegistroMercato from "../Components/RegistroMercato";
+import RegistroMercato from "../Components/RegistroGiocatori";
 import { supabase } from "../supabaseClient";
 
 const OfferteMercato = () => {
@@ -17,6 +17,8 @@ const OfferteMercato = () => {
   const inputRef = useRef(null);
 
   const [vociRegistro, setVociRegistro] = useState([]);
+
+  const tipoImprevisto = "Mercato"
 
   useEffect(() => {
     fetchRegistryList();
@@ -149,7 +151,7 @@ const OfferteMercato = () => {
                       id: vociRegistro.length + 1,
                       name: inputRef.current.value,
                       description: isImpr ? "Mercenario" : "Trattativa libera",
-                      tipo: "Mercato",
+                      tipo: tipoImprevisto,
                     })
                   }
                 >
@@ -162,6 +164,7 @@ const OfferteMercato = () => {
               vociRegistro={vociRegistro}
               deleteListDB={deleteListDB}
               removeVociRegistro={removeVociRegistro}
+              tipoImprevisto={tipoImprevisto}
             />
           </>
         )}

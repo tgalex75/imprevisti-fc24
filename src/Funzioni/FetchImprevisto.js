@@ -8,11 +8,11 @@ export default function FetchData() {
     fetchLista();
   }, []);
 
-  useEffect(()=> {
+  useEffect(() => {
     setTimeout(() => {
-        delElemento()
+      delElemento();
     }, 3000);
-  })
+  });
 
   const fetchLista = async () => {
     const { data } = await supabase
@@ -32,9 +32,14 @@ export default function FetchData() {
   };
 
   return (
-  <p
-  style={{ fontFamily: "'Handlee', cursive" }}
-  className="flex-1 px-4 text-xl md:text-3xl">
-    {imprevisto.name}
-    </p>)
+    <p
+      style={{ fontFamily: "'Handlee', cursive" }}
+      className={`h-fit flex-1 overflow-y-auto px-4 ${
+        imprevisto.name && imprevisto.name.length > 200 ? "text-sm md:text-xl" : "text-xl md:text-3xl"
+      }`}
+    >
+      {imprevisto.name}
+
+    </p>
+  );
 }

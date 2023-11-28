@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { randomNumber } from "../Funzioni/RandomNumber";
 import datiPrepartita from "../Data/datiPrepartita";
 import SecondaEstrazione from "../Components/SecondaEstrazione";
-import FetchImprevisto from "../Funzioni/FetchImprevisto"
+import FetchImprevisto from "../Funzioni/FetchImprevisto";
 import { motion } from "framer-motion";
 import LayoutBase from "../Components/LayoutBase";
 import Dado from "../Components/Dado";
@@ -21,7 +21,7 @@ const PrepartitaCopy = () => {
     : {};
 
   const titoloH1 = "Imprevisto Prepartita";
-  const isImpCommunity = title === "PAROLA ALLA COMMUNITY!"
+  const isImpCommunity = title === "PAROLA ALLA COMMUNITY!";
 
   return (
     <>
@@ -55,34 +55,37 @@ const PrepartitaCopy = () => {
                   : "hidden"
               }
             >
-              {isImpCommunity ? 'Imprevisto della Community' : "IMPREVISTO!"}
+              {isImpCommunity ? "Imprevisto della Community" : "IMPREVISTO!"}
             </h2>
-            
-            {!isImpCommunity ? 
-            <>
-            <h3
-              style={{ filter: "drop-shadow(.05rem .05rem 0.1rem #000)" }}
-              className={`flex-1 text-4xl font-extrabold uppercase md:text-6xl ${title === "PAROLA ALLA COMMUNITY!" && 'hidden'}`}
-            >
-              {title}
-            </h3>
-            <p style={{ fontFamily: "'Handlee', cursive" } }
-              className="mt-4 flex-1 px-4 text-2xl md:text-4xl"
-            >
-              {description}
-            </p>
-            {/* Eccezione imprevisto n. 28 */}
-            <p className="italic text-xl">
-              {id === 28
-                ? "Attenzione! Non si applica alle partite determinanti (es. turni di ritorno, partite secche, scontri diretti)"
-                : ""}
-            </p>
-            </>
-            :
-            <>
-            <FetchImprevisto />
-            </>
-            }
+
+            {!isImpCommunity ? (
+              <>
+                <h3
+                  style={{ filter: "drop-shadow(.05rem .05rem 0.1rem #000)" }}
+                  className={`flex-1 text-4xl font-extrabold uppercase md:text-6xl ${
+                    title === "PAROLA ALLA COMMUNITY!" && "hidden"
+                  }`}
+                >
+                  {title}
+                </h3>
+                <p
+                  style={{ fontFamily: "'Handlee', cursive" }}
+                  className="mt-4 flex-1 px-4 text-2xl md:text-4xl"
+                >
+                  {description}
+                </p>
+                {/* Eccezione imprevisto n. 28 */}
+                <p className="text-xl italic">
+                  {id === 28
+                    ? "Attenzione! Non si applica alle partite determinanti (es. turni di ritorno, partite secche, scontri diretti)"
+                    : ""}
+                </p>
+              </>
+            ) : (
+              <>
+                <FetchImprevisto />
+              </>
+            )}
             {ultEstrazione ? <SecondaEstrazione /> : ""}
           </>
         )}

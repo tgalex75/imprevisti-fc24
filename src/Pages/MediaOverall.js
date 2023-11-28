@@ -10,6 +10,7 @@ import {
   s4321,
   s433,
   s442,
+  tattiche,
   mySelect,
   arrayRange,
   data,
@@ -17,7 +18,7 @@ import {
 
 const MediaOverall = () => {
   const selectRef = useRef(null);
-  const [schema, setSchema] = useState("442");
+  const [schema, setSchema] = useState("4-3-1-2");
 
   const getSchema = () => {
     setSchema(selectRef.current.value);
@@ -29,7 +30,6 @@ const MediaOverall = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    /* e.preventDefault(); */
     setValues({
       ...values,
       [name]: value,
@@ -53,23 +53,24 @@ const MediaOverall = () => {
       className="flex h-full w-full flex-col items-center justify-around gap-2 bg-black/30 "
     >
       <h1>Media Overall</h1>
-      {mySelect(selectRef, getSchema)}
-      {schema === "442" && s442(data, handleChange, valori)}
-      {schema === "433" && s433(data, handleChange, valori)}
-      {schema === "4312" && s4312(data, handleChange, valori)}
-      {schema === "4321" && s4321(data, handleChange, valori)}
-      {schema === "352" && s352(data, handleChange, valori)}
-      {schema === "3412" && s3412(data, handleChange, valori)}
-      {schema === "3421" && s3421(data, handleChange, valori)}
-      {schema === "343" && s343(data, handleChange, valori)}
-      {schema === "532" && s532(data, handleChange, valori)}
-      {schema === "5212" && s5212(data, handleChange, valori)}
+      {mySelect("Scegli la tattica", selectRef, getSchema, tattiche)}
+      {schema === "4-3-1-2" && s4312(data, handleChange, valori)}
+      {schema === "4-4-2" && s442(data, handleChange, valori)}
+      {schema === "4-3-2-1" && s4321(data, handleChange, valori)}
+      {schema === "4-3-3" && s433(data, handleChange, valori)}
+      {schema === "3-5-2" && s352(data, handleChange, valori)}
+      {schema === "3-4-1-2" && s3412(data, handleChange, valori)}
+      {schema === "3-4-2-1" && s3421(data, handleChange, valori)}
+      {schema === "3-4-3" && s343(data, handleChange, valori)}
+      {schema === "5-3-2" && s532(data, handleChange, valori)}
+      {schema === "5-2-1-2" && s5212(data, handleChange, valori)}
       <div
         style={result < 1 ? { visibility: "hidden" } : {}}
         className="rounded-xl mb-4 border-2 border-[--clr-prim] px-8 py-2 text-center font-bold ring ring-inset ring-white/75 md:me-8 md:self-end md:border-8 md:px-20"
       >
         <span className="text-md md:text-xl">Media:</span>
         <h4 className="text-6xl md:text-9xl">{result}</h4>
+        <p className="text-sm md:text-md">Limite massimo: {parseInt(result) +3}</p>
       </div>
     </main>
   );

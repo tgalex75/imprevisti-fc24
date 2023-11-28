@@ -51,7 +51,7 @@ const Home = () => {
                             transform: isMobile ? "" : "rotate(180deg)",
                             textShadow: "rgb(34, 34, 34) 0px 4px 4px",
                         }}
-                        className="w-1/6 flex items-center justify-center text-center md:justify-start group-hover:px-6 transition-all group-hover:w-2/6 md:w-auto md:group-hover:w-auto group-hover:border-l-[.7rem] md:group-hover:border-l-[1.5rem] border-[--clr-ter] uppercase font-bold text-[1.7vw] md:text-[2.2vw] md:ps-8 text-gray-200 drop-shadow-lg bg-[rgb(16,84,66,.95)] h-full px-4 md:px-2"
+                        className="w-1/6 flex items-center justify-center text-center md:justify-start group-hover:px-6 transition-all group-hover:w-2/6 md:w-auto md:group-hover:w-auto group-hover:border-l-[.35rem] md:group-hover:border-l-[.5rem] group-hover:border-[--clr-sec] uppercase font-bold text-[1.7vw] md:text-[2.2vw] md:ps-8 text-gray-200 drop-shadow-lg group-hover:bg-[--clr-prim] bg-[rgb(16,84,66,.95)] h-full px-4 md:px-2"
                     >
                         {el.impr}
                     </h2>
