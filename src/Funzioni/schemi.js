@@ -15,7 +15,7 @@ export const testTacticts = (arr, func, val) => {
     <section id="schemi" className="flex h-[40vh] w-3/4 flex-col">
       {listaTattiche[1].formazione.map((el, i, array) => (
       <ModuloTattica
-        key={uuid()}
+        key={i}
         arr={arr}
         start={el === 1 ? 0 : array[i-1]}
         end={el}

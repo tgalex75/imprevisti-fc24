@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import {
   s343,
   s352,
@@ -21,6 +21,10 @@ const MediaOverall = () => {
   const selectRef = useRef(null);
   const [schema, setSchema] = useState("4-3-1-2");
 
+  useEffect(()=> {
+    setValues(null)
+  },[schema])
+
   const getSchema = () => {
     setSchema(selectRef.current.value);
   };
@@ -35,8 +39,6 @@ const MediaOverall = () => {
       ...values,
       [name]: value,
     });
-    setValues(null)
-    calcolaMedia()
   };
 
   let sum = 0;
