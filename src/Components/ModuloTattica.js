@@ -1,4 +1,5 @@
 import React from 'react'
+import uuid from 'react-uuid';
 
 const ModuloTattica = (props) => {
 
@@ -8,7 +9,7 @@ const ModuloTattica = (props) => {
     <div className="flex items-center justify-center gap-2">
         {arr.slice(start, end).map((el) => {
           return (
-            <div key={el.id} className="flex flex-col items-center">
+            <div key={uuid()} className="flex flex-col items-center">
               <label
                 htmlFor={`p${el.id}`}
                 className="md:text-md block text-xs font-semibold text-gray-300"

@@ -1,8 +1,33 @@
+import uuid from "react-uuid";
 import ModuloTattica from "../Components/ModuloTattica";
 import { isMobile } from "react-device-detect";
 
 const giocatoreNum = isMobile ? "G n. " : "Giocatore n. ";
 const overallPlaceholder = isMobile ? "OV " : "Overall";
+
+const listaTattiche = [
+  { nome: "s442", formazione: [1, 5, 9, 11] },
+  { nome: "s4312", formazione: [1, 5, 8, 9, 11] },
+];
+
+export const testTacticts = (arr, func, val) => {
+  return (
+    <section id="schemi" className="flex h-[40vh] w-3/4 flex-col">
+      {listaTattiche[1].formazione.map((el, i, array) => (
+      <ModuloTattica
+        key={uuid()}
+        arr={arr}
+        start={el === 1 ? 0 : array[i-1]}
+        end={el}
+        giocatoreNum={giocatoreNum}
+        func={func}
+        placeholder={overallPlaceholder}
+        val={val}
+      />
+      ))}
+    </section>
+  );
+};
 
 export const s442 = (arr, func, val) => {
   return (
