@@ -1,25 +1,23 @@
 import React, { useState, useRef, useEffect } from "react";
+import { isMobile } from "react-device-detect";
+import ModuloTattica from "../Components/ModuloTattica"
 import {
-  s343,
-  s352,
-  s532,
-  s5212,
-  s3412,
-  s3421,
-  s4312,
-  s4321,
-  s433,
-  s442,
   tattiche,
   mySelect,
   arrayRange,
   data,
-  testTacticts,
+  listaTattiche,
 } from "../Funzioni/schemi";
+
+const giocatoreNum = isMobile ? "G n. " : "Giocatore n. ";
+const overallPlaceholder = isMobile ? "OV " : "Overall";
+
 
 const MediaOverall = () => {
   const selectRef = useRef(null);
   const [schema, setSchema] = useState("4-3-1-2");
+
+  const filteredTactics = listaTattiche.filter((item) => item.nome === schema)
 
   useEffect(()=> {
     setValues(null)
@@ -29,7 +27,7 @@ const MediaOverall = () => {
     setSchema(selectRef.current.value);
   };
 
-  let valori = arrayRange(58, 99, 1);
+  let valoriOverall = arrayRange(58, 99, 1);
 
   const [values, setValues] = useState(null);
 
@@ -52,6 +50,25 @@ const MediaOverall = () => {
 
   const result = calcolaMedia();
 
+  const tactics = (arr, func, val) => {
+  return (
+    <section id="schemi" className="flex h-[40vh] w-3/4 flex-col">
+      {filteredTactics[0].formazione.map((el, i, array) => (
+      <ModuloTattica
+        key={i}
+        arr={arr}
+        start={el === 1 ? 0 : array[i-1]}
+        end={el}
+        giocatoreNum={giocatoreNum}
+        func={func}
+        placeholder={overallPlaceholder}
+        val={val}
+      />
+      ))}
+    </section>
+  );
+};
+
   return (
     <main
       id="media--overall"
@@ -59,16 +76,7 @@ const MediaOverall = () => {
     >
       <h1>Media Overall</h1>
       {mySelect("Scegli la tattica", selectRef, getSchema, tattiche)}
-      {schema === "4-3-1-2" && testTacticts(data, handleChange, valori)}
-      {schema === "4-4-2" && s442(data, handleChange, valori)}
-      {schema === "4-3-2-1" && s4321(data, handleChange, valori)}
-      {schema === "4-3-3" && s433(data, handleChange, valori)}
-      {schema === "3-5-2" && s352(data, handleChange, valori)}
-      {schema === "3-4-1-2" && s3412(data, handleChange, valori)}
-      {schema === "3-4-2-1" && s3421(data, handleChange, valori)}
-      {schema === "3-4-3" && s343(data, handleChange, valori)}
-      {schema === "5-3-2" && s532(data, handleChange, valori)}
-      {schema === "5-2-1-2" && s5212(data, handleChange, valori)}
+      {schema && tactics(data, handleChange, valoriOverall)}
       <div
         style={result < 1 ? { visibility: "hidden" } : {}}
         className="rounded-xl mb-4 border-2 border-[--clr-prim] px-8 py-2 text-center font-bold ring ring-inset ring-white/75 md:me-8 md:self-end md:border-8 md:px-20"
