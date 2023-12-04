@@ -76,9 +76,12 @@ const PrepartitaCopy = () => {
                 </p>
                 {/* Eccezione imprevisto n. 28 */}
                 <p className="text-xl italic">
+                  {id === 26
+                    && "Attenzione! Imprevisto applicabile una sola volta per stagione"
+                    }
                   {id === 28
-                    ? "Attenzione! Non si applica alle partite determinanti (es. turni di ritorno, partite secche, scontri diretti)"
-                    : ""}
+                    && "Attenzione! Non si applica alle partite determinanti (es. turni di ritorno, partite secche, scontri diretti)"
+                    }
                 </p>
               </>
             ) : (
