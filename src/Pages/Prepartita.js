@@ -9,7 +9,7 @@ import Dado from "../Components/Dado";
 import SecondaEstrazioneDiretta from "../Components/SecondaEstrazioneDiretta";
 
 const PrepartitaCopy = () => {
-  const [casuale, setCasuale] = useState(21);
+  const [casuale, setCasuale] = useState(null);
 
   // Prima Estrazione
 
