@@ -6,9 +6,10 @@ import FetchImprevisto from "../Funzioni/FetchImprevisto";
 import { motion } from "framer-motion";
 import LayoutBase from "../Components/LayoutBase";
 import Dado from "../Components/Dado";
+import SecondaEstrazioneDiretta from "../Components/SecondaEstrazioneDiretta";
 
 const PrepartitaCopy = () => {
-  const [casuale, setCasuale] = useState(null);
+  const [casuale, setCasuale] = useState(21);
 
   // Prima Estrazione
 
@@ -22,6 +23,7 @@ const PrepartitaCopy = () => {
 
   const titoloH1 = "Imprevisto Prepartita";
   const isImpCommunity = title === "PAROLA ALLA COMMUNITY!";
+  const numbExtrPlayer = id === 21 ? 5 : 3
 
   return (
     <>
@@ -70,12 +72,12 @@ const PrepartitaCopy = () => {
                 </h3>
                 <p
                   style={{ fontFamily: "'Handlee', cursive" }}
-                  className="mt-4 flex-1 px-4 text-2xl md:text-4xl"
+                  className="mt-4 flex-1 px-4 text-xl md:text-4xl"
                 >
                   {description}
                 </p>
                 {/* Eccezione imprevisto n. 28 */}
-                <p className="text-xl italic">
+                <p className="text-sm md:text-xl italic">
                   {id === 26
                     && "Attenzione! Imprevisto applicabile una sola volta per stagione"
                     }
@@ -89,7 +91,8 @@ const PrepartitaCopy = () => {
                 <FetchImprevisto />
               </>
             )}
-            {ultEstrazione ? <SecondaEstrazione /> : ""}
+            {ultEstrazione && (id !== 21 && id !== 28) ? <SecondaEstrazione /> : ""}
+            {ultEstrazione && (id === 21 || id === 28) ? <SecondaEstrazioneDiretta numbExtrPlayer={numbExtrPlayer} /> : ""}
           </>
         )}
       </LayoutBase>
