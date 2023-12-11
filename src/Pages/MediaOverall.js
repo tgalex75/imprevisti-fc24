@@ -10,7 +10,7 @@ import {
 } from "../Funzioni/schemi";
 
 const giocatoreNum = isMobile ? "G n. " : "Giocatore n. ";
-const overallPlaceholder = isMobile ? "OV #" : "Overall # ";
+const overallPlaceholder = isMobile ? "OV" : "Overall";
 
 const MediaOverall = () => {
   const selectRef = useRef(null);

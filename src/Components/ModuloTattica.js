@@ -21,7 +21,7 @@ const ModuloTattica = (props) => {
                 onChange={func}
                 className="my-2 w-12 rounded-lg border-2 border-transparent bg-[--clr-prim] p-2 text-sm font-semibold text-gray-200 hover:border-gray-300 md:my-4 md:min-w-[10rem] md:text-xs"
               >
-                <option value="">{placeholder} {el.nome}</option>
+                <option value="">{placeholder}</option>
                 {val.map((num) => (
                   <option key={num} value={num}>
                     {num}
