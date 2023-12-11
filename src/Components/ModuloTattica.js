@@ -3,7 +3,6 @@ import React from 'react'
 const ModuloTattica = (props) => {
 
     const {arr, start, end, giocatoreNum, func, placeholder, val} = props
-    console.log(end - start)
 
     return (
     <div className="flex items-center justify-center gap-2">
@@ -22,7 +21,7 @@ const ModuloTattica = (props) => {
                 onChange={func}
                 className="my-2 w-12 rounded-lg border-2 border-transparent bg-[--clr-prim] p-2 text-sm font-semibold text-gray-200 hover:border-gray-300 md:my-4 md:min-w-[10rem] md:text-xs"
               >
-                <option value="">{placeholder}</option>
+                <option value="">{placeholder} {el.nome}</option>
                 {val.map((num) => (
                   <option key={num} value={num}>
                     {num}
