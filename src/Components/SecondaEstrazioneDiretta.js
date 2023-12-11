@@ -13,17 +13,17 @@ const SecondaEstrazioneDiretta = (props) => {
   console.log(extractedPlayer);
 
   return (
-    <section className="flex h-[40vh] w-full flex-col items-center justify-around rounded-md border-2 border-gray-300/20 px-1 md:min-h-[35vh] md:px-12">
+    <section id="secEstrDiretta" className="flex h-[40vh] w-full flex-col items-center justify-around rounded-md border-2 border-gray-300/20 px-1 md:min-h-[35vh] md:px-6">
       <h4 className="my-2 text-xs font-bold uppercase text-gray-300 md:my-4 md:text-xl">
         I giocatori estratti sono i numeri:
       </h4>
-      <main className="flex h-full w-full justify-between items-center">
-        <div className="flex h-full w-3/5 flex-wrap items-center justify-around self-start rounded-lg px-2 md:flex-nowrap md:gap-6">
+      <main id="mainSecEstrDiretta" className="flex h-full w-full gap-2 justify-between items-center">
+        <div id="extractedPlayers" className="flex h-full w-3/5 flex-wrap items-center justify-around self-start rounded-lg md:flex-nowrap md:gap-4">
           {extractedPlayer.map((player, i) => {
             return (
               <div
                 key={i}
-                className="flex w-1/3 flex-col items-center justify-center overflow-hidden rounded bg-contain bg-center bg-no-repeat p-8 transition-all md:h-full md:w-full"
+                className="flex flex-col items-center justify-center overflow-hidden rounded bg-contain bg-center bg-no-repeat p-8 transition-all md:h-full md:w-full"
                 style={{
                   backgroundImage:
                     player === 1 ? `url(${gkKit})` : `url(${firstkit})`,
