@@ -3,6 +3,7 @@ import gkKit from "../assets/imgs/gkKit.png";
 import pickRandom from "pick-random";
 import { data } from "../Funzioni/schemi";
 import IndicatoreGiocatoriImpr from "./IndicatoreGiocatoriImpr";
+import { isMobile } from "react-device-detect";
 
 const SecondaEstrazioneDiretta = (props) => {
   const { numbExtrPlayer } = props;
@@ -13,12 +14,21 @@ const SecondaEstrazioneDiretta = (props) => {
   console.log(extractedPlayer);
 
   return (
-    <section id="secEstrDiretta" className="flex h-[40vh] w-full flex-col items-center justify-around rounded-md border-2 border-gray-300/20 px-1 md:min-h-[35vh] md:px-6">
+    <section
+      id="secEstrDiretta"
+      className="flex h-[40vh] w-full flex-col items-center justify-around rounded-md border-2 border-gray-300/20 px-1 md:min-h-[35vh] md:px-6"
+    >
       <h4 className="my-2 text-xs font-bold uppercase text-gray-300 md:my-4 md:text-xl">
         I giocatori estratti sono i numeri:
       </h4>
-      <main id="mainSecEstrDiretta" className="flex h-full w-full gap-2 justify-between items-center">
-        <div id="extractedPlayers" className="flex h-full w-3/5 flex-wrap items-center justify-around self-start rounded-lg md:flex-nowrap md:gap-4">
+      <main
+        id="mainSecEstrDiretta"
+        className="flex h-full w-full items-center justify-between gap-2"
+      >
+        <div
+          id="extractedPlayers"
+          className="flex h-full w-3/4 flex-wrap items-center justify-around self-start rounded-lg md:flex-nowrap md:gap-4"
+        >
           {extractedPlayer.map((player, i) => {
             return (
               <div
@@ -36,7 +46,9 @@ const SecondaEstrazioneDiretta = (props) => {
             );
           })}
         </div>
-        <IndicatoreGiocatoriImpr extractedPlayer={extractedPlayer} />
+        {!isMobile && (
+          <IndicatoreGiocatoriImpr extractedPlayer={extractedPlayer} />
+        )}
       </main>
     </section>
   );

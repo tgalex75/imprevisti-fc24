@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { isMobile } from "react-device-detect";
-import ModuloTattica from "../Components/ModuloTattica"
+import ModuloTattica from "../Components/ModuloTattica";
 import {
   tattiche,
   mySelect,
@@ -12,16 +12,15 @@ import {
 const giocatoreNum = isMobile ? "G n. " : "Giocatore n. ";
 const overallPlaceholder = isMobile ? "OV #" : "Overall # ";
 
-
 const MediaOverall = () => {
   const selectRef = useRef(null);
   const [schema, setSchema] = useState("4-2-3-1");
 
-  const filteredTactics = listaTattiche.filter((item) => item.nome === schema)
+  const filteredTactics = listaTattiche.filter((item) => item.nome === schema);
 
-  useEffect(()=> {
-    setValues(null)
-  },[schema])
+  useEffect(() => {
+    setValues(null);
+  }, [schema]);
 
   const getSchema = () => {
     setSchema(selectRef.current.value);
@@ -51,23 +50,23 @@ const MediaOverall = () => {
   const result = calcolaMedia();
 
   const tactics = (arr, func, val) => {
-  return (
-    <section id="schemi" className="flex h-[40vh] w-3/4 flex-col">
-      {filteredTactics[0].formazione.map((el, i, array) => (
-      <ModuloTattica
-        key={i}
-        arr={arr}
-        start={el === 1 ? 0 : array[i-1]}
-        end={el}
-        giocatoreNum={giocatoreNum}
-        func={func}
-        placeholder={overallPlaceholder}
-        val={val}
-      />
-      ))}
-    </section>
-  );
-};
+    return (
+      <section id="schemi" className="flex h-[40vh] w-3/4 flex-col">
+        {filteredTactics[0].formazione.map((el, i, array) => (
+          <ModuloTattica
+            key={i}
+            arr={arr}
+            start={el === 1 ? 0 : array[i - 1]}
+            end={el}
+            giocatoreNum={giocatoreNum}
+            func={func}
+            placeholder={overallPlaceholder}
+            val={val}
+          />
+        ))}
+      </section>
+    );
+  };
 
   return (
     <main
@@ -75,15 +74,19 @@ const MediaOverall = () => {
       className="flex h-full w-full flex-col items-center justify-around gap-2 bg-black/30 "
     >
       <h1>Media Overall</h1>
-      {mySelect("Scegli la tattica", selectRef, getSchema, tattiche)}
+      <div className="md:self-end md:pe-6">
+        {mySelect("Scegli la tattica", selectRef, getSchema, tattiche)}
+      </div>
       {schema && tactics(data, handleChange, valoriOverall)}
       <div
         style={result < 1 ? { visibility: "hidden" } : {}}
-        className="rounded-xl mb-4 border-2 border-[--clr-prim] px-8 py-2 text-center font-bold ring ring-inset ring-white/75 md:me-8 md:self-end md:border-8 md:px-20"
+        className="mb-4 rounded-xl border-2 border-[--clr-prim] px-8 py-2 text-center font-bold ring ring-inset ring-white/75 md:me-8 md:self-end md:border-8 md:px-20"
       >
         <span className="text-md md:text-xl">Media:</span>
         <h4 className="text-6xl md:text-9xl">{result}</h4>
-        <p className="text-sm md:text-md">Limite massimo: {parseInt(result) +3}</p>
+        <p className="md:text-md text-sm">
+          Limite massimo: {parseInt(result) + 3}
+        </p>
       </div>
     </main>
   );

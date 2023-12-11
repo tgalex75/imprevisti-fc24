@@ -16,7 +16,7 @@ export const tattiche = listaTattiche.map((el) => el.nome);
 
 export const mySelect = (labelText, ref, func, arr) => {
   return (
-    <div className="flex w-4/5 flex-col items-center md:items-end ">
+    <div className="flex gap-1 flex-col">
       <label
         htmlFor="tattica"
         className="block text-xs font-medium text-gray-300"
