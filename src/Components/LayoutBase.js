@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 const LayoutBase = ({ titoloH1, id, isImprev, casuale, children }) => {
   return (
-    <section className="flex h-full w-full select-none flex-col items-center justify-around gap-2 px-4 py-6 font-bold md:p-8">
+    <section className="flex h-[100dvh] w-full select-none flex-col items-center justify-around gap-2 px-4 py-6 font-bold md:p-8">
       {/* BOX PRIMA ESTRAZIONE */}
       <h1>{titoloH1}</h1>
       <motion.div
