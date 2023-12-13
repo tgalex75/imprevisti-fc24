@@ -16,9 +16,9 @@ const SecondaEstrazioneDiretta = (props) => {
   return (
     <section
       id="secEstrDiretta"
-      className="flex h-[40vh] w-full flex-col items-center justify-around rounded-md border-2 border-gray-300/20 px-1 md:min-h-[35vh] md:px-6"
+      className="flex h-[40vh] w-full flex-col items-center justify-around rounded-md border-2 border-gray-300/20 px-1 md:min-h-[25vh] md:px-6"
     >
-      <h4 className="my-2 text-xs font-bold uppercase text-gray-300 md:my-4 md:text-xl">
+      <h4 className="my-1 text-xs font-bold uppercase text-gray-300 md:my-0 md:mb-1 md:text-xl">
         I giocatori estratti sono i numeri:
       </h4>
       <main

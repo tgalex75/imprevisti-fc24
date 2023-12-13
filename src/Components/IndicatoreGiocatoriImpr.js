@@ -36,8 +36,8 @@ const IndicatoreGiocatoriImpr = (props) => {
   };
 
   return (
-    <div className="flex flex-col h-full w-1/4 items-center justify-around">
-      <div className="flex w-full flex-col-reverse justify-center">
+    <div className="flex flex-col h-full w-1/4 items-center justify-between py-2">
+      <div className="flex w-full flex-col-reverse justify-center gap-2">
         {schema &&
           filteredTactics[0].formazione.map((el, i, array) =>
             tactics(data, el === 1 ? 0 : array[i - 1], el),

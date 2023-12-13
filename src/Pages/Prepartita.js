@@ -8,7 +8,7 @@ import LayoutBase from "../Components/LayoutBase";
 import Dado from "../Components/Dado";
 import SecondaEstrazioneDiretta from "../Components/SecondaEstrazioneDiretta";
 
-const PrepartitaCopy = () => {
+const Prepartita = () => {
   const [casuale, setCasuale] = useState(null);
 
   // Prima Estrazione
@@ -101,4 +101,4 @@ const PrepartitaCopy = () => {
   );
 };
 
-export default PrepartitaCopy;
+export default Prepartita;
