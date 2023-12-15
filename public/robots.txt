@@ -1,3 +1,4 @@
-# https://www.robotstxt.org/robotstxt.html
+Sitemap: https://fc24-ce.netlify.app/sitemap.txt
+
 User-agent: *
-Disallow:
+Allow: /
