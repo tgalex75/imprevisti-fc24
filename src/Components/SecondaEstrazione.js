@@ -36,8 +36,8 @@ const SecondaEstrazione = () => {
   const extractedPlayer = [secondExtractedNumber];
 
   return (
-    <section className="flex h-[40vh] w-full items-center justify-around gap-2 rounded-md border-2 border-gray-300/20 px-1 md:min-h-[30vh] md:w-3/4 md:px-12">
-      <div className="flex h-full flex-col items-center justify-around rounded-lg px-2">
+    <section className="flex h-[40vh] w-full items-center justify-around gap-2 rounded-md border-2 border-gray-300/20 px-1 md:min-h-[50vh] md:w-3/4 md:px-12">
+      <div className="flex h-fit gap-6 flex-col items-center justify-around rounded-lg px-2">
         <div className="flex w-full flex-col items-center justify-around">
           <label
             htmlFor="name-with-label"
@@ -58,7 +58,7 @@ const SecondaEstrazione = () => {
         <button
           type="button"
           onClick={genSecondRandomNumber}
-          className="min-h-[2rem] w-full rounded-lg bg-sky-700 px-4 text-center text-sm font-semibold text-gray-100 shadow-md transition duration-200 ease-in hover:bg-sky-600 focus:outline-none focus:ring-2 focus:ring-[--clr-ter] focus:ring-offset-2 focus:ring-offset-sky-800  md:h-12 "
+          className="min-h-[2rem] w-full rounded-lg bg-sky-700 px-4 text-center text-sm font-semibold text-gray-100 shadow-md transition duration-200 ease-in hover:bg-sky-600 focus:outline-none focus:ring-2 focus:ring-[--clr-ter] focus:ring-offset-2 focus:ring-offset-sky-800 md:h-12 "
         >
           Estrai
         </button>
@@ -80,7 +80,7 @@ const SecondaEstrazione = () => {
                   ? { color: "var(--clr-sec" }
                   : {}
               }
-              className="block pt-2 font-['Oswald'] text-4xl font-bold text-gray-300 md:text-7xl"
+              className="block pt-2 font-['Oswald'] text-4xl font-bold text-gray-300 md:text-8xl"
             >
               {secondExtractedNumber}
             </span>

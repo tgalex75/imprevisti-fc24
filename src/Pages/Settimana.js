@@ -52,7 +52,7 @@ const Settimana = () => {
               }}
               className={
                 isImprev
-                  ? "flex-1 text-5xl font-extrabold uppercase md:text-7xl"
+                  ? "md:flex-1 text-5xl font-extrabold uppercase md:text-7xl md:absolute md:top-2"
                   : "hidden"
               }
             >
@@ -63,7 +63,7 @@ const Settimana = () => {
               <>
                 <h3
                   style={{ filter: "drop-shadow(.05rem .05rem 0.1rem #000)" }}
-                  className="flex-1 text-4xl font-extrabold uppercase md:text-6xl"
+                  className="md:flex-1 text-4xl font-extrabold uppercase md:text-6xl"
                 >
                   {title}
                 </h3>
@@ -72,7 +72,7 @@ const Settimana = () => {
                     fontFamily: "'Handlee', cursive",
                     filter: "drop-shadow(.05rem .05rem 0.1rem #000)",
                   }}
-                  className="mt-4 flex-1 text-2xl md:text-4xl"
+                  className="mt-4 md:flex-1 text-2xl md:text-4xl"
                 >
                   {description}
                 </p>

@@ -16,7 +16,7 @@ const SecondaEstrazioneDiretta = (props) => {
   return (
     <section
       id="secEstrDiretta"
-      className="flex h-[40vh] w-full flex-col items-center justify-around rounded-md border-2 border-gray-300/20 px-1 md:min-h-[30vh] md:px-6"
+      className="flex h-fit w-full flex-col items-center justify-around rounded-md border-2 border-gray-300/20 px-1 md:min-h-[50vh] md:px-6"
     >
       <h4 className="my-1 text-xs font-bold uppercase text-gray-300 md:my-0 md:mb-1 md:text-xl">
         I giocatori estratti sono i numeri:
@@ -27,7 +27,7 @@ const SecondaEstrazioneDiretta = (props) => {
       >
         <div
           id="extractedPlayers"
-          className="flex h-full w-3/4 flex-wrap items-center justify-around self-start rounded-lg md:flex-nowrap md:gap-4"
+          className="flex h-full md:w-3/4 flex-wrap items-center justify-around md:self-start rounded-lg md:flex-nowrap md:gap-4"
         >
           {extractedPlayer.map((player, i) => {
             return (

@@ -42,7 +42,7 @@ const Prepartita = () => {
               style={{
                 filter: "drop-shadow(.05rem .05rem 0.1rem #000)",
               }}
-              className="flex h-8 w-8 items-center justify-center rounded-full bg-gray-300/20 p-8 text-4xl md:self-start md:p-12 md:text-6xl"
+              className="flex h-8 w-8 items-center justify-center rounded-full bg-gray-300/20 p-8 text-4xl md:self-start md:p-10 md:text-5xl"
             >
               {id}
             </motion.p>
@@ -53,18 +53,17 @@ const Prepartita = () => {
               }}
               className={
                 isImprev
-                  ? "flex-1 text-5xl font-extrabold uppercase md:text-7xl"
+                  ? "md:flex-1 text-5xl font-extrabold uppercase md:text-6xl md:absolute md:top-2"
                   : "hidden"
               }
             >
               {isImpCommunity ? "Imprevisto della Community" : "IMPREVISTO!"}
             </h2>
-
             {!isImpCommunity ? (
               <>
                 <h3
                   style={{ filter: "drop-shadow(.05rem .05rem 0.1rem #000)" }}
-                  className={`flex-1 text-4xl font-extrabold uppercase md:text-6xl ${
+                  className={`md:flex-1 text-4xl font-extrabold uppercase md:text-5xl ${
                     title === "PAROLA ALLA COMMUNITY!" && "hidden"
                   }`}
                 >
@@ -72,7 +71,7 @@ const Prepartita = () => {
                 </h3>
                 <p
                   style={{ fontFamily: "'Handlee', cursive" }}
-                  className="mt-4 flex-1 px-4 text-xl md:text-4xl"
+                  className="mt-4 md:flex-1 px-4 text-xl md:text-3xl"
                 >
                   {description}
                 </p>
