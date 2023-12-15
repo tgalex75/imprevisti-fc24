@@ -20,7 +20,7 @@ const LayoutBase = ({ titoloH1, id, isImprev, casuale, children }) => {
         key={id}
         id="containerPrimaEstrazione"
         style={isImprev && { color: "var(--clr-ter)" }}
-        className="flex h-full w-full select-none flex-col items-center gap-6 md:gap-2 rounded-xl bg-black/50 px-4 py-2 text-center shadow-lg ring ring-inset ring-white/75 md:justify-evenly md:px-10"
+        className="flex h-full w-full select-none flex-col items-center gap-6 md:gap-2 rounded-xl bg-black/10 px-4 py-2 text-center shadow-lg ring ring-inset ring-white/75 md:justify-evenly md:px-10"
       >
         {!casuale && (
           <h2

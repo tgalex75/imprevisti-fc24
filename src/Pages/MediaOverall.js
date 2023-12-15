@@ -80,7 +80,7 @@ const MediaOverall = () => {
       {schema && tactics(data, handleChange, valoriOverall)}
       <div
         style={result < 1 ? { visibility: "hidden" } : {}}
-        className="mb-4 rounded-xl border-2 border-[--clr-prim] px-8 py-2 text-center font-bold ring ring-inset ring-white/75 md:me-8 md:self-end md:border-8 md:px-20"
+        className="mb-4 rounded-xl border-2 border-[--clr-ter] px-8 py-2 text-center font-bold ring ring-inset ring-white/75 md:me-8 md:self-end md:border-8 md:px-20"
       >
         <span className="text-md md:text-xl">Media:</span>
         <h4 className="text-6xl md:text-9xl">{result}</h4>
