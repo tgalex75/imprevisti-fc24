@@ -31,7 +31,7 @@ const SerieNegativa = () => {
     : {};
 
   return (
-    <section className="flex h-full w-full select-none flex-col items-center justify-between gap-4 px-4 pb-24 font-bold md:justify-around md:pb-12">
+    <section className="flex h-full w-full select-none flex-col items-center justify-around gap-2 px-4 py-6 font-bold md:p-8">
       <h1>Imprevisto Serie Negativa</h1>
 
       {/* BOX PRIMA ESTRAZIONE */}
@@ -46,7 +46,7 @@ const SerieNegativa = () => {
       >
         {!casuale ? (
           <h2
-            style={{ fontFamily: "'Handlee', cursive" }}
+            
             className="text-5xl italic"
           >
             Lancia il dado...
@@ -55,23 +55,22 @@ const SerieNegativa = () => {
           <>
             <h2
               style={{
-                fontFamily: "'Gochi Hand', cursive",
                 filter: "drop-shadow(.05rem .05rem 0.1rem #000)",
               }}
               className={
                 isImprev
-                  ? "text-5xl font-extrabold uppercase tracking-wider md:text-7xl"
+                  ? "text-3xl font-extrabold uppercase tracking-wider md:text-4xl"
                   : "invisible"
               }
             >
               imprevisto!
             </h2>
-            <h3 className="text-4xl font-extrabold uppercase md:text-6xl">
+            <h3 className="text-2xl font-extrabold uppercase md:text-3xl">
               {title}
             </h3>
             <p
-              style={{ fontFamily: "'Handlee', cursive" }}
-              className="mt-4 text-xl md:text-4xl"
+              
+              className="mt-4 text-md md:text-xl italic"
             >
               {description}
             </p>

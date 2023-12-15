@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import firstkit from "../assets/imgs/firstKit.png";
 import awaykit from "../assets/imgs/awayKit.png";
 import thirdkit from "../assets/imgs/thirdKit.png";
+import gkKit from "../assets/imgs/gkKit.png";
+import IndicatoreGiocatoriImpr from "./IndicatoreGiocatoriImpr";
+import { isMobile } from "react-device-detect";
 
 const SecondaEstrazione = () => {
   const [inputField, setInputField] = useState({
@@ -30,13 +33,15 @@ const SecondaEstrazione = () => {
     setRandomJersey(Math.floor(Math.random() * 3) + 1);
   };
 
+  const extractedPlayer = [secondExtractedNumber];
+
   return (
-    <section className="flex min-h-[20vh] w-full md:w-3/4 items-center justify-center rounded-md border-2 gap-4 md:gap-12 border-gray-300/20 px-4 md:px-12 py-2">
-      <div className="flex h-full flex-col items-center justify-around gap-4 rounded-lg">
-        <div className="flex flex-col items-center justify-around">
+    <section className="flex h-[40vh] w-full items-center justify-around gap-2 rounded-md border-2 border-gray-300/20 px-1 md:min-h-[50vh] md:w-3/4 md:px-12">
+      <div className="flex h-fit gap-6 flex-col items-center justify-around rounded-lg px-2">
+        <div className="flex w-full flex-col items-center justify-around">
           <label
             htmlFor="name-with-label"
-            className="mb-1 self-start text-gray-300"
+            className="mb-1 self-start text-xs text-gray-300 md:text-sm"
           >
             A chi toccherà oggi?
           </label>
@@ -45,7 +50,7 @@ const SecondaEstrazione = () => {
             value={inputField.randomPlayerNum}
             type="number"
             id="input-estrazione-giocatore"
-            className="min-h-[3rem] w-full flex-1 appearance-none rounded-lg border-gray-300 border-transparent bg-white px-4 py-2 text-lg text-gray-700 placeholder-gray-400 shadow-sm focus:border-transparent focus:outline-none focus:ring-4 focus:ring-sky-700 "
+            className="md:text-md min-h-[2rem] w-full flex-1 appearance-none rounded-lg border-gray-300 bg-white px-4 text-sm text-gray-800 placeholder-gray-400 shadow-sm focus:border-transparent focus:outline-none focus:ring-4 focus:ring-sky-700 md:min-h-[3rem] "
             name="randomPlayerNum"
             placeholder="Quanti giocatori?"
           />
@@ -53,25 +58,37 @@ const SecondaEstrazione = () => {
         <button
           type="button"
           onClick={genSecondRandomNumber}
-          className="min-h-[3rem] w-full rounded-lg bg-[--clr-sec] px-4 py-2 text-center text-base font-semibold text-white shadow-md transition duration-200 ease-in hover:bg-[--clr-prim] focus:outline-none focus:ring-2 focus:ring-[--clr-prim] focus:ring-offset-2  focus:ring-offset-green-200 "
+          className="min-h-[2rem] w-full rounded-lg bg-sky-700 px-4 text-center text-sm font-semibold text-gray-100 shadow-md transition duration-200 ease-in hover:bg-sky-600 focus:outline-none focus:ring-2 focus:ring-[--clr-ter] focus:ring-offset-2 focus:ring-offset-sky-800 md:h-12 "
         >
           Estrai
         </button>
       </div>
       {secondExtractedNumber && (
-        <div
-          className="flex h-full w-1/3 flex-col items-center overflow-hidden rounded bg-contain bg-center bg-no-repeat p-12 transition-all"
-          style={{
-            backgroundImage: `url(${teamKits[randomJersey - 1]})`,
-          }}
-        >
-          <span
-            style={randomJersey === 2 ? { color: "var(--clr-sec" } : {}}
-            className="block mt-6 md:mt-8 font-['Oswald'] text-5xl md:text-7xl font-bold text-gray-300"
+        <>
+          <div
+            className="flex h-full w-1/2 flex-col items-center justify-center overflow-hidden rounded bg-contain bg-center bg-no-repeat p-6 transition-all"
+            style={{
+              backgroundImage:
+                secondExtractedNumber === 1
+                  ? `url(${gkKit})`
+                  : `url(${teamKits[randomJersey - 1]})`,
+            }}
           >
-            {secondExtractedNumber}
-          </span>
-        </div>
+            <span
+              style={
+                secondExtractedNumber > 1 && randomJersey === 2
+                  ? { color: "var(--clr-sec" }
+                  : {}
+              }
+              className="block pt-2 font-['Oswald'] text-4xl font-bold text-gray-300 md:text-8xl"
+            >
+              {secondExtractedNumber}
+            </span>
+          </div>
+          {!isMobile && (
+            <IndicatoreGiocatoriImpr extractedPlayer={extractedPlayer} />
+          )}
+        </>
       )}
     </section>
   );

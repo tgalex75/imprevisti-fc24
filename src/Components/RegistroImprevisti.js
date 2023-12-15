@@ -99,7 +99,7 @@ const RegistroImprevisti = ({ showModal, toggle }) => {
           </div>
         ) : (
           <h1
-            style={{ fontFamily: "'Handlee', cursive" }}
+            
             className="text-lg font-bold pb-4"
           >
             La lista è vuota

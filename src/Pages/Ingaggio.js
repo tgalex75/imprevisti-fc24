@@ -26,7 +26,7 @@ const Ingaggio = () => {
       >
         {!casuale && (
           <h2
-            style={{ fontFamily: "'Handlee', cursive" }}
+            
             className="text-5xl italic"
           >
             Lancia il dado...
@@ -50,18 +50,18 @@ const Ingaggio = () => {
               }}
               className={
                 isImpr
-                  ? "text-5xl md:text-7xl font-extrabold uppercase tracking-wider"
+                  ? "text-5xl md:text-6xl font-extrabold uppercase tracking-wider"
                   : "hidden"
               }
             >
               imprevisto!
             </h2>
-            <h3 className="text-4xl md:text-7xl font-extrabold uppercase">
+            <h3 className="text-4xl md:text-6xl font-extrabold uppercase">
               VISITE NON SUPERATE
             </h3>
             <p
-              style={{ fontFamily: "'Handlee', cursive" }}
-              className="mt-4 text-2xl md:text-4xl"
+              
+              className="mt-4 text-2xl md:text-3xl"
             >
               la trattativa salta e non può essere ritentata fino alla prossima
               finestra di mercato.
@@ -78,12 +78,12 @@ const Ingaggio = () => {
               >
                 {casuale}
               </motion.p>
-              <h3 className="text-4xl md:text-7xl font-extrabold uppercase">
+              <h3 className="text-4xl md:text-6xl font-extrabold uppercase">
                 Nessun problema
               </h3>
               <p
-                style={{ fontFamily: "'Handlee', cursive" }}
-                className="mt-4 text-2xl md:text-4xl"
+                
+                className="mt-4 text-2xl md:text-3xl"
               >
                 La trattativa viene chiusa senza conseguenze.
               </p>

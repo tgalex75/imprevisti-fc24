@@ -60,7 +60,7 @@ const Home = () => {
                     textShadow: "rgb(34, 34, 34) 1px 1px 3px",
                   }
             }
-            className="border-[--clr-prim] bg-[rgb(16,84,66,.95)] px-4 py-1 text-left text-sm font-bold uppercase text-gray-200 drop-shadow-lg group-hover:border-b-[.5rem] md:h-full md:py-0 md:ps-8 md:text-[2.2vw] md:group-hover:border-b-0 md:group-hover:border-l-[1rem]"
+            className="border-[--clr-prim] bg-[--clr-sec] px-4 py-1 text-left text-sm font-bold uppercase text-gray-200 drop-shadow-lg group-hover:border-b-[.5rem] md:h-full md:py-0 md:ps-8 md:text-[2.2vw] md:group-hover:border-b-0 md:group-hover:border-l-[1rem]"
           >
             {el.impr}
           </h2>

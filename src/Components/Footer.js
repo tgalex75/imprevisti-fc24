@@ -9,7 +9,7 @@ const Footer = () => {
         coded by tgalex75 - Falconero Community - beta version
       </small>
       <small
-        className="pe-4 italic hidden md:inline text-xl md:text-yellow-400 md:font-bold"
+        className="pe-4 italic hidden md:inline text-xl md:text-[--clr-ter] md:font-bold"
       >
         Community Edition
       </small>

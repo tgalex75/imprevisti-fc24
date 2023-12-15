@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import Dado from "../Components/Dado";
 import { randomNumber } from "../Funzioni/RandomNumber";
 import datiSettimana from "../Data/datiSettimana";
-import ImprevistoCommunity from "../Components/ImprevistoCommunity";
+import SecondaEstrazione from "../Components/SecondaEstrazione";
+import FetchData from "../Funzioni/FetchData";
 import { motion } from "framer-motion";
+import LayoutBase from "../Components/LayoutBase";
 
 const Settimana = () => {
   const [casuale, setCasuale] = useState(null);
@@ -18,73 +20,78 @@ const Settimana = () => {
     ? datiSettimana[casuale - 1]
     : {};
 
+  const titoloH1 = "Imprevisto Settimanale";
+  const isImpCommunity = title === "PAROLA ALLA COMMUNITY!";
+
   return (
-    <section className="flex h-full w-full select-none flex-col items-center justify-between md:justify-around gap-4 pb-24 md:pb-12 px-4 font-bold">
-      <h1 className="">Imprevisto Settimana</h1>
-      {/* BOX PRIMA ESTRAZIONE */}
-      <motion.div
-        initial={{ opacity: 0, x: "-10vw" }}
-        animate={{ opacity: 1, x: 0 }}
-        id="containerPrimaEstrazione"
-        key={casuale}
-        style={isImprev ? { color: "var(--clr-prim)" } : {}}
-        className="flex h-full w-full md:w-3/4 select-none flex-col items-center justify-around rounded-xl border-4 md:border-8 border-[--clr-sec] bg-black/50 px-10 text-center shadow-lg ring ring-inset ring-white/75"
+    <>
+      <LayoutBase
+        titoloH1={titoloH1}
+        id={id}
+        isImprev={isImprev}
+        casuale={casuale}
       >
-        {!casuale ? (
-          <h2
-            style={{ fontFamily: "'Handlee', cursive" }}
-            className="text-5xl italic"
-          >
-            Lancia il dado...
-          </h2>
-        ) : (
+        {casuale && (
           <>
             <motion.p
               initial={{ opacity: 0, x: "50vw" }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ type: "spring" }}
-              className="flex h-8 w-8 items-center justify-center md:self-start rounded-full bg-gray-300/20 p-8 text-4xl"
+              style={{
+                filter: "drop-shadow(.05rem .05rem 0.1rem #000)",
+              }}
+              className="flex h-8 w-8 items-center justify-center rounded-full bg-gray-300/20 p-8 text-4xl md:self-start md:p-12 md:text-6xl"
             >
               {id}
             </motion.p>
 
             <h2
               style={{
-                fontFamily: "'Gochi Hand', cursive",
                 filter: "drop-shadow(.05rem .05rem 0.1rem #000)",
               }}
               className={
                 isImprev
-                  ? "text-5xl md:text-7xl font-extrabold uppercase tracking-wider"
+                  ? "text-5xl font-extrabold uppercase md:absolute md:top-2 md:flex-1 md:text-6xl"
                   : "hidden"
               }
             >
-              imprevisto!
+              {isImpCommunity ? "Imprevisto della Community" : "IMPREVISTO!"}
             </h2>
-            <h3 className="text-4xl md:text-6xl font-extrabold uppercase">{title}</h3>
-            <p
-              style={{ fontFamily: "'Handlee', cursive" }}
-              className="mt-4 text-2xl md:text-4xl"
-            >
-              {description}
-            </p>
-            {/* Eccezione imprevisto n. 28 */}
-            <p className="italic">
-              {id === 8 || id === 16
-                ? "Non applicabile se il giocatore estratto è in prestito. In tal caso si ripete l’estrazione."
-                : ""}
-            </p>
-            {title === "PAROLA ALLA COMMUNITY!" ? ( //DELAY CON FRAMER MOTION?
-              <ImprevistoCommunity />
+
+            {!isImpCommunity ? (
+              <>
+                <h3
+                  style={{ filter: "drop-shadow(.05rem .05rem 0.1rem #000)" }}
+                  className="text-4xl font-extrabold uppercase md:flex-1 md:text-6xl"
+                >
+                  {title}
+                </h3>
+                <p
+                  style={{
+                    filter: "drop-shadow(.05rem .05rem 0.1rem #000)",
+                  }}
+                  className="mt-4 text-2xl md:flex-1 md:text-3xl italic"
+                >
+                  {description}
+                </p>
+                {/* Eccezione imprevisto n. 28 */}
+                <p className="text-xl italic">
+                  {id === 8 || id === 16
+                    ? "Non applicabile se il giocatore estratto è in prestito. In tal caso si ripete l’estrazione."
+                    : ""}
+                </p>
+              </>
             ) : (
-              ""
+              <>
+                <FetchData />
+                <SecondaEstrazione />
+              </>
             )}
           </>
         )}
-      </motion.div>
-
+      </LayoutBase>
       {Dado(estraiNumeroCasuale)}
-    </section>
+    </>
   );
 };
 
