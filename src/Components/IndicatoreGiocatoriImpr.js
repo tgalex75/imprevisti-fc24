@@ -3,7 +3,7 @@ import { mySelect, tattiche, listaTattiche, data } from "../Funzioni/schemi";
 
 const IndicatoreGiocatoriImpr = (props) => {
   const { extractedPlayer } = props;
-  const [schema, setSchema] = useState("4-2-3-1");
+  const [schema, setSchema] = useState("4-2-1-3");
   const selectRef = useRef(null);
   const getSchema = () => {
     setSchema(selectRef.current.value);

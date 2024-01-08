@@ -14,7 +14,7 @@ const overallPlaceholder = isMobile ? "OV" : "Overall";
 
 const MediaOverall = () => {
   const selectRef = useRef(null);
-  const [schema, setSchema] = useState("4-2-3-1");
+  const [schema, setSchema] = useState("4-2-1-3");
 
   const filteredTactics = listaTattiche.filter((item) => item.nome === schema);
 
