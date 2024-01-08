@@ -76,7 +76,7 @@ const Prepartita = () => {
                   {description}
                 </p>
                 {/* Eccezione imprevisto n. 28 */}
-                <p className="text-sm md:text-xl italic">
+                <p className="text-sm md:text-lg italic">
                   {id === 26
                     && "Attenzione! Imprevisto applicabile una sola volta per stagione"
                     }
