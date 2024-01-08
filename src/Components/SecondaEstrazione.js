@@ -36,7 +36,7 @@ const SecondaEstrazione = () => {
   const extractedPlayer = [secondExtractedNumber];
 
   return (
-    <section className="flex h-[40vh] w-full items-center justify-around gap-2 rounded-md border-2 border-gray-300/20 px-1 md:min-h-[50vh] md:w-3/4 md:px-12">
+    <section className="flex h-[40vh] w-full items-center justify-around gap-2 rounded-md border-2 border-gray-300/20 px-1 md:min-h-[30vh] md:w-3/4 md:px-12">
       <div className="flex h-fit gap-6 flex-col items-center justify-around rounded-lg px-2">
         <div className="flex w-full flex-col items-center justify-around">
           <label
