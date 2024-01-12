@@ -1,10 +1,22 @@
-import { useState, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { mySelect, tattiche, listaTattiche, data } from "../Funzioni/schemi";
 
 const IndicatoreGiocatoriImpr = (props) => {
+
   const { extractedPlayer } = props;
-  const [schema, setSchema] = useState("4-2-1-3");
+
+  const [schema, setSchema] = useState(() => {
+    const saved = localStorage.getItem("schema");
+    const initialValue = JSON.parse(saved);
+    return initialValue || "4-2-1-3";
+  });
+
+  useEffect(() => {
+    localStorage.setItem("schema", JSON.stringify(schema));
+  }, [schema]);
+
   const selectRef = useRef(null);
+
   const getSchema = () => {
     setSchema(selectRef.current.value);
   };
@@ -37,6 +49,7 @@ const IndicatoreGiocatoriImpr = (props) => {
 
   return (
     <div className="flex flex-col h-full w-1/4 items-center justify-between py-2">
+        <h5>{schema}</h5>
       <div className="flex w-full flex-col-reverse justify-center">
         {schema &&
           filteredTactics[0].formazione.map((el, i, array) =>

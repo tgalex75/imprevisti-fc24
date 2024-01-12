@@ -1,4 +1,5 @@
 export const listaTattiche = [
+  { nome: "Scegli lo schema", formazione: [] },
   { nome: "4-2-1-3", formazione: [1, 5, 7, 8, 11] },
   { nome: "4-2-3-1", formazione: [1, 5, 7, 10, 11] },
   { nome: "4-3-1-2", formazione: [1, 5, 8, 9, 11] },
