@@ -25,13 +25,13 @@ const Rinnovi = () => {
   }, [vociRegistro]);
 
   const fetchRegistryList = async () => {
-    const { data } = await supabase.from("registro").select("*");
+    const { data } = await supabase.from("registroo").select("*");
     setVociRegistro(data ? data : []);
   };
 
   const uploadListDB = async (list) => {
     const { data, error } = await supabase
-      .from("registro")
+      .from("registroo")
       .insert([
         {
           id: list.id,
@@ -46,7 +46,7 @@ const Rinnovi = () => {
 
   const deleteListDB = async () => {
     const { error } = await supabase
-      .from("registro")
+      .from("registroo")
       .delete("id")
       .lt("id", 1000);
     error && console.log(error);
@@ -54,7 +54,7 @@ const Rinnovi = () => {
 
   const removeVociRegistro = async (element) => {
     const { error } = await supabase
-      .from("registro")
+      .from("registroo")
       .delete()
       .eq("id", element);
     error && console.log(error);

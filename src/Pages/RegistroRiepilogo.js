@@ -26,13 +26,13 @@ const Regolamento = () => {
   }, []);
 
   const fetchRegistryList = async () => {
-    const { data } = await supabase.from("registro").select("*");
+    const { data } = await supabase.from("registroo").select("*");
     setVociRegistro(data ? data : []);
   };
 
   const removeVociRegistro = async (element) => {
     const { error } = await supabase
-      .from("registro")
+      .from("registroo")
       .delete()
       .eq("id", element);
     error && console.log(error);

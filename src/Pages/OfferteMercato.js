@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { isMobile } from "react-device-detect";
 import RegistroMercato from "../Components/RegistroGiocatori";
 import { supabase } from "../supabaseClient";
+import { v4 as uuidv4 } from 'uuid';
 
 const OfferteMercato = () => {
   const [casuale, setCasuale] = useState(null);
@@ -25,13 +26,13 @@ const OfferteMercato = () => {
   }, [vociRegistro]);
 
   const fetchRegistryList = async () => {
-    const { data } = await supabase.from("registro").select("*");
+    const { data } = await supabase.from("registroo").select("*");
     setVociRegistro(data ? data : []);
   };
 
   const uploadListDB = async (list) => {
     const { data, error } = await supabase
-      .from("registro")
+      .from("registroo")
       .insert([
         {
           id: list.id,
@@ -46,7 +47,7 @@ const OfferteMercato = () => {
 
   const deleteListDB = async () => {
     const { error } = await supabase
-      .from("registro")
+      .from("registroo")
       .delete("id")
       .lt("id", 1000);
     error && console.log(error);
@@ -54,7 +55,7 @@ const OfferteMercato = () => {
 
   const removeVociRegistro = async (element) => {
     const { error } = await supabase
-      .from("registro")
+      .from("registroo")
       .delete()
       .eq("id", element);
     error && console.log(error);
@@ -148,7 +149,7 @@ const OfferteMercato = () => {
                   className="h-10 w-1/2 rounded-lg bg-sky-700 px-2 py-2 text-center text-sm font-semibold text-white shadow-md transition duration-200 ease-in hover:bg-sky-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2  focus:ring-offset-indigo-200 "
                   onClick={() =>
                     uploadListDB({
-                      id: vociRegistro.length + 1,
+                      id: uuidv4(),
                       name: inputRef.current.value,
                       description: isImpr ? "Mercenario" : "Trattativa libera",
                       tipo: tipoImprevisto,
