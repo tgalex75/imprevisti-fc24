@@ -161,14 +161,14 @@ const Rinnovi = () => {
                 </button>
               </div>
             </div>
-            <RegistroGiocatori
-              vociRegistro={vociRegistro}
-              deleteListDB={deleteListDB}
-              removeVociRegistro={removeVociRegistro}
-              tipoImprevisto={tipoImprevisto}
-            />
           </>
         )}
+        <RegistroGiocatori
+          vociRegistro={vociRegistro}
+          deleteListDB={deleteListDB}
+          removeVociRegistro={removeVociRegistro}
+          tipoImprevisto={tipoImprevisto}
+        />
       </motion.div>
       {Dado(estraiNumeroCasuale)}
     </section>

@@ -161,14 +161,14 @@ const OfferteMercato = () => {
               </div>
             </div>
 
-            <RegistroMercato
-              vociRegistro={vociRegistro}
-              deleteListDB={deleteListDB}
-              removeVociRegistro={removeVociRegistro}
-              tipoImprevisto={tipoImprevisto}
-            />
           </>
         )}
+        <RegistroMercato
+          vociRegistro={vociRegistro}
+          deleteListDB={deleteListDB}
+          removeVociRegistro={removeVociRegistro}
+          tipoImprevisto={tipoImprevisto}
+        />
       </motion.div>
       {Dado(estraiNumeroCasuale)}
     </section>
