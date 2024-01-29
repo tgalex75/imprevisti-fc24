@@ -6,7 +6,7 @@ const Footer = () => {
   return (
     <footer id="Footer" className="z-10 fixed bottom-0 right-0 text-sm flex w-full items-center justify-center md:justify-between">
       <small className=" md:ps-4 opacity-70 md:opacity-50">
-        coded by tgalex75 - Falconero Community - beta version
+        coded by tgalex75 - beta version
       </small>
       <small
         className="pe-4 italic hidden md:inline text-xl md:text-[--clr-ter] md:font-bold"
