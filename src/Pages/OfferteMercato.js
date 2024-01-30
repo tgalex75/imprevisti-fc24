@@ -42,14 +42,14 @@ const OfferteMercato = () => {
         },
       ])
       .select();
-    data ? console.log("data: ", data) : console.log("error: ", error);
+    data ? console.log() : console.log("error: ", error);
   };
 
   const deleteListDB = async () => {
     const { error } = await supabase
       .from("registroo")
-      .delete("id")
-      .lt("id", 1000);
+      .delete("name")
+      .neq("name", null);
     error && console.log(error);
   };
 

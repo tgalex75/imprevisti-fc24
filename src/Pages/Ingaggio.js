@@ -42,14 +42,14 @@ const Ingaggio = () => {
         },
       ])
       .select();
-    data ? console.log("data: ", data) : console.log("error: ", error);
+    data ? console.log() : console.log("error: ", error);
   };
 
   const deleteListDB = async () => {
     const { error } = await supabase
       .from("registroo")
-      .delete("id")
-      .lt("id", 1000);
+      .delete("name")
+      .neq("name", null);
     error && console.log(error);
   };
 
@@ -60,6 +60,7 @@ const Ingaggio = () => {
       .eq("id", element);
     error && console.log(error);
   };
+
 
   return (
     <section className="flex h-full w-full select-none flex-col items-center justify-around gap-2 px-4 py-6 font-bold md:p-8">
