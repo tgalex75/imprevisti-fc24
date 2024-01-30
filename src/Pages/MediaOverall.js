@@ -67,7 +67,10 @@ const MediaOverall = () => {
 
   const tactics = (arr, func, val) => {
     return (
-      <section id="schemi" className="flex h-[40vh] w-3/4 flex-col-reverse">
+      <section
+        id="schemi"
+        className="absolute left-1/2 top-1/2 flex h-1/2 w-3/4 -translate-x-1/2 -translate-y-1/2 flex-col-reverse items-center"
+      >
         {filteredTactics[0].formazione.map((el, i, array) => (
           <ModuloTattica
             key={i}
@@ -80,41 +83,42 @@ const MediaOverall = () => {
             val={val}
           />
         ))}
+        <h3 className="mb-4 text-3xl font-black">{schema}</h3>
       </section>
     );
   };
 
   return (
-    <main
-      id="media--overall"
-      className="flex h-full w-full flex-col items-center justify-around md:gap-2 bg-black/30 "
-    >
-      <h1 className="my-6 md:mt-8 md:mb-0">Media Overall</h1>
-      <div className="flex flex-col gap-1 md:self-end md:pe-6">
-        {mySelect("Scegli la tattica", selectRef, getSchema, tattiche)}
-        {mySelect("Scegli il massimale", selectRefMassimale, getMassimale, [
-          "",
-          "+3",
-          "+4",
-          "+5",
-        ])}
-      </div>
-      <h3 className="mb-24 text-3xl font-black">{schema}</h3>
-      {schema && tactics(data, handleChange, valoriOverall)}
-      <div
-        style={result < 1 ? { visibility: "hidden" } : {}}
-        className="mb-4 rounded-xl border-2 border-[--clr-prim] px-8 py-2 text-center font-bold ring ring-inset ring-white/75 md:me-8 md:self-end md:border-8 md:px-20"
+    <>
+      <main
+        id="media--overall"
+        className="flex h-full w-full flex-col items-center justify-between gap-4 border bg-black/30 py-6"
       >
-        <span className="text-md md:text-xl">Media:</span>
-        <h4 className="text-6xl md:text-9xl">{result}</h4>
-        <p className="md:text-md text-sm">
-          Limite massimo: {parseInt(result) + parseInt(massimale)}
-        </p>
-        <small className="text-xs font-normal">
-          Massimale applicato: +{parseInt(massimale)}
-        </small>
-      </div>
-    </main>
+        <h1 className="">Media Overall</h1>
+        <div className="absolute right-2 top-1/3 flex flex-col gap-1 md:self-end md:pe-6">
+          {mySelect("Scegli la tattica", selectRef, getSchema, tattiche)}
+          {mySelect("Scegli il massimale", selectRefMassimale, getMassimale, [
+            "+3",
+            "+4",
+            "+5",
+          ])}
+        </div>
+        {schema && tactics(data, handleChange, valoriOverall)}
+        <div
+          style={result < 1 ? { visibility: "hidden" } : {}}
+          className="rounded-xl border-2 border-[--clr-prim] px-8 text-center font-bold ring ring-inset ring-white/75 md:mb-4 md:me-8 md:self-end md:border-8 md:p-2 md:px-20"
+        >
+          <span className="text-md md:text-xl">Media:</span>
+          <h4 className="text-6xl md:text-9xl">{result}</h4>
+          <p className="md:text-md text-sm">
+            Limite massimo: {parseInt(result) + parseInt(massimale)}
+          </p>
+          <small className="text-xs font-normal">
+            Massimale applicato: +{parseInt(massimale)}
+          </small>
+        </div>
+      </main>
+    </>
   );
 };
 
