@@ -87,10 +87,10 @@ const MediaOverall = () => {
   return (
     <main
       id="media--overall"
-      className="flex h-full w-full flex-col items-center justify-around gap-2 bg-black/30 "
+      className="flex h-full w-full flex-col items-center justify-around md:gap-2 bg-black/30 "
     >
-      <h1>Media Overall</h1>
-      <div className="flex flex-col gap-3 md:self-end md:pe-6">
+      <h1 className="my-6 md:mt-8 md:mb-0">Media Overall</h1>
+      <div className="flex flex-col gap-1 md:self-end md:pe-6">
         {mySelect("Scegli la tattica", selectRef, getSchema, tattiche)}
         {mySelect("Scegli il massimale", selectRefMassimale, getMassimale, [
           "",
