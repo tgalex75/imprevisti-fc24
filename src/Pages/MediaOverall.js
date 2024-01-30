@@ -111,7 +111,7 @@ const MediaOverall = () => {
           Limite massimo: {parseInt(result) + parseInt(massimale)}
         </p>
         <small className="text-xs font-normal">
-          Massimale applicato: {massimale}
+          Massimale applicato: +{parseInt(massimale)}
         </small>
       </div>
     </main>
