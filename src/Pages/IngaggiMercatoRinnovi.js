@@ -1,10 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 import Dado from "../Components/Dado";
 import { motion } from "framer-motion";
 import { isMobile } from "react-device-detect";
 import RegistroGiocatori from "../Components/RegistroGiocatori";
 import { supabase } from "../supabaseClient";
 import { v4 as uuidv4 } from "uuid";
+import { MdArrowForward } from "react-icons/md";
 
 const IngaggiMercatoRinnovi = (props) => {
   const [casuale, setCasuale] = useState(null);
@@ -26,28 +28,41 @@ const IngaggiMercatoRinnovi = (props) => {
       tipo: "Rinnovi",
       msgIsImpr: "Mercenario",
       msgNoImpr: "Trattativa Libera",
-      descrIsImpr:"Raddoppia l'ingaggio o cessione obbligatoria",
+      descrIsImpr: "Raddoppia l'ingaggio o cessione obbligatoria",
       descrNoImpr: "Gestisci la trattativa liberamente",
+      linkTo: "/rinnovi",
+      linkDesc: "Imprevisti Rinnovi",
     },
     {
       tipo: "Mercato",
       msgIsImpr: "Mercenario",
       msgNoImpr: "Bilancio in Ordine",
-      descrIsImpr:"Accetta l'offerta o raddoppia l'ingaggio appena possibile",
+      descrIsImpr: "Accetta l'offerta o raddoppia l'ingaggio appena possibile",
       descrNoImpr: "Totale libertà di scelta",
+      linkTo: "/offerte-mercato",
+      linkDesc: "Imprevisti Calciomercato",
     },
     {
       tipo: "Ingaggio",
       msgIsImpr: "Visite non superate",
       msgNoImpr: "Visite OK",
-      descrIsImpr:"La trattativa salta e non può essere ritentata fino alla prossima finestra di mercato.",
+      descrIsImpr:
+        "La trattativa salta e non può essere ritentata fino alla prossima finestra di mercato.",
       descrNoImpr: "La trattativa viene chiusa senza conseguenze.",
+      linkTo: "/ingaggio",
+      linkDesc: "Imprevisti di Ingaggio",
     },
   ];
 
-  const msgImprevisto = listaMsgImprevisto.filter(el => el.tipo == tipoImprevisto)
+  const msgImprevisto = listaMsgImprevisto.filter(
+    (el) => el.tipo === tipoImprevisto,
+  );
 
-  const {tipo, msgNoImpr, msgIsImpr, descrIsImpr, descrNoImpr} = msgImprevisto[0]
+  const { msgNoImpr, msgIsImpr, descrIsImpr, descrNoImpr } = msgImprevisto[0];
+
+  const linksRapidi = listaMsgImprevisto.filter(
+    (el) => el.tipo !== tipoImprevisto,
+  );
 
   useEffect(() => {
     fetchRegistryList();
@@ -138,9 +153,7 @@ const IngaggiMercatoRinnovi = (props) => {
               }}
               className="mt-4 px-4 text-2xl md:w-3/5 md:text-4xl"
             >
-              {isImpr
-                ? descrIsImpr
-                : descrNoImpr}
+              {isImpr ? descrIsImpr : descrNoImpr}
             </p>
             {/* Pulsanti per inserimento nome giocatore nel registro */}
             <div className="hidden text-start md:flex md:w-1/3 md:flex-col">
@@ -175,6 +188,47 @@ const IngaggiMercatoRinnovi = (props) => {
                 </button>
               </div>
             </div>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.7, duration: 0.7 }}
+              className="absolute right-1 top-1 hidden h-auto w-[20vw] items-start gap-2 overflow-hidden rounded-lg bg-black/50 p-2 uppercase text-gray-300 md:flex md:flex-col"
+            >
+              <h6 className="uppercase text-[--clr-prim] self-center">
+                Links Rapidi
+              </h6>
+
+              {linksRapidi.map((el, i) => {
+                return (
+                  <motion.div
+                    whileHover={{ x: ".5rem" }}
+                    transition={{
+                      type: "spring",
+                      duration: 0.4,
+                      ease: "easeIn",
+                    }}
+                    key={i}
+                    className="flex w-full items-center justify-start gap-4 hover:text-[--clr-ter]"
+                  >
+                    <MdArrowForward />
+                    <Link to={el.linkTo}>{el.linkDesc}</Link>
+                  </motion.div>
+                );
+              })}
+              <motion.div
+                    whileHover={{ x: ".5rem" }}
+                    transition={{
+                      type: "spring",
+                      duration: 0.4,
+                      ease: "easeIn",
+                    }}
+                    key="prepartita"
+                    className="flex w-full items-center justify-start gap-4 hover:text-[--clr-ter]"
+                  >
+                    <MdArrowForward />
+                    <Link to="/prepartita">Prepartita</Link>
+                  </motion.div>
+            </motion.div>
           </>
         )}
         <RegistroGiocatori
@@ -184,6 +238,7 @@ const IngaggiMercatoRinnovi = (props) => {
           tipoImprevisto={tipoImprevisto}
         />
       </motion.div>
+
       {Dado(estraiNumeroCasuale)}
     </section>
   );

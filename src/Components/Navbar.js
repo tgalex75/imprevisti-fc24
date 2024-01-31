@@ -47,7 +47,7 @@ const Navbar = () => {
         <Link to={voce.linkTo}>
           <motion.li
             layout
-            whileHover={{ scale: isMobile ? 1.2 : 1.5 }}
+            whileHover={{ scale: 1.2}}
             transition={{ type: "spring", duration: 0.4, ease: "easeIn", stiffness: 200 }}
             className="text-lg px-8 md:text-xl font-bold uppercase hover:text-[--clr-sec] p-4"
           >
@@ -111,7 +111,7 @@ const Navbar = () => {
         <ul
           style={isOpenMenu ? { right: 0 } : { right: "-100%" }}
           onClick={handleClick}
-          className="absolute top-0 z-[-1] flex h-screen w-full flex-col items-center py-6 justify-around bg-black/95 text-center text-gray-300 transition-[0.5s]"
+          className="absolute top-0 z-[-1] flex h-screen w-full md:w-[30vw] flex-col items-center py-6 justify-around bg-black/95 text-center text-gray-300 transition-[0.5s]"
         >
           {linksMenu}
         </ul>
