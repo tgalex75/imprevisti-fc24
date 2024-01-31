@@ -4,9 +4,9 @@ import { motion } from "framer-motion";
 import { isMobile } from "react-device-detect";
 import RegistroGiocatori from "../Components/RegistroGiocatori";
 import { supabase } from "../supabaseClient";
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from "uuid";
 
-const Ingaggio = () => {
+const IngaggiMercatoRinnovi = (props) => {
   const [casuale, setCasuale] = useState(null);
 
   const estraiNumeroCasuale = () => {
@@ -19,7 +19,35 @@ const Ingaggio = () => {
 
   const [vociRegistro, setVociRegistro] = useState([]);
 
-  const tipoImprevisto = "Ingaggio";
+  const tipoImprevisto = props.tipoImprevisto;
+
+  const listaMsgImprevisto = [
+    {
+      tipo: "Rinnovi",
+      msgIsImpr: "Mercenario",
+      msgNoImpr: "Trattativa Libera",
+      descrIsImpr:"Raddoppia l'ingaggio o cessione obbligatoria",
+      descrNoImpr: "Gestisci la trattativa liberamente",
+    },
+    {
+      tipo: "Mercato",
+      msgIsImpr: "Mercenario",
+      msgNoImpr: "Bilancio in Ordine",
+      descrIsImpr:"Accetta l'offerta o raddoppia l'ingaggio appena possibile",
+      descrNoImpr: "Totale libertà di scelta",
+    },
+    {
+      tipo: "Ingaggio",
+      msgIsImpr: "Visite non superate",
+      msgNoImpr: "Visite OK",
+      descrIsImpr:"La trattativa salta e non può essere ritentata fino alla prossima finestra di mercato.",
+      descrNoImpr: "La trattativa viene chiusa senza conseguenze.",
+    },
+  ];
+
+  const msgImprevisto = listaMsgImprevisto.filter(el => el.tipo == tipoImprevisto)
+
+  const {tipo, msgNoImpr, msgIsImpr, descrIsImpr, descrNoImpr} = msgImprevisto[0]
 
   useEffect(() => {
     fetchRegistryList();
@@ -61,10 +89,9 @@ const Ingaggio = () => {
     error && console.log(error);
   };
 
-
   return (
     <section className="flex h-full w-full select-none flex-col items-center justify-around gap-2 px-4 py-6 font-bold md:p-8">
-      <h1>{isMobile ? "Ingaggio" : "Imprevisti Ingaggio"}</h1>
+      <h1>{isMobile ? tipoImprevisto : `Imprevisti ${tipoImprevisto}`}</h1>
       {/* BOX PRIMA ESTRAZIONE */}
       <motion.div
         initial={{ opacity: 0, x: "-10vw" }}
@@ -85,17 +112,6 @@ const Ingaggio = () => {
         )}
         {casuale && (
           <>
-            <motion.p
-              initial={{ opacity: 0, x: "50vw" }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ type: "spring" }}
-              style={{
-                filter: "drop-shadow(.05rem .05rem 0.1rem #000)",
-              }}
-              className="flex h-8 w-8 items-center justify-around rounded-full bg-gray-300/20 p-8 text-4xl md:p-12 md:text-6xl"
-            >
-              {casuale}
-            </motion.p>
             <h2
               style={{
                 fontFamily: "'Boogaloo', sans-serif",
@@ -113,7 +129,7 @@ const Ingaggio = () => {
               style={{ filter: "drop-shadow(.05rem .05rem 0.1rem #000)" }}
               className="text-4xl font-extrabold uppercase md:text-6xl"
             >
-              {isImpr ? "VISITE NON SUPERATE" : "Nessun problema"}
+              {isImpr ? msgIsImpr : msgNoImpr}
             </h3>
             <p
               style={{
@@ -123,8 +139,8 @@ const Ingaggio = () => {
               className="mt-4 px-4 text-2xl md:w-3/5 md:text-4xl"
             >
               {isImpr
-                ? "La trattativa salta e non può essere ritentata fino alla prossima finestra di mercato."
-                : "La trattativa viene chiusa senza conseguenze."}
+                ? descrIsImpr
+                : descrNoImpr}
             </p>
             {/* Pulsanti per inserimento nome giocatore nel registro */}
             <div className="hidden text-start md:flex md:w-1/3 md:flex-col">
@@ -150,7 +166,7 @@ const Ingaggio = () => {
                     uploadListDB({
                       id: uuidv4(),
                       name: inputRef.current.value,
-                      description: isImpr ? "Visite non superate" : "Visite OK",
+                      description: isImpr ? msgIsImpr : msgNoImpr,
                       tipo: tipoImprevisto,
                     })
                   }
@@ -159,7 +175,6 @@ const Ingaggio = () => {
                 </button>
               </div>
             </div>
-
           </>
         )}
         <RegistroGiocatori
@@ -174,4 +189,4 @@ const Ingaggio = () => {
   );
 };
 
-export default Ingaggio;
+export default IngaggiMercatoRinnovi;

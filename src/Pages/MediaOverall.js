@@ -22,11 +22,19 @@ const MediaOverall = () => {
     return initialValue || "4-2-1-3";
   });
 
-  const [massimale, setMassimale] = useState(4);
+  const [massimale, setMassimale] = useState(() => {
+    const saved = localStorage.getItem("massimale");
+    const initialValue = JSON.parse(saved);
+    return initialValue || "4";
+  });
 
   useEffect(() => {
     localStorage.setItem("schema", JSON.stringify(schema));
   }, [schema]);
+
+  useEffect(() => {
+    localStorage.setItem("massimale", JSON.stringify(massimale));
+  }, [massimale]);
 
   const filteredTactics = listaTattiche.filter((item) => item.nome === schema);
 
@@ -69,8 +77,9 @@ const MediaOverall = () => {
     return (
       <section
         id="schemi"
-        className="absolute left-1/2 top-1/2 flex h-1/2 w-3/4 -translate-x-1/2 -translate-y-1/2 flex-col-reverse items-center"
+        className="absolute left-1/2 top-1/2 flex w-4/5 -translate-x-1/2 -translate-y-1/2 flex-col-reverse items-center"
       >
+        <h3 className="mt-4 text-2xl font-bold">{schema}</h3>
         {filteredTactics[0].formazione.map((el, i, array) => (
           <ModuloTattica
             key={i}
@@ -83,7 +92,6 @@ const MediaOverall = () => {
             val={val}
           />
         ))}
-        <h3 className="mb-4 text-3xl font-black">{schema}</h3>
       </section>
     );
   };
@@ -92,12 +100,13 @@ const MediaOverall = () => {
     <>
       <main
         id="media--overall"
-        className="flex h-full w-full flex-col items-center justify-between gap-4 border bg-black/30 py-6"
+        className="flex h-full w-full flex-col items-center justify-between gap-4 bg-black/30 py-4"
       >
-        <h1 className="">Media Overall</h1>
+        <h1 className="relative pb-4">Media Overall</h1>
         <div className="absolute right-2 top-1/3 flex flex-col gap-1 md:self-end md:pe-6">
           {mySelect("Scegli la tattica", selectRef, getSchema, tattiche)}
           {mySelect("Scegli il massimale", selectRefMassimale, getMassimale, [
+            "",
             "+3",
             "+4",
             "+5",
@@ -106,14 +115,14 @@ const MediaOverall = () => {
         {schema && tactics(data, handleChange, valoriOverall)}
         <div
           style={result < 1 ? { visibility: "hidden" } : {}}
-          className="rounded-xl border-2 border-[--clr-prim] px-8 text-center font-bold ring ring-inset ring-white/75 md:mb-4 md:me-8 md:self-end md:border-8 md:p-2 md:px-20"
+          className="rounded-xl border-2 border-[--clr-prim] px-8 text-center font-bold ring ring-inset ring-white/75 md:mb-4 md:me-8 md:self-end md:border-4 md:p-2 md:px-20"
         >
           <span className="text-md md:text-xl">Media:</span>
-          <h4 className="text-6xl md:text-9xl">{result}</h4>
-          <p className="md:text-md text-sm">
+          <h4 className="text-5xl md:text-8xl">{result}</h4>
+          <p className="md:text-lg text-md">
             Limite massimo: {parseInt(result) + parseInt(massimale)}
           </p>
-          <small className="text-xs font-normal">
+          <small className="text-sm font-medium">
             Massimale applicato: +{parseInt(massimale)}
           </small>
         </div>
