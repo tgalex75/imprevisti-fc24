@@ -8,7 +8,6 @@ import RegistroRiepilogo from "../Pages/RegistroRiepilogo";
 import IngaggiMercatoRinnovi from "../Pages/IngaggiMercatoRinnovi";
 import MediaOverall from "../Pages/MediaOverall";
 import SerieNegativa from "../Pages/SerieNegativa";
-import BonusAnnuali from "../Pages/BonusAnnuali";
 // import Dashboard from "../Pages/Auth/Dashboard";
 // import Login from "../Pages/Auth/Login";
 // import Signup from "../Pages/Auth/Signup";
@@ -29,7 +28,6 @@ const AnimatedRoutes = () => {
                 <Route path="/rinnovi" element={<IngaggiMercatoRinnovi tipoImprevisto="Rinnovi" />} />
                 <Route path="/serie-negativa" element={<SerieNegativa />} />
                 <Route path="/offerte-mercato" element={<IngaggiMercatoRinnovi tipoImprevisto="Mercato" />} />
-                <Route path="/bonus-annuali" element={<BonusAnnuali />} />
                 <Route path="*" element={<ErrorPage />} />
             </Routes>
         </AnimatePresence>

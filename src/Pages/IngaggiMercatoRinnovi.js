@@ -7,6 +7,7 @@ import RegistroGiocatori from "../Components/RegistroGiocatori";
 import { supabase } from "../supabaseClient";
 import { v4 as uuidv4 } from "uuid";
 import { MdArrowForward } from "react-icons/md";
+import BonusAnnuali from "../Components/BonusAnnuali";
 
 const IngaggiMercatoRinnovi = (props) => {
   const [casuale, setCasuale] = useState(null);
@@ -174,7 +175,7 @@ const IngaggiMercatoRinnovi = (props) => {
                 />
                 <button
                   type="button"
-                  className="h-10 w-1/2 rounded-lg bg-sky-700 px-2 py-2 text-center text-sm font-semibold text-white shadow-md transition duration-200 ease-in hover:bg-sky-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2  focus:ring-offset-indigo-200 "
+                  className="h-10 w-1/2 rounded-lg bg-sky-700 px-2 py-2 text-center text-sm font-bold text-gray-300 shadow-md transition duration-200 ease-in hover:bg-sky-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2  focus:ring-offset-indigo-200 "
                   onClick={() =>
                     uploadListDB({
                       id: uuidv4(),
@@ -229,6 +230,7 @@ const IngaggiMercatoRinnovi = (props) => {
                     <Link to="/prepartita">Prepartita</Link>
                   </motion.div>
             </motion.div>
+            <BonusAnnuali />
           </>
         )}
         <RegistroGiocatori
