@@ -47,7 +47,7 @@ const BonusAnnuali = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ delay: 0.7, duration: 0.7 }}
-      className="absolute top-36 mt-2 right-1 hidden h-1/5 w-[20vw] items-center justify-between overflow-hidden rounded-lg bg-black/50 p-2 uppercase text-gray-300 md:flex md:flex-col"
+      className="absolute top-36 mt-2 right-1 hidden h-2/5 w-[20vw] items-center justify-between overflow-hidden rounded-lg bg-black/50 p-2 uppercase text-gray-300 md:flex md:flex-col"
     >
       <h6 className="font-bold uppercase text-[--clr-prim]">
         Bonus Annuali
@@ -72,10 +72,10 @@ const BonusAnnuali = () => {
             </motion.div>
           ))}
       </section>
-      <div className="flex h-1/5 w-full font-semibold items-center justify-between gap-2 px-4 text-[.8rem]">
+      <div className="flex h-1/6 w-full font-semibold items-center justify-between gap-2 px-4 text-[.8rem]">
         <button
           type="button"
-          className="h-full w-full rounded border border-sky-700 px-2 py-2 text-center text-white shadow-md transition duration-200 ease-in hover:bg-sky-700 flex items-center justify-center"
+          className="h-5/6 w-full rounded border border-sky-700 px-3  text-center text-white shadow-md transition duration-200 ease-in hover:bg-sky-700 flex items-center justify-center"
           style={limiteRaggiunto ? { pointerEvents: "none", opacity: 0.3 } : {}}
           onClick={() =>
             addVociBonus({
@@ -87,7 +87,7 @@ const BonusAnnuali = () => {
         </button>
         <button
           type="button"
-          className="h-full w-full rounded border border-[--clr-prim] px-2 py-2 text-center text-white shadow-md transition duration-200 ease-in hover:bg-[--clr-prim] flex items-center justify-center"
+          className="h-5/6 w-full rounded border border-[--clr-prim] px-3  text-center text-white shadow-md transition duration-200 ease-in hover:bg-[--clr-prim] flex items-center justify-center"
           onClick={azzeraVociBonus}
         >
           Azzera
