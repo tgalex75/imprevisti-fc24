@@ -5,6 +5,7 @@ import Home from "../Pages/Home";
 import Prepartita from "../Pages/Prepartita";
 import Settimana from "../Pages/Settimana";
 import RegistroRiepilogo from "../Pages/RegistroRiepilogo";
+import RiepilogoImprevisti from "../Pages/RiepilogoImprevisti";
 import IngaggiMercatoRinnovi from "../Pages/IngaggiMercatoRinnovi";
 import MediaOverall from "../Pages/MediaOverall";
 import SerieNegativa from "../Pages/SerieNegativa";
@@ -23,6 +24,7 @@ const AnimatedRoutes = () => {
                 <Route path="/prepartita" element={<Prepartita />} />
                 <Route path="/settimana" element={<Settimana />} />
                 <Route path="/registro-giocatori" element={<RegistroRiepilogo />} />
+                <Route path="/riepilogo-imprevisti" element={<RiepilogoImprevisti />} />
                 <Route path="/calcolo-media" element={<MediaOverall />} />
                 <Route path="/ingaggio" element={<IngaggiMercatoRinnovi tipoImprevisto="Ingaggio" />} />
                 <Route path="/rinnovi" element={<IngaggiMercatoRinnovi tipoImprevisto="Rinnovi" />} />
