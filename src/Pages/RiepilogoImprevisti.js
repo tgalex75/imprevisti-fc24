@@ -70,18 +70,20 @@ const RiepilogoImprevisti = () => {
             )}
           </ul>
         </div>
-        <div className="flex h-full w-full flex-col gap-2 relative">
+        <div className="relative flex h-full w-full flex-col gap-2">
           <h3 className="text-center uppercase text-[--clr-ter]">
             Imprevisti della Community
           </h3>
-          <strong className="absolute top-0 font-semibold right-1"># {vociRegistro.length}</strong>
+          <strong className="absolute right-1 top-0 font-semibold">
+            # {vociRegistro.length}
+          </strong>
           <ul className="flex h-full w-full flex-col gap-1 overflow-y-auto px-2 pb-2">
             {vociRegistro.map((el) => (
               <li
                 key={el.id}
-                className="flex items-center justify-between bg-gray-700/20 py-1 ps-2 text-left text-sm uppercase"
+                className="flex items-center justify-between bg-gray-700/20 py-1 ps-2 text-left text-sm font-normal uppercase"
               >
-                {el.name}
+                <span className="w-[95%]">{el.name}</span>
                 <MdClear
                   size={20}
                   className="cursor-pointer fill-red-700 transition-all hover:scale-125 hover:fill-red-600"
