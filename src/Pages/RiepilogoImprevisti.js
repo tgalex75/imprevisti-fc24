@@ -39,35 +39,42 @@ const RiepilogoImprevisti = () => {
             Imprevisti Prepartita
           </h3>
           <ul className="flex h-full w-full flex-col gap-1 overflow-y-auto px-2 pb-2">
-            {datiPrepartita.map((el) => (
-              <li
-                key={el.id}
-                className="flex items-center gap-2 justify-start bg-gray-700/20 py-1 ps-2 text-left text-sm odd:bg-gray-800/20"
-              >
-                 <strong className="uppercase">{el.title.toUpperCase() !== "NESSUN IMPREVISTO" && el.title}</strong>
-                <em className="font-medium">{el.title.toUpperCase() !== "NESSUN IMPREVISTO" && el.description}</em>
-              </li>
-            ))}
+            {datiPrepartita.map(
+              (el) =>
+                el.title.toUpperCase() !== "NESSUN IMPREVISTO" && (
+                  <li
+                    key={el.id}
+                    className="flex items-center justify-start gap-2 bg-gray-700/20 py-1 ps-2 text-left text-sm"
+                  >
+                    <strong className="uppercase">{el.title}</strong>
+                    <em className="font-medium">{el.description}</em>
+                  </li>
+                ),
+            )}
           </ul>
           <h3 className="text-center uppercase text-[--clr-ter]">
             Imprevisti Settimana
           </h3>
           <ul className="flex h-full w-full flex-col gap-1 overflow-y-auto px-2 pb-2">
-            {datiSettimana.map((el) => (
-               <li
-               key={el.id}
-               className="flex items-center gap-2 justify-start bg-gray-700/20 py-1 ps-2 text-left text-sm odd:bg-gray-800/20"
-             >
-                <strong className="uppercase">{el.title.toUpperCase() !== "NESSUN IMPREVISTO" && el.title}</strong>
-               <em className="font-medium">{el.title.toUpperCase() !== "NESSUN IMPREVISTO" && el.description}</em>
-             </li>
-            ))}
+            {datiSettimana.map(
+              (el) =>
+                el.title.toUpperCase() !== "NESSUN IMPREVISTO" && (
+                  <li
+                    key={el.id}
+                    className="flex items-center justify-start gap-2 bg-gray-700/20 py-1 ps-2 text-left text-sm"
+                  >
+                    <strong className="uppercase">{el.title}</strong>
+                    <em className="font-medium">{el.description}</em>
+                  </li>
+                ),
+            )}
           </ul>
         </div>
-        <div className="flex h-full w-full flex-col gap-2">
+        <div className="flex h-full w-full flex-col gap-2 relative">
           <h3 className="text-center uppercase text-[--clr-ter]">
             Imprevisti della Community
           </h3>
+          <strong className="absolute top-0 font-semibold right-1"># {vociRegistro.length}</strong>
           <ul className="flex h-full w-full flex-col gap-1 overflow-y-auto px-2 pb-2">
             {vociRegistro.map((el) => (
               <li
