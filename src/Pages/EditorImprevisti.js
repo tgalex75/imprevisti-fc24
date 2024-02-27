@@ -64,27 +64,27 @@ const EditorImprevisti = () => {
         {/* Lista Imprevisti Attuale */}
 
         <div className="relative flex h-3/5 w-full flex-col gap-2">
-          <h3 className="text-center uppercase text-[--clr-prim]">
+          <h3 className="text-center uppercase text-[--clr-ter]">
             Imprevisti della Community
           </h3>
           <strong className="absolute right-1 top-0 font-semibold">
             # {vociRegistro.length}
           </strong>
-          <ul className="flex h-full w-full flex-col-reverse gap-1 overflow-y-auto p-4 border">
+          <ul className="flex h-full w-full flex-col gap-1 overflow-y-auto border p-4">
             {vociRegistro.map((el) => (
               <li
                 key={el.id}
-                className="text-md flex items-center justify-between bg-gray-700/20 ps-2 text-left font-normal hover:bg-gray-600/50 gap-2"
+                className="text-md flex items-center justify-between gap-2 bg-gray-700/20 ps-2 text-left font-normal hover:bg-gray-600/50"
               >
                 <input
-                  className="w-1/6 rounded pe-6 bg-transparent border border-gray-300/20 p-1"
+                  className="w-1/6 rounded border border-gray-300/20 bg-transparent p-1 pe-6 font-semibold placeholder:italic placeholder:font-normal"
                   placeholder={el.titolo}
                   ref={(element) =>
                     (aggiornaTitoloImprRef.current[el.id] = element)
                   }
                 />
                 <input
-                  className="w-5/6 rounded pe-6 bg-transparent border border-gray-300/20 p-1"
+                  className="w-5/6 rounded border border-gray-300/20 bg-transparent p-1 pe-6 font-semibold placeholder:italic placeholder:font-normal"
                   placeholder={el.descrizione}
                   ref={(element) =>
                     (aggiornaDescImprRef.current[el.id] = element)
@@ -114,15 +114,15 @@ const EditorImprevisti = () => {
         {/* Form "AGGIUNGI Imprevisti" */}
 
         <div className="flex h-2/5 w-full flex-col items-center gap-2 p-8">
-          <h3 className="text-center uppercase text-[--clr-prim]">
+          <h3 className="text-center uppercase text-[--clr-ter]">
             Aggiungi il tuo imprevisto
           </h3>
-          <div className="flex h-full w-1/2 flex-col items-center justify-center rounded-md border-4 p-8 font-normal">
+          <div className="flex h-full w-1/2 flex-col items-center justify-center gap-1 rounded-md border-4 p-8 font-normal">
             <label className="my-1 block self-start text-xs">
               Titolo Imprevisto
             </label>
             <input
-              className="placeholder:italic block w-full rounded p-1  text-sm text-black"
+              className="block w-full rounded p-1 text-sm  text-black placeholder:italic"
               placeholder="Titolo dell'imprevisto"
               ref={nuovoImprTitoloRef}
             />
@@ -134,10 +134,10 @@ const EditorImprevisti = () => {
               rows={3}
               id="nuovoImprevistoInput"
               placeholder="Descrizione dell'imprevisto"
-              className="placeholder:italic w-full rounded p-1 text-sm text-black"
+              className="w-full rounded p-1 text-sm text-black placeholder:italic"
             />
             <button
-              className="mt-2 w-full rounded-lg border border-[--clr-ter] hover:bg-[--clr-ter] hover:text-black hover:font-semibold py-1"
+              className="mt-2 w-1/2 rounded-lg bg-sky-700 py-1 font-semibold hover:bg-sky-600"
               onClick={handleNewImpr}
             >
               Salva
