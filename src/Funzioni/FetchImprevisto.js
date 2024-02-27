@@ -20,7 +20,9 @@ export default function FetchData() {
       .select("*")
       .limit(1)
       .single();
-    setImprevisto(data ? data : { id: 0, name: "LISTA VUOTA!!!" });
+    setImprevisto(
+      data ? data : { id: 0, titolo: "", descrizione: "LISTA VUOTA!!!" },
+    );
   };
 
   const delElemento = async () => {
@@ -32,14 +34,18 @@ export default function FetchData() {
   };
 
   return (
-    <p
-      style={{ fontFamily: "'Handlee', cursive" }}
-      className={`h-fit flex-1 overflow-y-auto px-4 ${
-        imprevisto.name && imprevisto.name.length > 200 ? "text-sm md:text-xl" : "text-xl md:text-3xl"
-      }`}
-    >
-      {imprevisto.name}
-
-    </p>
+    <>
+      <h4 className="text-2xl uppercase md:text-4xl">{imprevisto.titolo}</h4>
+      <p
+        style={{ fontFamily: "'Handlee', cursive" }}
+        className={`h-fit flex-1 overflow-y-auto px-4 ${
+          imprevisto.descrizione && imprevisto.descrizione.length > 200
+            ? "text-sm md:text-xl"
+            : "text-xl md:text-3xl"
+        }`}
+      >
+        {imprevisto.descrizione}
+      </p>
+    </>
   );
 }

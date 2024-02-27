@@ -74,17 +74,17 @@ const EditorImprevisti = () => {
             {vociRegistro.map((el) => (
               <li
                 key={el.id}
-                className="text-md flex items-center justify-between bg-gray-700/20 py-1 ps-2 text-left font-normal hover:bg-gray-600/50 gap-2"
+                className="text-md flex items-center justify-between bg-gray-700/20 ps-2 text-left font-normal hover:bg-gray-600/50 gap-2"
               >
                 <input
-                  className="w-1/6 rounded pe-6 bg-transparent border border-gray-300/20"
+                  className="w-1/6 rounded pe-6 bg-transparent border border-gray-300/20 p-1"
                   placeholder={el.titolo}
                   ref={(element) =>
                     (aggiornaTitoloImprRef.current[el.id] = element)
                   }
                 />
                 <input
-                  className="w-5/6 rounded pe-6 bg-transparent border border-gray-300/20"
+                  className="w-5/6 rounded pe-6 bg-transparent border border-gray-300/20 p-1"
                   placeholder={el.descrizione}
                   ref={(element) =>
                     (aggiornaDescImprRef.current[el.id] = element)
