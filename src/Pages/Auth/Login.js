@@ -1,39 +1,86 @@
 import { useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/Auth";
 
-export default function Login() {
-  const emailRef = useRef();
-  const passwordRef = useRef();
+const Login = () => {
+  const emailRef = useRef(null);
+  const passwordRef = useRef(null);
+  const [errorMsg, setErrorMsg] = useState("");
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+  const { login } = useAuth();
 
-  async function handleSubmit(e) {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
-    // @TODO: add login logic
-  }
+    try {
+      setErrorMsg("");
+      setLoading(true);
+      if (!passwordRef.current?.value || !emailRef.current?.value) {
+        setErrorMsg("Si prega di compilare tutti i campi");
+        return;
+      }
+      const {
+        data: { user, session },
+        error,
+      } = await login(emailRef.current.value, passwordRef.current.value);
+      if (error) setErrorMsg(error.message);
+      if (user && session) navigate("/");
+    } catch (error) {
+      setErrorMsg("Email o Password non corrette");
+    }
+    setLoading(false);
+  };
 
   return (
-    <>
-      <section className="flex h-full w-full select-none flex-col items-center justify-around gap-2 px-4 py-6 font-bold md:p-8">
-        <form
-          className="flex max-h-fit flex-col gap-4 rounded-xl border-2 border-[--clr-ter] bg-black/25 p-8"
-          onSubmit={handleSubmit}
-        >
-          <label classname="font-bold" htmlFor="input-email">Email</label>
-          <input id="input-email" type="email" ref={emailRef} />
-
-          <label classname="font-bold" htmlFor="input-password">Password</label>
-          <input id="input-password" type="password" ref={passwordRef} />
-
-          <br />
-
-          <button type="submit">Login</button>
-        </form>
-        <br />
-
-        <p>
-          Non hai un account? <Link to="/signup">Sign Up</Link>
-        </p>
-      </section>
-    </>
+    <main className="flex h-screen w-full gap-2 flex-col items-center justify-center">
+      <h2 className="font-semibold text-lg">Effettua il Login</h2>
+      <form
+        onSubmit={handleSubmit}
+        className="flex h-2/3 md:h-1/2 w-3/4 md:w-1/3 flex-col items-center justify-around rounded-lg border-2 border-[--clr-ter] p-4"
+      >
+        <div id="email" className="flex flex-col items-center gap-1 w-full">
+          <label>Email</label>
+          <input
+            className="rounded-md p-1 font-semibold text-black w-full placeholder:italic placeholder:font-medium"
+            type="email"
+            placeholder="Inserisci la tua email"
+            ref={emailRef}
+            required
+          />
+        </div>
+        <div id="password" className="flex flex-col items-center gap-1 w-full">
+          <label>Password</label>
+          <input
+            className="rounded-md p-1 font-semibold text-black w-full placeholder:italic placeholder:font-medium"
+            type="password"
+            placeholder="Inserisci la tua password"
+            ref={passwordRef}
+            required
+          />
+        </div>
+        {errorMsg && (
+          <alert onClose={() => setErrorMsg("")} dismissible>
+            {errorMsg}
+          </alert>
+        )}
+        <div className="mt-2 text-center w-full">
+          <button
+            disabled={loading}
+            type="submit"
+            className="w-full md:w-1/2 h-auto rounded-md border border-[--clr-ter] px-0 md:px-6 py-2 font-semibold hover:bg-[--clr-ter] hover:text-black"
+          >
+            Login
+          </button>
+        </div>
+      </form>
+      <div className="w-100 mt-2 text-center font-semibold">
+        Nuovo Utente? <Link className="text-[--clr-ter] hover:text-[--clr-prim] " to={"/signup"}>Registrati</Link>
+      </div>
+      <div className="w-100 mt-2 text-center font-semibold">
+        Password dimenticata? <Link className="text-[--clr-ter] hover:text-[--clr-prim] " to={"/password-reset"}>Clicca qui</Link>
+      </div>
+    </main>
   );
-}
+};
+
+export default Login;

@@ -1,45 +1,38 @@
 import "./App.css";
-//import Home from "./Pages/Home";
 import Navbar from "./Components/Navbar";
 import Footer from "./Components/Footer";
 import Sfondo from "./Components/Sfondo";
-import { BrowserRouter as Router } from "react-router-dom";
 import AnimatedRoutes from "./Components/AnimatedRoutes";
-import { Auth } from "@supabase/auth-ui-react";
-import { ThemeSupa } from "@supabase/auth-ui-shared";
-import { supabase } from "./supabaseClient";
-import { useState, useEffect } from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import AuthProvider from "./context/Auth";
+import AuthRoute from "./Components/AuthRoute";
+import Login from "./Pages/Auth/Login";
+import Signup from "./Pages/Auth/Signup";
+import PasswordReset from "./Pages/Auth/PasswordReset";
+import UpdatePassword from "./Pages/Auth/UpdatePassword";
 
-function App(props) {
-  const [session, setSession] = useState(null);
-
-  useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setSession(session);
-    });
-
-    const {
-      data: { subscription },
-    } = supabase.auth.onAuthStateChange((_event, session) => {
-      setSession(session);
-    });
-
-    return () => subscription.unsubscribe();
-  }, []);
-
-  if (!session) {
-    return <Auth supabaseClient={supabase} appearance={{ theme: ThemeSupa }} theme="dark" providers={[]} className="w-1/2"/>;
-  } else {
-    return (
-      <main className="h-screen w-screen overflow-hidden">
-        <Router>
+function App() {
+  return (
+    <main className="h-screen w-screen overflow-hidden">
+      <Router>
+        <AuthProvider>
           <Navbar />
-          <AnimatedRoutes />
-        </Router>
-        <Footer session={session} />
-        <Sfondo />
-      </main>
-    );
-  }
+          <Routes>
+            <Route element={<AuthRoute />}>
+              <Route path="*" element={<AnimatedRoutes />} />
+              <Route path="/home" element={<AnimatedRoutes />} />
+            </Route>
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/password-reset" element={<PasswordReset />} />
+            <Route path="/update-password" element={<UpdatePassword />} />
+          </Routes>
+          <Footer />
+        </AuthProvider>
+      </Router>
+      <Sfondo />
+    </main>
+  );
 }
+
 export default App;
