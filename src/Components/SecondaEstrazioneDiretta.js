@@ -6,12 +6,10 @@ import IndicatoreGiocatoriImpr from "./IndicatoreGiocatoriImpr";
 import { isMobile } from "react-device-detect";
 
 const SecondaEstrazioneDiretta = (props) => {
-  const { numbExtrPlayer } = props;
+  const { extractedPl } = props;
 
   const numbers = data.map((player) => player.id);
-  const extractedPlayer = pickRandom(numbers, { count: numbExtrPlayer });
-
-  console.log(extractedPlayer);
+  const extractedPlayer = pickRandom(numbers, { count: extractedPl });
 
   return (
     <section

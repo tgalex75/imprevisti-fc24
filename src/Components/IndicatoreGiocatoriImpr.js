@@ -21,6 +21,13 @@ const IndicatoreGiocatoriImpr = (props) => {
     setSchema(selectRef.current.value);
   };
 
+  const extractedPlayerStyle = {
+    backgroundColor: "orange",
+    borderColor: "transparent",
+    color: "black",
+    fontWeight: 800,
+  };
+
   const filteredTactics = listaTattiche.filter((item) => item.nome === schema);
 
   const tactics = (arr, start, end) => {
@@ -32,11 +39,8 @@ const IndicatoreGiocatoriImpr = (props) => {
               key={uuidv4()}
               className="my-2 flex w-2 items-center justify-center rounded-lg border px-4 py-1 text-xs font-semibold text-gray-200"
               style={
-                extractedPlayer.find((item) => item === el.nome) && {
-                  backgroundColor: "orange",
-                  borderColor: "transparent",
-                  color: "black",
-                }
+                extractedPlayer.find((item) => item === el.nome) &&
+                extractedPlayerStyle
               }
             >
               {el.nome}
@@ -56,23 +60,22 @@ const IndicatoreGiocatoriImpr = (props) => {
         )}
       </div>
       {/* PANCHINA */}
+
       <div className="border- flex w-4/5 flex-wrap items-center justify-around p-1">
         {data.slice(11, data.length).map((el) => (
           <div
             key={uuidv4()}
-            className="my-2 flex w-1 items-center justify-center rounded-lg border px-3 py-1 text-xs font-semibold text-gray-200"
+            className="my-2 flex w-1 items-center justify-center rounded-lg border bg-gray-900/80 px-3 py-1 text-[.6rem] font-semibold text-gray-200"
             style={
-              extractedPlayer.find((item) => item === el.nome) && {
-                backgroundColor: "orange",
-                borderColor: "transparent",
-                color: "black",
-              }
+              extractedPlayer.find((item) => item === el.nome) &&
+              extractedPlayerStyle
             }
           >
             {el.nome}
           </div>
         ))}
       </div>
+
       <div className="">
         {mySelect("Schema", selectRef, getSchema, tattiche)}
       </div>

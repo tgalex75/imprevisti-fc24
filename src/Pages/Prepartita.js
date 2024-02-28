@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import SecondaEstrazione from "../Components/SecondaEstrazione";
+import SecondaEstrazioneDiretta from "../Components/SecondaEstrazioneDiretta";
 import FetchImprevisto from "../Funzioni/FetchImprevisto";
 import LayoutBase from "../Components/LayoutBase";
 import Dado from "../Components/Dado";
@@ -18,9 +19,15 @@ const Prepartita = () => {
     setCasuale(prepartita ? random.choice(prepartita) : console.log(error));
   };
 
-  const { id, title, description, isImprev, ultEstrazione } = casuale
-    ? casuale
-    : {};
+  const {
+    id,
+    title,
+    description,
+    isImprev,
+    ultEstrazione,
+    multi,
+    extractedPl,
+  } = casuale ? casuale : {};
 
   const titoloH1 = "Imprevisto Prepartita";
   const isImpCommunity = title === "IMPREVISTO SPECIALE";
@@ -77,7 +84,10 @@ const Prepartita = () => {
                 <FetchImprevisto />
               </>
             )}
-            {ultEstrazione && <SecondaEstrazione />}
+            {ultEstrazione && extractedPl === 1 && <SecondaEstrazione />}
+            {extractedPl > 1 && (
+              <SecondaEstrazioneDiretta extractedPl={extractedPl} />
+            )}
           </section>
         )}
       </LayoutBase>
