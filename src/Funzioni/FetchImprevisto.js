@@ -34,7 +34,7 @@ export default function FetchData() {
   return (
     <p
       style={{ fontFamily: "'Handlee', cursive" }}
-      className={`h-fit flex-1 overflow-y-auto px-4 ${
+      className={`h-fit flex items-center justify-center flex-1 overflow-y-auto px-4 ${
         imprevisto.descrizione && imprevisto.descrizione.length > 200 ? "text-sm md:text-xl" : "text-xl md:text-3xl"
       }`}
     >
