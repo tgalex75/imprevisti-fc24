@@ -49,7 +49,7 @@ export const arrayRange = (start, stop, step) =>
     (value, index) => start + index * step,
   );
 
-let arrDataPlayers = arrayRange(1, 18, 1);
+let arrDataPlayers = arrayRange(1, 11, 1);
 
 export const data = arrDataPlayers.map((el) => {
   return { id: el, nome: el };

@@ -25,7 +25,6 @@ const Prepartita = () => {
     description,
     isImprev,
     ultEstrazione,
-    multi,
     extractedPl,
   } = casuale ? casuale : {};
 
@@ -71,13 +70,13 @@ const Prepartita = () => {
                 >
                   {description}
                 </p>
-                {/* Eccezione imprevisto n. 28 */}
+                {/* Eccezione imprevisto n. 28 
                 <p className="text-sm italic md:text-lg">
                   {id === 26 &&
                     "Attenzione! Imprevisto applicabile una sola volta per stagione"}
                   {id === 28 &&
                     "Attenzione! Non si applica alle partite determinanti (es. turni di ritorno, partite secche, scontri diretti)"}
-                </p>
+                </p>*/}
               </>
             ) : (
               <>

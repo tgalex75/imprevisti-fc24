@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { mySelect, tattiche, listaTattiche, data } from "../Funzioni/schemi";
+import { mySelect, tattiche, listaTattiche, data, arrayRange } from "../Funzioni/schemi";
 import { v4 as uuidv4 } from "uuid";
 
 const IndicatoreGiocatoriImpr = (props) => {
@@ -8,7 +8,7 @@ const IndicatoreGiocatoriImpr = (props) => {
   const [schema, setSchema] = useState(() => {
     const saved = localStorage.getItem("schema");
     const initialValue = JSON.parse(saved);
-    return initialValue || "4-2-1-3";
+    return initialValue || "4-4-2";
   });
 
   useEffect(() => {
@@ -29,6 +29,8 @@ const IndicatoreGiocatoriImpr = (props) => {
   };
 
   const filteredTactics = listaTattiche.filter((item) => item.nome === schema);
+
+  const panchina = arrayRange(12, 18, 1)
 
   const tactics = (arr, start, end) => {
     return (
@@ -59,19 +61,18 @@ const IndicatoreGiocatoriImpr = (props) => {
           tactics(data, el === 1 ? 0 : array[i - 1], el),
         )}
       </div>
-      {/* PANCHINA */}
-
+      {/* PANCHINA */}    
       <div className="border- flex w-4/5 flex-wrap items-center justify-around p-1">
-        {data.slice(11, data.length).map((el) => (
+        {panchina.map((el) => (
           <div
             key={uuidv4()}
             className="my-2 flex w-1 items-center justify-center rounded-lg border bg-gray-900/80 px-3 py-1 text-[.6rem] font-semibold text-gray-200"
             style={
-              extractedPlayer.find((item) => item === el.nome) &&
+              extractedPlayer.find((item) => item === el) &&
               extractedPlayerStyle
             }
           >
-            {el.nome}
+            {el}
           </div>
         ))}
       </div>
