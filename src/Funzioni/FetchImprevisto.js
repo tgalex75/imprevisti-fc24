@@ -34,7 +34,7 @@ export default function FetchData() {
   };
 
   return (
-    <>
+    <section id="FetchImprevisto" className="flex flex-1 flex-col gap-2">
       <h4 className="text-2xl uppercase md:text-4xl">{imprevisto.titolo}</h4>
       <p
         style={{ fontFamily: "'Handlee', cursive" }}
@@ -46,6 +46,6 @@ export default function FetchData() {
       >
         {imprevisto.descrizione}
       </p>
-    </>
+    </section>
   );
 }

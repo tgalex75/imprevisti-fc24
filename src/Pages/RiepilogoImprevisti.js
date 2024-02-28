@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { supabase } from "../supabaseClient";
 import { motion } from "framer-motion";
 import { MdClear } from "react-icons/md";
-import datiPrepartita from "../Data/datiPrepartita";
 
 const RiepilogoImprevisti = () => {
   const [vociRegistro, setVociRegistro] = useState([]);
@@ -37,7 +36,7 @@ const RiepilogoImprevisti = () => {
           <h3 className="text-center uppercase text-[--clr-prim]">
             Imprevisti Prepartita
           </h3>
-          <ul className="flex h-full w-full flex-col gap-1 overflow-y-auto px-2 pb-2">
+          {/* <ul className="flex h-full w-full flex-col gap-1 overflow-y-auto px-2 pb-2">
             {datiPrepartita.map(
               (el) =>
                 el.title.toUpperCase() !== "NESSUN IMPREVISTO" && (
@@ -50,7 +49,7 @@ const RiepilogoImprevisti = () => {
                   </li>
                 ),
             )}
-          </ul>
+          </ul> */}
         </div>
         <div className="relative flex h-3/4 w-full flex-col gap-2">
           <h3 className="text-center uppercase text-[--clr-prim]">
