@@ -9,7 +9,6 @@ const EditorImprevisti = () => {
   const [vociRegistro, setVociRegistro] = useState([]);
   const [selectRefState, setSelectRefState] = useState(null);
 
-
   const {
     register,
     handleSubmit,
@@ -17,9 +16,9 @@ const EditorImprevisti = () => {
   } = useForm();
 
   const onSubmit = (data, e) => {
-    handleNewImpr(data)
-    console.log(data);
-    e.target.reset()
+    handleNewImpr(data);
+    //console.log(data);
+    e.target.reset();
   };
 
   const aggiornaTitoloImprRef = useRef([]);
@@ -27,16 +26,14 @@ const EditorImprevisti = () => {
   const selectRef = useRef(null);
 
   const handleNewImpr = (obj) => {
-    const {titolo, dettagli} = obj
+    const { titolo, dettagli } = obj;
     uploadNewImpr(titolo, dettagli);
   };
 
   const uploadNewImpr = async (titolo, descr) => {
     const { data, error } = await supabase
-      .from("imprevisti")
-      .insert([
-        { titolo: titolo, descrizione: descr },
-      ])
+      .from(selectRefState === "Prepartita" ? "prepartita" : "imprevisti")
+      .insert([{ titolo: titolo.toUpperCase(), descrizione: descr }])
       .select();
     console.log(data ? data : console.log(error));
   };
@@ -46,13 +43,15 @@ const EditorImprevisti = () => {
   }, [vociRegistro]);
 
   const fetchRegistryList = async () => {
-    const { data } = await supabase.from("imprevisti").select("*");
+    const { data } = await supabase
+      .from(selectRefState === "Prepartita" ? "prepartita" : "imprevisti")
+      .select("*");
     setVociRegistro(data ? data : []);
   };
 
   const removeVociRegistro = async (element) => {
     const { error } = await supabase
-      .from("imprevisti")
+      .from(selectRefState === "Prepartita" ? "prepartita" : "imprevisti")
       .delete()
       .eq("id", element);
     error && console.log(error);
@@ -60,8 +59,8 @@ const EditorImprevisti = () => {
 
   const updateVociRegistro = async (element, refTitolo, refDescr) => {
     const { data, error } = await supabase
-      .from("imprevisti")
-      .update({ titolo: refTitolo, descrizione: refDescr })
+      .from(selectRefState === "Prepartita" ? "prepartita" : "imprevisti")
+      .update({ titolo: refTitolo.toUpperCase(), descrizione: refDescr })
       .eq("id", element)
       .select();
     console.log(data ? data : error);
@@ -69,15 +68,16 @@ const EditorImprevisti = () => {
 
   const handleSelectRef = () => {
     setSelectRefState(selectRef.current.value);
-    console.log(selectRef.current.value);
+    //fetchRegistryList()
   };
 
   return (
-    <section className="flex h-full w-full flex-col items-center justify-center gap-6 px-4 pb-6 font-bold">
+    <section className="flex h-full w-full flex-col items-center justify-center gap-4 px-4 pb-6 font-bold">
       <h1>Editor Imprevisti</h1>
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
         transition={{ delay: 0.7, duration: 0.7 }}
         className="flex h-full w-full items-center gap-2 overflow-hidden rounded-lg bg-black/50 p-2 text-gray-300 md:flex-col"
       >
@@ -85,7 +85,8 @@ const EditorImprevisti = () => {
 
         <div className="relative flex h-3/5 w-full flex-col items-center gap-2">
           <h3 className="text-center uppercase text-[--clr-ter]">
-            Imprevisti della Community
+            Imprevisti{" "}
+            {selectRefState === "Prepartita" ? "Prepartita" : "Speciali"}
           </h3>
           <select
             ref={selectRef}
@@ -107,7 +108,7 @@ const EditorImprevisti = () => {
                 className="text-md flex items-center justify-between gap-2 bg-gray-700/20 ps-2 text-left font-normal hover:bg-gray-600/50"
               >
                 <input
-                  className="w-1/6 rounded border border-gray-300/20 bg-transparent p-1 pe-6 font-semibold placeholder:font-normal placeholder:italic"
+                  className="w-1/6 rounded border border-gray-300/20 bg-transparent p-1 pe-6 font-semibold uppercase placeholder:font-normal placeholder:italic"
                   placeholder={el.titolo}
                   ref={(element) =>
                     (aggiornaTitoloImprRef.current[el.id] = element)
@@ -143,7 +144,7 @@ const EditorImprevisti = () => {
 
         {/* Form "AGGIUNGI Imprevisti" */}
 
-        <div className="flex h-2/5 w-full flex-col items-center gap-2 p-8">
+        <div className="flex w-full flex-col items-center gap-2 p-8">
           <h3 className="text-center uppercase text-[--clr-ter]">
             Aggiungi il tuo imprevisto
           </h3>
@@ -151,8 +152,13 @@ const EditorImprevisti = () => {
             onSubmit={handleSubmit(onSubmit)}
             className="flex h-full w-1/2 flex-col items-center justify-center gap-1 rounded-md border-4 p-8 font-normal"
           >
-            <label className="my-1 flex w-full items-center gap-4 self-start text-xs">
+            <label className="my-1 flex w-full items-center gap-4 self-start text-sm">
               Titolo Imprevisto
+              {errors.titolo && (
+                <span className="text-[--clr-ter]">
+                  Il campo Titolo è obbligatorio
+                </span>
+              )}
             </label>
             <input
               name="titolo"
@@ -160,13 +166,13 @@ const EditorImprevisti = () => {
               className="block w-full rounded p-1 text-sm  text-black placeholder:italic"
               placeholder="Titolo dell'imprevisto"
             />
-            {errors.titolo && (
-              <small className="right-0 text-[--clr-ter]">
-                Il campo Titolo è obbligatorio
-              </small>
-            )}
-            <label className="my-1 flex w-full items-center gap-4 self-start text-xs">
-              Dettagli Imprevisto
+            <label className="my-1 flex w-full items-center gap-4 self-start text-sm">
+              Descrizione Imprevisto
+              {errors.dettagli && (
+                <span className="text-[--clr-ter]">
+                  Il campo Dettagli è obbligatorio
+                </span>
+              )}
             </label>
             <textarea
               name="dettagli"
@@ -176,11 +182,6 @@ const EditorImprevisti = () => {
               placeholder="Descrizione dell'imprevisto"
               className="w-full rounded p-1 text-sm text-black placeholder:italic"
             />
-            {errors.dettagli && (
-              <small className="text-[--clr-ter]">
-                Il campo Dettagli è obbligatorio
-              </small>
-            )}
             <button
               type="submit"
               className="mt-2 w-1/3 rounded-lg bg-sky-700 py-1 font-semibold hover:bg-sky-600"

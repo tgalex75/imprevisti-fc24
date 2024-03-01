@@ -21,15 +21,15 @@ const Prepartita = () => {
 
   const {
     id,
-    title,
-    description,
+    titolo,
+    descrizione,
     isImprev,
     ultEstrazione,
     extractedPl,
   } = casuale ? casuale : {};
 
   const titoloH1 = "Imprevisto Prepartita";
-  const isImpCommunity = title === "IMPREVISTO SPECIALE";
+  const isImpCommunity = titolo === "IMPREVISTO SPECIALE";
 
   return (
     <>
@@ -59,16 +59,16 @@ const Prepartita = () => {
                 <h3
                   style={{ filter: "drop-shadow(.05rem .05rem 0.1rem #000)" }}
                   className={`text-4xl font-extrabold uppercase md:flex-1 md:text-5xl ${
-                    title === "IMPREVISTO SPECIALE" && "hidden"
+                    titolo === "IMPREVISTO SPECIALE" && "hidden"
                   }`}
                 >
-                  {title}
+                  {titolo}
                 </h3>
                 <p
                   style={{ fontFamily: "'Handlee', cursive" }}
                   className="mt-4 px-4 text-xl md:flex-1 md:text-3xl"
                 >
-                  {description}
+                  {descrizione}
                 </p>
                 {/* Eccezione imprevisto n. 28 
                 <p className="text-sm italic md:text-lg">

@@ -58,6 +58,7 @@ const Navbar = () => {
       </div>
     );
   });
+  
 
   return (
     <nav className="fixed z-[1000] flex h-auto w-full items-center justify-between px-2 py-1 md:px-6 md:py-3">
