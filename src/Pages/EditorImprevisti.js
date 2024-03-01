@@ -1,45 +1,47 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { supabase } from "../supabaseClient";
 import { motion } from "framer-motion";
 import { MdSend, MdClear } from "react-icons/md";
-//import { useForm } from "react-hook-form";
-import useDeepCompareEffect from "use-deep-compare-effect";
+import { useForm } from "react-hook-form";
+//import useDeepCompareEffect from "use-deep-compare-effect";
 
 const EditorImprevisti = () => {
   const [vociRegistro, setVociRegistro] = useState([]);
   const [selectRefState, setSelectRefState] = useState(null);
 
-  /* const {
+
+  const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
-  } = useForm(); */
+  } = useForm();
+
+  const onSubmit = (data, e) => {
+    handleNewImpr(data)
+    console.log(data);
+    e.target.reset()
+  };
 
   const aggiornaTitoloImprRef = useRef([]);
   const aggiornaDescImprRef = useRef([]);
-  const nuovoImprTitoloRef = useRef(null);
-  const nuovoImprDescrRef = useRef(null);
   const selectRef = useRef(null);
 
-  const handleNewImpr = (e) => {
-    e.preventDefault();
-    uploadNewImpr(nuovoImprTitoloRef, nuovoImprDescrRef);
-    nuovoImprTitoloRef.current.value = null;
-    nuovoImprDescrRef.current.value = null;
+  const handleNewImpr = (obj) => {
+    const {titolo, dettagli} = obj
+    uploadNewImpr(titolo, dettagli);
   };
 
   const uploadNewImpr = async (titolo, descr) => {
     const { data, error } = await supabase
       .from("imprevisti")
       .insert([
-        { titolo: titolo.current.value, descrizione: descr.current.value },
+        { titolo: titolo, descrizione: descr },
       ])
       .select();
     console.log(data ? data : console.log(error));
   };
 
-  useDeepCompareEffect(() => {
+  useEffect(() => {
     fetchRegistryList();
   }, [vociRegistro]);
 
@@ -90,7 +92,7 @@ const EditorImprevisti = () => {
             onChange={handleSelectRef}
             className="w-48 rounded-md border py-1 text-sm font-semibold dark:border-black/20 dark:bg-black/30 dark:text-gray-300 dark:placeholder-black/10 dark:focus:border-blue-500 dark:focus:ring-blue-500"
           >
-            <option selected className="bg-black/20" value="Prepartita">
+            <option className="bg-black/20" value="Prepartita">
               Prepartita
             </option>
             <option value="Speciali">Speciali</option>
@@ -146,44 +148,44 @@ const EditorImprevisti = () => {
             Aggiungi il tuo imprevisto
           </h3>
           <form
-            //onSubmit={handleSubmit((data) => console.log(data))}
+            onSubmit={handleSubmit(onSubmit)}
             className="flex h-full w-1/2 flex-col items-center justify-center gap-1 rounded-md border-4 p-8 font-normal"
           >
             <label className="my-1 flex w-full items-center gap-4 self-start text-xs">
               Titolo Imprevisto
-              {/* {errors.titolo && (
-                <small className="right-0 text-[--clr-ter]">
-                  Il campo Titolo è obbligatorio
-                </small>
-              )} */}
             </label>
             <input
-              //{...register("titolo", { required: true, maxLength: 15 })}
+              name="titolo"
+              {...register("titolo", { required: true, maxLength: 15 })}
               className="block w-full rounded p-1 text-sm  text-black placeholder:italic"
               placeholder="Titolo dell'imprevisto"
-              ref={nuovoImprTitoloRef}
             />
+            {errors.titolo && (
+              <small className="right-0 text-[--clr-ter]">
+                Il campo Titolo è obbligatorio
+              </small>
+            )}
             <label className="my-1 flex w-full items-center gap-4 self-start text-xs">
               Dettagli Imprevisto
-              {/* {errors.dettagli && (
-                <small className="text-[--clr-ter]">
-                  Il campo Dettagli è obbligatorio
-                </small>
-              )} */}
             </label>
             <textarea
-              //{...register("dettagli", { required: true })}
-              ref={nuovoImprDescrRef}
+              name="dettagli"
+              {...register("dettagli", { required: true })}
               rows={3}
               id="nuovoImprevistoInput"
               placeholder="Descrizione dell'imprevisto"
               className="w-full rounded p-1 text-sm text-black placeholder:italic"
             />
+            {errors.dettagli && (
+              <small className="text-[--clr-ter]">
+                Il campo Dettagli è obbligatorio
+              </small>
+            )}
             <button
-              className="mt-2 w-1/2 rounded-lg bg-sky-700 py-1 font-semibold hover:bg-sky-600"
-              onClick={handleNewImpr}
+              type="submit"
+              className="mt-2 w-1/3 rounded-lg bg-sky-700 py-1 font-semibold hover:bg-sky-600"
             >
-              Salva
+              Salva ed Invia
             </button>
           </form>
         </div>
