@@ -3,44 +3,16 @@ import { supabase } from "../supabaseClient";
 import { motion } from "framer-motion";
 import { MdSend, MdClear } from "react-icons/md";
 import { useForm } from "react-hook-form";
+import { MdInfoOutline } from "react-icons/md";
 //import useDeepCompareEffect from "use-deep-compare-effect";
 
 const EditorImprevisti = () => {
   const [vociRegistro, setVociRegistro] = useState([]);
-  const [selectRefState, setSelectRefState] = useState(null);
-
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
-
-  const onSubmit = (data, e) => {
-    handleNewImpr(data);
-    //console.log(data);
-    e.target.reset();
-  };
+  const [selectRefState, setSelectRefState] = useState("Prepartita");
 
   const aggiornaTitoloImprRef = useRef([]);
   const aggiornaDescImprRef = useRef([]);
   const selectRef = useRef(null);
-
-  const handleNewImpr = (obj) => {
-    const { titolo, dettagli } = obj;
-    uploadNewImpr(titolo, dettagli);
-  };
-
-  const uploadNewImpr = async (titolo, descr) => {
-    const { data, error } = await supabase
-      .from(selectRefState === "Prepartita" ? "prepartita" : "imprevisti")
-      .insert([{ titolo: titolo.toUpperCase(), descrizione: descr }])
-      .select();
-    console.log(data ? data : console.log(error));
-  };
-
-  useEffect(() => {
-    fetchRegistryList();
-  }, [vociRegistro]);
 
   const fetchRegistryList = async () => {
     const { data } = await supabase
@@ -48,6 +20,10 @@ const EditorImprevisti = () => {
       .select("*");
     setVociRegistro(data ? data : []);
   };
+
+  useEffect(() => {
+    fetchRegistryList(); // eslint-disable-next-line
+  }, [vociRegistro]);
 
   const removeVociRegistro = async (element) => {
     const { error } = await supabase
@@ -68,40 +44,84 @@ const EditorImprevisti = () => {
 
   const handleSelectRef = () => {
     setSelectRefState(selectRef.current.value);
-    //fetchRegistryList()
+  };
+
+  // LOGICA NUOVO IMPREVISTO
+
+  const uploadNewImpr = async (objForm) => {
+    const { titolo, descrizione, ultEstrazione, extractedPl } = objForm;
+    const { data, error } = await supabase
+      .from(selectRefState === "Prepartita" ? "prepartita" : "imprevisti")
+      .insert(
+        selectRefState === "Speciali"
+          ? [{ titolo: titolo.toUpperCase(), descrizione: descrizione }]
+          : [
+              {
+                titolo: titolo.toUpperCase(),
+                descrizione: descrizione,
+                ultEstrazione: ultEstrazione,
+                extractedPl: extractedPl,
+                isImprev: true,
+              },
+            ],
+      )
+      .select();
+    console.log(data ? data : console.log(error));
+  };
+
+  const handleNewImpr = (objForm) => {
+    uploadNewImpr(objForm);
+  };
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = (data, e) => {
+    handleNewImpr(data);
+    console.log(data);
+    e.target.reset();
   };
 
   return (
-    <section className="flex h-full w-full flex-col items-center justify-center gap-4 px-4 pb-6 font-bold">
+    <section className="flex h-full w-full flex-col items-center gap-4 px-4 pb-6 font-bold">
       <h1>Editor Imprevisti</h1>
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
         transition={{ delay: 0.7, duration: 0.7 }}
-        className="flex h-full w-full items-center gap-2 overflow-hidden rounded-lg bg-black/50 p-2 text-gray-300 md:flex-col"
+        className="flex h-full w-full items-center justify-between overflow-hidden rounded-lg bg-black/50 px-2 text-gray-300 md:flex-col"
       >
         {/* Lista Imprevisti Attuale */}
 
-        <div className="relative flex h-3/5 w-full flex-col items-center gap-2">
-          <h3 className="text-center uppercase text-[--clr-ter]">
-            Imprevisti{" "}
-            {selectRefState === "Prepartita" ? "Prepartita" : "Speciali"}
-          </h3>
-          <select
-            ref={selectRef}
-            onChange={handleSelectRef}
-            className="w-48 rounded-md border py-1 text-sm font-semibold dark:border-black/20 dark:bg-black/30 dark:text-gray-300 dark:placeholder-black/10 dark:focus:border-blue-500 dark:focus:ring-blue-500"
-          >
-            <option className="bg-black/20" value="Prepartita">
-              Prepartita
-            </option>
-            <option value="Speciali">Speciali</option>
-          </select>
-          <strong className="absolute right-1 top-0 font-semibold">
-            # {vociRegistro.length}
-          </strong>
-          <ul className="flex h-full w-full flex-col gap-1 overflow-y-auto border p-4">
+        <div className="relative flex h-1/2 w-full flex-col items-center justify-center gap-2 p-1">
+          <header className="flex w-full items-center justify-between p-1">
+            <h3 className="w-1/3 text-start uppercase text-[--clr-ter]">
+              Imprevisti{" "}
+              {selectRefState === "Prepartita" ? "Prepartita" : "Speciali"}
+            </h3>
+            <label
+              htmlFor="tipoImprevisto"
+              className="flex w-1/3 items-center justify-center gap-2"
+            >
+              Lista da editare
+              <select
+                ref={selectRef}
+                onChange={handleSelectRef}
+                className="w-fit self-center rounded-md border p-1 text-sm font-semibold dark:border-black/20 dark:bg-black/30 dark:text-gray-300 dark:placeholder-black/10 dark:focus:border-blue-500 dark:focus:ring-blue-500"
+              >
+                <option>Seleziona</option>
+                <option value="Prepartita">Prepartita</option>
+                <option value="Speciali">Speciali</option>
+              </select>
+            </label>
+            <strong className="w-1/3 text-end font-semibold">
+              Numero imprevisti: {vociRegistro.length}
+            </strong>
+          </header>
+          <ul className="flex h-full w-full flex-col gap-1 overflow-y-auto rounded-lg border p-4">
             {vociRegistro.map((el) => (
               <li
                 key={el.id}
@@ -121,11 +141,7 @@ const EditorImprevisti = () => {
                     (aggiornaDescImprRef.current[el.id] = element)
                   }
                 />
-                <MdClear
-                  size={24}
-                  className="mx-2 cursor-pointer fill-red-600 transition-all hover:scale-125 hover:fill-[--clr-sec]"
-                  onClick={() => removeVociRegistro(el.id)}
-                />
+
                 <MdSend
                   size={24}
                   className="cursor-pointer fill-gray-300 transition-all hover:scale-125 hover:fill-gray-300"
@@ -137,6 +153,11 @@ const EditorImprevisti = () => {
                     )
                   }
                 />
+                <MdClear
+                  size={24}
+                  className="mx-2 cursor-pointer fill-red-600 transition-all hover:scale-125 hover:fill-[--clr-sec]"
+                  onClick={() => removeVociRegistro(el.id)}
+                />
               </li>
             ))}
           </ul>
@@ -144,51 +165,96 @@ const EditorImprevisti = () => {
 
         {/* Form "AGGIUNGI Imprevisti" */}
 
-        <div className="flex w-full flex-col items-center gap-2 p-8">
+        <div className="flex w-full flex-col items-center justify-between p-6">
           <h3 className="text-center uppercase text-[--clr-ter]">
             Aggiungi il tuo imprevisto
           </h3>
           <form
             onSubmit={handleSubmit(onSubmit)}
-            className="flex h-full w-1/2 flex-col items-center justify-center gap-1 rounded-md border-4 p-8 font-normal"
+            className="flex h-full w-3/5 flex-col items-center justify-between gap-2 rounded-md border px-4 py-2 font-normal"
           >
-            <label className="my-1 flex w-full items-center gap-4 self-start text-sm">
+            <label className="my-1 flex w-full items-center gap-4 self-start text-sm font-semibold">
               Titolo Imprevisto
               {errors.titolo && (
                 <span className="text-[--clr-ter]">
-                  Il campo Titolo è obbligatorio
+                  Il campo Titolo è obbligatorio - max 20 caratteri
                 </span>
               )}
             </label>
+
             <input
               name="titolo"
-              {...register("titolo", { required: true, maxLength: 15 })}
-              className="block w-full rounded p-1 text-sm  text-black placeholder:italic"
+              {...register("titolo", { required: true, maxLength: 20 })}
+              className="block w-1/3 self-start rounded p-1 text-sm  font-semibold uppercase text-black placeholder:normal-case placeholder:italic"
               placeholder="Titolo dell'imprevisto"
             />
-            <label className="my-1 flex w-full items-center gap-4 self-start text-sm">
+            <label className="my-1 flex w-full items-center gap-4 self-start text-sm font-semibold">
               Descrizione Imprevisto
-              {errors.dettagli && (
+              {errors.descrizione && (
                 <span className="text-[--clr-ter]">
-                  Il campo Dettagli è obbligatorio
+                  Il campo descrizione è obbligatorio
                 </span>
               )}
             </label>
             <textarea
-              name="dettagli"
-              {...register("dettagli", { required: true })}
+              name="descrizione"
+              {...register("descrizione", { required: true })}
               rows={3}
-              id="nuovoImprevistoInput"
+              id="descrizione"
               placeholder="Descrizione dell'imprevisto"
-              className="w-full rounded p-1 text-sm text-black placeholder:italic"
+              className="w-full rounded p-1 text-sm font-semibold text-black placeholder:italic"
             />
+            <div
+              className={`flex w-full flex-col gap-2 ${selectRefState === "Speciali" && "invisible"}`}
+            >
+              <label className="my-1 flex w-full items-center gap-4 self-start text-sm font-semibold">
+                Numero di giocatori da estrarre (da 0 a 10)
+                {errors.extractedPl && (
+                  <span className="text-[--clr-ter]">
+                    Inserire un valore minimo di 0 ed uno massimo di 10
+                  </span>
+                )}
+              </label>
+              <input
+                {...register("extractedPl", { min: 0, max: 10 })}
+                name="extractedPl"
+                id="extractedPl"
+                type="number"
+                placeholder="Quanti giocatori?"
+                className="block w-1/3 rounded p-1 text-sm text-black placeholder:italic"
+              />
+              <div className="flex items-center py-2">
+                <label
+                  htmlFor="ultEstrazione"
+                  className="me-4 text-sm font-semibold text-gray-300"
+                >
+                  Ulteriore estrazione necessaria dopo la prima?
+                </label>
+                <input
+                  {...register("ultEstrazione")}
+                  id="ultEstrazione"
+                  name="ultEstrazione"
+                  type="checkbox"
+                  value=""
+                  className="h-4 w-4 rounded border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-blue-600"
+                />
+              </div>
+            </div>
+
             <button
               type="submit"
-              className="mt-2 w-1/3 rounded-lg bg-sky-700 py-1 font-semibold hover:bg-sky-600"
+              className="w-1/3 rounded-lg bg-sky-700 py-1 font-semibold hover:bg-sky-600"
             >
               Salva ed Invia
             </button>
           </form>
+          <span
+            className="absolute bottom-8 right-8 flex cursor-pointer flex-col items-center text-sm font-semibold text-[--clr-ter]"
+            onClick={() => console.log("Apri Modale con istruzioni")}
+          >
+            <MdInfoOutline size={32} />
+            istruzioni
+          </span>
         </div>
       </motion.div>
     </section>
@@ -196,5 +262,3 @@ const EditorImprevisti = () => {
 };
 
 export default EditorImprevisti;
-
-/* https://github.com/kentcdodds/use-deep-compare-effect */
