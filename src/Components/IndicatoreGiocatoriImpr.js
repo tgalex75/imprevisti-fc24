@@ -54,7 +54,7 @@ const IndicatoreGiocatoriImpr = (props) => {
   };
 
   return (
-    <div className="flex h-full w-1/4 flex-col items-center justify-between py-2">
+    <div className="flex h-full w-1/4 flex-col items-center gap-6 pb-4">
       <h5>{schema}</h5>
       <div className="flex w-full flex-col-reverse justify-center">
         {filteredTactics[0].formazione.map((el, i, array) =>
@@ -62,7 +62,7 @@ const IndicatoreGiocatoriImpr = (props) => {
         )}
       </div>
       {/* PANCHINA */}    
-      <div className="border- flex w-4/5 flex-wrap items-center justify-around p-1">
+      <div className="flex w-4/5 flex-wrap items-center justify-around p-1">
         {panchina.map((el) => (
           <div
             key={uuidv4()}
