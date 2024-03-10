@@ -92,7 +92,7 @@ const EditorImprevisti = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.7, duration: 0.7 }}
-        className="flex h-full w-full items-center justify-between overflow-hidden rounded-lg bg-black/50 px-2 text-gray-300 md:flex-col"
+        className="flex h-full w-full items-center justify-around overflow-hidden rounded-lg bg-black/50 px-2 text-gray-300 md:flex-col"
       >
         {/* Lista Imprevisti Attuale */}
 
@@ -165,14 +165,14 @@ const EditorImprevisti = () => {
 
         {/* Form "AGGIUNGI Imprevisti" */}
 
-        <div className="flex w-full flex-col items-center justify-between p-6">
-          <h3 className="text-center uppercase text-[--clr-ter]">
-            Aggiungi il tuo imprevisto
-          </h3>
+        <div className="flex w-full items-center justify-between gap-2 px-1 pb-8">
           <form
             onSubmit={handleSubmit(onSubmit)}
             className="flex h-full w-3/5 flex-col items-center justify-between gap-2 rounded-md border px-4 py-2 font-normal"
           >
+            <h3 className="text-center uppercase text-[--clr-ter]">
+              Aggiungi il tuo imprevisto
+            </h3>
             <label className="my-1 flex w-full items-center gap-4 self-start text-sm font-semibold">
               Titolo Imprevisto
               {errors.titolo && (
@@ -181,7 +181,6 @@ const EditorImprevisti = () => {
                 </span>
               )}
             </label>
-
             <input
               name="titolo"
               {...register("titolo", { required: true, maxLength: 20 })}
@@ -239,6 +238,40 @@ const EditorImprevisti = () => {
                   className="h-4 w-4 rounded border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-blue-600"
                 />
               </div>
+            </div>
+            <button
+              type="submit"
+              className="w-1/3 rounded-lg bg-sky-700 py-1 font-semibold hover:bg-sky-600"
+            >
+              Salva ed Invia
+            </button>
+          </form>
+          {/* AGGIUNGI "NESSUN IMPREVISTO" */}
+          <form
+            //onSubmit={handleSubmit(onSubmit)}
+            className="flex h-full w-2/5 flex-col items-center justify-between gap-2 rounded-md border px-4 py-2 font-normal"
+          >
+            <h3 className="text-center uppercase text-[--clr-ter]">
+              Aggiungi "NESSUN IMPREVISTO"
+            </h3>
+            <div
+              className="flex flex-1 w-full flex-col gap-14"
+            >
+              <label className="my-1 flex w-full items-center gap-4 self-start text-sm font-semibold">
+                Numero di voci "NESSUN IMPREVISTO" da aggiungere alla lista degli imprevisti {selectRefState}
+                {errors.nessunImprevisto && (
+                  <span className="text-[--clr-ter]">
+                    Inserire un valore minimo di 0 ed uno massimo di 10
+                  </span>
+                )}
+              </label>
+              <input
+                {...register("nessunImprevisto", { min: 0 })}
+                name="nessunImprevisto"
+                id="nessunImprevisto"
+                type="number"
+                className="block self-center w-1/3 rounded p-1 text-sm text-black placeholder:italic"
+              />
             </div>
 
             <button
