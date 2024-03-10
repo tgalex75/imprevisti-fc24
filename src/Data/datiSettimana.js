@@ -22,8 +22,8 @@ const settimana = [
     },
     {
         id: 4,
-        title: "PAROLA ALLA COMMUNITY!",
-        description: "Sarà applicato l'imprevisto scelto dalla Community.",
+        title: "HIGHLANDER",
+        description: "Il giocatore confessa al presidente il suo odio per il miglior pariruolo in rosa scatenando così una faida: il giocatore con il voto complessivo più basso a fine stagione sarà ceduto.",
         isImprev: true,
     },
     {
@@ -37,7 +37,7 @@ const settimana = [
         id: 6,
         title: "UNTORE",
         description:
-            "Il giocatore trasmette una brutta malattia al resto della squadra. Aumenta di 20 punti le due slide degli infortuni per tutto il mese.",
+            "Aumenta di 20 punti la slide di frequenza infortuni per le prossime 3 partite.",
         isImprev: true,
     },
     {
@@ -65,7 +65,7 @@ const settimana = [
         id: 10,
         title: "IETTATORE",
         description:
-            "Il giocatore in oggetto causa un infortunio al miglior giocatore della tua rosa, che resta fuori per tutto il mese.",
+            "Il giocatore in oggetto causa un infortunio al miglior giocatore della tua rosa, che resta fuori per 3 partite.",
         isImprev: true,
     },
     {
@@ -118,8 +118,8 @@ const settimana = [
     },
     {
         id: 18,
-        title: "PAROLA ALLA COMMUNITY!",
-        description: "Sarà applicato l'imprevisto scelto dalla Community.",
+        title: "HIGHLANDER",
+        description: "Il giocatore confessa al presidente il suo odio per il miglior pariruolo in rosa scatenando così una faida: il giocatore con il voto complessivo più basso a fine stagione sarà ceduto.",
         isImprev: true,
     },
     {
@@ -146,7 +146,7 @@ const settimana = [
         id: 22,
         title: "IETTATORE",
         description:
-            "Il giocatore in oggetto causa un infortunio al miglior giocatore della tua rosa, che resta fuori per tutto il mese.",
+            "Il giocatore in oggetto causa un infortunio al miglior giocatore della tua rosa, che resta fuori per 3 partite.",
         isImprev: true,
     },
     {
@@ -160,7 +160,7 @@ const settimana = [
         id: 24,
         title: "UNTORE",
         description:
-            "Il giocatore trasmette una brutta malattia al resto della squadra. Aumenta di 20 punti le due slide degli infortuni per tutto il mese.",
+            "Aumenta di 20 punti la slide di frequenza infortuni per le prossime 3 partite.",
         isImprev: true,
     },
     {
@@ -200,8 +200,23 @@ const settimana = [
     },
     {
         id: 30,
-        title: "PAROLA ALLA COMMUNITY!",
-        description: "Sarà applicato l'imprevisto scelto dalla Community.",
+        title: "SAUDADE",
+        description:
+            "Acquista tra gli svincolati un connazionale a scelta e schierali insieme per 4 partite.",
+        isImprev: true,
+    },
+    {
+        id: 31,
+        title: "nessun imprevisto",
+        description:
+        "Il giocatore passerà in tribuna le partite giocate questa settimana.",
+        isImprev: false,
+    },
+    {
+        id: 32,
+        title: "SAUDADE",
+        description:
+            "Acquista tra gli svincolati un connazionale a scelta e schierali insieme per 4 partite.",
         isImprev: true,
     },
 ];
