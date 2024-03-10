@@ -83,7 +83,7 @@ const RiepilogoImprevisti = () => {
                 key={el.id}
                 className="flex items-center justify-between bg-gray-700/20 py-1 ps-2 text-left text-sm font-normal uppercase"
               >
-                <span className="w-[95%]">{el.name}</span>
+                <span className="w-[95%]">{el.descrizione}</span>
                 <MdClear
                   size={20}
                   className="cursor-pointer fill-red-700 transition-all hover:scale-125 hover:fill-red-600"
