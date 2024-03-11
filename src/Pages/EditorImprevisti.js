@@ -8,7 +8,7 @@ import { MdInfoOutline } from "react-icons/md";
 
 const EditorImprevisti = () => {
   const [vociRegistro, setVociRegistro] = useState([]);
-  const [selectRefState, setSelectRefState] = useState("Prepartita");
+  const [selectRefState, setSelectRefState] = useState("prepartita");
 
   const aggiornaTitoloImprRef = useRef([]);
   const aggiornaDescImprRef = useRef([]);
@@ -16,7 +16,7 @@ const EditorImprevisti = () => {
 
   const fetchRegistryList = async () => {
     const { data } = await supabase
-      .from(selectRefState === "Prepartita" ? "prepartita" : "imprevisti")
+      .from(selectRefState)
       .select("*");
     setVociRegistro(data ? data : []);
   };
@@ -27,7 +27,7 @@ const EditorImprevisti = () => {
 
   const removeVociRegistro = async (element) => {
     const { error } = await supabase
-      .from(selectRefState === "Prepartita" ? "prepartita" : "imprevisti")
+      .from(selectRefState)
       .delete()
       .eq("id", element);
     error && console.log(error);
@@ -35,7 +35,7 @@ const EditorImprevisti = () => {
 
   const updateVociRegistro = async (element, refTitolo, refDescr) => {
     const { data, error } = await supabase
-      .from(selectRefState === "Prepartita" ? "prepartita" : "imprevisti")
+      .from(selectRefState === "prepartita" ? "prepartita" : "imprevisti")
       .update({ titolo: refTitolo.toUpperCase(), descrizione: refDescr })
       .eq("id", element)
       .select();
@@ -49,22 +49,18 @@ const EditorImprevisti = () => {
   // LOGICA NUOVO IMPREVISTO
 
   const uploadNewImpr = async (objForm) => {
-    const { titolo, descrizione, ultEstrazione, extractedPl } = objForm;
+    const { titolo, descrizione, ultEstrazione, extractedPl, isImprev } = objForm;
     const { data, error } = await supabase
-      .from(selectRefState === "Prepartita" ? "prepartita" : "imprevisti")
-      .insert(
-        selectRefState === "Speciali"
-          ? [{ titolo: titolo.toUpperCase(), descrizione: descrizione }]
-          : [
-              {
-                titolo: titolo.toUpperCase(),
-                descrizione: descrizione,
-                ultEstrazione: ultEstrazione,
-                extractedPl: extractedPl,
-                isImprev: true,
-              },
-            ],
-      )
+      .from(selectRefState)
+      .insert([
+        {
+          titolo: titolo.toUpperCase(),
+          descrizione: descrizione,
+          ultEstrazione: ultEstrazione && ultEstrazione,
+          extractedPl: extractedPl && extractedPl,
+          isImprev: isImprev && isImprev,
+        },
+      ])
       .select();
     console.log(data ? data : console.log(error));
   };
@@ -73,15 +69,47 @@ const EditorImprevisti = () => {
     uploadNewImpr(objForm);
   };
 
+  const uploadNoImprevisti = async (array) => {
+    const { data, error } = await supabase
+      .from(selectRefState)
+      .insert(array)
+      .select();
+    console.log(data ? data : console.log(error));
+  }
+
+  /* FORM INSERIMENTO IMPREVISTI */
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
+  /* FORM INSERIMENTO "NO IMPREVISTI" */
+  const {
+    register: register2,
+    handleSubmit: handleSubmit2,
+    formState: { errors: errors2 },
+  } = useForm();
+
   const onSubmit = (data, e) => {
     handleNewImpr(data);
-    console.log(data);
+    //console.log(data);
+    e.target.reset();
+  };
+
+  const numberOfNoImpr = (data) => {
+    const numberOfNoImprArray = [];
+    const { nessunImprevisto } = data;
+    const numberOfNoImpr = parseInt(nessunImprevisto);
+    for (let number = 0; number < numberOfNoImpr; number++) {
+      numberOfNoImprArray.push({ titolo: "NESSUN IMPREVISTO" });
+    }
+    uploadNoImprevisti(numberOfNoImprArray);
+    //console.log(numberOfNoImprArray)
+  };
+
+  const onSubmitNoImpr = (data, e) => {
+    numberOfNoImpr(data);
     e.target.reset();
   };
 
@@ -99,8 +127,7 @@ const EditorImprevisti = () => {
         <div className="relative flex h-1/2 w-full flex-col items-center justify-center gap-2 p-1">
           <header className="flex w-full items-center justify-between p-1">
             <h3 className="w-1/3 text-start uppercase text-[--clr-ter]">
-              Imprevisti{" "}
-              {selectRefState === "Prepartita" ? "Prepartita" : "Speciali"}
+              Imprevisti {selectRefState}
             </h3>
             <label
               htmlFor="tipoImprevisto"
@@ -113,8 +140,9 @@ const EditorImprevisti = () => {
                 className="w-fit self-center rounded-md border p-1 text-sm font-semibold dark:border-black/20 dark:bg-black/30 dark:text-gray-300 dark:placeholder-black/10 dark:focus:border-blue-500 dark:focus:ring-blue-500"
               >
                 <option>Seleziona</option>
-                <option value="Prepartita">Prepartita</option>
-                <option value="Speciali">Speciali</option>
+                <option value="prepartita">Prepartita</option>
+                <option value="settimana">Settimana</option>
+                <option value="speciali">Speciali</option>
               </select>
             </label>
             <strong className="w-1/3 text-end font-semibold">
@@ -204,7 +232,7 @@ const EditorImprevisti = () => {
               className="w-full rounded p-1 text-sm font-semibold text-black placeholder:italic"
             />
             <div
-              className={`flex w-full flex-col gap-2 ${selectRefState === "Speciali" && "invisible"}`}
+              className={`flex w-full flex-col gap-2 ${selectRefState === "speciali" && "invisible"}`}
             >
               <label className="my-1 flex w-full items-center gap-4 self-start text-sm font-semibold">
                 Numero di giocatori da estrarre (da 0 a 10)
@@ -248,29 +276,29 @@ const EditorImprevisti = () => {
           </form>
           {/* AGGIUNGI "NESSUN IMPREVISTO" */}
           <form
-            //onSubmit={handleSubmit(onSubmit)}
+            onSubmit={handleSubmit2(onSubmitNoImpr)}
             className="flex h-full w-2/5 flex-col items-center justify-between gap-2 rounded-md border px-4 py-2 font-normal"
-          >
+            style={selectRefState === "speciali" ? {visibility: "hidden"}: {}}  
+>
             <h3 className="text-center uppercase text-[--clr-ter]">
               Aggiungi "NESSUN IMPREVISTO"
             </h3>
-            <div
-              className="flex flex-1 w-full flex-col gap-14"
-            >
+            <div className="flex w-full flex-1 flex-col gap-14">
               <label className="my-1 flex w-full items-center gap-4 self-start text-sm font-semibold">
-                Numero di voci "NESSUN IMPREVISTO" da aggiungere alla lista degli imprevisti {selectRefState}
-                {errors.nessunImprevisto && (
+                Numero di voci "NESSUN IMPREVISTO" da aggiungere alla lista
+                degli imprevisti {selectRefState}
+                {errors2.nessunImprevisto && (
                   <span className="text-[--clr-ter]">
                     Inserire un valore minimo di 0 ed uno massimo di 10
                   </span>
                 )}
               </label>
               <input
-                {...register("nessunImprevisto", { min: 0 })}
+                {...register2("nessunImprevisto", { min: 0 })}
                 name="nessunImprevisto"
                 id="nessunImprevisto"
                 type="number"
-                className="block self-center w-1/3 rounded p-1 text-sm text-black placeholder:italic"
+                className="block w-1/3 self-center rounded p-1 text-sm text-black placeholder:italic"
               />
             </div>
 
