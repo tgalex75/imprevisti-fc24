@@ -20,7 +20,6 @@ const Prepartita = () => {
   };
 
   const {
-    id,
     titolo,
     descrizione,
     isImprev,
@@ -30,12 +29,11 @@ const Prepartita = () => {
 
   const titoloH1 = "Imprevisto Prepartita";
   const isImpCommunity = titolo === "IMPREVISTO SPECIALE";
-
+  
   return (
     <>
       <LayoutBase
         titoloH1={titoloH1}
-        id={id}
         isImprev={isImprev}
         casuale={casuale}
       >

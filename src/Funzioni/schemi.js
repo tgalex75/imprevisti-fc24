@@ -33,7 +33,7 @@ export const mySelect = (labelText, ref, func, arr) => {
       >
         {arr.map((el, i) => {
           return (
-            <option key={i} value={el}>
+            <option key={"tattica." + i} value={el}>
               {el}
             </option>
           );
@@ -52,5 +52,5 @@ export const arrayRange = (start, stop, step) =>
 let arrDataPlayers = arrayRange(1, 11, 1);
 
 export const data = arrDataPlayers.map((el) => {
-  return { id: el, nome: el };
+  return { id: ("ArrDataPalayers." + el), nome: el };
 });

@@ -1,26 +1,27 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { supabase } from "../supabaseClient";
 import { motion } from "framer-motion";
-import { MdClear } from "react-icons/md";
 
 const RiepilogoImprevisti = () => {
   const [vociRegistro, setVociRegistro] = useState([]);
+  const [selectRefState, setSelectRefState] = useState("prepartita");
+
+  const selectRef = useRef(null);
+
+  const handleSelectRef = () => {
+    setSelectRefState(selectRef.current.value);
+  };
 
   useEffect(() => {
     fetchRegistryList();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [vociRegistro]);
 
   const fetchRegistryList = async () => {
-    const { data } = await supabase.from("imprevisti").select("*");
+    const { data } = await supabase
+      .from(selectRefState)
+      .select("*");
     setVociRegistro(data ? data : []);
-  };
-
-  const removeVociRegistro = async (element) => {
-    const { error } = await supabase
-      .from("imprevisti")
-      .delete()
-      .eq("id", element);
-    error && console.log(error);
   };
 
   return (
@@ -32,53 +33,44 @@ const RiepilogoImprevisti = () => {
         transition={{ delay: 0.7, duration: 0.7 }}
         className="flex h-full w-full items-center gap-2 overflow-hidden rounded-lg bg-black/50 p-2 text-gray-300 md:flex-col"
       >
-        <div className="flex h-1/4 w-full flex-col gap-2">
-          <h3 className="text-center uppercase text-[--clr-prim]">
-            Imprevisti Prepartita
+        <header className="flex w-full items-center justify-between p-1">
+          <label
+            htmlFor="tipoImprevisto"
+            className="flex w-1/3 items-center justify-center gap-2"
+          >
+            Lista da editare
+            <select
+              ref={selectRef}
+              onChange={handleSelectRef}
+              className="w-fit self-center rounded-md border p-1 text-sm font-semibold dark:border-black/20 dark:bg-black/30 dark:text-gray-300 dark:placeholder-black/10 dark:focus:border-blue-500 dark:focus:ring-blue-500"
+            >
+              <option value="">Seleziona</option>
+              <option value="prepartita">Prepartita</option>
+              <option value="settimana">Settimana</option>
+              <option value="speciali">Speciali</option>
+            </select>
+          </label>
+          <strong className="w-1/3 text-end font-semibold">
+            Numero imprevisti: {vociRegistro.length}
+          </strong>
+        </header>
+        <div className="flex h-full w-full flex-col gap-2">
+          <h3 className="text-center uppercase text-[--clr-ter]">
+            Imprevisti {selectRefState && selectRefState  }
           </h3>
-          {/* <ul className="flex h-full w-full flex-col gap-1 overflow-y-auto px-2 pb-2">
-            {datiPrepartita.map(
+          <ul className="flex h-full w-full flex-col gap-1 overflow-y-auto px-2 pb-2">
+            {vociRegistro.map(
               (el) =>
-                el.title.toUpperCase() !== "NESSUN IMPREVISTO" && (
+                el.titolo.toUpperCase() !== "NESSUN IMPREVISTO" && (
                   <li
                     key={el.id}
                     className="flex items-center justify-start gap-8 bg-gray-700/20 py-1 ps-2 text-left text-sm hover:bg-gray-600/50"
                   >
-                    <strong className="uppercase">{el.title}</strong>
-                    <em className="font-medium">{el.description}</em>
+                    <strong className="uppercase">{el.titolo}</strong>
+                    <em className="font-medium">{el.descrizione}</em>
                   </li>
                 ),
             )}
-          </ul> */}
-        </div>
-        <div className="relative flex h-3/4 w-full flex-col gap-2">
-          <h3 className="text-center uppercase text-[--clr-prim]">
-            Imprevisti della Community
-          </h3>
-          <strong className="absolute right-1 top-0 font-semibold">
-            # {vociRegistro.length}
-          </strong>
-          <ul className="flex h-full w-full flex-col gap-1 overflow-y-auto px-2 pb-2">
-            {vociRegistro.map((el) => (
-              <li
-                key={el.id}
-                className="text-md flex items-center justify-between bg-gray-700/20 py-1 ps-2 text-left font-normal hover:bg-gray-600/50"
-              >
-                <div className="flex w-full gap-2">
-                  <span className="w-1/6 font-semibold uppercase">
-                    {el.titolo}
-                  </span>
-                  <span className="w-5/6 capitalize italic">
-                    {el.descrizione}
-                  </span>
-                </div>
-                <MdClear
-                  size={20}
-                  className="cursor-pointer fill-red-600 transition-all hover:scale-125 hover:fill-red-500"
-                  onClick={() => removeVociRegistro(el.id)}
-                />
-              </li>
-            ))}
           </ul>
         </div>
       </motion.div>

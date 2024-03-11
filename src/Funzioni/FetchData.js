@@ -26,12 +26,12 @@ export default function FetchData(props) {
       .select("*")
       .limit(1)
       .single();
-    setImprevisto(data ? data : { id: 0, name: "LISTA VUOTA!!!" });
+    setImprevisto(data ? data : { id: 0, descrizione: "LISTA VUOTA!!!" });
   };
 
   const delElemento = async () => {
     const { error } = await supabase
-      .from("imprevisti")
+      .from("speciali")
       .delete("id")
       .eq("id", imprevisto.id);
     console.log(error ? error : "");
@@ -76,7 +76,7 @@ export default function FetchData(props) {
         }}
         className="text-md my-8 flex flex-1 items-center text-center uppercase italic text-gray-200 md:ps-[30%] md:text-2xl"
       >
-        {imprevisto.name}*
+        {imprevisto.descrizione}*
       </h3>
       {!isEstrazione && (
         <>

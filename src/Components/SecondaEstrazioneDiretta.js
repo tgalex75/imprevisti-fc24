@@ -8,7 +8,7 @@ import { isMobile } from "react-device-detect";
 const SecondaEstrazioneDiretta = (props) => {
   const { extractedPl } = props;
 
-  const numbers = data.map((player) => player.id);
+  const numbers = data.map((player) => player.nome);
   const extractedPlayer = pickRandom(numbers, { count: extractedPl });
 
   return (
@@ -27,10 +27,10 @@ const SecondaEstrazioneDiretta = (props) => {
           id="extractedPlayers"
           className="flex h-full md:w-3/4 flex-wrap items-center justify-around md:self-start rounded-lg md:flex-nowrap md:gap-4"
         >
-          {extractedPlayer.map((player, i) => {
+          {extractedPlayer.map((player, idx) => {
             return (
               <div
-                key={i}
+                key={"playerNumber." + idx}
                 className="flex flex-col items-center justify-center overflow-hidden rounded bg-contain bg-center bg-no-repeat p-8 transition-all md:h-full md:w-full"
                 style={{
                   backgroundImage:

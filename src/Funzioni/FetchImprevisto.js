@@ -27,7 +27,7 @@ export default function FetchData() {
 
   const delElemento = async () => {
     const { error } = await supabase
-      .from("imprevisti")
+      .from("speciali")
       .delete("id")
       .eq("id", imprevisto.id);
     error && console.log(error);
