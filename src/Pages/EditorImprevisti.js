@@ -15,9 +15,7 @@ const EditorImprevisti = () => {
   const selectRef = useRef(null);
 
   const fetchRegistryList = async () => {
-    const { data } = await supabase
-      .from(selectRefState)
-      .select("*");
+    const { data } = await supabase.from(selectRefState).select("*");
     setVociRegistro(data ? data : []);
   };
 
@@ -35,7 +33,7 @@ const EditorImprevisti = () => {
 
   const updateVociRegistro = async (element, refTitolo, refDescr) => {
     const { data, error } = await supabase
-      .from(selectRefState === "prepartita" ? "prepartita" : "imprevisti")
+      .from(selectRefState)
       .update({ titolo: refTitolo.toUpperCase(), descrizione: refDescr })
       .eq("id", element)
       .select();
@@ -49,16 +47,16 @@ const EditorImprevisti = () => {
   // LOGICA NUOVO IMPREVISTO
 
   const uploadNewImpr = async (objForm) => {
-    const { titolo, descrizione, ultEstrazione, extractedPl, isImprev } = objForm;
+    const { titolo, descrizione } = objForm;
     const { data, error } = await supabase
       .from(selectRefState)
       .insert([
         {
           titolo: titolo.toUpperCase(),
           descrizione: descrizione,
-          ultEstrazione: ultEstrazione && ultEstrazione,
-          extractedPl: extractedPl && extractedPl,
-          isImprev: isImprev && isImprev,
+          ultEstrazione: objForm?.ultEstrazione && objForm.ultEstrazione,
+          extractedPl: objForm?.extractedPl && objForm.extractedPl,
+          isImprev: true,
         },
       ])
       .select();
@@ -75,7 +73,7 @@ const EditorImprevisti = () => {
       .insert(array)
       .select();
     console.log(data ? data : console.log(error));
-  }
+  };
 
   /* FORM INSERIMENTO IMPREVISTI */
   const {
@@ -102,7 +100,10 @@ const EditorImprevisti = () => {
     const { nessunImprevisto } = data;
     const numberOfNoImpr = parseInt(nessunImprevisto);
     for (let number = 0; number < numberOfNoImpr; number++) {
-      numberOfNoImprArray.push({ titolo: "NESSUN IMPREVISTO" });
+      numberOfNoImprArray.push({
+        titolo: "NESSUN IMPREVISTO",
+        isImprev: false,
+      });
     }
     uploadNoImprevisti(numberOfNoImprArray);
     //console.log(numberOfNoImprArray)
@@ -142,6 +143,7 @@ const EditorImprevisti = () => {
                 <option>Seleziona</option>
                 <option value="prepartita">Prepartita</option>
                 <option value="settimana">Settimana</option>
+                <option value="serienegativa">Serie Negativa</option>
                 <option value="speciali">Speciali</option>
               </select>
             </label>
@@ -243,12 +245,17 @@ const EditorImprevisti = () => {
                 )}
               </label>
               <input
-                {...register("extractedPl", { min: 0, max: 10 })}
+                {...register("extractedPl", {
+                  min: 0,
+                  max: 10,
+                  required: true,
+                })}
                 name="extractedPl"
+                value={1}
                 id="extractedPl"
                 type="number"
                 placeholder="Quanti giocatori?"
-                className="block w-1/3 rounded p-1 text-sm text-black placeholder:italic"
+                className="block w-1/3 rounded p-1 text-sm font-semibold text-black placeholder:italic"
               />
               <div className="flex items-center py-2">
                 <label
@@ -278,8 +285,10 @@ const EditorImprevisti = () => {
           <form
             onSubmit={handleSubmit2(onSubmitNoImpr)}
             className="flex h-full w-2/5 flex-col items-center justify-between gap-2 rounded-md border px-4 py-2 font-normal"
-            style={selectRefState === "speciali" ? {visibility: "hidden"}: {}}  
->
+            style={
+              selectRefState === "speciali" ? { visibility: "hidden" } : {}
+            }
+          >
             <h3 className="text-center uppercase text-[--clr-ter]">
               Aggiungi "NESSUN IMPREVISTO"
             </h3>

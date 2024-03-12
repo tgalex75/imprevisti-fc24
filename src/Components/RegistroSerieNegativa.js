@@ -33,7 +33,7 @@ const RegistroSerieNegativa = () => {
               key={uuid()}
             >
               <small className="text-xs font-semibold uppercase md:text-sm">
-                {item.title}
+                {item.titolo}
               </small>
               <div className="flex items-center pr-2">
                 <MdAddCircleOutline

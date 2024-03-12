@@ -19,24 +19,16 @@ const Prepartita = () => {
     setCasuale(prepartita ? random.choice(prepartita) : console.log(error));
   };
 
-  const {
-    titolo,
-    descrizione,
-    isImprev,
-    ultEstrazione,
-    extractedPl,
-  } = casuale ? casuale : {};
+  const { titolo, descrizione, isImprev, ultEstrazione, extractedPl } = casuale
+    ? casuale
+    : {};
 
   const titoloH1 = "Imprevisto Prepartita";
   const isImpCommunity = titolo === "IMPREVISTO SPECIALE";
-  
+
   return (
     <>
-      <LayoutBase
-        titoloH1={titoloH1}
-        isImprev={isImprev}
-        casuale={casuale}
-      >
+      <LayoutBase titoloH1={titoloH1} isImprev={isImprev} casuale={casuale}>
         {casuale && (
           <section className="flex h-full w-full flex-col items-center justify-around">
             <h2
@@ -46,8 +38,8 @@ const Prepartita = () => {
               }}
               className={
                 isImprev
-                  ? "text-5xl font-extrabold uppercase md:relative md:top-2 md:flex-1 md:text-6xl"
-                  : "hidden"
+                  ? "flex h-full items-center text-5xl font-extrabold uppercase md:relative md:top-2 md:text-6xl"
+                  : "invisible md:h-full"
               }
             >
               {isImpCommunity ? "Imprevisto SPECIALE" : "IMPREVISTO!"}
@@ -56,7 +48,7 @@ const Prepartita = () => {
               <>
                 <h3
                   style={{ filter: "drop-shadow(.05rem .05rem 0.1rem #000)" }}
-                  className={`text-4xl font-extrabold uppercase md:flex-1 md:text-5xl ${
+                  className={`flex items-center text-4xl font-extrabold uppercase md:h-full md:text-5xl ${
                     titolo === "IMPREVISTO SPECIALE" && "hidden"
                   }`}
                 >
@@ -64,17 +56,10 @@ const Prepartita = () => {
                 </h3>
                 <p
                   style={{ fontFamily: "'Handlee', cursive" }}
-                  className="mt-4 px-4 text-xl md:flex-1 md:text-3xl"
+                  className="mt-4 px-4 text-xl md:h-full md:text-3xl"
                 >
-                  {descrizione}
+                  {isImprev && descrizione}
                 </p>
-                {/* Eccezione imprevisto n. 28 
-                <p className="text-sm italic md:text-lg">
-                  {id === 26 &&
-                    "Attenzione! Imprevisto applicabile una sola volta per stagione"}
-                  {id === 28 &&
-                    "Attenzione! Non si applica alle partite determinanti (es. turni di ritorno, partite secche, scontri diretti)"}
-                </p>*/}
               </>
             ) : (
               <>

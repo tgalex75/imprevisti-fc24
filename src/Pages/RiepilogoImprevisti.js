@@ -24,6 +24,8 @@ const RiepilogoImprevisti = () => {
     setVociRegistro(data ? data : []);
   };
 
+  console.log()
+
   return (
     <section className="flex h-full w-full flex-col items-center justify-center gap-12 px-4 pb-6 font-bold">
       <h1>Riepilogo Imprevisti</h1>
@@ -47,6 +49,7 @@ const RiepilogoImprevisti = () => {
               <option value="">Seleziona</option>
               <option value="prepartita">Prepartita</option>
               <option value="settimana">Settimana</option>
+              <option value="serienegativa">Serie Negativa</option>
               <option value="speciali">Speciali</option>
             </select>
           </label>

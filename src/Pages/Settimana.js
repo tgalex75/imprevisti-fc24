@@ -1,50 +1,39 @@
 import React, { useState } from "react";
 import Dado from "../Components/Dado";
-import { randomNumber } from "../Funzioni/RandomNumber";
-import datiSettimana from "../Data/datiSettimana";
-import SecondaEstrazione from "../Components/SecondaEstrazione";
+import random from "random";
 import FetchImprevisto from "../Funzioni/FetchImprevisto";
-import { motion } from "framer-motion";
+//import { motion } from "framer-motion";
 import LayoutBase from "../Components/LayoutBase";
+import { supabase } from "../supabaseClient";
 
 const Settimana = () => {
   const [casuale, setCasuale] = useState(null);
 
   // Prima Estrazione
 
-  const estraiNumeroCasuale = () => {
-    setCasuale(randomNumber(datiSettimana));
+  const fetchList = async () => {
+    let { data: settimana, error } = await supabase
+      .from("settimana")
+      .select("*");
+    setCasuale(settimana ? random.choice(settimana) : console.log(error));
   };
 
-  const { id, title, description, isImprev } = casuale
-    ? datiSettimana[casuale - 1]
+  const { titolo, descrizione, isImprev } = casuale
+    ? casuale
     : {};
 
   const titoloH1 = "Imprevisto Settimanale";
-  const isImpCommunity = title === "PAROLA ALLA COMMUNITY!";
+  const isImpSpeciale = titolo === "IMPREVISTO SPECIALE";
 
   return (
     <>
       <LayoutBase
         titoloH1={titoloH1}
-        id={id}
         isImprev={isImprev}
         casuale={casuale}
       >
         {casuale && (
-          <>
-            <motion.p
-              initial={{ opacity: 0, x: "50vw" }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ type: "spring" }}
-              style={{
-                filter: "drop-shadow(.05rem .05rem 0.1rem #000)",
-              }}
-              className="flex h-8 w-8 items-center justify-center rounded-full bg-gray-300/20 p-8 text-4xl md:self-start md:p-12 md:text-6xl"
-            >
-              {id}
-            </motion.p>
-
+          <section className="flex h-full w-full flex-col items-center justify-around">
             <h2
               style={{
                 fontFamily: "'Boogaloo', sans-serif",
@@ -52,48 +41,40 @@ const Settimana = () => {
               }}
               className={
                 isImprev
-                  ? "md:flex-1 text-5xl font-extrabold uppercase md:text-7xl md:absolute md:top-2"
-                  : "hidden"
+                  ? "text-5xl h-full md:pt-6 font-extrabold uppercase md:relative md:top-2 md:text-6xl flex items-center"
+                  : "invisible md:h-full"
               }
             >
-              {isImpCommunity ? "Imprevisto della Community" : "IMPREVISTO!"}
+              {isImpSpeciale ? "Imprevisto SPECIALE" : "IMPREVISTO!"}
             </h2>
-
-            {!isImpCommunity ? (
+            {!isImpSpeciale ? (
               <>
                 <h3
                   style={{ filter: "drop-shadow(.05rem .05rem 0.1rem #000)" }}
-                  className="md:flex-1 text-4xl font-extrabold uppercase md:text-6xl"
+                  className={`text-4xl md:h-full font-extrabold uppercase md:text-5xl flex items-center ${
+                    titolo === "IMPREVISTO SPECIALE" && "hidden"
+                  }`}
                 >
-                  {title}
+                  {titolo}
                 </h3>
                 <p
-                  style={{
-                    fontFamily: "'Handlee', cursive",
-                    filter: "drop-shadow(.05rem .05rem 0.1rem #000)",
-                  }}
-                  className="mt-4 md:flex-1 text-2xl md:text-4xl"
+                  style={{ fontFamily: "'Handlee', cursive" }}
+                  className="mt-4 px-4 text-xl md:h-full md:text-3xl"
                 >
-                  {description}
+                  {isImprev && descrizione}
                 </p>
-                {/* Eccezione imprevisto n. 28 */}
-                <p className="text-xl italic">
-                  {id === 8 || id === 16
-                    ? "Non applicabile se il giocatore estratto è in prestito. In tal caso si ripete l’estrazione."
-                    : ""}
-                </p>
+                
               </>
             ) : (
               <>
                 <FetchImprevisto />
-                <SecondaEstrazione />
               </>
             )}
-          </>
+          </section>
         )}
       </LayoutBase>
-      {Dado(estraiNumeroCasuale)}
-      </>
+      {Dado(fetchList)}
+    </>
   );
 };
 

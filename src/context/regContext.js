@@ -20,13 +20,13 @@ export const CartProvider = ({ children }) => {
 
   const addToCart = (item) => {
     const isItemInCart = cartItems.find(
-      (cartItem) => cartItem.title === item.title,
+      (cartItem) => cartItem.titolo === item.titolo,
     );
 
     if (isItemInCart) {
       setCartItems(
         cartItems.map((cartItem) =>
-          cartItem.title === item.title
+          cartItem.titolo === item.titolo
             ? { ...cartItem, quantity: cartItem.quantity + 1 }
             : cartItem,
         ),
@@ -40,18 +40,18 @@ export const CartProvider = ({ children }) => {
 
   const removeFromCart = (item) => {
     const isItemInCart = cartItems.find(
-      (cartItem) => cartItem.title === item.title,
+      (cartItem) => cartItem.titolo === item.titolo,
     );
 
     if (isItemInCart.quantity === 1) {
       setCartItems(
-        cartItems.filter((cartItem) => cartItem.title !== item.title),
+        cartItems.filter((cartItem) => cartItem.titolo !== item.titolo),
       );
       removeItem(item);
     } else {
       setCartItems(
         cartItems.map((cartItem) =>
-          cartItem.title === item.title
+          cartItem.titolo === item.titolo
             ? { ...cartItem, quantity: cartItem.quantity - 1 }
             : cartItem,
         ),
@@ -63,7 +63,7 @@ export const CartProvider = ({ children }) => {
   const insertItem = async (impr) => {
     const { data, error } = await supabase
       .from("registroimprevisti")
-      .insert([{ title: impr.title, quantity: impr.quantity }])
+      .insert([{ titolo: impr.titolo, quantity: impr.quantity }])
       .select();
     data ? console.log("data: ", data) : console.log("error: ", error);
   };
@@ -72,7 +72,7 @@ export const CartProvider = ({ children }) => {
     const { error } = await supabase
       .from("registroimprevisti")
       .delete()
-      .eq("title", element.title);
+      .eq("titolo", element.titolo);
     error && console.log(error);
   };
 
@@ -90,7 +90,7 @@ export const CartProvider = ({ children }) => {
       .update({
         quantity: itemQuantity.quantity === 3 ? 3 : itemQuantity.quantity + 1,
       })
-      .eq("title", item.title)
+      .eq("titolo", item.titolo)
       .select();
     data ? console.log("data: ", data) : console.log("error: ", error);
   };
@@ -99,7 +99,7 @@ export const CartProvider = ({ children }) => {
     const { data, error } = await supabase
       .from("registroimprevisti")
       .update({ quantity: itemQuantity.quantity - 1 })
-      .eq("title", item.title)
+      .eq("titolo", item.titolo)
       .select();
     data ? console.log("data: ", data) : console.log("error: ", error);
   };
@@ -108,17 +108,6 @@ export const CartProvider = ({ children }) => {
     setCartItems([]);
     deleteListDB();
   };
-
-  /* useEffect(() => {
-    localStorage.setItem("cartItems", JSON.stringify(cartItems));
-  }, [cartItems]);
-
-  useEffect(() => {
-    const cartItems = localStorage.getItem("cartItems");
-    if (cartItems) {
-      setCartItems(JSON.parse(cartItems));
-    }
-  }, []); */
 
   return (
     <CartContext.Provider

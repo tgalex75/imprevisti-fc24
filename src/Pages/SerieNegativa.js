@@ -1,12 +1,12 @@
 import React, { useState, useContext, useRef } from "react";
 import Dado from "../Components/Dado";
-import { randomNumber } from "../Funzioni/RandomNumber";
 import { CartContext } from "../context/regContext";
-import datiSerieNegativa from "../Data/datiSerieNegativa";
+import { supabase } from "../supabaseClient";
 import SecondaEstrazione from "../Components/SecondaEstrazione";
 import RegistroSerieNegativa from "../Components/RegistroSerieNegativa";
 import { motion } from "framer-motion";
 import { isMobile } from "react-device-detect";
+import random from "random";
 
 const SerieNegativa = () => {
   const [casuale, setCasuale] = useState(null);
@@ -17,12 +17,15 @@ const SerieNegativa = () => {
 
   // Prima Estrazione
 
-  const estraiNumeroCasuale = () => {
-    setCasuale(randomNumber(datiSerieNegativa));
+  const fetchList = async () => {
+    let { data: serienegativa, error } = await supabase
+      .from("serienegativa")
+      .select("*");
+    setCasuale(serienegativa ? random.choice(serienegativa) : console.log(error));
   };
 
-  const { id, title, description, isImprev, ultEstrazione } = casuale
-    ? datiSerieNegativa[casuale - 1]
+  const { titolo, descrizione, isImprev, ultEstrazione } = casuale
+    ? casuale
     : {};
 
   return (
@@ -66,7 +69,7 @@ const SerieNegativa = () => {
                 style={{ filter: "drop-shadow(.05rem .05rem 0.1rem #000)" }}
                 className="flex items-center justify-center text-3xl font-extrabold uppercase md:flex-1 md:text-6xl"
               >
-                {title}
+                {titolo}
               </h3>
               {isImprev && (
                 <p
@@ -76,13 +79,13 @@ const SerieNegativa = () => {
                   }}
                   className="text-md px-4 md:flex-1 md:text-2xl md:w-3/4"
                 >
-                  {description}
+                  {descrizione}
                 </p>
               )}
             
 
             {ultEstrazione && <SecondaEstrazione />}
-            {id > 3 && (
+            {isImprev && (
               <div className="w-full md:w-3/4 flex flex-col items-center">
                 <label
                   htmlFor="nome-giocatore"
@@ -104,7 +107,7 @@ const SerieNegativa = () => {
                     className="flex h-full w-full items-center justify-center rounded-lg bg-sky-700 px-4 py-2 text-center text-xs font-semibold text-white shadow-md transition duration-200 ease-in hover:bg-sky-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-indigo-200 md:text-sm "
                     onClick={() =>
                       addToCart({
-                        title: `${inputRef.current.value} - ${title}`.toUpperCase(),
+                        titolo: `${inputRef.current.value} - ${titolo}`.toUpperCase(),
                         quantity: 1,
                       })
                     }
@@ -120,7 +123,7 @@ const SerieNegativa = () => {
         )}
       </motion.div>
 
-      {Dado(estraiNumeroCasuale)}
+      {Dado(fetchList)}
     </section>
   );
 };

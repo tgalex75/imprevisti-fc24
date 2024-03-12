@@ -34,7 +34,7 @@ export default function FetchData() {
   };
 
   return (
-    <section id="FetchImprevisto" className="flex flex-1 flex-col gap-8">
+    <section id="FetchImprevisto" className="flex md:h-full flex-col gap-8">
       <h4 className="text-2xl uppercase md:text-5xl font-extrabold">{imprevisto.titolo}</h4>
       <p
         style={{ fontFamily: "'Handlee', cursive" }}
