@@ -7,24 +7,24 @@ import Dado from "../Components/Dado";
 import random from "random";
 
 const Prepartita = () => {
-  const [casualePre, setCasualePre] = useState(() => {
-    const saved = localStorage.getItem("casualePre");
+  const [prepartita, setPrepartita] = useState(() => {
+    const saved = localStorage.getItem("prepartita");
     const initialValue = JSON.parse(saved);
     return initialValue || [];
   });
 
-  // Prima Estrazione
+  const [casuale, setCasuale] = useState(null);
 
   useEffect(() => {
-    localStorage.setItem("casualePre", JSON.stringify(casualePre));
-  })
+    localStorage.setItem("prepartita", JSON.stringify(prepartita));
+  },[prepartita])
 
   const fetchList = () => {
-    setCasualePre(random.choice(casualePre));
+    setCasuale(random.choice(prepartita));
   };
 
-  const { titolo, descrizione, isImprev, ultEstrazione, extractedPl } = casualePre
-    ? casualePre
+  const { titolo, descrizione, isImprev, ultEstrazione, extractedPl } = casuale
+    ? casuale
     : {};
 
   const titoloH1 = "Imprevisto Prepartita";
@@ -32,8 +32,8 @@ const Prepartita = () => {
 
   return (
     <>
-      <LayoutBase titoloH1={titoloH1} isImprev={isImprev} casualePre={casualePre}>
-        {casualePre && (
+      <LayoutBase titoloH1={titoloH1} isImprev={isImprev} casuale={casuale}>
+        {casuale && (
           <section className="flex h-full w-full flex-col items-center justify-around">
             <h2
               style={{

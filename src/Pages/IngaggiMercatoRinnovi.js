@@ -8,7 +8,7 @@ import { MdArrowForward } from "react-icons/md";
 import BonusAnnuali from "../Components/BonusAnnuali";
 
 const IngaggiMercatoRinnovi = (props) => {
-  const [casuale, setCasuale] = useState(null)
+  const [casuale, setCasuale] = useState(null);
 
   const estraiNumeroCasuale = () => {
     setCasuale(Math.floor(Math.random() * 10) + 1);
@@ -71,29 +71,22 @@ const IngaggiMercatoRinnovi = (props) => {
     localStorage.setItem("vociRegistro", JSON.stringify(vociRegistro));
   }, [vociRegistro]);
 
-
-  /* const uploadListDB = async (list) => {
-    const { data, error } = await supabase
-      .from("registroo")
-      .insert([
-        {
-          name: list.name,
-          description: list.description,
-          tipo: list.tipo,
-        },
-      ])
-      .select();
-    data ? console.log() : console.log("error: ", error);
-  }; */
+  const uploadListDB = (list) => {
+    console.log([
+      {
+        name: list.name,
+        description: list.description,
+        tipo: list.tipo,
+      },
+    ]);
+  };
 
   const deleteListDB = () => {
-    setVociRegistro([])
+    setVociRegistro([]);
   };
 
   const removeVociRegistro = (element) => {
-    setVociRegistro(
-      vociRegistro.filter((voce) => voce.id !== element.titolo),
-    );
+    setVociRegistro(vociRegistro.filter((voce) => voce.id !== element.titolo));
   };
 
   return (
@@ -183,9 +176,9 @@ const IngaggiMercatoRinnovi = (props) => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.7, duration: 0.7 }}
-              className="absolute right-1 top-1 hidden h-auto w-[20vw] items-start gap-2 overflow-hidden rounded-lg bg-black/50 px-2 pt-2 pb-4 mb-2 uppercase text-gray-300 md:flex md:flex-col"
+              className="absolute right-1 top-1 mb-2 hidden h-auto w-[20vw] items-start gap-2 overflow-hidden rounded-lg bg-black/50 px-2 pb-4 pt-2 uppercase text-gray-300 md:flex md:flex-col"
             >
-              <h6 className="uppercase text-[--clr-prim] self-center">
+              <h6 className="self-center uppercase text-[--clr-prim]">
                 Links Rapidi
               </h6>
 
@@ -207,18 +200,18 @@ const IngaggiMercatoRinnovi = (props) => {
                 );
               })}
               <motion.div
-                    whileHover={{ x: ".5rem" }}
-                    transition={{
-                      type: "spring",
-                      duration: 0.4,
-                      ease: "easeIn",
-                    }}
-                    key="prepartita"
-                    className="flex w-full items-center justify-start gap-4 hover:text-[--clr-ter]"
-                  >
-                    <MdArrowForward />
-                    <Link to="/prepartita">Prepartita</Link>
-                  </motion.div>
+                whileHover={{ x: ".5rem" }}
+                transition={{
+                  type: "spring",
+                  duration: 0.4,
+                  ease: "easeIn",
+                }}
+                key="prepartita"
+                className="flex w-full items-center justify-start gap-4 hover:text-[--clr-ter]"
+              >
+                <MdArrowForward />
+                <Link to="/prepartita">Prepartita</Link>
+              </motion.div>
             </motion.div>
             <BonusAnnuali />
           </>

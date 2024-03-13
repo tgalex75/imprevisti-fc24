@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Dado from "../Components/Dado";
 import random from "random";
 import FetchImprevisto from "../Funzioni/FetchImprevisto";
@@ -6,15 +6,22 @@ import FetchImprevisto from "../Funzioni/FetchImprevisto";
 import LayoutBase from "../Components/LayoutBase";
 
 const Settimana = () => {
+
+  const [casualeSet, setCasualeSet] = useState(() => {
+    const saved = localStorage.getItem("casualeSet");
+    const initialValue = JSON.parse(saved);
+    return initialValue || [];
+  });
+
+
   const [casuale, setCasuale] = useState(null);
 
-  // Prima Estrazione
+  useEffect(() => {
+    localStorage.setItem("casualeSet", JSON.stringify(casualeSet));
+  })
 
-  const fetchList = async () => {
-    let { data: settimana, error } = await supabase
-      .from("settimana")
-      .select("*");
-    setCasuale(settimana ? random.choice(settimana) : console.log(error));
+  const fetchList = () => {
+    setCasuale(random.choice(casualeSet));
   };
 
   const { titolo, descrizione, isImprev } = casuale

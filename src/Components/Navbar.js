@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { MdHome, MdMenu, MdClose, MdLogout } from "react-icons/md";
+import { MdHome, MdMenu, MdClose } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { isMobile } from "react-device-detect";

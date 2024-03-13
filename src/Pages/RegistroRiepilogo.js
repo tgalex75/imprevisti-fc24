@@ -29,7 +29,7 @@ const Regolamento = () => {
   }, []);
 
   const removeVociRegistro = async (element) => {
-    setCartItems(
+    setRegistroRiepilogo(
       registroRiepilogo.filter((item) => item.titolo !== element.titolo),
     );
   };

@@ -3,16 +3,17 @@ import { motion } from "framer-motion";
 import { MdSend, MdClear } from "react-icons/md";
 import { useForm } from "react-hook-form";
 import { MdInfoOutline } from "react-icons/md";
+import { v4 as uuidv4 } from "uuid";
 //import useDeepCompareEffect from "use-deep-compare-effect";
 
 const EditorImprevisti = () => {
+  const [selectRefState, setSelectRefState] = useState("prepartita");
+
   const [vociRegistro, setVociRegistro] = useState(() => {
     const saved = localStorage.getItem("vociRegistro");
     const initialValue = JSON.parse(saved);
     return initialValue || [];
   });
-
-  const [selectRefState, setSelectRefState] = useState("prepartita");
 
   const aggiornaTitoloImprRef = useRef([]);
   const aggiornaDescImprRef = useRef([]);
@@ -20,12 +21,12 @@ const EditorImprevisti = () => {
 
   useEffect(() => {
     localStorage.setItem("vociRegistro", JSON.stringify(vociRegistro));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [vociRegistro]);
 
-  const removeVociRegistro = async (element) => {
-    setVociRegistro(
-      imprevisto.filter((impr) => impr.id !== element.id),
-    );
+  const removeVociRegistro = (element) => {
+    setVociRegistro(vociRegistro.filter((impr) => impr.id !== element.id));
+    console.log(vociRegistro);
   };
 
   /* const updateVociRegistro = async (element, refTitolo, refDescr) => {
@@ -41,24 +42,27 @@ const EditorImprevisti = () => {
     setSelectRefState(selectRef.current.value);
   };
 
+  const mappedList = vociRegistro.filter((el) => el.lista === selectRefState)
+
   // LOGICA NUOVO IMPREVISTO
 
-  /* const uploadNewImpr = async (objForm) => {
+  const uploadNewImpr = (objForm) => {
     const { titolo, descrizione } = objForm;
-    const { data, error } = await supabase
-      .from(selectRefState)
-      .insert([
-        {
+    setVociRegistro([
+      ...vociRegistro,
+      {
+        lista: selectRefState,
+        imprevisti: {
+          id: uuidv4(),
           titolo: titolo.toUpperCase(),
           descrizione: descrizione,
+          isImprev: true,
           ultEstrazione: objForm?.ultEstrazione && objForm.ultEstrazione,
           extractedPl: objForm?.extractedPl && objForm.extractedPl,
-          isImprev: true,
         },
-      ])
-      .select();
-    console.log(data ? data : console.log(error));
-  }; */
+      },
+    ]);
+  };
 
   const handleNewImpr = (objForm) => {
     uploadNewImpr(objForm);
@@ -102,7 +106,7 @@ const EditorImprevisti = () => {
         isImprev: false,
       });
     }
-    uploadNoImprevisti(numberOfNoImprArray);
+    //uploadNoImprevisti(numberOfNoImprArray);
     //console.log(numberOfNoImprArray)
   };
 
@@ -149,7 +153,7 @@ const EditorImprevisti = () => {
             </strong>
           </header>
           <ul className="flex h-full w-full flex-col gap-1 overflow-y-auto rounded-lg border p-4">
-            {vociRegistro.map((el) => (
+            {mappedList.map((el) => (
               <li
                 key={el.id}
                 className="text-md flex items-center justify-between gap-2 bg-gray-700/20 ps-2 text-left font-normal hover:bg-gray-600/50"
@@ -172,13 +176,13 @@ const EditorImprevisti = () => {
                 <MdSend
                   size={24}
                   className="cursor-pointer fill-gray-300 transition-all hover:scale-125 hover:fill-gray-300"
-                  onClick={() =>
+                  /* onClick={() =>
                     updateVociRegistro(
                       el.id,
                       aggiornaTitoloImprRef.current[el.id].value,
                       aggiornaDescImprRef.current[el.id].value,
                     )
-                  }
+                  } */
                 />
                 <MdClear
                   size={24}

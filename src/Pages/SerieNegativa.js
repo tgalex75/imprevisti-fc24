@@ -1,4 +1,4 @@
-import React, { useState, useContext, useRef } from "react";
+import React, { useState, useContext, useRef, useEffect } from "react";
 import Dado from "../Components/Dado";
 import { CartContext } from "../context/regContext";
 import SecondaEstrazione from "../Components/SecondaEstrazione";
