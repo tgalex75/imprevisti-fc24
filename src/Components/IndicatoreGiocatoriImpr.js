@@ -54,7 +54,7 @@ const IndicatoreGiocatoriImpr = (props) => {
   };
 
   return (
-    <div className="flex h-full w-1/4 flex-col items-center gap-6 pb-4">
+    <div className="flex h-full w-1/4 flex-col items-center justify-around pb-4">
       <h5>{schema}</h5>
       <div className="flex w-full flex-col-reverse justify-center">
         {filteredTactics[0].formazione.map((el, i, array) =>
