@@ -1,11 +1,14 @@
 import { useState, useEffect, useRef } from "react";
-import { supabase } from "../supabaseClient";
 import { motion } from "framer-motion";
 import { MdClear } from "react-icons/md";
 import { mySelect } from "../Funzioni/schemi";
 
 const Regolamento = () => {
-  const [vociRegistro, setVociRegistro] = useState([]);
+  const [registroRiepilogo, setRegistroRiepilogo] = useState(() => {
+    const saved = localStorage.getItem("registroRiepilogo");
+    const initialValue = JSON.parse(saved);
+    return initialValue || [];
+  });
 
   const selectRef = useRef(null);
   const [filtro, setFiltro] = useState("Elenco completo");
@@ -18,24 +21,17 @@ const Regolamento = () => {
 
   const filteredRegistry =
     filtro !== "Elenco completo"
-      ? vociRegistro.filter((el) => el.tipo === filtro)
-      : vociRegistro;
+      ? registroRiepilogo.filter((el) => el.tipo === filtro)
+      : registroRiepilogo;
 
   useEffect(() => {
-    fetchRegistryList();
+    localStorage.setItem("registroRiepilogo", JSON.stringify(registroRiepilogo));
   }, []);
 
-  const fetchRegistryList = async () => {
-    const { data } = await supabase.from("registroo").select("*");
-    setVociRegistro(data ? data : []);
-  };
-
   const removeVociRegistro = async (element) => {
-    const { error } = await supabase
-      .from("registroo")
-      .delete()
-      .eq("id", element);
-    error && console.log(error);
+    setCartItems(
+      registroRiepilogo.filter((item) => item.titolo !== element.titolo),
+    );
   };
 
   return (

@@ -4,12 +4,11 @@ import Dado from "../Components/Dado";
 import { motion } from "framer-motion";
 import { isMobile } from "react-device-detect";
 import RegistroGiocatori from "../Components/RegistroGiocatori";
-import { supabase } from "../supabaseClient";
 import { MdArrowForward } from "react-icons/md";
 import BonusAnnuali from "../Components/BonusAnnuali";
 
 const IngaggiMercatoRinnovi = (props) => {
-  const [casuale, setCasuale] = useState(null);
+  const [casuale, setCasuale] = useState(null)
 
   const estraiNumeroCasuale = () => {
     setCasuale(Math.floor(Math.random() * 10) + 1);
@@ -19,7 +18,11 @@ const IngaggiMercatoRinnovi = (props) => {
 
   const inputRef = useRef(null);
 
-  const [vociRegistro, setVociRegistro] = useState([]);
+  const [vociRegistro, setVociRegistro] = useState(() => {
+    const saved = localStorage.getItem("vociRegistro");
+    const initialValue = JSON.parse(saved);
+    return initialValue || [];
+  });
 
   const tipoImprevisto = props.tipoImprevisto;
 
@@ -65,15 +68,11 @@ const IngaggiMercatoRinnovi = (props) => {
   );
 
   useEffect(() => {
-    fetchRegistryList();
+    localStorage.setItem("vociRegistro", JSON.stringify(vociRegistro));
   }, [vociRegistro]);
 
-  const fetchRegistryList = async () => {
-    const { data } = await supabase.from("registroo").select("*");
-    setVociRegistro(data ? data : []);
-  };
 
-  const uploadListDB = async (list) => {
+  /* const uploadListDB = async (list) => {
     const { data, error } = await supabase
       .from("registroo")
       .insert([
@@ -85,22 +84,16 @@ const IngaggiMercatoRinnovi = (props) => {
       ])
       .select();
     data ? console.log() : console.log("error: ", error);
+  }; */
+
+  const deleteListDB = () => {
+    setVociRegistro([])
   };
 
-  const deleteListDB = async () => {
-    const { error } = await supabase
-      .from("registroo")
-      .delete("name")
-      .neq("name", null);
-    error && console.log(error);
-  };
-
-  const removeVociRegistro = async (element) => {
-    const { error } = await supabase
-      .from("registroo")
-      .delete()
-      .eq("id", element);
-    error && console.log(error);
+  const removeVociRegistro = (element) => {
+    setVociRegistro(
+      vociRegistro.filter((voce) => voce.id !== element.titolo),
+    );
   };
 
   return (

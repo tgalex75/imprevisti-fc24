@@ -1,36 +1,26 @@
 import { useState, useEffect } from "react";
-import { supabase } from "../supabaseClient";
 
 export default function FetchData() {
-  const [imprevisto, setImprevisto] = useState([]);
+  const [imprevisto, setImprevisto] = useState(() => {
+    const saved = localStorage.getItem("imprevisto");
+    const initialValue = JSON.parse(saved);
+    return initialValue || [];
+  });
 
   useEffect(() => {
-    fetchLista();
+    localStorage.setItem("imprevisti", JSON.stringify(cartItems));
   }, []);
 
   useEffect(() => {
     setTimeout(() => {
       delElemento();
-    }, 3000);
+    }, 2000);
   });
 
-  const fetchLista = async () => {
-    const { data } = await supabase
-      .from("random_sort")
-      .select("*")
-      .limit(1)
-      .single();
+  const delElemento = (item) => {
     setImprevisto(
-      data ? data : { id: 0, titolo: "", descrizione: "LISTA VUOTA!!!" },
-    );
-  };
-
-  const delElemento = async () => {
-    const { error } = await supabase
-      .from("speciali")
-      .delete("id")
-      .eq("id", imprevisto.id);
-    error && console.log(error);
+        imprevisto.filter((impr) => impr.id !== item.id),
+      );
   };
 
   return (

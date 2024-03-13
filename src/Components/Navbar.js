@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { MdHome, MdMenu, MdClose, MdLogout } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { supabase } from "../supabaseClient";
 import { isMobile } from "react-device-detect";
 
 const Navbar = () => {
@@ -10,13 +9,6 @@ const Navbar = () => {
 
   const handleClick = () => {
     setIsOpenMenu((prevMenu) => !prevMenu);
-  };
-
-  const logOut = async () => {
-    const { error } = await supabase.auth.signOut();
-    if (error) {
-      console.log(error);
-    }
   };
 
   const dettagliMenu = [
@@ -77,19 +69,6 @@ const Navbar = () => {
                   }
             }
             className="fill-gray-300 hover:fill-gray-200"
-          />
-          <MdLogout
-            style={
-              !isOpenMenu
-                ? { display: "none" }
-                : {
-                    display: "block",
-                    filter: "drop-shadow(.25rem .25rem 0.15rem #222)",
-                  }
-            }
-            size={36}
-            className="fill-gray-300 hover:fill-gray-200"
-            onClick={logOut}
           />
         </Link>
       </div>

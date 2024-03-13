@@ -1,9 +1,12 @@
 import { useState, useEffect, useRef } from "react";
-import { supabase } from "../supabaseClient";
 import { motion } from "framer-motion";
 
 const RiepilogoImprevisti = () => {
-  const [vociRegistro, setVociRegistro] = useState([]);
+  const [riepilogoImpr, setRiepilogoImpr] = useState(() => {
+    const saved = localStorage.getItem("riepilogoImpr");
+    const initialValue = JSON.parse(saved);
+    return initialValue || [];
+  });
   const [selectRefState, setSelectRefState] = useState("prepartita");
 
   const selectRef = useRef(null);
@@ -13,18 +16,13 @@ const RiepilogoImprevisti = () => {
   };
 
   useEffect(() => {
-    fetchRegistryList();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [vociRegistro]);
+    localStorage.setItem("riepilogoImpr", JSON.stringify(riepilogoImpr));
+  }, [riepilogoImpr]);
 
-  const fetchRegistryList = async () => {
-    const { data } = await supabase
-      .from(selectRefState)
-      .select("*");
+  /* const fetchRegistryList = async () => {
+    const { data } = await supabase.from(selectRefState).select("*");
     setVociRegistro(data ? data : []);
-  };
-
-  console.log()
+  }; */
 
   return (
     <section className="flex h-full w-full flex-col items-center justify-center gap-12 px-4 pb-6 font-bold">
@@ -54,15 +52,15 @@ const RiepilogoImprevisti = () => {
             </select>
           </label>
           <strong className="w-1/3 text-end font-semibold">
-            Numero imprevisti: {vociRegistro.length}
+            Numero imprevisti: {riepilogoImpr.length}
           </strong>
         </header>
         <div className="flex h-full w-full flex-col gap-2">
           <h3 className="text-center uppercase text-[--clr-ter]">
-            Imprevisti {selectRefState && selectRefState  }
+            Imprevisti {selectRefState && selectRefState}
           </h3>
           <ul className="flex h-full w-full flex-col gap-1 overflow-y-auto px-2 pb-2">
-            {vociRegistro.map(
+            {riepilogoImpr.map(
               (el) =>
                 el.titolo.toUpperCase() !== "NESSUN IMPREVISTO" && (
                   <li

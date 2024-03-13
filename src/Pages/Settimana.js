@@ -4,7 +4,6 @@ import random from "random";
 import FetchImprevisto from "../Funzioni/FetchImprevisto";
 //import { motion } from "framer-motion";
 import LayoutBase from "../Components/LayoutBase";
-import { supabase } from "../supabaseClient";
 
 const Settimana = () => {
   const [casuale, setCasuale] = useState(null);

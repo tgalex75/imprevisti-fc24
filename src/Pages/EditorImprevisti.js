@@ -1,5 +1,4 @@
 import { useState, useRef, useEffect } from "react";
-import { supabase } from "../supabaseClient";
 import { motion } from "framer-motion";
 import { MdSend, MdClear } from "react-icons/md";
 import { useForm } from "react-hook-form";
@@ -7,38 +6,36 @@ import { MdInfoOutline } from "react-icons/md";
 //import useDeepCompareEffect from "use-deep-compare-effect";
 
 const EditorImprevisti = () => {
-  const [vociRegistro, setVociRegistro] = useState([]);
+  const [vociRegistro, setVociRegistro] = useState(() => {
+    const saved = localStorage.getItem("vociRegistro");
+    const initialValue = JSON.parse(saved);
+    return initialValue || [];
+  });
+
   const [selectRefState, setSelectRefState] = useState("prepartita");
 
   const aggiornaTitoloImprRef = useRef([]);
   const aggiornaDescImprRef = useRef([]);
   const selectRef = useRef(null);
 
-  const fetchRegistryList = async () => {
-    const { data } = await supabase.from(selectRefState).select("*");
-    setVociRegistro(data ? data : []);
-  };
-
   useEffect(() => {
-    fetchRegistryList(); // eslint-disable-next-line
+    localStorage.setItem("vociRegistro", JSON.stringify(vociRegistro));
   }, [vociRegistro]);
 
   const removeVociRegistro = async (element) => {
-    const { error } = await supabase
-      .from(selectRefState)
-      .delete()
-      .eq("id", element);
-    error && console.log(error);
+    setVociRegistro(
+      imprevisto.filter((impr) => impr.id !== element.id),
+    );
   };
 
-  const updateVociRegistro = async (element, refTitolo, refDescr) => {
+  /* const updateVociRegistro = async (element, refTitolo, refDescr) => {
     const { data, error } = await supabase
       .from(selectRefState)
       .update({ titolo: refTitolo.toUpperCase(), descrizione: refDescr })
       .eq("id", element)
       .select();
     console.log(data ? data : error);
-  };
+  }; */
 
   const handleSelectRef = () => {
     setSelectRefState(selectRef.current.value);
@@ -46,7 +43,7 @@ const EditorImprevisti = () => {
 
   // LOGICA NUOVO IMPREVISTO
 
-  const uploadNewImpr = async (objForm) => {
+  /* const uploadNewImpr = async (objForm) => {
     const { titolo, descrizione } = objForm;
     const { data, error } = await supabase
       .from(selectRefState)
@@ -61,19 +58,19 @@ const EditorImprevisti = () => {
       ])
       .select();
     console.log(data ? data : console.log(error));
-  };
+  }; */
 
   const handleNewImpr = (objForm) => {
     uploadNewImpr(objForm);
   };
 
-  const uploadNoImprevisti = async (array) => {
+  /* const uploadNoImprevisti = async (array) => {
     const { data, error } = await supabase
       .from(selectRefState)
       .insert(array)
       .select();
     console.log(data ? data : console.log(error));
-  };
+  }; */
 
   /* FORM INSERIMENTO IMPREVISTI */
   const {

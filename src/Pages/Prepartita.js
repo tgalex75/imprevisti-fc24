@@ -1,26 +1,30 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import SecondaEstrazione from "../Components/SecondaEstrazione";
 import SecondaEstrazioneDiretta from "../Components/SecondaEstrazioneDiretta";
 import FetchImprevisto from "../Funzioni/FetchImprevisto";
 import LayoutBase from "../Components/LayoutBase";
 import Dado from "../Components/Dado";
 import random from "random";
-import { supabase } from "../supabaseClient";
 
 const Prepartita = () => {
-  const [casuale, setCasuale] = useState(null);
+  const [casualePre, setCasualePre] = useState(() => {
+    const saved = localStorage.getItem("casualePre");
+    const initialValue = JSON.parse(saved);
+    return initialValue || [];
+  });
 
   // Prima Estrazione
 
-  const fetchList = async () => {
-    let { data: prepartita, error } = await supabase
-      .from("prepartita")
-      .select("*");
-    setCasuale(prepartita ? random.choice(prepartita) : console.log(error));
+  useEffect(() => {
+    localStorage.setItem("casualePre", JSON.stringify(casualePre));
+  })
+
+  const fetchList = () => {
+    setCasualePre(random.choice(casualePre));
   };
 
-  const { titolo, descrizione, isImprev, ultEstrazione, extractedPl } = casuale
-    ? casuale
+  const { titolo, descrizione, isImprev, ultEstrazione, extractedPl } = casualePre
+    ? casualePre
     : {};
 
   const titoloH1 = "Imprevisto Prepartita";
@@ -28,8 +32,8 @@ const Prepartita = () => {
 
   return (
     <>
-      <LayoutBase titoloH1={titoloH1} isImprev={isImprev} casuale={casuale}>
-        {casuale && (
+      <LayoutBase titoloH1={titoloH1} isImprev={isImprev} casualePre={casualePre}>
+        {casualePre && (
           <section className="flex h-full w-full flex-col items-center justify-around">
             <h2
               style={{

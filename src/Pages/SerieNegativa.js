@@ -1,7 +1,6 @@
 import React, { useState, useContext, useRef } from "react";
 import Dado from "../Components/Dado";
 import { CartContext } from "../context/regContext";
-import { supabase } from "../supabaseClient";
 import SecondaEstrazione from "../Components/SecondaEstrazione";
 import RegistroSerieNegativa from "../Components/RegistroSerieNegativa";
 import { motion } from "framer-motion";
@@ -9,7 +8,9 @@ import { isMobile } from "react-device-detect";
 import random from "random";
 
 const SerieNegativa = () => {
-  const [casuale, setCasuale] = useState(null);
+  const [serienegativa, setSerienegativa] = useState(null);
+
+  const [casuale, setCasuale ] = useState(null)
 
   const inputRef = useRef(null);
 
@@ -17,12 +18,14 @@ const SerieNegativa = () => {
 
   // Prima Estrazione
 
-  const fetchList = async () => {
-    let { data: serienegativa, error } = await supabase
-      .from("serienegativa")
-      .select("*");
-    setCasuale(serienegativa ? random.choice(serienegativa) : console.log(error));
-  };
+  useEffect(() => {
+    localStorage.setItem("serienegativa", JSON.stringify(serienegativa));
+  },[])
+
+  const fetchList = () => {
+    setCasuale(random.choice(serienegativa))
+  }
+
 
   const { titolo, descrizione, isImprev, ultEstrazione } = casuale
     ? casuale
