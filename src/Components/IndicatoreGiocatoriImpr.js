@@ -34,7 +34,7 @@ const IndicatoreGiocatoriImpr = (props) => {
 
   const tactics = (arr, start, end) => {
     return (
-      <section id="tattiche" className="flex items-center justify-center">
+      <section key={Math.random()} className="flex items-center justify-center">
         <div className="flex items-center gap-6">
           {arr.slice(start, end).map((el) => (
             <div
