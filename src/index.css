@@ -8,9 +8,9 @@
 }
 
 :root {
-  --clr-prim: #c9182c;
-  --clr-sec: #105442;
-  --clr-ter: #fcc90d;
+  --clr-prim: #ce7500;
+  --clr-sec: #2DE049;
+  --clr-ter: #1d0e3a;
 }
 
 body {
@@ -20,7 +20,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #0c5542;
+  background-color: var(--clr-ter);
   color: #eeeeee;
   overflow: hidden;
 }
