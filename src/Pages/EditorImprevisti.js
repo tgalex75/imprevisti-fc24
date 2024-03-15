@@ -8,20 +8,15 @@ import { v4 as uuidv4 } from "uuid";
 
 const EditorImprevisti = () => {
   const [selectRefState, setSelectRefState] = useState("prepartita");
-
-  const [dbSelected, setDbSelected] = useState("prepartita");
+  const [uploadDati, setUploadDati] = useState(null);
 
   const [vociRegistro, setVociRegistro] = useState([]);
 
-  const fetchData = () => {
-    const saved = localStorage.getItem(dbSelected);
+  useEffect(() => {
+    const saved = localStorage.getItem(selectRefState);
     const initialValue = JSON.parse(saved);
     setVociRegistro(initialValue ? initialValue : []);
-  };
-
-  useEffect(() => {
-    fetchData();
-  }, []);
+  },)
 
   const aggiornaTitoloImprRef = useRef([]);
   const aggiornaDescImprRef = useRef([]);
@@ -38,7 +33,6 @@ const EditorImprevisti = () => {
 
   const removeVociRegistro = (element) => {
     setVociRegistro(vociRegistro.filter((impr) => impr.id !== element.id));
-    console.log(vociRegistro);
   };
 
   /* const updateVociRegistro = async (element, refTitolo, refDescr) => {
@@ -52,28 +46,28 @@ const EditorImprevisti = () => {
 
   const handleSelectRef = () => {
     setSelectRefState(selectRef.current.value);
-    setDbSelected(selectRef.current.value);
-    fetchData();
   };
 
   // LOGICA NUOVO IMPREVISTO
 
   const uploadNewImpr = (objForm) => {
     const { titolo, descrizione } = objForm;
-    localStorage.setItem(dbSelected, JSON.stringify(
-      [
-        ...vociRegistro,
-        {
-          id: uuidv4(),
-          titolo: titolo.toUpperCase(),
-          descrizione: descrizione,
-          isImprev: true,
-          ultEstrazione: objForm?.ultEstrazione && objForm.ultEstrazione,
-          extractedPl: objForm?.extractedPl && objForm.extractedPl,
-        },
-      ]
-    ));
+    setUploadDati([
+      ...vociRegistro,
+      {
+        id: uuidv4(),
+        titolo: titolo.toUpperCase(),
+        descrizione: descrizione,
+        isImprev: true,
+        ultEstrazione: objForm?.ultEstrazione && objForm.ultEstrazione,
+        extractedPl: objForm?.extractedPl && objForm.extractedPl,
+      },
+    ]);
   };
+
+  useEffect(() => {
+    localStorage.setItem(selectRefState, JSON.stringify(uploadDati));
+  }, [uploadDati]);
 
   const handleNewImpr = (objForm) => {
     uploadNewImpr(objForm);
@@ -125,8 +119,6 @@ const EditorImprevisti = () => {
     numberOfNoImpr(data);
     e.target.reset();
   };
-
-  console.log(vociRegistro)
 
   return (
     <section className="flex h-full w-full flex-col items-center gap-4 px-4 pb-6 font-bold">
