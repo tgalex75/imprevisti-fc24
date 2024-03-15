@@ -9,32 +9,20 @@ import { v4 as uuidv4 } from "uuid";
 const EditorImprevisti = () => {
   const [selectRefState, setSelectRefState] = useState("prepartita");
 
-  const [dbSelected, setDbSelected] = useState("prepartita");
-
-  const [vociRegistro, setVociRegistro] = useState([]);
-
-  const fetchData = () => {
-    const saved = localStorage.getItem(dbSelected);
+  const [vociRegistro, setVociRegistro] = useState(() => {
+    const saved = localStorage.getItem("vociRegistro");
     const initialValue = JSON.parse(saved);
-    setVociRegistro(initialValue ? initialValue : []);
-  };
-
-  useEffect(() => {
-    fetchData();
-  }, []);
+    return initialValue || [];
+  });
 
   const aggiornaTitoloImprRef = useRef([]);
   const aggiornaDescImprRef = useRef([]);
   const selectRef = useRef(null);
 
-  /* useEffect(() => {
-    localStorage.setItem(selectRefState, JSON.stringify(vociRegistro));
+  useEffect(() => {
+    localStorage.setItem("vociRegistro", JSON.stringify(vociRegistro));
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [vociRegistro]); */
-
-  /* const uploadDB = () => {
-    localStorage.setItem(dbSelected, JSON.stringify(vociRegistro));
-  }; */
+  }, [vociRegistro]);
 
   const removeVociRegistro = (element) => {
     setVociRegistro(vociRegistro.filter((impr) => impr.id !== element.id));
@@ -52,18 +40,19 @@ const EditorImprevisti = () => {
 
   const handleSelectRef = () => {
     setSelectRefState(selectRef.current.value);
-    setDbSelected(selectRef.current.value);
-    fetchData();
   };
+
+  const mappedList = vociRegistro.filter((el) => el.lista === selectRefState)
 
   // LOGICA NUOVO IMPREVISTO
 
   const uploadNewImpr = (objForm) => {
     const { titolo, descrizione } = objForm;
-    localStorage.setItem(dbSelected, JSON.stringify(
-      [
-        ...vociRegistro,
-        {
+    setVociRegistro([
+      ...vociRegistro,
+      {
+        lista: selectRefState,
+        imprevisti: {
           id: uuidv4(),
           titolo: titolo.toUpperCase(),
           descrizione: descrizione,
@@ -71,8 +60,8 @@ const EditorImprevisti = () => {
           ultEstrazione: objForm?.ultEstrazione && objForm.ultEstrazione,
           extractedPl: objForm?.extractedPl && objForm.extractedPl,
         },
-      ]
-    ));
+      },
+    ]);
   };
 
   const handleNewImpr = (objForm) => {
@@ -126,8 +115,6 @@ const EditorImprevisti = () => {
     e.target.reset();
   };
 
-  console.log(vociRegistro)
-
   return (
     <section className="flex h-full w-full flex-col items-center gap-4 px-4 pb-6 font-bold">
       <h1>Editor Imprevisti</h1>
@@ -166,9 +153,9 @@ const EditorImprevisti = () => {
             </strong>
           </header>
           <ul className="flex h-full w-full flex-col gap-1 overflow-y-auto rounded-lg border p-4">
-            {vociRegistro.map((el) => (
+            {mappedList.map((el) => (
               <li
-                key={Math.random()}
+                key={el.id}
                 className="text-md flex items-center justify-between gap-2 bg-gray-700/20 ps-2 text-left font-normal hover:bg-gray-600/50"
               >
                 <input
@@ -214,13 +201,13 @@ const EditorImprevisti = () => {
             onSubmit={handleSubmit(onSubmit)}
             className="flex h-full w-3/5 flex-col items-center justify-between gap-2 rounded-md border px-4 py-2 font-normal"
           >
-            <h3 className="text-center uppercase text-[--clr-prim]">
+            <h3 className="text-center uppercase text-[--clr-ter]">
               Aggiungi il tuo imprevisto
             </h3>
             <label className="my-1 flex w-full items-center gap-4 self-start text-sm font-semibold">
               Titolo Imprevisto
               {errors.titolo && (
-                <span className="text-[--clr-prim]">
+                <span className="text-[--clr-ter]">
                   Il campo Titolo è obbligatorio - max 20 caratteri
                 </span>
               )}
@@ -234,7 +221,7 @@ const EditorImprevisti = () => {
             <label className="my-1 flex w-full items-center gap-4 self-start text-sm font-semibold">
               Descrizione Imprevisto
               {errors.descrizione && (
-                <span className="text-[--clr-prim]">
+                <span className="text-[--clr-ter]">
                   Il campo descrizione è obbligatorio
                 </span>
               )}
@@ -253,7 +240,7 @@ const EditorImprevisti = () => {
               <label className="my-1 flex w-full items-center gap-4 self-start text-sm font-semibold">
                 Numero di giocatori da estrarre (da 0 a 10)
                 {errors.extractedPl && (
-                  <span className="text-[--clr-prim]">
+                  <span className="text-[--clr-ter]">
                     Inserire un valore minimo di 0 ed uno massimo di 10
                   </span>
                 )}
@@ -303,7 +290,7 @@ const EditorImprevisti = () => {
               selectRefState === "speciali" ? { visibility: "hidden" } : {}
             }
           >
-            <h3 className="text-center uppercase text-[--clr-prim]">
+            <h3 className="text-center uppercase text-[--clr-ter]">
               Aggiungi "NESSUN IMPREVISTO"
             </h3>
             <div className="flex w-full flex-1 flex-col gap-14">
@@ -311,7 +298,7 @@ const EditorImprevisti = () => {
                 Numero di voci "NESSUN IMPREVISTO" da aggiungere alla lista
                 degli imprevisti {selectRefState}
                 {errors2.nessunImprevisto && (
-                  <span className="text-[--clr-prim]">
+                  <span className="text-[--clr-ter]">
                     Inserire un valore minimo di 0 ed uno massimo di 10
                   </span>
                 )}
@@ -333,7 +320,7 @@ const EditorImprevisti = () => {
             </button>
           </form>
           <span
-            className="absolute bottom-8 right-8 flex cursor-pointer flex-col items-center text-sm font-semibold text-[--clr-prim]"
+            className="absolute bottom-8 right-8 flex cursor-pointer flex-col items-center text-sm font-semibold text-[--clr-ter]"
             onClick={() => console.log("Apri Modale con istruzioni")}
           >
             <MdInfoOutline size={32} />
@@ -346,10 +333,3 @@ const EditorImprevisti = () => {
 };
 
 export default EditorImprevisti;
-
-/* https://www.blackbox.ai/share/4752bdb5-6dba-4169-9e9b-85545ba80dbe 
-
-    <div className='flex flex-col h-1/2 items-center justify-center gap-4'>
-
-
-*/
