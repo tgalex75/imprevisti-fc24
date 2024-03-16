@@ -13,10 +13,15 @@ const EditorImprevisti = () => {
   const [vociRegistro, setVociRegistro] = useState([]);
 
   useEffect(() => {
+    fetchDati()
+  },[])
+  
+  const fetchDati = () => {
     const saved = localStorage.getItem(selectRefState);
     const initialValue = JSON.parse(saved);
     setVociRegistro(initialValue ? initialValue : []);
-  },)
+    
+  }
 
   const aggiornaTitoloImprRef = useRef([]);
   const aggiornaDescImprRef = useRef([]);
@@ -46,6 +51,7 @@ const EditorImprevisti = () => {
 
   const handleSelectRef = () => {
     setSelectRefState(selectRef.current.value);
+    fetchDati()
   };
 
   // LOGICA NUOVO IMPREVISTO
@@ -63,11 +69,12 @@ const EditorImprevisti = () => {
         extractedPl: objForm?.extractedPl && objForm.extractedPl,
       },
     ]);
+    setVociRegistro([])
   };
 
   useEffect(() => {
     localStorage.setItem(selectRefState, JSON.stringify(uploadDati));
-  }, [uploadDati]);
+  }, [selectRefState, uploadDati]);
 
   const handleNewImpr = (objForm) => {
     uploadNewImpr(objForm);
