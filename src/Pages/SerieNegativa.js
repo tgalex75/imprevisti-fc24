@@ -1,4 +1,4 @@
-import React, { useState, useContext, useRef, useEffect } from "react";
+import React, { useState, useContext, useRef } from "react";
 import Dado from "../Components/Dado";
 import { CartContext } from "../context/regContext";
 import SecondaEstrazione from "../Components/SecondaEstrazione";
@@ -8,19 +8,17 @@ import { isMobile } from "react-device-detect";
 import random from "random";
 
 const SerieNegativa = () => {
-  const [serienegativa, setSerienegativa] = useState(null);
+  const [serienegativa] = useState(() => {
+    const saved = localStorage.getItem("vociRegistro");
+    const initialValue = JSON.parse(saved);
+    return initialValue[0].serienegativa || [];
+  });
 
   const [casuale, setCasuale ] = useState(null)
 
   const inputRef = useRef(null);
 
   const { addToCart } = useContext(CartContext);
-
-  // Prima Estrazione
-
-  useEffect(() => {
-    localStorage.setItem("serienegativa", JSON.stringify(serienegativa));
-  },[])
 
   const fetchList = () => {
     setCasuale(random.choice(serienegativa))

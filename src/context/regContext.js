@@ -9,8 +9,23 @@ export const CartProvider = ({ children }) => {
     return initialValue || [];
   });
 
+  const registroIniziale = [
+    {
+      prepartita: [],
+      settimana: [],
+      serienegativa: [],
+      speciali: [],
+    },
+  ];
+  const [registro] = useState(() => {
+    const saved = localStorage.getItem("vociRegistro");
+    return saved ? JSON.parse(saved) : registroIniziale;
+  });
+
   useEffect(() => {
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
+    localStorage.setItem("vociRegistro", JSON.stringify(registro));
+    // eslint-disable-next-line
   },[])
 
   const addToCart = (item) => {
@@ -58,6 +73,7 @@ export const CartProvider = ({ children }) => {
   return (
     <CartContext.Provider
       value={{
+        registro,
         cartItems,
         addToCart,
         removeFromCart,

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import SecondaEstrazione from "../Components/SecondaEstrazione";
 import SecondaEstrazioneDiretta from "../Components/SecondaEstrazioneDiretta";
 import FetchImprevisto from "../Funzioni/FetchImprevisto";
@@ -7,17 +7,20 @@ import Dado from "../Components/Dado";
 import random from "random";
 
 const Prepartita = () => {
-  const [prepartita, setPrepartita] = useState(() => {
-    const saved = localStorage.getItem("prepartita");
+
+  const initialMessage = [{
+    id: 0,
+    titolo: "LISTA VUOTA",
+    descrizione: "Utilizza l'Editor degli imprevisti per aggiungere quelli che vuoi vengano usati per l'estrazione"
+  }]
+
+  const [prepartita] = useState(() => {
+    const saved = localStorage.getItem("vociRegistro");
     const initialValue = JSON.parse(saved);
-    return initialValue || [];
+    return initialValue[0].prepartita || initialMessage;
   });
 
   const [casuale, setCasuale] = useState(null);
-
-  useEffect(() => {
-    localStorage.setItem("prepartita", JSON.stringify(prepartita));
-  },[prepartita])
 
   const fetchList = () => {
     setCasuale(random.choice(prepartita));

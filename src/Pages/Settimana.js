@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Dado from "../Components/Dado";
 import random from "random";
 import FetchImprevisto from "../Funzioni/FetchImprevisto";
@@ -7,21 +7,17 @@ import LayoutBase from "../Components/LayoutBase";
 
 const Settimana = () => {
 
-  const [casualeSet, setCasualeSet] = useState(() => {
-    const saved = localStorage.getItem("casualeSet");
+  const [settimana] = useState(() => {
+    const saved = localStorage.getItem("vociRegistro");
     const initialValue = JSON.parse(saved);
-    return initialValue || [];
+    return initialValue[0].settimana || [];
   });
 
 
   const [casuale, setCasuale] = useState(null);
 
-  useEffect(() => {
-    localStorage.setItem("casualeSet", JSON.stringify(casualeSet));
-  })
-
   const fetchList = () => {
-    setCasuale(random.choice(casualeSet));
+    setCasuale(random.choice(settimana));
   };
 
   const { titolo, descrizione, isImprev } = casuale
