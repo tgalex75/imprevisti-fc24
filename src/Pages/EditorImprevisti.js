@@ -9,22 +9,24 @@ import { v4 as uuidv4 } from "uuid";
 const EditorImprevisti = () => {
   const [selectRefState, setSelectRefState] = useState("prepartita");
 
-  const { registro } = useContext(CartContext);
+  const { regPrepartita, regSettimana, regSerieNegativa, regSpeciali } = useContext(CartContext);
 
-  
-  const [vociRegistro, setVociRegistro] = useState(registro);
-  
+  console.log(regPrepartita, regSerieNegativa, regSpeciali, regSettimana)
+
+  const [vociRegistro, setVociRegistro] = useState(regPrepartita);
+
   const aggiornaTitoloImprRef = useRef([]);
   const aggiornaDescImprRef = useRef([]);
   const selectRef = useRef(null);
 
   const removeVociRegistro = (element) => {
-    setVociRegistro((prev) =>
-      prev.map((impr) =>
-        impr.id === element.id ? { ...impr, isImprev: false } : impr,
-      ),
-    );
+    setVociRegistro(prev => [
+      prev.filter(el => (el[0][selectRefState].id !== element))
+    ])
   };
+
+  //console.log(vociRegistro[0].prepartita)
+
 
   const handleSelectRef = useCallback(() => {
     setSelectRefState(selectRef.current.value);
@@ -45,8 +47,7 @@ const EditorImprevisti = () => {
   const onSubmitImprevisti = (data, e) => {
     e.target.reset();
     setVociRegistro((prev) => [
-      ...prev,
-      prev[0][selectRefState].push({
+    prev.push({
         id: uuidv4(),
         titolo: data.titolo.toUpperCase(),
         descrizione: data.descrizione,
@@ -79,7 +80,7 @@ const EditorImprevisti = () => {
     localStorage.setItem("vociRegistro", JSON.stringify(vociRegistro));
   }, [vociRegistro]);
 
-  const mappedlist = vociRegistro[0][selectRefState];
+  //const mappedlist = vociRegistro[0][selectRefState];
 
   return (
     <section className="flex h-full w-full flex-col items-center gap-4 px-4 pb-6 font-bold">
@@ -114,11 +115,11 @@ const EditorImprevisti = () => {
               </select>
             </label>
             <strong className="w-1/3 text-end font-semibold">
-              Numero imprevisti: {vociRegistro.length}
+              Numero imprevisti: {}
             </strong>
           </header>
           <ul className="flex h-full w-full flex-col gap-1 overflow-y-auto rounded-lg border p-4">
-            {mappedlist.map((el) => (
+            {vociRegistro.map((el) => (
               <li
                 key={Math.random()}
                 className="text-md flex items-center justify-between gap-2 bg-gray-700/20 ps-2 text-left font-normal hover:bg-gray-600/50"
@@ -263,7 +264,8 @@ const EditorImprevisti = () => {
             </h3>
             <div className="flex w-full flex-1 flex-col gap-14">
               <label className="my-1 flex w-full items-center gap-4 self-start text-sm font-semibold">
-                Numero di voci "NESSUN IMPREVISTO" da aggiungere alla lista di tipo {selectRefState.toUpperCase()}
+                Numero di voci "NESSUN IMPREVISTO" da aggiungere alla lista di
+                tipo {selectRefState.toUpperCase()}
                 {errorsNoImprevisti.nessunImprevisto && (
                   <span className="text-[--clr-prim]">
                     Inserire un valore minimo di 0 ed uno massimo di 10

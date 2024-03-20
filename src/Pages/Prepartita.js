@@ -15,7 +15,7 @@ const Prepartita = () => {
   }]
 
   const [prepartita] = useState(() => {
-    const saved = localStorage.getItem("vociRegistro");
+    const saved = localStorage.getItem("regPrepartita");
     const initialValue = JSON.parse(saved);
     return initialValue[0].prepartita || initialMessage;
   });

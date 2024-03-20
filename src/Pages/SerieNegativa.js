@@ -9,7 +9,7 @@ import random from "random";
 
 const SerieNegativa = () => {
   const [serienegativa] = useState(() => {
-    const saved = localStorage.getItem("vociRegistro");
+    const saved = localStorage.getItem("regSerieNegativa");
     const initialValue = JSON.parse(saved);
     return initialValue[0].serienegativa || [];
   });

@@ -1,13 +1,13 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 export default function FetchData() {
-  const [imprevisti, setImprevisti] = useState(() => {
-    const saved = localStorage.getItem("imprevisti");
+  const [imprevisti] = useState(() => {
+    const saved = localStorage.getItem("regSpeciali");
     const initialValue = JSON.parse(saved);
     return initialValue || [];
   });
 
-  useEffect(() => {
+  /* useEffect(() => {
     localStorage.setItem("imprevisti", JSON.stringify(imprevisti));
   }, []);
 
@@ -21,7 +21,7 @@ export default function FetchData() {
     setImprevisti(
         imprevisti.filter((impr) => impr.id !== item.id),
       );
-  };
+  }; */
 
   return (
     <section id="FetchImprevisto" className="flex md:h-full flex-col gap-8">

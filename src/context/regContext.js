@@ -9,22 +9,29 @@ export const CartProvider = ({ children }) => {
     return initialValue || [];
   });
 
-  const registroIniziale = [
-    {
-      prepartita: [],
-      settimana: [],
-      serienegativa: [],
-      speciali: [],
-    },
-  ];
-  const [registro] = useState(() => {
-    const saved = localStorage.getItem("vociRegistro");
-    return saved ? JSON.parse(saved) : registroIniziale;
+  const [regPrepartita] = useState(() => {
+    const saved = localStorage.getItem("regPrepartita");
+    return saved ? JSON.parse(saved) : [];
+  });
+  const [regSettimana] = useState(() => {
+    const saved = localStorage.getItem("regSettimana");
+    return saved ? JSON.parse(saved) : [];
+  });
+  const [regSerieNegativa] = useState(() => {
+    const saved = localStorage.getItem("regSerieNegativa");
+    return saved ? JSON.parse(saved) : [];
+  });
+  const [regSpeciali] = useState(() => {
+    const saved = localStorage.getItem("regSpeciali");
+    return saved ? JSON.parse(saved) : [];
   });
 
   useEffect(() => {
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
-    localStorage.setItem("vociRegistro", JSON.stringify(registro));
+    localStorage.setItem("regPrepartita", JSON.stringify(regPrepartita));
+    localStorage.setItem("regSettimana", JSON.stringify(regSettimana));
+    localStorage.setItem("regSerieNegativa", JSON.stringify(regSerieNegativa));
+    localStorage.setItem("regSpeciali", JSON.stringify(regSpeciali));
     // eslint-disable-next-line
   },[])
 
@@ -73,7 +80,10 @@ export const CartProvider = ({ children }) => {
   return (
     <CartContext.Provider
       value={{
-        registro,
+        regPrepartita,
+        regSerieNegativa,
+        regSettimana,
+        regSpeciali,
         cartItems,
         addToCart,
         removeFromCart,
