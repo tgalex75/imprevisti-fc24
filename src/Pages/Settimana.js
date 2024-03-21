@@ -8,7 +8,7 @@ import LayoutBase from "../Components/LayoutBase";
 const Settimana = () => {
 
   const [settimana] = useState(() => {
-    const saved = localStorage.getItem("regSettimana");
+    const saved = localStorage.getItem("vociRegistro");
     const initialValue = JSON.parse(saved);
     return initialValue[0].settimana || [];
   });

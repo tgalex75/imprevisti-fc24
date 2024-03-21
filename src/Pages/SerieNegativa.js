@@ -1,4 +1,5 @@
 import React, { useState, useContext, useRef } from "react";
+import React, { useState, useContext, useRef } from "react";
 import Dado from "../Components/Dado";
 import { CartContext } from "../context/regContext";
 import SecondaEstrazione from "../Components/SecondaEstrazione";
@@ -9,7 +10,7 @@ import random from "random";
 
 const SerieNegativa = () => {
   const [serienegativa] = useState(() => {
-    const saved = localStorage.getItem("regSerieNegativa");
+    const saved = localStorage.getItem("vociRegistro");
     const initialValue = JSON.parse(saved);
     return initialValue[0].serienegativa || [];
   });

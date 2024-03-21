@@ -7,15 +7,17 @@ import Dado from "../Components/Dado";
 import random from "random";
 
 const Prepartita = () => {
-
-  const initialMessage = [{
-    id: 0,
-    titolo: "LISTA VUOTA",
-    descrizione: "Utilizza l'Editor degli imprevisti per aggiungere quelli che vuoi vengano usati per l'estrazione"
-  }]
+  const initialMessage = [
+    {
+      id: 0,
+      titolo: "LISTA VUOTA",
+      descrizione:
+        "Utilizza l'Editor degli imprevisti per aggiungere quelli che vuoi vengano usati per l'estrazione",
+    },
+  ];
 
   const [prepartita] = useState(() => {
-    const saved = localStorage.getItem("regPrepartita");
+    const saved = localStorage.getItem("vociRegistro");
     const initialValue = JSON.parse(saved);
     return initialValue[0].prepartita || initialMessage;
   });
