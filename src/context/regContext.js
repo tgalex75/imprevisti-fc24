@@ -17,6 +17,7 @@ export const CartProvider = ({ children }) => {
       speciali: [],
     },
   ];
+
   const [registro] = useState(() => {
     const saved = localStorage.getItem("vociRegistro");
     return saved ? JSON.parse(saved) : registroIniziale;
@@ -24,6 +25,7 @@ export const CartProvider = ({ children }) => {
 
   useEffect(() => {
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
+    // eslint-disable-next-line 
   },[])
 
   const addToCart = (item) => {
@@ -71,6 +73,7 @@ export const CartProvider = ({ children }) => {
   return (
     <CartContext.Provider
       value={{
+        registro,
         cartItems,
         addToCart,
         removeFromCart,

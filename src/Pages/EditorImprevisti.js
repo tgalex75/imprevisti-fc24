@@ -1,9 +1,7 @@
 import { useState, useRef, useEffect, useCallback, useContext } from "react";
 import { CartContext } from "../context/regContext";
-import { useState, useRef, useEffect, useCallback, useContext } from "react";
-import { CartContext } from "../context/regContext";
 import { motion } from "framer-motion";
-import { MdSend, MdClear } from "react-icons/md";
+import { MdClear } from "react-icons/md";
 import { useForm } from "react-hook-form";
 import { MdInfoOutline } from "react-icons/md";
 import { v4 as uuidv4 } from "uuid";
@@ -13,32 +11,26 @@ const EditorImprevisti = () => {
 
   const { registro } = useContext(CartContext);
 
-  
   const [vociRegistro, setVociRegistro] = useState(registro);
-  
-  const aggiornaTitoloImprRef = useRef([]);
-  const aggiornaDescImprRef = useRef([]);
+
   const selectRef = useRef(null);
 
-  const removeVociRegistro = (element) => {
-    setVociRegistro((prev) =>
-      prev.map((impr) =>
-        impr.id === element.id ? { ...impr, isImprev: false } : impr,
-      ),
-    );
+  const removeVociRegistro = (idToRemove) => {
+    /* setVociRegistro((prevState) => {
+      const updatedVociRegistro = prevState[0][selectRefState].filter(
+        (item) => item.id !== idToRemove
+        );
+      return { ...prevState, [selectRefState]: updatedVociRegistro };
+    }); */
   };
 
-  const handleSelectRef = useCallback(() => {
+  console.table(vociRegistro);
+
   const handleSelectRef = useCallback(() => {
     setSelectRefState(selectRef.current.value);
   }, []);
 
-  }, []);
-
   const {
-    register: registerImprevisti,
-    handleSubmit: handleSubmitImprevisti,
-    formState: { errors: errorsImprevisti },
     register: registerImprevisti,
     handleSubmit: handleSubmitImprevisti,
     formState: { errors: errorsImprevisti },
@@ -48,17 +40,18 @@ const EditorImprevisti = () => {
     register: registerNoImprevisti,
     handleSubmit: handleSubmitNoImprevisti,
     formState: { errors: errorsNoImprevisti },
-    register: registerNoImprevisti,
-    handleSubmit: handleSubmitNoImprevisti,
-    formState: { errors: errorsNoImprevisti },
   } = useForm();
 
-  const onSubmitImprevisti = (data, e) => {
   const onSubmitImprevisti = (data, e) => {
     e.target.reset();
-    setVociRegistro((prev) => [
-      ...prev,
-      prev[0][selectRefState].push({
+
+    const newVociRegistro = [...vociRegistro];
+    const selectedVoiceIndex = vociRegistro[0][selectRefState].findIndex(
+      (voice) => voice.id === data.id,
+    );
+
+    if (selectedVoiceIndex === -1) {
+      newVociRegistro[0][selectRefState].push({
         id: uuidv4(),
         titolo: data.titolo.toUpperCase(),
         descrizione: data.descrizione,
@@ -66,42 +59,41 @@ const EditorImprevisti = () => {
         ...(selectRefState !== "speciali"
           ? { ultEstrazione: data.ultEstrazione, extractedPl: data.extractedPl }
           : {}),
-      }),
-    ]);
+      });
+    } else {
+      newVociRegistro[0][selectedVoiceIndex] = {
+        ...newVociRegistro[0][selectedVoiceIndex],
+        ...(selectRefState !== "speciali"
+          ? { ultEstrazione: data.ultEstrazione, extractedPl: data.extractedPl }
+          : {}),
+      };
+    }
   };
 
   const onSubmitNoImprevisti = (data, e) => {
+    e.target.reset();
     const { nessunImprevisto } = data;
     const numberOfNoImpr = parseInt(nessunImprevisto);
-    for (let number = 0; number < numberOfNoImpr; number++) {
-      setVociRegistro((prev) => [
-        ...prev,
-        prev[0][selectRefState].push({
-          id: uuidv4(),
-          titolo: "NESSUN IMPREVISTO",
-          descrizione: "",
-          isImprev: false,
-        }),
-      ]);
-    }
-      setVociRegistro((prev) => [
-        ...prev,
-        prev[0][selectRefState].push({
-          id: uuidv4(),
-          titolo: "NESSUN IMPREVISTO",
-          descrizione: "",
-          isImprev: false,
-        }),
-      ]);
-    }
-    e.target.reset();
+    const noImprObj = {
+      id: uuidv4(),
+      titolo: "NESSUN IMPREVISTO",
+      descrizione: "",
+      isImprev: false,
+    };
+    setVociRegistro((prev) => {
+      const newVociRegistro = [...prev];
+      for (let number = 0; number < numberOfNoImpr; number++) {
+        newVociRegistro[0][selectRefState].push(noImprObj);
+      }
+      return newVociRegistro;
+    });
   };
 
   useEffect(() => {
     localStorage.setItem("vociRegistro", JSON.stringify(vociRegistro));
   }, [vociRegistro]);
 
-  const mappedlist = vociRegistro[0][selectRefState];
+  const mappedList = vociRegistro[0][selectRefState];
 
   return (
     <section className="flex h-full w-full flex-col items-center gap-4 px-4 pb-6 font-bold">
@@ -136,41 +128,21 @@ const EditorImprevisti = () => {
               </select>
             </label>
             <strong className="w-1/3 text-end font-semibold">
-              Numero imprevisti: {}
+              Numero imprevisti: {mappedList.length}
             </strong>
           </header>
           <ul className="flex h-full w-full flex-col gap-1 overflow-y-auto rounded-lg border p-4">
-            {mappedlist.map((el) => (
+            {mappedList.map((el) => (
               <li
                 key={Math.random()}
-                className="text-md flex items-center justify-between gap-2 bg-gray-700/20 ps-2 text-left font-normal hover:bg-gray-600/50"
+                className="text-md flex min-h-4 items-center justify-between gap-2 bg-gray-700/20 ps-2 text-left font-normal hover:bg-gray-600/50"
               >
-                <input
-                  className="w-1/6 rounded border border-gray-300/20 bg-transparent p-1 pe-6 font-semibold uppercase placeholder:font-normal placeholder:italic"
-                  placeholder={el.titolo}
-                  ref={(element) =>
-                    (aggiornaTitoloImprRef.current[el.id] = element)
-                  }
-                />
-                <input
-                  className="w-5/6 rounded border border-gray-300/20 bg-transparent p-1 pe-6 font-semibold placeholder:font-normal placeholder:italic"
-                  placeholder={el.descrizione}
-                  ref={(element) =>
-                    (aggiornaDescImprRef.current[el.id] = element)
-                  }
-                />
-
-                <MdSend
-                  size={24}
-                  className="cursor-pointer fill-gray-300 transition-all hover:scale-125 hover:fill-gray-300"
-                  /* onClick={() =>
-                    updateVociRegistro(
-                      el.id,
-                      aggiornaTitoloImprRef.current[el.id].value,
-                      aggiornaDescImprRef.current[el.id].value,
-                    )
-                  } */
-                />
+                <span className="h-full w-1/4 rounded border border-gray-300/20 bg-transparent p-1 pe-6 font-semibold uppercase">
+                  {el.titolo}
+                </span>
+                <span className="h-full w-3/4 rounded border border-gray-300/20 bg-transparent p-1 pe-6 font-semibold">
+                  {el.descrizione}
+                </span>
                 <MdClear
                   size={24}
                   className="mx-2 cursor-pointer fill-red-600 transition-all hover:scale-125 hover:fill-[--clr-sec]"
@@ -186,7 +158,6 @@ const EditorImprevisti = () => {
         <div className="flex w-full items-center justify-between gap-2 px-1 pb-8">
           <form
             onSubmit={handleSubmitImprevisti(onSubmitImprevisti)}
-            onSubmit={handleSubmitImprevisti(onSubmitImprevisti)}
             className="flex h-full w-3/5 flex-col items-center justify-between gap-2 rounded-md border px-4 py-2 font-normal"
           >
             <h3 className="text-center uppercase text-[--clr-prim]">
@@ -194,7 +165,6 @@ const EditorImprevisti = () => {
             </h3>
             <label className="my-1 flex w-full items-center gap-4 self-start text-sm font-semibold">
               Titolo Imprevisto
-              {errorsImprevisti.titolo && (
               {errorsImprevisti.titolo && (
                 <span className="text-[--clr-prim]">
                   Il campo Titolo è obbligatorio - max 20 caratteri
@@ -207,16 +177,11 @@ const EditorImprevisti = () => {
                 required: true,
                 maxLength: 20,
               })}
-              {...registerImprevisti("titolo", {
-                required: true,
-                maxLength: 20,
-              })}
               className="block w-1/3 self-start rounded p-1 text-sm  font-semibold uppercase text-black placeholder:normal-case placeholder:italic"
               placeholder="Titolo dell'imprevisto"
             />
             <label className="my-1 flex w-full items-center gap-4 self-start text-sm font-semibold">
               Descrizione Imprevisto
-              {errorsImprevisti.descrizione && (
               {errorsImprevisti.descrizione && (
                 <span className="text-[--clr-prim]">
                   Il campo descrizione è obbligatorio
@@ -225,7 +190,6 @@ const EditorImprevisti = () => {
             </label>
             <textarea
               name="descrizione"
-              {...registerImprevisti("descrizione", { required: true })}
               {...registerImprevisti("descrizione", { required: true })}
               rows={3}
               id="descrizione"
@@ -238,14 +202,12 @@ const EditorImprevisti = () => {
               <label className="my-1 flex w-full items-center gap-4 self-start text-sm font-semibold">
                 Numero di giocatori da estrarre (da 0 a 10)
                 {errorsImprevisti.extractedPl && (
-                {errorsImprevisti.extractedPl && (
                   <span className="text-[--clr-prim]">
                     Inserire un valore minimo di 0 ed uno massimo di 10
                   </span>
                 )}
               </label>
               <input
-                {...registerImprevisti("extractedPl", {
                 {...registerImprevisti("extractedPl", {
                   min: 0,
                   max: 10,
@@ -267,7 +229,6 @@ const EditorImprevisti = () => {
                 </label>
                 <input
                   {...registerImprevisti("ultEstrazione")}
-                  {...registerImprevisti("ultEstrazione")}
                   id="ultEstrazione"
                   name="ultEstrazione"
                   type="checkbox"
@@ -286,7 +247,6 @@ const EditorImprevisti = () => {
           {/* AGGIUNGI "NESSUN IMPREVISTO" */}
           <form
             onSubmit={handleSubmitNoImprevisti(onSubmitNoImprevisti)}
-            onSubmit={handleSubmitNoImprevisti(onSubmitNoImprevisti)}
             className="flex h-full w-2/5 flex-col items-center justify-between gap-2 rounded-md border px-4 py-2 font-normal"
             style={
               selectRefState === "speciali" ? { visibility: "hidden" } : {}
@@ -297,7 +257,8 @@ const EditorImprevisti = () => {
             </h3>
             <div className="flex w-full flex-1 flex-col gap-14">
               <label className="my-1 flex w-full items-center gap-4 self-start text-sm font-semibold">
-                Numero di voci "NESSUN IMPREVISTO" da aggiungere alla lista di tipo {selectRefState.toUpperCase()}
+                Numero di voci "NESSUN IMPREVISTO" da aggiungere alla lista di
+                tipo {selectRefState.toUpperCase()}
                 {errorsNoImprevisti.nessunImprevisto && (
                   <span className="text-[--clr-prim]">
                     Inserire un valore minimo di 0 ed uno massimo di 10
@@ -305,7 +266,6 @@ const EditorImprevisti = () => {
                 )}
               </label>
               <input
-                {...registerNoImprevisti("nessunImprevisto", { min: 0 })}
                 {...registerNoImprevisti("nessunImprevisto", { min: 0 })}
                 name="nessunImprevisto"
                 id="nessunImprevisto"
