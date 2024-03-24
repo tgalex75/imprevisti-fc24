@@ -1,99 +1,21 @@
-import { useState, useRef, useEffect, useCallback, useContext } from "react";
-import { CartContext } from "../context/regContext";
+import { useState, useRef, useCallback, useContext } from "react";
 import { motion } from "framer-motion";
 import { MdClear } from "react-icons/md";
-import { useForm } from "react-hook-form";
 import { MdInfoOutline } from "react-icons/md";
-import { v4 as uuidv4 } from "uuid";
+import { AddImprevisti } from "../Funzioni/AddImprevisti";
+import { CartContext } from "../context/regContext";
 
 const EditorImprevisti = () => {
   const [selectRefState, setSelectRefState] = useState("prepartita");
 
-  const { registro } = useContext(CartContext);
-
-  const [vociRegistro, setVociRegistro] = useState(registro);
+  const {[selectRefState] : registro} = useContext(CartContext)
 
   const selectRef = useRef(null);
-
-  const removeVociRegistro = (idToRemove) => {
-    /* setVociRegistro((prevState) => {
-      const updatedVociRegistro = prevState[0][selectRefState].filter(
-        (item) => item.id !== idToRemove
-        );
-      return { ...prevState, [selectRefState]: updatedVociRegistro };
-    }); */
-  };
-
-  console.table(vociRegistro);
 
   const handleSelectRef = useCallback(() => {
     setSelectRefState(selectRef.current.value);
   }, []);
 
-  const {
-    register: registerImprevisti,
-    handleSubmit: handleSubmitImprevisti,
-    formState: { errors: errorsImprevisti },
-  } = useForm();
-
-  const {
-    register: registerNoImprevisti,
-    handleSubmit: handleSubmitNoImprevisti,
-    formState: { errors: errorsNoImprevisti },
-  } = useForm();
-
-  const onSubmitImprevisti = (data, e) => {
-    e.target.reset();
-
-    const newVociRegistro = [...vociRegistro];
-    const selectedVoiceIndex = vociRegistro[0][selectRefState].findIndex(
-      (voice) => voice.id === data.id,
-    );
-
-    if (selectedVoiceIndex === -1) {
-      newVociRegistro[0][selectRefState].push({
-        id: uuidv4(),
-        titolo: data.titolo.toUpperCase(),
-        descrizione: data.descrizione,
-        isImprev: true,
-        ...(selectRefState !== "speciali"
-          ? { ultEstrazione: data.ultEstrazione, extractedPl: data.extractedPl }
-          : {}),
-      });
-    } else {
-      newVociRegistro[0][selectedVoiceIndex] = {
-        ...newVociRegistro[0][selectedVoiceIndex],
-        ...(selectRefState !== "speciali"
-          ? { ultEstrazione: data.ultEstrazione, extractedPl: data.extractedPl }
-          : {}),
-      };
-    }
-  };
-
-  const onSubmitNoImprevisti = (data, e) => {
-    e.target.reset();
-    const { nessunImprevisto } = data;
-    const numberOfNoImpr = parseInt(nessunImprevisto);
-    const noImprObj = {
-      id: uuidv4(),
-      titolo: "NESSUN IMPREVISTO",
-      descrizione: "",
-      isImprev: false,
-    };
-    setVociRegistro((prev) => {
-      const newVociRegistro = [...prev];
-      for (let number = 0; number < numberOfNoImpr; number++) {
-        newVociRegistro[0][selectRefState].push(noImprObj);
-      }
-      return newVociRegistro;
-    });
-  };
-
-  useEffect(() => {
-    localStorage.setItem("vociRegistro", JSON.stringify(vociRegistro));
-  }, [vociRegistro]);
-
-  const mappedList = vociRegistro[0][selectRefState];
 
   return (
     <section className="flex h-full w-full flex-col items-center gap-4 px-4 pb-6 font-bold">
@@ -128,13 +50,13 @@ const EditorImprevisti = () => {
               </select>
             </label>
             <strong className="w-1/3 text-end font-semibold">
-              Numero imprevisti: {mappedList.length}
+              Numero imprevisti: {registro?.length}
             </strong>
           </header>
           <ul className="flex h-full w-full flex-col gap-1 overflow-y-auto rounded-lg border p-4">
-            {mappedList.map((el) => (
+            {registro?.map((el) => (
               <li
-                key={Math.random()}
+                key={el.id}
                 className="text-md flex min-h-4 items-center justify-between gap-2 bg-gray-700/20 ps-2 text-left font-normal hover:bg-gray-600/50"
               >
                 <span className="h-full w-1/4 rounded border border-gray-300/20 bg-transparent p-1 pe-6 font-semibold uppercase">
@@ -146,7 +68,7 @@ const EditorImprevisti = () => {
                 <MdClear
                   size={24}
                   className="mx-2 cursor-pointer fill-red-600 transition-all hover:scale-125 hover:fill-[--clr-sec]"
-                  onClick={() => removeVociRegistro(el.id)}
+                  onClick={() => console.log(el.id)}
                 />
               </li>
             ))}
@@ -156,96 +78,9 @@ const EditorImprevisti = () => {
         {/* Form "AGGIUNGI Imprevisti" */}
 
         <div className="flex w-full items-center justify-between gap-2 px-1 pb-8">
-          <form
-            onSubmit={handleSubmitImprevisti(onSubmitImprevisti)}
-            className="flex h-full w-3/5 flex-col items-center justify-between gap-2 rounded-md border px-4 py-2 font-normal"
-          >
-            <h3 className="text-center uppercase text-[--clr-prim]">
-              Aggiungi il tuo imprevisto
-            </h3>
-            <label className="my-1 flex w-full items-center gap-4 self-start text-sm font-semibold">
-              Titolo Imprevisto
-              {errorsImprevisti.titolo && (
-                <span className="text-[--clr-prim]">
-                  Il campo Titolo è obbligatorio - max 20 caratteri
-                </span>
-              )}
-            </label>
-            <input
-              name="titolo"
-              {...registerImprevisti("titolo", {
-                required: true,
-                maxLength: 20,
-              })}
-              className="block w-1/3 self-start rounded p-1 text-sm  font-semibold uppercase text-black placeholder:normal-case placeholder:italic"
-              placeholder="Titolo dell'imprevisto"
-            />
-            <label className="my-1 flex w-full items-center gap-4 self-start text-sm font-semibold">
-              Descrizione Imprevisto
-              {errorsImprevisti.descrizione && (
-                <span className="text-[--clr-prim]">
-                  Il campo descrizione è obbligatorio
-                </span>
-              )}
-            </label>
-            <textarea
-              name="descrizione"
-              {...registerImprevisti("descrizione", { required: true })}
-              rows={3}
-              id="descrizione"
-              placeholder="Descrizione dell'imprevisto"
-              className="w-full rounded p-1 text-sm font-semibold text-black placeholder:italic"
-            />
-            <div
-              className={`flex w-full flex-col gap-2 ${selectRefState === "speciali" && "invisible"}`}
-            >
-              <label className="my-1 flex w-full items-center gap-4 self-start text-sm font-semibold">
-                Numero di giocatori da estrarre (da 0 a 10)
-                {errorsImprevisti.extractedPl && (
-                  <span className="text-[--clr-prim]">
-                    Inserire un valore minimo di 0 ed uno massimo di 10
-                  </span>
-                )}
-              </label>
-              <input
-                {...registerImprevisti("extractedPl", {
-                  min: 0,
-                  max: 10,
-                  required: true,
-                })}
-                name="extractedPl"
-                value={1}
-                id="extractedPl"
-                type="number"
-                placeholder="Quanti giocatori?"
-                className="block w-1/3 rounded p-1 text-sm font-semibold text-black placeholder:italic"
-              />
-              <div className="flex items-center py-2">
-                <label
-                  htmlFor="ultEstrazione"
-                  className="me-4 text-sm font-semibold text-gray-300"
-                >
-                  Ulteriore estrazione necessaria dopo la prima?
-                </label>
-                <input
-                  {...registerImprevisti("ultEstrazione")}
-                  id="ultEstrazione"
-                  name="ultEstrazione"
-                  type="checkbox"
-                  value=""
-                  className="h-4 w-4 rounded border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-blue-600"
-                />
-              </div>
-            </div>
-            <button
-              type="submit"
-              className="w-1/3 rounded-lg bg-sky-700 py-1 font-semibold hover:bg-sky-600"
-            >
-              Salva ed Invia
-            </button>
-          </form>
+          <AddImprevisti tipoImprevisto={selectRefState} />
           {/* AGGIUNGI "NESSUN IMPREVISTO" */}
-          <form
+          {/* <form
             onSubmit={handleSubmitNoImprevisti(onSubmitNoImprevisti)}
             className="flex h-full w-2/5 flex-col items-center justify-between gap-2 rounded-md border px-4 py-2 font-normal"
             style={
@@ -280,7 +115,7 @@ const EditorImprevisti = () => {
             >
               Salva ed Invia
             </button>
-          </form>
+          </form> */}
           <span
             className="absolute bottom-8 right-8 flex cursor-pointer flex-col items-center text-sm font-semibold text-[--clr-prim]"
             onClick={() => console.log("Apri Modale con istruzioni")}

@@ -1,4 +1,6 @@
 import { createContext, useState, useEffect } from "react";
+import { db } from "../Data/db";
+import { useLiveQuery } from "dexie-react-hooks";
 
 export const CartContext = createContext();
 
@@ -9,24 +11,15 @@ export const CartProvider = ({ children }) => {
     return initialValue || [];
   });
 
-  const registroIniziale = [
-    {
-      prepartita: [],
-      settimana: [],
-      serienegativa: [],
-      speciali: [],
-    },
-  ];
-
-  const [registro] = useState(() => {
-    const saved = localStorage.getItem("vociRegistro");
-    return saved ? JSON.parse(saved) : registroIniziale;
-  });
+  const prepartita = useLiveQuery(async () => db.prepartita.toArray());
+  const settimana = useLiveQuery(async () => db.settimana.toArray());
+  const serienegativa = useLiveQuery(async () => db.serienegativa.toArray());
+  const speciali = useLiveQuery(async () => db.speciali.toArray());
 
   useEffect(() => {
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
-    // eslint-disable-next-line 
-  },[])
+    // eslint-disable-next-line
+  }, []);
 
   const addToCart = (item) => {
     const isItemInCart = cartItems.find(
@@ -73,7 +66,10 @@ export const CartProvider = ({ children }) => {
   return (
     <CartContext.Provider
       value={{
-        registro,
+        prepartita,
+        settimana,
+        serienegativa,
+        speciali,
         cartItems,
         addToCart,
         removeFromCart,
