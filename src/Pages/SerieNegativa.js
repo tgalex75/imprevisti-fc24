@@ -2,7 +2,6 @@ import React, { useState, useContext, useRef } from "react";
 import Dado from "../Components/Dado";
 import { CartContext } from "../context/regContext";
 import SecondaEstrazione from "../Components/SecondaEstrazione";
-import RegistroSerieNegativa from "../Components/RegistroSerieNegativa";
 import { motion } from "framer-motion";
 import { isMobile } from "react-device-detect";
 import random from "random";
@@ -10,16 +9,13 @@ import random from "random";
 const SerieNegativa = () => {
   const { serienegativa } = useContext(CartContext);
 
-  const [casuale, setCasuale ] = useState(null)
+  const [casuale, setCasuale] = useState(null);
 
   const inputRef = useRef(null);
 
-  const { addToCart } = useContext(CartContext);
-
   const fetchList = () => {
-    setCasuale(random.choice(serienegativa))
-  }
-
+    setCasuale(random.choice(serienegativa));
+  };
 
   const { titolo, descrizione, isImprev, ultEstrazione } = casuale
     ? casuale
@@ -48,7 +44,7 @@ const SerieNegativa = () => {
           </h2>
         ) : (
           <>
-            <div className="flex h-full w-full md:w-3/4 flex-col items-center justify-around py-4 md:self-end md:py-2">
+            <div className="flex h-full w-full flex-col items-center justify-around py-4 md:w-3/4 md:py-2">
               <h2
                 style={{
                   fontFamily: "'Boogaloo', sans-serif",
@@ -74,48 +70,13 @@ const SerieNegativa = () => {
                     fontFamily: "'Handlee', cursive",
                     filter: "drop-shadow(.05rem .05rem 0.1rem #000)",
                   }}
-                  className="text-md px-4 md:flex-1 md:text-2xl md:w-3/4"
+                  className="text-md px-4 md:w-3/4 md:flex-1 md:text-2xl"
                 >
                   {descrizione}
                 </p>
               )}
-            
-
-            {ultEstrazione > 0 && <SecondaEstrazione />}
-            {isImprev > 0 && (
-              <div className="w-full md:w-3/4 flex flex-col items-center">
-                <label
-                  htmlFor="nome-giocatore"
-                  className="mb-1 inline-block text-xs text-gray-300 md:text-sm"
-                >
-                  Giocatore da iscrivere sul registro
-                </label>
-                <div className="flex w-1/2 h-1/2 items-center justify-between gap-1">
-                  <input
-                    ref={inputRef}
-                    type="text"
-                    id="nome-giocatore"
-                    className="h-full w-full appearance-none rounded-lg border border-gray-300 border-transparent bg-white px-1 py-2 text-xs text-gray-700 placeholder-gray-400 shadow-sm focus:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 md:px-4 md:text-sm"
-                    name="nomeGiocatore"
-                    placeholder={isMobile ? "Nome..." : "Fuori il nome..."}
-                  />
-                  <button
-                    type="button"
-                    className="flex h-full w-full items-center justify-center rounded-lg bg-sky-700 px-4 py-2 text-center text-xs font-semibold text-white shadow-md transition duration-200 ease-in hover:bg-sky-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-indigo-200 md:text-sm "
-                    onClick={() =>
-                      addToCart({
-                        titolo: `${inputRef.current.value} - ${titolo}`.toUpperCase(),
-                        quantity: 1,
-                      })
-                    }
-                  >
-                    Invia
-                  </button>
-                </div>
-              </div>
-            )}
-            <RegistroSerieNegativa />
-        </div>
+              {ultEstrazione > 0 && <SecondaEstrazione />}
+            </div>
           </>
         )}
       </motion.div>
