@@ -84,7 +84,7 @@ const EditorImprevisti = () => {
                 className="text-md flex text-center min-h-4 items-center justify-between gap-2 bg-gray-700/20 ps-2 font-normal hover:bg-[--clr-prim]"
               >
                 <span className="h-full w-1/6 rounded border border-gray-300/20 bg-transparent p-1 font-semibold uppercase">
-                  {el.isImprev===1 ? "S" : "N"}
+                  {el.isImprev===1 ? "SI" : "NO"}
                 </span>
                 <span className="h-full w-1/6 text-start rounded border border-gray-300/20 bg-transparent p-1 font-semibold uppercase">
                   {el.titolo}
@@ -93,7 +93,7 @@ const EditorImprevisti = () => {
                   {el.descrizione}
                 </span>
                 <span className="h-full w-1/6 rounded border border-gray-300/20 bg-transparent p-1 font-semibold">
-                  {el.ultEstrazione ? "S" : "N"}
+                  {el.ultEstrazione ? "SI" : "NO"}
                 </span>
                 <span className="h-full w-1/6 rounded border border-gray-300/20 bg-transparent p-1 font-semibold">
                   {el.extractedPl}

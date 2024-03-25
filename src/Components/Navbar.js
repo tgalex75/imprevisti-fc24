@@ -20,15 +20,7 @@ const Navbar = () => {
       voceLi: "Imprevisto Serie Negativa",
       linkTo: "/serie-negativa",
     },
-    {
-      id: 5,
-      voceLi: "Imprevisti Calciomercato",
-      linkTo: "/offerte-mercato",
-    },
-    { id: 6, voceLi: "Imprevisti di Ingaggio", linkTo: "/ingaggio" },
-    { id: 7, voceLi: "Imprevisti Rinnovi", linkTo: "/rinnovi" },
     { id: 8, voceLi: "Media Overall", linkTo: "/calcolo-media" },
-    { id: 9, voceLi: "Registro Giocatori", linkTo: "/registro-giocatori" },
     /* { id: 10, voceLi: "Riepilogo Imprevisti", linkTo: "/riepilogo-imprevisti" }, */
     { id: 11, voceLi: "Editor Imprevisti", linkTo: "/editor-imprevisti" },
   ];

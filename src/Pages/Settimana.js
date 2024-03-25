@@ -6,9 +6,7 @@ import FetchImprevisto from "../Funzioni/FetchImprevisto";
 import LayoutBase from "../Components/LayoutBase";
 import { CartContext } from "../context/regContext";
 
-
 const Settimana = () => {
-
   const { settimana } = useContext(CartContext);
 
   const [casuale, setCasuale] = useState(null);
@@ -17,20 +15,14 @@ const Settimana = () => {
     setCasuale(random.choice(settimana));
   };
 
-  const { titolo, descrizione, isImprev } = casuale
-    ? casuale
-    : {};
+  const { titolo, descrizione, isImprev } = casuale ? casuale : {};
 
   const titoloH1 = "Imprevisto Settimanale";
-  const isImpSpeciale = titolo === "IMPREVISTO SPECIALE";
+  const isImprSpeciale = titolo === "IMPREVISTO SPECIALE";
 
   return (
     <>
-      <LayoutBase
-        titoloH1={titoloH1}
-        isImprev={isImprev}
-        casuale={casuale}
-      >
+      <LayoutBase titoloH1={titoloH1} isImprev={isImprev} casuale={casuale}>
         {casuale && (
           <section className="flex h-full w-full flex-col items-center justify-around">
             <h2
@@ -40,17 +32,17 @@ const Settimana = () => {
               }}
               className={
                 isImprev > 0
-                  ? "text-5xl h-full md:pt-6 font-extrabold uppercase md:relative md:top-2 md:text-6xl flex items-center"
+                  ? "flex h-full items-center text-5xl font-extrabold uppercase md:relative md:top-2 md:pt-6 md:text-6xl"
                   : "invisible md:h-full"
               }
             >
-              {isImpSpeciale ? "Imprevisto SPECIALE" : "IMPREVISTO!"}
+              {isImprSpeciale ? "Imprevisto SPECIALE" : "IMPREVISTO!"}
             </h2>
-            {!isImpSpeciale ? (
+            {!isImprSpeciale ? (
               <>
                 <h3
                   style={{ filter: "drop-shadow(.05rem .05rem 0.1rem #000)" }}
-                  className={`text-4xl md:h-full font-extrabold uppercase md:text-5xl flex items-center ${
+                  className={`flex items-center text-4xl font-extrabold uppercase md:h-full md:text-5xl ${
                     titolo === "IMPREVISTO SPECIALE" && "hidden"
                   }`}
                 >
@@ -60,9 +52,8 @@ const Settimana = () => {
                   style={{ fontFamily: "'Handlee', cursive" }}
                   className="mt-4 px-4 text-xl md:h-full md:text-3xl"
                 >
-                  {(isImprev > 0) && descrizione}
+                  {isImprev > 0 && descrizione}
                 </p>
-                
               </>
             ) : (
               <>

@@ -21,8 +21,8 @@ export function AddImprevisti(props) {
         titolo: disabledField ? "NESSUN IMPREVISTO" : data.titolo,
         descrizione: data.descrizione,
         isImprev: disabledField ? 0 : 1,
-        ultEstrazione: disabledField ? 0 : data.ultEstrazione,
-        extractedPl: disabledField ? 0 : parseInt(data.extractedPl),
+        ultEstrazione: disabledField ? 0 : (data.ultEstrazione ? 1 : 0) ,
+        extractedPl: disabledField || refState === "speciale" ? 0 : parseInt(data.extractedPl),
       });
       console.log(id);
     } catch (error) {
@@ -67,7 +67,18 @@ export function AddImprevisti(props) {
           className="w-fit self-center rounded-md border p-1 text-sm font-semibold dark:border-gray-300/80 dark:bg-black/30 dark:text-gray-300 dark:placeholder-black/10 dark:focus:border-blue-500 dark:focus:ring-blue-500"
         >
           <option value="imprevisto">IMPREVISTO</option>
-          <option value="noImprevisto">NESSUN IMPREVISTO</option>
+          <option
+            className={`${tipoImprevisto === "speciali" && "hidden"}`}
+            value="noImprevisto"
+          >
+            NESSUN IMPREVISTO
+          </option>
+          <option
+            className={`${tipoImprevisto === "prepartita" || tipoImprevisto === "settimana" ? "visible" : "hidden"}`}
+            value="speciale"
+          >
+            IMPREVISTO SPECIALE
+          </option>
         </select>
       </label>
 
@@ -81,16 +92,34 @@ export function AddImprevisti(props) {
           </span>
         )}
       </label>
-      <input
-        name="titolo"
-        {...registerImprevisti("titolo", {
-          required: disabledField ? false : true,
-          maxLength: 20,
-        })}
-        disabled={disabledField}
-        className="block w-1/3 self-start rounded p-1 text-sm  font-semibold uppercase text-black disabled:placeholder:text-black placeholder:normal-case placeholder:italic"
-        placeholder={disabledField ? "NESSUN IMPREVISTO" : "Titolo dell'imprevisto"}
-      />
+      {refState !== "speciale" ? (
+        <input
+          name="titolo"
+          {...registerImprevisti("titolo", {
+            required: disabledField ? false : true,
+            maxLength: 20,
+          })}
+          disabled={disabledField}
+          className="block w-1/3 self-start rounded p-1 text-sm  font-semibold uppercase text-black placeholder:normal-case placeholder:italic disabled:placeholder:text-black"
+          placeholder={
+            disabledField ? "NESSUN IMPREVISTO" : "Titolo dell'imprevisto"
+          }
+        />
+      ) : (
+        <input
+          name="titolo"
+          {...registerImprevisti("titolo", {
+            required: disabledField ? false : true,
+            maxLength: 20,
+          })}
+          value="IMPREVISTO SPECIALE"
+          disabled={disabledField}
+          className="block w-1/3 self-start rounded p-1 text-sm  font-semibold uppercase text-black placeholder:normal-case placeholder:italic disabled:placeholder:text-black"
+          placeholder={
+            disabledField ? "NESSUN IMPREVISTO" : "Titolo dell'imprevisto"
+          }
+        />
+      )}
 
       {/* DESCRIZIONE */}
 
@@ -105,10 +134,10 @@ export function AddImprevisti(props) {
       <textarea
         name="descrizione"
         {...registerImprevisti("descrizione", {
-          required: disabledField ? false : true,
+          required: disabledField || refState === "speciale" ? false : true,
         })}
         rows={3}
-        disabled={disabledField}
+        disabled={disabledField || refState === "speciale"}
         id="descrizione"
         placeholder="Descrizione dell'imprevisto"
         className="w-full rounded p-1 text-sm font-semibold text-black placeholder:italic"
@@ -129,10 +158,10 @@ export function AddImprevisti(props) {
           {...registerImprevisti("extractedPl", {
             min: 0,
             max: 10,
-            required: disabledField ? false : true,
+            required: disabledField || refState === "speciale" ? false : true,
           })}
           name="extractedPl"
-          disabled={disabledField}
+          disabled={disabledField || refState === "speciale"}
           id="extractedPl"
           type="number"
           className="block w-1/3 rounded p-1 text-sm font-semibold text-black placeholder:italic"
@@ -149,7 +178,7 @@ export function AddImprevisti(props) {
           </label>
           <input
             {...registerImprevisti("ultEstrazione")}
-            disabled={disabledField}
+            disabled={disabledField || refState === "speciale"}
             id="ultEstrazione"
             name="ultEstrazione"
             type="checkbox"

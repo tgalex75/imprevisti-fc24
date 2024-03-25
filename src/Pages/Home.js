@@ -13,17 +13,17 @@ const dettagliImprevisti = [
     },
     {
         id: 4,
-        impr: "Imprevisti offerte mercato",
+        impr: "Media Overall",
         img: "",
-        link: "/offerte-mercato",
+        link: "/calcolo-media",
     },
     {
         id: 5,
-        impr: "Imprevisti di ingaggio",
+        impr: "Editor Imprevisti",
         img: isMobile ? "" : "",
-        link: "/ingaggio",
+        link: "/editor-imprevisti",
     },
-    { id: 6, impr: "Imprevisti sui Rinnovi", img: "", link: "/rinnovi" },
+
 ];
 
 const Home = () => {
@@ -36,7 +36,7 @@ const Home = () => {
                         boxShadow: "-12px 0px 10px -3px rgba(2,2,2,0.5)",
                         zIndex: el.id,
                     }}
-                    className="group flex items-center justify-start w-full md:w-1/6 md:hover:w-full h-1/6 md:h-full md:hover:h-full cursor-pointer transition-all duration-500 ease-[cubic-bezier(0.770, 0.000, 0.175, 1.000)] hover:text-gray-300"
+                    className="group flex items-center justify-start w-full md:w-1/5 md:hover:w-full h-1/5 md:h-full md:hover:h-full cursor-pointer transition-all duration-500 ease-[cubic-bezier(0.770, 0.000, 0.175, 1.000)] hover:text-gray-300"
                 >
                     <h2
                         style={{
@@ -44,7 +44,7 @@ const Home = () => {
                             transform: isMobile ? "" : "rotate(180deg)",
                             textShadow: "rgb(34, 34, 34) 0px 4px 4px",
                         }}
-                        className="w-1/6 flex items-center justify-center text-center md:justify-start group-hover:px-6 transition-all group-hover:w-2/6 md:w-auto md:group-hover:w-auto group-hover:border-l-[.35rem] md:group-hover:border-l-[.5rem] group-hover:border-[--clr-ter] uppercase font-bold text-[1.7vw] md:text-[2.2vw] md:ps-8 text-gray-200 drop-shadow-lg group-hover:bg-[--clr-prim] bg-[--clr-ter] h-full px-4 md:px-2"
+                        className="w-1/5 flex items-center justify-center text-center md:justify-start group-hover:px-6 transition-all group-hover:w-2/6 md:w-auto md:group-hover:w-auto group-hover:border-l-[.35rem] md:group-hover:border-l-[.5rem] group-hover:border-[--clr-ter] uppercase font-bold text-[1.7vw] md:text-[2.2vw] md:ps-8 text-gray-200 drop-shadow-lg group-hover:bg-[--clr-prim] bg-[--clr-ter] h-full px-4 md:px-2"
                     >
                         {el.impr}
                     </h2>

@@ -8,14 +8,14 @@ import { CartContext } from "../context/regContext";
 import random from "random";
 
 const Prepartita = () => {
-  const initialMessage = [
+  /* const initialMessage = [
     {
       id: 0,
       titolo: "LISTA VUOTA",
       descrizione:
         "Utilizza l'Editor degli imprevisti per aggiungere quelli che vuoi vengano usati per l'estrazione",
     },
-  ];
+  ]; */
 
   const { prepartita } = useContext(CartContext);
 
@@ -30,7 +30,9 @@ const Prepartita = () => {
     : {};
 
   const titoloH1 = "Imprevisto Prepartita";
-  const isImpCommunity = titolo === "IMPREVISTO SPECIALE";
+  const isImprSpeciale = titolo === "IMPREVISTO SPECIALE";
+
+  console.log(casuale)
 
   return (
     <>
@@ -48,9 +50,9 @@ const Prepartita = () => {
                   : "invisible md:h-full"
               }
             >
-              {isImpCommunity ? "Imprevisto SPECIALE" : "IMPREVISTO!"}
+              {isImprSpeciale ? "Imprevisto SPECIALE" : "IMPREVISTO!"}
             </h2>
-            {!isImpCommunity ? (
+            {!isImprSpeciale ? (
               <>
                 <h3
                   style={{ filter: "drop-shadow(.05rem .05rem 0.1rem #000)" }}
@@ -64,7 +66,7 @@ const Prepartita = () => {
                   style={{ fontFamily: "'Handlee', cursive" }}
                   className="mt-4 px-4 text-xl md:h-full md:text-3xl"
                 >
-                  {(isImprev > 0) && descrizione}
+                  {isImprev > 0 && descrizione}
                 </p>
               </>
             ) : (
@@ -72,8 +74,9 @@ const Prepartita = () => {
                 <FetchImprevisto />
               </>
             )}
-            {(ultEstrazione > 0) && extractedPl === 1 && <SecondaEstrazione />}
-            {extractedPl > 1 && (
+            {(ultEstrazione === 1 && extractedPl === 1) && <SecondaEstrazione />}
+
+            {(ultEstrazione === 1 && extractedPl > 1) && (
               <SecondaEstrazioneDiretta extractedPl={extractedPl} />
             )}
           </section>

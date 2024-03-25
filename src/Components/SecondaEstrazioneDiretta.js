@@ -31,7 +31,7 @@ const SecondaEstrazioneDiretta = (props) => {
             return (
               <div
                 key={"playerNumber." + idx}
-                className="flex flex-col items-center justify-center overflow-hidden rounded bg-contain bg-center bg-no-repeat p-8 transition-all md:h-full md:w-full"
+                className="flex flex-wrap flex-col items-center justify-center overflow-hidden rounded bg-contain bg-center bg-no-repeat p-8 transition-all md:h-full md:w-full"
                 style={{
                   backgroundImage:
                     player === 1 ? `url(${gkKit})` : `url(${firstkit})`,
