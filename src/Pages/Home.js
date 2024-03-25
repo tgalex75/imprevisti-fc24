@@ -1,36 +1,29 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import mullin from "../assets/imgs/mullin.png";
-import ryanmac from "../assets/imgs/ryanmac.jpg";
-import logoStadio from "../assets/imgs/logo_stadio.jpg";
-import logoStadioMobile from "../assets/imgs/logo_stadio_mobile.jpg";
-import stadio from "../assets/imgs/stadio.jpg";
-import serieNegativa from "../assets/imgs/serienegativa.jpg";
-import rinnovi from "../assets/imgs/rinnovo.jpg";
 import { isMobile } from "react-device-detect";
 
 const dettagliImprevisti = [
-    { id: 1, impr: "Imprevisti prepartita", img: ryanmac, link: "/prepartita" },
-    { id: 2, impr: "Imprevisti Settimanali", img: stadio, link: "/settimana" },
+    { id: 1, impr: "Imprevisti prepartita", img: "", link: "/prepartita" },
+    { id: 2, impr: "Imprevisti Settimanali", img: "", link: "/settimana" },
     {
         id: 3,
         impr: "Imprevisti serie negativa",
-        img: serieNegativa,
+        img: "",
         link: "/serie-negativa",
     },
     {
         id: 4,
         impr: "Imprevisti offerte mercato",
-        img: mullin,
+        img: "",
         link: "/offerte-mercato",
     },
     {
         id: 5,
         impr: "Imprevisti di ingaggio",
-        img: isMobile ? logoStadioMobile : logoStadio,
+        img: isMobile ? "" : "",
         link: "/ingaggio",
     },
-    { id: 6, impr: "Imprevisti sui Rinnovi", img: rinnovi, link: "/rinnovi" },
+    { id: 6, impr: "Imprevisti sui Rinnovi", img: "", link: "/rinnovi" },
 ];
 
 const Home = () => {

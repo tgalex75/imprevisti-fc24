@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import SecondaEstrazione from "../Components/SecondaEstrazione";
 import SecondaEstrazioneDiretta from "../Components/SecondaEstrazioneDiretta";
 import FetchImprevisto from "../Funzioni/FetchImprevisto";
 import LayoutBase from "../Components/LayoutBase";
 import Dado from "../Components/Dado";
+import { CartContext } from "../context/regContext";
 import random from "random";
 
 const Prepartita = () => {
@@ -16,11 +17,7 @@ const Prepartita = () => {
     },
   ];
 
-  const [prepartita] = useState(() => {
-    const saved = localStorage.getItem("vociRegistro");
-    const initialValue = JSON.parse(saved);
-    return initialValue[0].prepartita || initialMessage;
-  });
+  const { prepartita } = useContext(CartContext);
 
   const [casuale, setCasuale] = useState(null);
 
@@ -46,7 +43,7 @@ const Prepartita = () => {
                 filter: "drop-shadow(.05rem .05rem 0.1rem #000)",
               }}
               className={
-                isImprev
+                isImprev > 0
                   ? "flex h-full items-center text-5xl font-extrabold uppercase md:relative md:top-2 md:text-6xl"
                   : "invisible md:h-full"
               }
@@ -67,7 +64,7 @@ const Prepartita = () => {
                   style={{ fontFamily: "'Handlee', cursive" }}
                   className="mt-4 px-4 text-xl md:h-full md:text-3xl"
                 >
-                  {isImprev && descrizione}
+                  {(isImprev > 0) && descrizione}
                 </p>
               </>
             ) : (
@@ -75,7 +72,7 @@ const Prepartita = () => {
                 <FetchImprevisto />
               </>
             )}
-            {ultEstrazione && extractedPl === 1 && <SecondaEstrazione />}
+            {(ultEstrazione > 0) && extractedPl === 1 && <SecondaEstrazione />}
             {extractedPl > 1 && (
               <SecondaEstrazioneDiretta extractedPl={extractedPl} />
             )}

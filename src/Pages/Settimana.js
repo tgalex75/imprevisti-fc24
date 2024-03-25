@@ -1,18 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Dado from "../Components/Dado";
 import random from "random";
 import FetchImprevisto from "../Funzioni/FetchImprevisto";
 //import { motion } from "framer-motion";
 import LayoutBase from "../Components/LayoutBase";
+import { CartContext } from "../context/regContext";
+
 
 const Settimana = () => {
 
-  const [settimana] = useState(() => {
-    const saved = localStorage.getItem("vociRegistro");
-    const initialValue = JSON.parse(saved);
-    return initialValue[0].settimana || [];
-  });
-
+  const { settimana } = useContext(CartContext);
 
   const [casuale, setCasuale] = useState(null);
 
@@ -42,7 +39,7 @@ const Settimana = () => {
                 filter: "drop-shadow(.05rem .05rem 0.1rem #000)",
               }}
               className={
-                isImprev
+                isImprev > 0
                   ? "text-5xl h-full md:pt-6 font-extrabold uppercase md:relative md:top-2 md:text-6xl flex items-center"
                   : "invisible md:h-full"
               }
@@ -63,7 +60,7 @@ const Settimana = () => {
                   style={{ fontFamily: "'Handlee', cursive" }}
                   className="mt-4 px-4 text-xl md:h-full md:text-3xl"
                 >
-                  {isImprev && descrizione}
+                  {(isImprev > 0) && descrizione}
                 </p>
                 
               </>

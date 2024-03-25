@@ -8,11 +8,7 @@ import { isMobile } from "react-device-detect";
 import random from "random";
 
 const SerieNegativa = () => {
-  const [serienegativa] = useState(() => {
-    const saved = localStorage.getItem("vociRegistro");
-    const initialValue = JSON.parse(saved);
-    return initialValue[0].serienegativa || [];
-  });
+  const { serienegativa } = useContext(CartContext);
 
   const [casuale, setCasuale ] = useState(null)
 
@@ -40,7 +36,7 @@ const SerieNegativa = () => {
         transition={{ delay: 0.4, duration: 0.4, type: "spring" }}
         key={casuale}
         id="containerPrimaEstrazione"
-        style={isImprev ? { color: "var(--clr-ter)" } : {}}
+        style={isImprev ? { color: "var(--clr-prim)" } : {}}
         className="flex h-full w-full select-none flex-col items-center justify-evenly gap-2 rounded-xl bg-black/50 px-4 py-2 text-center shadow-lg ring ring-inset ring-white/75 md:px-10"
       >
         {!casuale ? (
@@ -72,7 +68,7 @@ const SerieNegativa = () => {
               >
                 {titolo}
               </h3>
-              {isImprev && (
+              {isImprev > 0 && (
                 <p
                   style={{
                     fontFamily: "'Handlee', cursive",
@@ -85,8 +81,8 @@ const SerieNegativa = () => {
               )}
             
 
-            {ultEstrazione && <SecondaEstrazione />}
-            {isImprev && (
+            {ultEstrazione > 0 && <SecondaEstrazione />}
+            {isImprev > 0 && (
               <div className="w-full md:w-3/4 flex flex-col items-center">
                 <label
                   htmlFor="nome-giocatore"

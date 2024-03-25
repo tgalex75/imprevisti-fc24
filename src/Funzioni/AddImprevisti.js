@@ -21,7 +21,7 @@ export function AddImprevisti(props) {
         titolo: disabledField ? "NESSUN IMPREVISTO" : data.titolo,
         descrizione: data.descrizione,
         isImprev: disabledField ? 0 : 1,
-        ultEstrazione: disabledField ? 0 : 1,
+        ultEstrazione: disabledField ? 0 : data.ultEstrazione,
         extractedPl: disabledField ? 0 : parseInt(data.extractedPl),
       });
       console.log(id);

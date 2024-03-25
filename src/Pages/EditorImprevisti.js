@@ -1,7 +1,7 @@
 import { useState, useRef, useCallback, useContext } from "react";
 import { motion } from "framer-motion";
 import { MdDeleteForever } from "react-icons/md";
-import { MdInfoOutline } from "react-icons/md";
+import { MdInfoOutline, MdClear } from "react-icons/md";
 import { AddImprevisti } from "../Funzioni/AddImprevisti";
 import { CartContext } from "../context/regContext";
 import { DelImprevisti } from "../Funzioni/DelImprevisti";
@@ -56,15 +56,15 @@ const EditorImprevisti = () => {
 
           {/* Rendered Elements */}
 
-          <ul className="flex h-full w-full flex-col gap-1 overflow-y-auto rounded-lg border p-4">
-            <div className="flex min-h-4 items-center justify-between gap-2 bg-gray-700/20 ps-2 text-left text-sm font-bold uppercase italic hover:bg-gray-600/50">
+          <ul className="flex h-full w-full flex-col gap-1 overflow-y-auto rounded-lg border p-2">
+            <div className="flex min-h-4 items-center justify-between gap-2 bg-gray-700/80 ps-2 text-center text-xs font-bold uppercase italic">
               <span className="h-full w-1/6 border-gray-300/20 bg-transparent p-1">
                 Imprevisto S/N
               </span>
-              <span className="h-full w-1/6 border-gray-300/20 bg-transparent p-1">
+              <span className="h-full w-1/6 text-left border-gray-300/20 bg-transparent p-1">
                 Titolo
               </span>
-              <span className="h-full w-2/6 border-gray-300/20 bg-transparent p-1">
+              <span className="h-full w-2/6 text-left border-gray-300/20 bg-transparent p-1">
                 Descrizione
               </span>
               <span className="h-full w-1/6 border-gray-300/20 bg-transparent p-1">
@@ -73,30 +73,34 @@ const EditorImprevisti = () => {
               <span className="h-full w-1/6 border-gray-300/20 bg-transparent p-1">
                 Num. Giocatori Estratti
               </span>
+              <MdClear
+                  size={24}
+                  className="mx-2"
+                />
             </div>
             {registro?.map((el) => (
               <li
                 key={el.id}
-                className="text-md flex text-center min-h-4 items-center justify-between gap-2 bg-gray-700/20 ps-2 font-normal hover:bg-gray-600/50"
+                className="text-md flex text-center min-h-4 items-center justify-between gap-2 bg-gray-700/20 ps-2 font-normal hover:bg-[--clr-prim]"
               >
-                <span className="h-full w-1/6 rounded border border-gray-300/20 bg-transparent p-1 pe-6 font-semibold uppercase">
+                <span className="h-full w-1/6 rounded border border-gray-300/20 bg-transparent p-1 font-semibold uppercase">
                   {el.isImprev===1 ? "S" : "N"}
                 </span>
-                <span className="h-full w-1/6 text-start rounded border border-gray-300/20 bg-transparent p-1 pe-6 font-semibold uppercase">
+                <span className="h-full w-1/6 text-start rounded border border-gray-300/20 bg-transparent p-1 font-semibold uppercase">
                   {el.titolo}
                 </span>
-                <span className="h-full w-2/6 text-start rounded border border-gray-300/20 bg-transparent p-1 pe-6 font-semibold">
+                <span className="h-full w-2/6 text-start rounded border border-gray-300/20 bg-transparent p-1 font-semibold">
                   {el.descrizione}
                 </span>
-                <span className="h-full w-1/6 rounded border border-gray-300/20 bg-transparent p-1 pe-6 font-semibold">
+                <span className="h-full w-1/6 rounded border border-gray-300/20 bg-transparent p-1 font-semibold">
                   {el.ultEstrazione ? "S" : "N"}
                 </span>
-                <span className="h-full w-1/6 rounded border border-gray-300/20 bg-transparent p-1 pe-6 font-semibold">
+                <span className="h-full w-1/6 rounded border border-gray-300/20 bg-transparent p-1 font-semibold">
                   {el.extractedPl}
                 </span>
                 <MdDeleteForever
                   size={24}
-                  className="mx-2 cursor-pointer fill-[--clr-prim] transition-all hover:scale-125 hover:fill-red-600"
+                  className="mx-2 cursor-pointer transition-all hover:scale-125"
                   onClick={() => DelImprevisti(selectRefState, el.id)}
                 />
               </li>
