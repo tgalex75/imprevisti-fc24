@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 
 const RiepilogoImprevisti = () => {
-  const [riepilogoImpr, setRiepilogoImpr] = useState(() => {
+  const [riepilogoImpr] = useState(() => {
     const saved = localStorage.getItem("riepilogoImpr");
     const initialValue = JSON.parse(saved);
     return initialValue || [];

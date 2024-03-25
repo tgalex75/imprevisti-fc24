@@ -1,21 +1,21 @@
 import { useState, useRef, useCallback, useContext } from "react";
 import { motion } from "framer-motion";
-import { MdClear } from "react-icons/md";
+import { MdDeleteForever } from "react-icons/md";
 import { MdInfoOutline } from "react-icons/md";
 import { AddImprevisti } from "../Funzioni/AddImprevisti";
 import { CartContext } from "../context/regContext";
+import { DelImprevisti } from "../Funzioni/DelImprevisti";
 
 const EditorImprevisti = () => {
   const [selectRefState, setSelectRefState] = useState("prepartita");
 
-  const {[selectRefState] : registro} = useContext(CartContext)
+  const { [selectRefState]: registro } = useContext(CartContext);
 
   const selectRef = useRef(null);
 
   const handleSelectRef = useCallback(() => {
     setSelectRefState(selectRef.current.value);
   }, []);
-
 
   return (
     <section className="flex h-full w-full flex-col items-center gap-4 px-4 pb-6 font-bold">
@@ -53,22 +53,51 @@ const EditorImprevisti = () => {
               Numero imprevisti: {registro?.length}
             </strong>
           </header>
+
+          {/* Rendered Elements */}
+
           <ul className="flex h-full w-full flex-col gap-1 overflow-y-auto rounded-lg border p-4">
+            <div className="flex min-h-4 items-center justify-between gap-2 bg-gray-700/20 ps-2 text-left text-sm font-bold uppercase italic hover:bg-gray-600/50">
+              <span className="h-full w-1/6 border-gray-300/20 bg-transparent p-1">
+                Imprevisto S/N
+              </span>
+              <span className="h-full w-1/6 border-gray-300/20 bg-transparent p-1">
+                Titolo
+              </span>
+              <span className="h-full w-2/6 border-gray-300/20 bg-transparent p-1">
+                Descrizione
+              </span>
+              <span className="h-full w-1/6 border-gray-300/20 bg-transparent p-1">
+                Ulteriore Estrazione
+              </span>
+              <span className="h-full w-1/6 border-gray-300/20 bg-transparent p-1">
+                Num. Giocatori Estratti
+              </span>
+            </div>
             {registro?.map((el) => (
               <li
                 key={el.id}
-                className="text-md flex min-h-4 items-center justify-between gap-2 bg-gray-700/20 ps-2 text-left font-normal hover:bg-gray-600/50"
+                className="text-md flex text-center min-h-4 items-center justify-between gap-2 bg-gray-700/20 ps-2 font-normal hover:bg-gray-600/50"
               >
-                <span className="h-full w-1/4 rounded border border-gray-300/20 bg-transparent p-1 pe-6 font-semibold uppercase">
+                <span className="h-full w-1/6 rounded border border-gray-300/20 bg-transparent p-1 pe-6 font-semibold uppercase">
+                  {el.isImprev===1 ? "S" : "N"}
+                </span>
+                <span className="h-full w-1/6 text-start rounded border border-gray-300/20 bg-transparent p-1 pe-6 font-semibold uppercase">
                   {el.titolo}
                 </span>
-                <span className="h-full w-3/4 rounded border border-gray-300/20 bg-transparent p-1 pe-6 font-semibold">
+                <span className="h-full w-2/6 text-start rounded border border-gray-300/20 bg-transparent p-1 pe-6 font-semibold">
                   {el.descrizione}
                 </span>
-                <MdClear
+                <span className="h-full w-1/6 rounded border border-gray-300/20 bg-transparent p-1 pe-6 font-semibold">
+                  {el.ultEstrazione ? "S" : "N"}
+                </span>
+                <span className="h-full w-1/6 rounded border border-gray-300/20 bg-transparent p-1 pe-6 font-semibold">
+                  {el.extractedPl}
+                </span>
+                <MdDeleteForever
                   size={24}
-                  className="mx-2 cursor-pointer fill-red-600 transition-all hover:scale-125 hover:fill-[--clr-sec]"
-                  onClick={() => console.log(el.id)}
+                  className="mx-2 cursor-pointer fill-[--clr-prim] transition-all hover:scale-125 hover:fill-red-600"
+                  onClick={() => DelImprevisti(selectRefState, el.id)}
                 />
               </li>
             ))}
@@ -79,43 +108,6 @@ const EditorImprevisti = () => {
 
         <div className="flex w-full items-center justify-between gap-2 px-1 pb-8">
           <AddImprevisti tipoImprevisto={selectRefState} />
-          {/* AGGIUNGI "NESSUN IMPREVISTO" */}
-          {/* <form
-            onSubmit={handleSubmitNoImprevisti(onSubmitNoImprevisti)}
-            className="flex h-full w-2/5 flex-col items-center justify-between gap-2 rounded-md border px-4 py-2 font-normal"
-            style={
-              selectRefState === "speciali" ? { visibility: "hidden" } : {}
-            }
-          >
-            <h3 className="text-center uppercase text-[--clr-prim]">
-              Aggiungi "NESSUN IMPREVISTO"
-            </h3>
-            <div className="flex w-full flex-1 flex-col gap-14">
-              <label className="my-1 flex w-full items-center gap-4 self-start text-sm font-semibold">
-                Numero di voci "NESSUN IMPREVISTO" da aggiungere alla lista di
-                tipo {selectRefState.toUpperCase()}
-                {errorsNoImprevisti.nessunImprevisto && (
-                  <span className="text-[--clr-prim]">
-                    Inserire un valore minimo di 0 ed uno massimo di 10
-                  </span>
-                )}
-              </label>
-              <input
-                {...registerNoImprevisti("nessunImprevisto", { min: 0 })}
-                name="nessunImprevisto"
-                id="nessunImprevisto"
-                type="number"
-                className="block w-1/3 self-center rounded p-1 text-sm text-black placeholder:italic"
-              />
-            </div>
-
-            <button
-              type="submit"
-              className="w-1/3 rounded-lg bg-sky-700 py-1 font-semibold hover:bg-sky-600"
-            >
-              Salva ed Invia
-            </button>
-          </form> */}
           <span
             className="absolute bottom-8 right-8 flex cursor-pointer flex-col items-center text-sm font-semibold text-[--clr-prim]"
             onClick={() => console.log("Apri Modale con istruzioni")}

@@ -26,6 +26,7 @@ const Regolamento = () => {
 
   useEffect(() => {
     localStorage.setItem("registroRiepilogo", JSON.stringify(registroRiepilogo));
+    // eslint-disable-next-line
   }, []);
 
   const removeVociRegistro = async (element) => {

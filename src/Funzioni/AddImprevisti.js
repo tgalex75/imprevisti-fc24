@@ -17,12 +17,11 @@ export function AddImprevisti(props) {
 
   async function addImpr(data, e) {
     try {
-      // Add the new friend!
       const id = await db[tipoImprevisto].add({
         titolo: disabledField ? "NESSUN IMPREVISTO" : data.titolo,
         descrizione: data.descrizione,
         isImprev: disabledField ? 0 : 1,
-        ultEstrazione: data.ultEstrazione ? 1 : 0,
+        ultEstrazione: disabledField ? 0 : 1,
         extractedPl: disabledField ? 0 : parseInt(data.extractedPl),
       });
       console.log(id);
