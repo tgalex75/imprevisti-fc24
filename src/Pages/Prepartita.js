@@ -2,27 +2,20 @@ import React, { useState, useContext } from "react";
 import SecondaEstrazione from "../Components/SecondaEstrazione";
 import SecondaEstrazioneDiretta from "../Components/SecondaEstrazioneDiretta";
 import FetchImprevisto from "../Funzioni/FetchImprevisto";
+import { initialMessage } from "../Components/InitialMessage";
 import LayoutBase from "../Components/LayoutBase";
 import Dado from "../Components/Dado";
 import { CartContext } from "../context/regContext";
 import random from "random";
 
 const Prepartita = () => {
-  /* const initialMessage = [
-    {
-      id: 0,
-      titolo: "LISTA VUOTA",
-      descrizione:
-        "Utilizza l'Editor degli imprevisti per aggiungere quelli che vuoi vengano usati per l'estrazione",
-    },
-  ]; */
 
   const { prepartita } = useContext(CartContext);
 
   const [casuale, setCasuale] = useState(null);
 
   const fetchList = () => {
-    setCasuale(random.choice(prepartita));
+    setCasuale(prepartita?.length > 0 ? random.choice(prepartita) : initialMessage);
   };
 
   const { titolo, descrizione, isImprev, ultEstrazione, extractedPl } = casuale
@@ -74,11 +67,11 @@ const Prepartita = () => {
                 <FetchImprevisto />
               </>
             )}
-            {(ultEstrazione === 1 && extractedPl === 1) && <SecondaEstrazione />}
+            {(ultEstrazione === 1) && <SecondaEstrazione extractedPl={extractedPl} />}
 
-            {(ultEstrazione === 1 && extractedPl > 1) && (
+            {/* {(ultEstrazione === 1 && extractedPl > 1) && (
               <SecondaEstrazioneDiretta extractedPl={extractedPl} />
-            )}
+            )} */}
           </section>
         )}
       </LayoutBase>

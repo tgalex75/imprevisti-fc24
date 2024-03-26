@@ -1,24 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import firstkit from "../assets/imgs/firstKit.png";
 import awaykit from "../assets/imgs/awayKit.png";
 import thirdkit from "../assets/imgs/thirdKit.png";
 import gkKit from "../assets/imgs/gkKit.png";
 import IndicatoreGiocatoriImpr from "./IndicatoreGiocatoriImpr";
 import { isMobile } from "react-device-detect";
+import random from "random";
+import pickRandom from "pick-random";
+import { numberArrayFromRange } from "number-array-from-range";
 
-const SecondaEstrazione = () => {
-  const [inputField, setInputField] = useState({
-    randomPlayerNum: "",
-  });
+const SecondaEstrazione = (props) => {
+  const { extractedPl } = props;
 
-  function handleChange(event) {
-    setInputField((prevInputField) => {
-      return {
-        ...prevInputField,
-        [event.target.name]: event.target.value,
-      };
-    });
-  }
+  const [inputField, setInputField] = useState(null);
+  const refEstratti = useRef(null);
+  const refRosa = useRef(null);
+
+  const handleRefRosa = () => {
+    setInputField(parseInt(refRosa.current.value));
+  };
 
   const [secondExtractedNumber, setSecondExtractedNumber] = useState(null);
 
@@ -26,33 +26,43 @@ const SecondaEstrazione = () => {
 
   const teamKits = [firstkit, awaykit, thirdkit];
 
+  
   const genSecondRandomNumber = () => {
-    setSecondExtractedNumber(
-      Math.floor(Math.random() * inputField.randomPlayerNum) + 1,
-    );
-    setRandomJersey(Math.floor(Math.random() * 3) + 1);
+    const playersArray = numberArrayFromRange(1, inputField)
+    setSecondExtractedNumber(pickRandom(playersArray, {count: parseInt(refEstratti.current.value)}));
+    setRandomJersey(random.int(1, 3));
   };
-
-  const extractedPlayer = [secondExtractedNumber];
+  
+  console.log(refEstratti.current.value)
 
   return (
     <section className="flex h-[40vh] w-full items-center justify-around gap-2 rounded-md border-2 border-gray-300/20 px-1 md:min-h-[50%] md:w-3/4 md:px-12">
-      <div className="flex h-fit gap-6 flex-col items-center justify-around rounded-lg px-2">
-        <div className="flex w-full flex-col items-center justify-around">
+      <div className="flex h-fit flex-col items-center justify-around gap-6 rounded-lg px-2">
+        <div className="flex w-full flex-col items-center justify-around gap-2">
           <label
             htmlFor="name-with-label"
-            className="mb-1 self-start text-xs text-gray-300 md:text-sm"
+            className="self-start text-xs text-gray-300 md:text-sm"
           >
             A chi toccherà oggi?
           </label>
           <input
-            onChange={handleChange}
-            value={inputField.randomPlayerNum}
+            onChange={handleRefEstratti}
+            ref={refEstratti}
+            defaultValue={1}
             type="number"
-            id="input-estrazione-giocatore"
+            id="input-giocatori-estratti"
             className="md:text-md min-h-[2rem] w-full flex-1 appearance-none rounded-lg border-gray-300 bg-white px-4 text-sm text-gray-800 placeholder-gray-400 shadow-sm focus:border-transparent focus:outline-none focus:ring-4 focus:ring-sky-700 md:min-h-[3rem] "
             name="randomPlayerNum"
-            placeholder="Quanti giocatori?"
+            placeholder="Quanti estratti?"
+          />
+          <input
+            onChange={handleRefRosa}
+            ref={refRosa}
+            type="number"
+            id="rosa-quanti-giocatori"
+            className="md:text-md min-h-[2rem] w-full flex-1 appearance-none rounded-lg border-gray-300 bg-white px-4 text-sm text-gray-800 placeholder-gray-400 shadow-sm focus:border-transparent focus:outline-none focus:ring-4 focus:ring-sky-700 md:min-h-[3rem] "
+            name="randomPlayerNum"
+            placeholder="Su quanti giocatori?"
           />
         </div>
         <button
@@ -66,27 +76,28 @@ const SecondaEstrazione = () => {
       {secondExtractedNumber && (
         <>
           <div
-            className="flex h-full w-1/2 flex-col items-center justify-center overflow-hidden rounded bg-contain bg-center bg-no-repeat p-6 transition-all"
-            style={{
-              backgroundImage:
-                secondExtractedNumber === 1
-                  ? `url(${gkKit})`
-                  : `url(${teamKits[randomJersey - 1]})`,
-            }}
-          >
-            <span
-              style={
-                secondExtractedNumber > 1 && randomJersey === 2
-                  ? { color: "var(--clr-sec" }
-                  : {}
-              }
-              className="block pt-2 font-['Oswald'] text-4xl font-bold text-gray-300 md:text-7xl"
-            >
-              {secondExtractedNumber}
-            </span>
-          </div>
+          id="extractedPlayers"
+          className="flex h-full md:w-3/4 flex-wrap items-center justify-around md:self-start rounded-lg md:flex-nowrap md:gap-4"
+        >
+          {secondExtractedNumber.map((player, idx) => {
+            return (
+              <div
+                key={"playerNumber." + idx}
+                className="flex flex-wrap flex-col items-center justify-center overflow-hidden rounded bg-contain bg-center bg-no-repeat p-8 transition-all md:h-full md:w-full"
+                style={{
+                  backgroundImage:
+                    player === 1 ? `url(${gkKit})` : `url(${firstkit})`,
+                }}
+              >
+                <span className="block pt-2 font-['Oswald'] text-4xl font-bold text-gray-300 md:text-7xl">
+                  {player}
+                </span>
+              </div>
+            );
+          })}
+        </div>
           {!isMobile && (
-            <IndicatoreGiocatoriImpr extractedPlayer={extractedPlayer} />
+            <IndicatoreGiocatoriImpr extractedPlayer={secondExtractedNumber} />
           )}
         </>
       )}

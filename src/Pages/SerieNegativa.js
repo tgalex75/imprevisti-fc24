@@ -1,5 +1,6 @@
-import React, { useState, useContext, useRef } from "react";
+import React, { useState, useContext,  } from "react";
 import Dado from "../Components/Dado";
+import { initialMessage } from "../Components/InitialMessage";
 import { CartContext } from "../context/regContext";
 import SecondaEstrazione from "../Components/SecondaEstrazione";
 import { motion } from "framer-motion";
@@ -11,16 +12,15 @@ const SerieNegativa = () => {
 
   const [casuale, setCasuale] = useState(null);
 
-  const inputRef = useRef(null);
-
   const fetchList = () => {
-    setCasuale(random.choice(serienegativa));
+    setCasuale(serienegativa?.length > 0 ? random.choice(serienegativa) : initialMessage);
   };
 
+  
   const { titolo, descrizione, isImprev, ultEstrazione } = casuale
-    ? casuale
-    : {};
-
+  ? casuale
+  : {};
+  
   return (
     <section className="flex h-full w-full select-none flex-col items-center justify-around gap-2 px-4 py-6 font-bold md:p-8">
       <h1>{isMobile ? "Serie Negativa" : "Imprevisto Serie Negativa"}</h1>

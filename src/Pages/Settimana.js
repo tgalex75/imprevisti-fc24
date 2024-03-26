@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import Dado from "../Components/Dado";
 import random from "random";
 import FetchImprevisto from "../Funzioni/FetchImprevisto";
+import { initialMessage } from "../Components/InitialMessage";
 //import { motion } from "framer-motion";
 import LayoutBase from "../Components/LayoutBase";
 import { CartContext } from "../context/regContext";
@@ -12,7 +13,7 @@ const Settimana = () => {
   const [casuale, setCasuale] = useState(null);
 
   const fetchList = () => {
-    setCasuale(random.choice(settimana));
+    setCasuale(settimana?.length > 0 ? random.choice(settimana) : initialMessage);
   };
 
   const { titolo, descrizione, isImprev } = casuale ? casuale : {};
