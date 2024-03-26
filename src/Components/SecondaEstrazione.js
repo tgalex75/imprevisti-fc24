@@ -12,12 +12,17 @@ import { numberArrayFromRange } from "number-array-from-range";
 const SecondaEstrazione = (props) => {
   const { extractedPl } = props;
 
-  const [inputField, setInputField] = useState(null);
+  const [inputFieldRosa, setInputFieldRosa] = useState(null);
+  const [inputFieldEstratti, setInputFieldEstratti] = useState(null);
   const refEstratti = useRef(null);
   const refRosa = useRef(null);
 
+  const handleRefEstratti = () => {
+    setInputFieldEstratti(parseInt(refEstratti.current.value));
+  };
+
   const handleRefRosa = () => {
-    setInputField(parseInt(refRosa.current.value));
+    setInputFieldRosa(parseInt(refRosa.current.value));
   };
 
   const [secondExtractedNumber, setSecondExtractedNumber] = useState(null);
@@ -26,14 +31,15 @@ const SecondaEstrazione = (props) => {
 
   const teamKits = [firstkit, awaykit, thirdkit];
 
-  
   const genSecondRandomNumber = () => {
-    const playersArray = numberArrayFromRange(1, inputField)
-    setSecondExtractedNumber(pickRandom(playersArray, {count: parseInt(refEstratti.current.value)}));
+    const playersArray = numberArrayFromRange(1, inputFieldRosa);
+    setSecondExtractedNumber(
+      pickRandom(playersArray, { count: inputFieldEstratti }),
+    );
     setRandomJersey(random.int(1, 3));
   };
-  
-  console.log(refEstratti.current.value)
+
+  console.log(secondExtractedNumber)
 
   return (
     <section className="flex h-[40vh] w-full items-center justify-around gap-2 rounded-md border-2 border-gray-300/20 px-1 md:min-h-[50%] md:w-3/4 md:px-12">
@@ -58,6 +64,7 @@ const SecondaEstrazione = (props) => {
           <input
             onChange={handleRefRosa}
             ref={refRosa}
+            defaultValue={11}
             type="number"
             id="rosa-quanti-giocatori"
             className="md:text-md min-h-[2rem] w-full flex-1 appearance-none rounded-lg border-gray-300 bg-white px-4 text-sm text-gray-800 placeholder-gray-400 shadow-sm focus:border-transparent focus:outline-none focus:ring-4 focus:ring-sky-700 md:min-h-[3rem] "
@@ -83,10 +90,10 @@ const SecondaEstrazione = (props) => {
             return (
               <div
                 key={"playerNumber." + idx}
-                className="flex flex-wrap flex-col items-center justify-center overflow-hidden rounded bg-contain bg-center bg-no-repeat p-8 transition-all md:h-full md:w-full"
+                className="flex flex-wrap flex-col items-center justify-center overflow-hidden rounded bg-contain bg-center bg-no-repeat p-8 transition-all md:h-full"
                 style={{
                   backgroundImage:
-                    player === 1 ? `url(${gkKit})` : `url(${firstkit})`,
+                    player === 1 ? `url(${gkKit})` : `url(${randomJersey})`,
                 }}
               >
                 <span className="block pt-2 font-['Oswald'] text-4xl font-bold text-gray-300 md:text-7xl">
