@@ -1,6 +1,5 @@
 import React, { useState, useContext } from "react";
 import SecondaEstrazione from "../Components/SecondaEstrazione";
-import SecondaEstrazioneDiretta from "../Components/SecondaEstrazioneDiretta";
 import FetchImprevisto from "../Funzioni/FetchImprevisto";
 import { initialMessage } from "../Components/InitialMessage";
 import LayoutBase from "../Components/LayoutBase";
@@ -18,7 +17,7 @@ const Prepartita = () => {
     setCasuale(prepartita?.length > 0 ? random.choice(prepartita) : initialMessage);
   };
 
-  const { titolo, descrizione, isImprev, ultEstrazione, extractedPl } = casuale
+  const { titolo, descrizione, isImprev, ultEstrazione } = casuale
     ? casuale
     : {};
 
@@ -57,7 +56,7 @@ const Prepartita = () => {
                 </h3>
                 <p
                   style={{ fontFamily: "'Handlee', cursive" }}
-                  className="mt-4 px-4 text-xl md:h-full md:text-3xl"
+                  className={`mt-4 px-4 text-xl md:h-full md:w-2/3 ${descrizione.length > 40 ? "md:text-2xl" : "md:text-3xl"}`}
                 >
                   {isImprev > 0 && descrizione}
                 </p>
@@ -67,11 +66,8 @@ const Prepartita = () => {
                 <FetchImprevisto />
               </>
             )}
-            {(ultEstrazione === 1) && <SecondaEstrazione extractedPl={extractedPl} />}
+            {(ultEstrazione === 1) && <SecondaEstrazione />}
 
-            {/* {(ultEstrazione === 1 && extractedPl > 1) && (
-              <SecondaEstrazioneDiretta extractedPl={extractedPl} />
-            )} */}
           </section>
         )}
       </LayoutBase>

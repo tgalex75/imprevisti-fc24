@@ -1,6 +1,4 @@
 import React from "react";
-//import logoSfondoFalco from "../assets/imgs/logo900.png";
-import logoWr from "../assets/imgs/wrexham-afc.png";
 
 const Sfondo = () => {
   return (
@@ -9,7 +7,6 @@ const Sfondo = () => {
       backgroundPosition: "center",
       backgroundSize: "contain",
       backgroundRepeat: "no-repeat",
-      backgroundImage: `url(${logoWr})`,
     }}></div>
     </section>
   );

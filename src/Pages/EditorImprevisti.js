@@ -18,7 +18,7 @@ const EditorImprevisti = () => {
   }, []);
 
   return (
-    <section className="flex h-full w-full flex-col items-center gap-4 px-4 pb-6 font-bold">
+    <section className="flex h-full w-full flex-col items-center px-4 pb-2 font-bold">
       <h1>Editor Imprevisti</h1>
       <motion.div
         initial={{ opacity: 0 }}
@@ -28,7 +28,7 @@ const EditorImprevisti = () => {
       >
         {/* Lista Imprevisti Attuale */}
 
-        <div className="relative flex h-1/2 w-full flex-col items-center justify-center gap-2 p-1">
+        <div className="relative flex h-2/3 w-full flex-col items-center justify-center gap-2 p-1">
           <header className="flex w-full items-center justify-between p-1">
             <h3 className="w-1/3 text-start uppercase text-[--clr-ter]">
               Imprevisti {selectRefState}
@@ -64,24 +64,23 @@ const EditorImprevisti = () => {
               <span className="h-full w-1/6 text-left border-gray-300/20 bg-transparent p-1">
                 Titolo
               </span>
-              <span className="h-full w-2/6 text-left border-gray-300/20 bg-transparent p-1">
+              <span className="h-full w-3/6 text-left border-gray-300/20 bg-transparent p-1">
                 Descrizione
               </span>
               <span className="h-full w-1/6 border-gray-300/20 bg-transparent p-1">
                 Ulteriore Estrazione
               </span>
-              <span className="h-full w-1/6 border-gray-300/20 bg-transparent p-1">
-                Num. Giocatori Estratti
-              </span>
+      
               <MdClear
                   size={24}
                   className="mx-2"
                 />
+
             </div>
             {registro?.map((el) => (
               <li
                 key={el.id}
-                className="text-md flex text-center min-h-4 items-center justify-between gap-2 bg-gray-700/20 ps-2 font-normal hover:bg-[--clr-prim]"
+                className="text-md flex text-center min-h-4 items-center justify-between gap-2 bg-gray-700/20 ps-2 font-normal hover:text-black hover:bg-[--clr-prim]"
               >
                 <span className="h-full w-1/6 rounded border border-gray-300/20 bg-transparent p-1 font-semibold uppercase">
                   {el.isImprev===1 ? "SI" : "NO"}
@@ -89,14 +88,11 @@ const EditorImprevisti = () => {
                 <span className="h-full w-1/6 text-start rounded border border-gray-300/20 bg-transparent p-1 font-semibold uppercase">
                   {el.titolo}
                 </span>
-                <span className="h-full w-2/6 text-start rounded border border-gray-300/20 bg-transparent p-1 font-semibold">
+                <span className="h-full w-3/6 text-start rounded border border-gray-300/20 bg-transparent p-1 font-semibold overflow-auto">
                   {el.descrizione}
                 </span>
                 <span className="h-full w-1/6 rounded border border-gray-300/20 bg-transparent p-1 font-semibold">
                   {el.ultEstrazione ? "SI" : "NO"}
-                </span>
-                <span className="h-full w-1/6 rounded border border-gray-300/20 bg-transparent p-1 font-semibold">
-                  {el.extractedPl}
                 </span>
                 <MdDeleteForever
                   size={24}
@@ -110,7 +106,7 @@ const EditorImprevisti = () => {
 
         {/* Form "AGGIUNGI Imprevisti" */}
 
-        <div className="flex w-full items-center justify-between gap-2 px-1 pb-8">
+        <div className="flex w-full items-center px-1 pb-8">
           <AddImprevisti tipoImprevisto={selectRefState} />
           <span
             className="absolute bottom-8 right-8 flex cursor-pointer flex-col items-center text-sm font-semibold text-[--clr-prim]"

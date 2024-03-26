@@ -25,7 +25,7 @@ const MediaOverall = () => {
   const [massimale, setMassimale] = useState(() => {
     const saved = localStorage.getItem("massimale");
     const initialValue = JSON.parse(saved);
-    return initialValue || "4";
+    return initialValue || "3";
   });
 
   useEffect(() => {
@@ -79,19 +79,19 @@ const MediaOverall = () => {
         id="schemi"
         className="absolute left-1/2 top-1/2 flex w-4/5 -translate-x-1/2 -translate-y-1/2 flex-col-reverse items-center"
       >
-        <h3 className="mt-4 text-2xl font-bold">{schema}</h3>
         {filteredTactics[0].formazione.map((el, i, array) => (
           <ModuloTattica
-            key={i}
-            arr={arr}
-            start={el === 1 ? 0 : array[i - 1]}
-            end={el}
-            giocatoreNum={giocatoreNum}
-            func={func}
-            placeholder={overallPlaceholder}
-            val={val}
+          key={i}
+          arr={arr}
+          start={el === 1 ? 0 : array[i - 1]}
+          end={el}
+          giocatoreNum={giocatoreNum}
+          func={func}
+          placeholder={overallPlaceholder}
+          val={val}
           />
-        ))}
+          ))}
+          <h3 className="mb-6 text-2xl font-bold">{schema}</h3>
       </section>
     );
   };
@@ -106,7 +106,6 @@ const MediaOverall = () => {
         <div className="absolute right-2 top-1/3 flex flex-col gap-1 md:self-end md:pe-6">
           {mySelect("Scegli la tattica", selectRef, getSchema, tattiche)}
           {mySelect("Scegli il massimale", selectRefMassimale, getMassimale, [
-            "",
             "+3",
             "+4",
             "+5",

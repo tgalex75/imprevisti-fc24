@@ -9,16 +9,18 @@ import random from "random";
 import pickRandom from "pick-random";
 import { numberArrayFromRange } from "number-array-from-range";
 
-const SecondaEstrazione = (props) => {
-  const { extractedPl } = props;
-
+const SecondaEstrazione = () => {
   const [inputFieldRosa, setInputFieldRosa] = useState(null);
   const [inputFieldEstratti, setInputFieldEstratti] = useState(null);
   const refEstratti = useRef(null);
   const refRosa = useRef(null);
 
   const handleRefEstratti = () => {
-    setInputFieldEstratti(parseInt(refEstratti.current.value));
+    setInputFieldEstratti(
+      parseInt(refEstratti.current.value) <= 10
+        ? parseInt(refEstratti.current.value)
+        : 10,
+    );
   };
 
   const handleRefRosa = () => {
@@ -36,14 +38,12 @@ const SecondaEstrazione = (props) => {
     setSecondExtractedNumber(
       pickRandom(playersArray, { count: inputFieldEstratti }),
     );
-    setRandomJersey(random.int(1, 3));
+    setRandomJersey(random.choice(teamKits));
   };
 
-  console.log(secondExtractedNumber)
-
   return (
-    <section className="flex h-[40vh] w-full items-center justify-around gap-2 rounded-md border-2 border-gray-300/20 px-1 md:min-h-[50%] md:w-3/4 md:px-12">
-      <div className="flex h-fit flex-col items-center justify-around gap-6 rounded-lg px-2">
+    <section className="md:4/5 flex h-[40vh] w-full items-center justify-around gap-2 rounded-md border-2 border-gray-300/20 px-1 md:min-h-[50%] md:px-12">
+      <div className="absolute right-12 top-44 flex h-fit flex-col items-center justify-around gap-6 rounded-lg px-2">
         <div className="flex w-full flex-col items-center justify-around gap-2">
           <label
             htmlFor="name-with-label"
@@ -54,17 +54,15 @@ const SecondaEstrazione = (props) => {
           <input
             onChange={handleRefEstratti}
             ref={refEstratti}
-            defaultValue={1}
             type="number"
             id="input-giocatori-estratti"
             className="md:text-md min-h-[2rem] w-full flex-1 appearance-none rounded-lg border-gray-300 bg-white px-4 text-sm text-gray-800 placeholder-gray-400 shadow-sm focus:border-transparent focus:outline-none focus:ring-4 focus:ring-sky-700 md:min-h-[3rem] "
             name="randomPlayerNum"
-            placeholder="Quanti estratti?"
+            placeholder="Quanti estratti? (max 10)"
           />
           <input
             onChange={handleRefRosa}
             ref={refRosa}
-            defaultValue={11}
             type="number"
             id="rosa-quanti-giocatori"
             className="md:text-md min-h-[2rem] w-full flex-1 appearance-none rounded-lg border-gray-300 bg-white px-4 text-sm text-gray-800 placeholder-gray-400 shadow-sm focus:border-transparent focus:outline-none focus:ring-4 focus:ring-sky-700 md:min-h-[3rem] "
@@ -83,26 +81,33 @@ const SecondaEstrazione = (props) => {
       {secondExtractedNumber && (
         <>
           <div
-          id="extractedPlayers"
-          className="flex h-full md:w-3/4 flex-wrap items-center justify-around md:self-start rounded-lg md:flex-nowrap md:gap-4"
-        >
-          {secondExtractedNumber.map((player, idx) => {
-            return (
-              <div
-                key={"playerNumber." + idx}
-                className="flex flex-wrap flex-col items-center justify-center overflow-hidden rounded bg-contain bg-center bg-no-repeat p-8 transition-all md:h-full"
-                style={{
-                  backgroundImage:
-                    player === 1 ? `url(${gkKit})` : `url(${randomJersey})`,
-                }}
-              >
-                <span className="block pt-2 font-['Oswald'] text-4xl font-bold text-gray-300 md:text-7xl">
-                  {player}
-                </span>
-              </div>
-            );
-          })}
-        </div>
+            id="extractedPlayers"
+            className="flex h-full flex-wrap items-center justify-around rounded-lg md:w-full md:self-start"
+          >
+            {secondExtractedNumber.map((player, idx) => {
+              return (
+                <div
+                  key={"playerNumber." + idx}
+                  className="flex w-1/5 items-center justify-center overflow-hidden rounded bg-contain bg-center bg-no-repeat transition-all"
+                  style={{
+                    backgroundImage:
+                      player === 1 ? `url(${gkKit})` : `url(${randomJersey})`,
+                    height: inputFieldEstratti > 5 ? "50%" : "100%",
+                  }}
+                >
+                  <span
+                    className="block pt-2 font-['Oswald'] text-4xl font-bold text-gray-300 md:text-7xl"
+                    style={{
+                      color:
+                        (randomJersey === awaykit) && "darkslategray",
+                    }}
+                  >
+                    {player}
+                  </span>
+                </div>
+              );
+            })}
+          </div>
           {!isMobile && (
             <IndicatoreGiocatoriImpr extractedPlayer={secondExtractedNumber} />
           )}

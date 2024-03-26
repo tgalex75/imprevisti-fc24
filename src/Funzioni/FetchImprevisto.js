@@ -1,14 +1,14 @@
 import { useContext } from "react";
 import { CartContext } from "../context/regContext";
 import random from "random";
-import SecondaEstrazioneDiretta from "../Components/SecondaEstrazioneDiretta";
+import SecondaEstrazione from "../Components/SecondaEstrazione";
 
 export default function FetchData() {
   const { speciali } = useContext(CartContext);
 
   const casuale = random.choice(speciali);
 
-  const { titolo, descrizione, extractedPl } = casuale;
+  const { titolo, descrizione } = casuale;
 
   console.table(casuale);
 
@@ -29,7 +29,7 @@ export default function FetchData() {
           {descrizione}
         </p>
       </section>
-      <SecondaEstrazioneDiretta extractedPl={extractedPl} />
+      <SecondaEstrazione />
     </>
   );
 }

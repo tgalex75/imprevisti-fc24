@@ -13,7 +13,9 @@ const Settimana = () => {
   const [casuale, setCasuale] = useState(null);
 
   const fetchList = () => {
-    setCasuale(settimana?.length > 0 ? random.choice(settimana) : initialMessage);
+    setCasuale(
+      settimana?.length > 0 ? random.choice(settimana) : initialMessage,
+    );
   };
 
   const { titolo, descrizione, isImprev } = casuale ? casuale : {};
@@ -51,7 +53,7 @@ const Settimana = () => {
                 </h3>
                 <p
                   style={{ fontFamily: "'Handlee', cursive" }}
-                  className="mt-4 px-4 text-xl md:h-full md:text-3xl"
+                  className={`mt-4 px-4 text-xl md:h-full md:w-2/3 ${descrizione.length > 40 ? "md:text-2xl" : "md:text-3xl"}`}
                 >
                   {isImprev > 0 && descrizione}
                 </p>

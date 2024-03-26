@@ -15,7 +15,7 @@ const ModuloTattica = (props) => {
           >
             <label
               htmlFor={`p${el.id}`}
-              className="md:text-md block text-xs font-semibold text-gray-300"
+              className="md:text-md block text-xs md:text-sm font-semibold text-gray-300"
             >
               {giocatoreNum} {el.nome}
             </label>
@@ -23,11 +23,11 @@ const ModuloTattica = (props) => {
               id={`p${el.id}`}
               name={`p${el.nome}`}
               onChange={func}
-              className="my-2 w-12 rounded-lg border-2 border-transparent bg-[--clr-prim] p-2 text-sm font-semibold text-gray-200 hover:border-gray-300 md:w-32 md:text-xs"
+              className="my-2 w-12 rounded-lg border-2 border-transparent bg-[--clr-prim] p-2 text-sm font-semibold text-gray-800 hover:border-gray-200 md:w-44 md:text-md"
             >
               <option value="">{placeholder}</option>
               {val.map((num) => (
-                <option key={num} value={num}>
+                <option key={num} value={num} className="text-xl">
                   {num}
                 </option>
               ))}
