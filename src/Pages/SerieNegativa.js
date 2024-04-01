@@ -4,7 +4,6 @@ import { initialMessage } from "../Components/InitialMessage";
 import { CartContext } from "../context/regContext";
 import LayoutBase from "../Components/LayoutBase";
 import SecondaEstrazione from "../Components/SecondaEstrazione";
-import { motion } from "framer-motion";
 import { isMobile } from "react-device-detect";
 import random from "random";
 
