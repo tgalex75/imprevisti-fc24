@@ -1,8 +1,7 @@
 import React, { useState, useRef } from "react";
-import firstkit from "../assets/imgs/firstKit.png";
-import awaykit from "../assets/imgs/awayKit.png";
-import thirdkit from "../assets/imgs/thirdKit.png";
-import gkKit from "../assets/imgs/gkKit.png";
+import firstkit from "../assets/imgs/blu.png";
+import awaykit from "../assets/imgs/white.png";
+import gkKit from "../assets/imgs/gray.png";
 import IndicatoreGiocatoriImpr from "./IndicatoreGiocatoriImpr";
 import { isMobile } from "react-device-detect";
 import random from "random";
@@ -31,7 +30,7 @@ const SecondaEstrazione = () => {
 
   const [randomJersey, setRandomJersey] = useState(null);
 
-  const teamKits = [firstkit, awaykit, thirdkit];
+  const teamKits = [firstkit, awaykit];
 
   const genSecondRandomNumber = () => {
     const playersArray = numberArrayFromRange(1, inputFieldRosa);
@@ -42,8 +41,8 @@ const SecondaEstrazione = () => {
   };
 
   return (
-    <section className="md:4/5 flex h-[40vh] w-full items-center justify-around gap-2 rounded-md border-2 border-gray-300/20 px-1 md:min-h-[50%] md:px-12">
-      <div className="absolute right-12 top-44 flex h-fit flex-col items-center justify-around gap-6 rounded-lg px-2">
+    <section className="flex h-[50dvh] w-full items-center justify-around gap-2 rounded-md border-2 border-gray-300/20 px-1 md:h-[40dvh] md:min-h-[50%] md:px-8">
+      <div className="absolute right-1/2 top-1/2 flex h-fit translate-x-1/2 scale-75 flex-col items-center justify-around gap-2 rounded-lg px-2 md:right-12 md:top-1/4 md:translate-x-0 md:scale-100 md:gap-4">
         <div className="flex w-full flex-col items-center justify-around gap-2">
           <label
             htmlFor="name-with-label"
@@ -82,24 +81,22 @@ const SecondaEstrazione = () => {
         <>
           <div
             id="extractedPlayers"
-            className="flex h-full flex-wrap items-center justify-around rounded-lg md:w-full md:self-start"
+            className="flex h-full w-full flex-wrap items-center justify-around rounded-lg md:self-start"
           >
             {secondExtractedNumber.map((player, idx) => {
               return (
                 <div
                   key={"playerNumber." + idx}
-                  className="flex w-1/5 items-center justify-center overflow-hidden rounded bg-contain bg-center bg-no-repeat transition-all"
+                  className={`flex w-1/5 items-center justify-center overflow-hidden rounded bg-contain bg-center bg-no-repeat transition-all ${inputFieldEstratti > 5 ? "h-1/3 md:h-1/2" : "h-1/2 md:h-full"}`}
                   style={{
                     backgroundImage:
                       player === 1 ? `url(${gkKit})` : `url(${randomJersey})`,
-                    height: inputFieldEstratti > 5 ? "50%" : "100%",
                   }}
                 >
                   <span
                     className="block pt-2 font-['Oswald'] text-4xl font-bold text-gray-300 md:text-7xl"
                     style={{
-                      color:
-                        (randomJersey === awaykit) && "darkslategray",
+                      color: randomJersey === awaykit && "var(--clr-ter)",
                     }}
                   >
                     {player}

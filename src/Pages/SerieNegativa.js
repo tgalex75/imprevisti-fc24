@@ -1,4 +1,4 @@
-import React, { useState, useContext,  } from "react";
+import React, { useState, useContext } from "react";
 import Dado from "../Components/Dado";
 import { initialMessage } from "../Components/InitialMessage";
 import { CartContext } from "../context/regContext";
@@ -13,14 +13,15 @@ const SerieNegativa = () => {
   const [casuale, setCasuale] = useState(null);
 
   const fetchList = () => {
-    setCasuale(serienegativa?.length > 0 ? random.choice(serienegativa) : initialMessage);
+    setCasuale(
+      serienegativa?.length > 0 ? random.choice(serienegativa) : initialMessage,
+    );
   };
 
-  
   const { titolo, descrizione, isImprev, ultEstrazione } = casuale
-  ? casuale
-  : {};
-  
+    ? casuale
+    : {};
+
   return (
     <section className="flex h-full w-full select-none flex-col items-center justify-around gap-2 px-4 py-6 font-bold md:p-8">
       <h1>{isMobile ? "Serie Negativa" : "Imprevisto Serie Negativa"}</h1>
@@ -51,8 +52,8 @@ const SerieNegativa = () => {
                   filter: "drop-shadow(.05rem .05rem 0.1rem #000)",
                 }}
                 className={
-                  isImprev
-                    ? "text-3xl font-extrabold uppercase md:flex-1 md:text-7xl"
+                  isImprev > 0
+                    ? "h-1/4 text-3xl font-extrabold uppercase md:h-full md:flex-1 md:text-7xl"
                     : "hidden"
                 }
               >
@@ -60,7 +61,7 @@ const SerieNegativa = () => {
               </h2>
               <h3
                 style={{ filter: "drop-shadow(.05rem .05rem 0.1rem #000)" }}
-                className="flex items-center justify-center text-3xl font-extrabold uppercase md:flex-1 md:text-6xl"
+                className="h-1/4 items-center justify-center text-3xl font-extrabold uppercase md:flex md:flex-1 md:text-6xl"
               >
                 {titolo}
               </h3>
@@ -70,12 +71,12 @@ const SerieNegativa = () => {
                     fontFamily: "'Handlee', cursive",
                     filter: "drop-shadow(.05rem .05rem 0.1rem #000)",
                   }}
-                  className={`mt-4 px-4 text-xl md:h-full md:w-2/3 ${descrizione.length > 40 ? "md:text-2xl" : "md:text-3xl"}`}
+                  className={`mt-4 h-2/4 px-4 text-xl md:h-full md:w-2/3 ${descrizione.length > 40 ? "md:text-2xl" : "md:text-3xl"}`}
                 >
                   {descrizione}
                 </p>
               )}
-              {ultEstrazione > 0 && <SecondaEstrazione  />}
+              {ultEstrazione > 0 && <SecondaEstrazione />}
             </div>
           </>
         )}

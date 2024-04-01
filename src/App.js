@@ -31,7 +31,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 
 function App() {
   return (
-    <main className="h-screen w-screen overflow-hidden">
+    <main className="h-dvh w-screen overflow-hidden">
       <Router>
         <Navbar />
         <AnimatedRoutes />

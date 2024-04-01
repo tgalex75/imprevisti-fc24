@@ -38,7 +38,7 @@ const Prepartita = () => {
               }}
               className={
                 isImprev > 0
-                  ? "flex h-full items-center text-5xl font-extrabold uppercase md:relative md:top-2 md:text-6xl"
+                  ? "md:flex h-1/4 md:h-full items-center  text-5xl font-extrabold uppercase relative top-2 md:text-6xl"
                   : "invisible md:h-full"
               }
             >
@@ -48,7 +48,7 @@ const Prepartita = () => {
               <>
                 <h3
                   style={{ filter: "drop-shadow(.05rem .05rem 0.1rem #000)" }}
-                  className={`flex items-center text-4xl font-extrabold uppercase md:h-full md:text-5xl ${
+                  className={`md:flex h-1/4 items-center text-4xl font-extrabold uppercase md:h-full md:text-5xl ${
                     titolo === "IMPREVISTO SPECIALE" && "hidden"
                   }`}
                 >
@@ -56,7 +56,7 @@ const Prepartita = () => {
                 </h3>
                 <p
                   style={{ fontFamily: "'Handlee', cursive" }}
-                  className={`mt-4 px-4 text-xl md:h-full md:w-2/3 ${descrizione.length > 40 ? "md:text-2xl" : "md:text-3xl"}`}
+                  className={`mt-4 h-2/4 px-4 text-xl md:h-full md:w-2/3 ${descrizione.length > 40 ? "md:text-2xl" : "md:text-3xl"}`}
                 >
                   {isImprev > 0 && descrizione}
                 </p>
@@ -66,7 +66,7 @@ const Prepartita = () => {
                 <FetchImprevisto />
               </>
             )}
-            {(ultEstrazione === 1) && <SecondaEstrazione />}
+            {(ultEstrazione === 1 && !isImprSpeciale) && <SecondaEstrazione />}
 
           </section>
         )}

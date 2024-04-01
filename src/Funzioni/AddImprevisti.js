@@ -40,7 +40,7 @@ export function AddImprevisti(props) {
   return (
     <form
       onSubmit={handleSubmitImprevisti(addImpr)}
-      className="flex h-full w-full flex-col items-center justify-between gap-2 px-4 py-2 font-normal"
+      className="flex h-full w-full flex-col items-center justify-between gap-2 md:px-4 py-2 font-normal"
     >
       <h3 className="text-center uppercase text-[--clr-prim]">
         Aggiungi il tuo imprevisto
@@ -48,7 +48,7 @@ export function AddImprevisti(props) {
 
       <label
         htmlFor="isImprev"
-        className="flex w-1/3 items-center justify-center gap-2"
+        className="flex  w-full md:w-1/3 items-center justify-center gap-2"
       >
         Cosa vuoi inserire?
         {errorsImprevisti.isImprev && (
@@ -82,8 +82,8 @@ export function AddImprevisti(props) {
       </label>
 
       {/* TITOLO */}
-      <section className="flex border p-2 rounded-md w-3/5">
-        <div className="flex flex-col w-1/2 gap-2">
+      <section className="md:flex border md:p-2 rounded-md w-full md:w-3/5 p-1">
+        <div className="md:flex md:flex-col w-full md:w-1/2 gap-2">
           <label className="my-1 flex flex-col gap-4 text-sm font-semibold">
             Titolo Imprevisto
             {errorsImprevisti.titolo && (
@@ -100,7 +100,7 @@ export function AddImprevisti(props) {
                 maxLength: 20,
               })}
               disabled={disabledField}
-              className="block w-1/3 rounded p-1 text-sm  font-semibold uppercase text-black placeholder:normal-case placeholder:italic disabled:placeholder:text-black"
+              className="block w-2/3 md:w-1/3 rounded p-1 text-xs md:text-sm font-semibold uppercase text-black placeholder:normal-case placeholder:italic disabled:placeholder:text-black"
               placeholder={
                 disabledField ? "NESSUN IMPREVISTO" : "Titolo dell'imprevisto"
               }
@@ -109,12 +109,12 @@ export function AddImprevisti(props) {
             <input
               name="titolo"
               {...registerImprevisti("titolo", {
-                required: disabledField ? false : true,
+                required: false,
                 maxLength: 20,
               })}
               value="IMPREVISTO SPECIALE"
               disabled={disabledField}
-              className="block w-1/3 self-start rounded p-1 text-sm  font-semibold uppercase text-black placeholder:normal-case placeholder:italic disabled:placeholder:text-black"
+              className="block w-2/3 md:w-1/3 self-start rounded p-1 text-sm  font-semibold uppercase text-black placeholder:normal-case placeholder:italic disabled:placeholder:text-black"
               placeholder={
                 disabledField ? "NESSUN IMPREVISTO" : "Titolo dell'imprevisto"
               }
@@ -126,7 +126,7 @@ export function AddImprevisti(props) {
           <div className="flex items-center py-2">
             <label
               htmlFor="ultEstrazione"
-              className="me-4 text-sm font-semibold text-gray-300"
+              className="md:me-4 text-sm font-semibold text-gray-300"
             >
               Ulteriore estrazione necessaria dopo la prima?
             </label>
@@ -136,13 +136,13 @@ export function AddImprevisti(props) {
               id="ultEstrazione"
               name="ultEstrazione"
               type="checkbox"
-              className="h-4 w-4 rounded border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-blue-600"
+              className="h-4 ms-2 md:m-0 w-4 rounded border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-blue-600"
             />
           </div>
         </div>
 
         {/* DESCRIZIONE */}
-        <div className="flex w-1/2 flex-col gap-2 ">
+        <div className="flex md:w-1/2 flex-col gap-2 ">
           <label className="my-1 flex w-full items-center gap-4 self-start text-sm font-semibold">
             Descrizione Imprevisto
             {errorsImprevisti.descrizione && (
@@ -166,7 +166,7 @@ export function AddImprevisti(props) {
       </section>
       <button
         type="submit"
-        className="w-1/3 rounded-lg bg-sky-700 py-1 font-semibold hover:bg-sky-600"
+        className="w-full md:w-1/3 rounded-lg bg-sky-700 py-1 font-semibold hover:bg-sky-600"
       >
         Salva ed Invia
       </button>

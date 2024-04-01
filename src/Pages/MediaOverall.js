@@ -103,7 +103,7 @@ const MediaOverall = () => {
         className="flex h-full w-full flex-col items-center justify-between gap-4 bg-black/30 py-4"
       >
         <h1 className="relative pb-4">Media Overall</h1>
-        <div className="absolute right-2 top-1/3 flex flex-col gap-1 md:self-end md:pe-6">
+        <div className="absolute translate-x-1/2 md:translate-x-0 right-1/2 md:right-2 top-12 scale-75 md:scale-100 md:top-1/3 flex flex-col gap-1 md:self-end md:pe-6">
           {mySelect("Scegli la tattica", selectRef, getSchema, tattiche)}
           {mySelect("Scegli il massimale", selectRefMassimale, getMassimale, [
             "+3",
