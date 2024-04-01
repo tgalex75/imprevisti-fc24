@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import Dado from "../Components/Dado";
 import { initialMessage } from "../Components/InitialMessage";
 import { CartContext } from "../context/regContext";
+import LayoutBase from "../Components/LayoutBase";
 import SecondaEstrazione from "../Components/SecondaEstrazione";
 import { motion } from "framer-motion";
 import { isMobile } from "react-device-detect";
@@ -22,45 +23,31 @@ const SerieNegativa = () => {
     ? casuale
     : {};
 
-  return (
-    <section className="flex h-full w-full select-none flex-col items-center justify-around gap-2 px-4 py-6 font-bold md:p-8">
-      <h1>{isMobile ? "Serie Negativa" : "Imprevisto Serie Negativa"}</h1>
+  const titoloH1 = isMobile ? "Serie Negativa" : "Imprevisto Serie Negativa";
 
-      {/* BOX PRIMA ESTRAZIONE */}
-      <motion.div
-        initial={{ opacity: 0, x: "-10vw" }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ delay: 0.4, duration: 0.4, type: "spring" }}
-        key={casuale}
-        id="containerPrimaEstrazione"
-        style={isImprev ? { color: "var(--clr-prim)" } : {}}
-        className="flex h-full w-full select-none flex-col items-center justify-evenly gap-2 rounded-xl bg-black/50 px-4 py-2 text-center shadow-lg ring ring-inset ring-white/75 md:px-10"
-      >
-        {!casuale ? (
-          <h2
-            style={{ fontFamily: "'Handlee', cursive" }}
-            className="text-5xl italic"
-          >
-            Lancia il dado...
-          </h2>
-        ) : (
-          <>
-            <div className="flex h-full w-full flex-col items-center justify-around py-4 md:w-3/4 md:py-2">
-              <h2
+  return (
+    <>
+      <LayoutBase titoloH1={titoloH1} isImprev={isImprev} casuale={casuale}>
+        {casuale && (
+          <section className="flex h-full w-full flex-col items-center justify-around">
+            {/* BOX PRIMA ESTRAZIONE */}
+            <h2
+              style={{
+                fontFamily: "'Boogaloo', sans-serif",
+                filter: "drop-shadow(.05rem .05rem 0.1rem #000)",
+              }}
+              className={
+                isImprev > 0
+                  ? "md:flex h-1/4 md:h-full items-center  text-5xl font-extrabold uppercase relative top-2 md:text-6xl"
+                  : "hidden md:h-full"
+              }
+            >
+              IMPREVISTO!
+            </h2>
+              <h3
                 style={{
-                  fontFamily: "'Boogaloo', sans-serif",
                   filter: "drop-shadow(.05rem .05rem 0.1rem #000)",
                 }}
-                className={
-                  isImprev > 0
-                    ? "h-1/4 text-3xl font-extrabold uppercase md:h-full md:flex-1 md:text-7xl"
-                    : "hidden"
-                }
-              >
-                imprevisto!
-              </h2>
-              <h3
-                style={{ filter: "drop-shadow(.05rem .05rem 0.1rem #000)" }}
                 className="h-1/4 items-center justify-center text-3xl font-extrabold uppercase md:flex md:flex-1 md:text-6xl"
               >
                 {titolo}
@@ -77,13 +64,12 @@ const SerieNegativa = () => {
                 </p>
               )}
               {ultEstrazione > 0 && <SecondaEstrazione />}
-            </div>
-          </>
+          </section>
         )}
-      </motion.div>
+      </LayoutBase>
 
       {Dado(fetchList)}
-    </section>
+    </>
   );
 };
 
