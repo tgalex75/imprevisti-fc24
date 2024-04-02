@@ -94,10 +94,7 @@ const SecondaEstrazione = () => {
                   }}
                 >
                   <span
-                    className="block pt-2 font-['Oswald'] text-4xl font-bold text-gray-300 md:text-7xl"
-                    style={{
-                      color: randomJersey === awaykit && "var(--clr-ter)",
-                    }}
+                    className={`block pt-2 font-['Oswald'] text-4xl font-bold md:text-7xl ${randomJersey === awaykit ? "text-[--clr-ter]" : "text-gray-300"}`}
                   >
                     {player}
                   </span>

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { MdHome, MdMenu, MdClose } from "react-icons/md";
 import { Link } from "react-router-dom";
+import pdfLink from "../assets/pdf/istruzioni.pdf"
 import { motion } from "framer-motion";
 import { isMobile } from "react-device-detect";
 
@@ -21,15 +22,15 @@ const Navbar = () => {
       linkTo: "/serie-negativa",
     },
     { id: 8, voceLi: "Media Overall", linkTo: "/calcolo-media" },
-    /* { id: 10, voceLi: "Riepilogo Imprevisti", linkTo: "/riepilogo-imprevisti" }, */
-    { id: 11, voceLi: "Editor Imprevisti", linkTo: "/editor-imprevisti" },
+    { id: 10, voceLi: "Editor Imprevisti", linkTo: "/editor-imprevisti" },
+    { id: 11, voceLi: "Istruzioni", linkTo: pdfLink, target: "_blank" },
   ];
 
   //Sostituire div con <Link> from react-router
   const linksMenu = dettagliMenu.map((voce) => {
     return (
       <div key={voce.id}>
-        <Link to={voce.linkTo}>
+        <Link to={voce.linkTo} target={voce?.target}>
           <motion.li
             layout
             whileHover={{ scale: 1.2}}

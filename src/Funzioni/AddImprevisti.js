@@ -18,16 +18,16 @@ export function AddImprevisti(props) {
   async function addImpr(data, e) {
     try {
       const id = await db[tipoImprevisto].add({
-        titolo: disabledField ? "NESSUN IMPREVISTO" : data.titolo,
+        titolo: disabledField ? "NESSUN IMPREVISTO" : (refState === "speciale" ? "IMPREVISTO SPECIALE" : data.titolo ),
         descrizione: data.descrizione,
         isImprev: disabledField ? 0 : 1,
-        ultEstrazione: disabledField ? 0 : data.ultEstrazione ? 1 : 0,
+        ultEstrazione: disabledField ? 0 : parseInt(data.ultEstrazione),
       });
       console.log(id);
+      e.target.reset();
     } catch (error) {
       console.log(error);
     }
-    e.target.reset();
     setRefState("imprevisto");
   }
 
@@ -82,7 +82,7 @@ export function AddImprevisti(props) {
       </label>
 
       {/* TITOLO */}
-      <section className="md:flex border md:p-2 rounded-md w-full md:w-3/5 p-1">
+      <section className="md:flex border md:p-2 rounded-md w-full p-1">
         <div className="md:flex md:flex-col w-full md:w-1/2 gap-2">
           <label className="my-1 flex flex-col gap-4 text-sm font-semibold">
             Titolo Imprevisto
@@ -112,30 +112,40 @@ export function AddImprevisti(props) {
                 required: false,
                 maxLength: 20,
               })}
-              value="IMPREVISTO SPECIALE"
-              disabled={disabledField}
+              disabled
               className="block w-2/3 md:w-1/3 self-start rounded p-1 text-sm  font-semibold uppercase text-black placeholder:normal-case placeholder:italic disabled:placeholder:text-black"
-              placeholder={
-                disabledField ? "NESSUN IMPREVISTO" : "Titolo dell'imprevisto"
-              }
+              placeholder="IMPREVISTO SPECIALE"
             />
           )}
 
           {/* ESTRAZIONE EXTRA? */}
 
-          <div className="flex items-center py-2">
+          <div className="flex items-center gap-2 py-2 pe-2" style={tipoImprevisto === "settimana" ? {visibility: "hidden"} : {}}>
             <label
               htmlFor="ultEstrazione"
               className="md:me-4 text-sm font-semibold text-gray-300"
             >
               Ulteriore estrazione necessaria dopo la prima?
             </label>
+            <label htmlFor="ultEstrazioneYES">Sì</label>
             <input
               {...registerImprevisti("ultEstrazione")}
               disabled={disabledField || refState === "speciale"}
-              id="ultEstrazione"
+              id="ultEstrazioneYES"
               name="ultEstrazione"
-              type="checkbox"
+              defaultChecked
+              type="radio"
+              value={1}
+              className="h-4 ms-2 md:m-0 w-4 rounded border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-blue-600"
+            />
+            <label htmlFor="ultEstrazioneNO">No</label>
+            <input
+              {...registerImprevisti("ultEstrazione")}
+              disabled={disabledField || refState === "speciale"}
+              id="ultEstrazioneNO"
+              name="ultEstrazione"
+              type="radio"
+              value={0}
               className="h-4 ms-2 md:m-0 w-4 rounded border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-blue-600"
             />
           </div>

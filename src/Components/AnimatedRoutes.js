@@ -19,7 +19,6 @@ const AnimatedRoutes = () => {
                 <Route path="/prepartita" element={<Prepartita />} />
                 <Route path="/settimana" element={<Settimana />} />
                 <Route path="/editor-imprevisti" element={<EditorImprevisti />} />
-                {/* <Route path="/riepilogo-imprevisti" element={<RiepilogoImprevisti />} /> */}
                 <Route path="/calcolo-media" element={<MediaOverall />} />
                 <Route path="/serie-negativa" element={<SerieNegativa />} />
                 <Route path="*" element={<ErrorPage />} />

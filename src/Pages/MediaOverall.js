@@ -25,7 +25,7 @@ const MediaOverall = () => {
   const [massimale, setMassimale] = useState(() => {
     const saved = localStorage.getItem("massimale");
     const initialValue = JSON.parse(saved);
-    return initialValue || "3";
+    return initialValue || "2";
   });
 
   useEffect(() => {
@@ -106,6 +106,7 @@ const MediaOverall = () => {
         <div className="absolute translate-x-1/2 md:translate-x-0 right-1/2 md:right-2 top-12 scale-75 md:scale-100 md:top-1/3 flex flex-col gap-1 md:self-end md:pe-6">
           {mySelect("Scegli la tattica", selectRef, getSchema, tattiche)}
           {mySelect("Scegli il massimale", selectRefMassimale, getMassimale, [
+            "+2",
             "+3",
             "+4",
             "+5",

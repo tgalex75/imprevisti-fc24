@@ -24,8 +24,6 @@ const Prepartita = () => {
   const titoloH1 = "Imprevisto Prepartita";
   const isImprSpeciale = titolo === "IMPREVISTO SPECIALE";
 
-  console.log(casuale)
-
   return (
     <>
       <LayoutBase titoloH1={titoloH1} isImprev={isImprev} casuale={casuale}>
@@ -56,7 +54,7 @@ const Prepartita = () => {
                 </h3>
                 <p
                   style={{ fontFamily: "'Handlee', cursive" }}
-                  className={`mt-4 h-2/4 px-4 text-xl md:h-full md:w-2/3 ${descrizione.length > 40 ? "md:text-2xl" : "md:text-3xl"}`}
+                  className={`mt-4 h-2/4 px-4 text-xl md:h-full md:w-2/3 ${descrizione.length > 40 ? "md:text-2xl h-3/4" : "md:text-3xl"}`}
                 >
                   {isImprev > 0 && descrizione}
                 </p>

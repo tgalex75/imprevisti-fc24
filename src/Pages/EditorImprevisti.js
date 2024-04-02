@@ -68,7 +68,7 @@ const EditorImprevisti = () => {
                     Titolo
                   </span>
                 </div>
-                <div className="w-full flex-col">
+                <div className="w-full flex-col" style={selectRefState === "settimana" ? {visibility: "hidden"} : {}}>
                   <span className="block w-full border-gray-300/20 bg-transparent p-1">
                     Ulteriore Estrazione
                   </span>
@@ -93,8 +93,8 @@ const EditorImprevisti = () => {
                     </span>
                   </div>
                   <div className="flex w-full flex-col justify-around p-1">
-                    <span className="block h-full w-full bg-transparent text-start font-semibold uppercase">
-                      {el.ultEstrazione ? "SI" : "NO"}
+                    <span className="block h-full w-full bg-transparent text-start font-semibold uppercase" style={selectRefState === "settimana" ? {visibility: "hidden"} : {}}>
+                      {el.ultEstrazione === 1 ? "SI" : "NO"}
                     </span>
                     <span className="block h-full w-full bg-transparent text-start font-semibold uppercase">
                       {el.descrizione}
@@ -120,7 +120,7 @@ const EditorImprevisti = () => {
                 <span className="h-full w-3/6 border-gray-300/20 bg-transparent p-1 text-left">
                   Descrizione
                 </span>
-                <span className="h-full w-1/6 border-gray-300/20 bg-transparent p-1">
+                <span className="h-full w-1/6 border-gray-300/20 bg-transparent p-1" style={selectRefState === "settimana" ? {visibility: "hidden"} : {}}>
                   Ulteriore Estrazione
                 </span>
 
@@ -140,8 +140,8 @@ const EditorImprevisti = () => {
                   <span className="h-full w-3/6 overflow-auto rounded border border-gray-300/20 bg-transparent p-1 text-start font-semibold">
                     {el.descrizione}
                   </span>
-                  <span className="h-full w-1/6 rounded border border-gray-300/20 bg-transparent p-1 font-semibold">
-                    {el.ultEstrazione ? "SI" : "NO"}
+                  <span className="h-full w-1/6 rounded border border-gray-300/20 bg-transparent p-1 font-semibold" style={selectRefState === "settimana" ? {visibility: "hidden"} : {}}>
+                    {el.ultEstrazione === 1 ? "SI" : "NO"}
                   </span>
                   <MdDeleteForever
                     size={24}

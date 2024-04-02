@@ -1,9 +1,7 @@
-//import { color } from "framer-motion";
 import React from "react";
 import { isMobile } from "react-device-detect";
 
-const Footer = (props) => {
-  // const { session } = props;
+const Footer = () => {
 
   return (
     <div
@@ -14,7 +12,7 @@ const Footer = (props) => {
       }
     >
       <small className="z-10 ps-4 opacity-20">
-        coded by tgalex75 - Falconero Community - beta version
+        coded by tgalex75 - Gestore Imprevisti DIY Edition - beta version
       </small>
     </div>
   );
