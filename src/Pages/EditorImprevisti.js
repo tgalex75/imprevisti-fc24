@@ -68,8 +68,8 @@ const EditorImprevisti = () => {
                     Titolo
                   </span>
                 </div>
-                <div className="w-full flex-col" style={selectRefState === "settimana" ? {visibility: "hidden"} : {}}>
-                  <span className="block w-full border-gray-300/20 bg-transparent p-1">
+                <div className="w-full flex-col">
+                  <span className="block w-full border-gray-300/20 bg-transparent p-1" style={selectRefState === "settimana" ? {visibility: "hidden"} : {}}>
                     Ulteriore Estrazione
                   </span>
                   <span className="block w-full border-gray-300/20 bg-transparent p-1">
