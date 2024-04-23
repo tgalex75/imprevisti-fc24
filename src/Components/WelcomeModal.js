@@ -1,4 +1,4 @@
-import { MdInfoOutline } from "react-icons/md";
+import { MdInfoOutline, MdClose } from "react-icons/md";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
@@ -32,15 +32,21 @@ const WelcomeModal = () => {
           <MdInfoOutline size={56} />
           <h2 className="bold font-H2 text-3xl md:text-6xl">Avviso</h2>
           <p className="font-Descr w-4/5 text-center text-xl md:w-2/3 md:text-2xl">
-            Disponibile una nuova versione personalizzabile della WEB APP:<br/>
-            <a className="block uppercase font-bold text-base md:text-lg my-2" href="https://imprevisti-diy.netlify.app/" rel="noreferrer" target="_blank">clicca qui</a>
+            Disponibile una nuova versione personalizzabile della WEB APP
+            <br />
           </p>
-          <button
-            className="w-3/4 rounded-lg bg-[--clr-ter] px-4 py-2 text-xl font-semibold md:w-1/3"
-            onClick={chiudiModale}
+          <a
+            className="w-3/4 rounded-lg bg-[--clr-ter] px-4 py-2 text-center text-xl font-semibold md:w-1/3"
+            href="https://imprevisti-diy.netlify.app/"
+            rel="noreferrer"
+            target="_blank"
           >
-            Ok... ho capito!
+            Portami lì!
+          </a>
+          <button onClick={chiudiModale} className="text-xs md:text-sm absolute bottom-2 left-1/2 -translate-x-1/2">
+            Chiudi e non mostrare più
           </button>
+          <MdClose size={28} className="absolute top-2 right-2 cursor-pointer" onClick={()=>setIsModalOpen(false)}/>
         </motion.div>
       </>
     )
