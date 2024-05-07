@@ -177,7 +177,7 @@ const datiPrepartita = [
     {
         id: 26,
         title: "L’ora del condor",
-        description: "Prendi un giocatore a scelta nella lista svincolati purché sia al di sotto del 75 di overall.",
+        description: "Prendi un giocatore a scelta nella lista svincolati purché sia al massimo un 80 di overall.",
         isImprev: true,
         ultEstrazione: false
     },
