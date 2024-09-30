@@ -9,7 +9,7 @@ import Dado from "../Components/Dado";
 import SecondaEstrazioneDiretta from "../Components/SecondaEstrazioneDiretta";
 
 const Prepartita = () => {
-  const [casuale, setCasuale] = useState(null);
+  const [casuale, setCasuale] = useState(21);
 
   // Prima Estrazione
 
@@ -23,7 +23,7 @@ const Prepartita = () => {
 
   const titoloH1 = "Imprevisto Prepartita";
   const isImpCommunity = title === "PAROLA ALLA COMMUNITY!";
-  const numbExtrPlayer = id === 21 ? 5 : 3
+  const numbExtrPlayer = id === 21 ? 5 : 3;
 
   return (
     <>
@@ -35,17 +35,6 @@ const Prepartita = () => {
       >
         {casuale && (
           <>
-            <motion.p
-              initial={{ opacity: 0, x: "50vw", rotate: 0 }}
-              animate={{ opacity: 1, x: 0, rotate: 360 }}
-              transition={{ type: "spring", duration: 0.5, stiffness: 400 }}
-              style={{
-                filter: "drop-shadow(.05rem .05rem 0.1rem #000)",
-              }}
-              className="flex h-8 w-8 items-center justify-center rounded-full bg-gray-300/20 p-8 text-4xl md:self-start md:p-10 md:text-5xl"
-            >
-              {id}
-            </motion.p>
             <h2
               style={{
                 fontFamily: "'Boogaloo', sans-serif",
@@ -53,7 +42,7 @@ const Prepartita = () => {
               }}
               className={
                 isImprev
-                  ? "md:flex-1 text-5xl font-extrabold uppercase md:text-6xl md:absolute md:top-2"
+                  ? "text-5xl font-extrabold uppercase md:relative md:top-2 md:flex-1 md:text-6xl"
                   : "hidden"
               }
             >
@@ -63,7 +52,7 @@ const Prepartita = () => {
               <>
                 <h3
                   style={{ filter: "drop-shadow(.05rem .05rem 0.1rem #000)" }}
-                  className={`md:flex-1 text-4xl font-extrabold uppercase md:text-5xl ${
+                  className={`text-4xl font-extrabold uppercase md:flex-1 md:text-5xl ${
                     title === "PAROLA ALLA COMMUNITY!" && "hidden"
                   }`}
                 >
@@ -71,18 +60,16 @@ const Prepartita = () => {
                 </h3>
                 <p
                   style={{ fontFamily: "'Handlee', cursive" }}
-                  className="mt-4 md:flex-1 px-4 text-xl md:text-3xl"
+                  className="mt-4 px-4 text-xl md:flex-1 md:text-3xl"
                 >
                   {description}
                 </p>
                 {/* Eccezione imprevisto n. 28 */}
-                <p className="text-sm md:text-lg italic">
-                  {id === 26
-                    && "Attenzione! Imprevisto applicabile una sola volta per stagione"
-                    }
-                  {id === 28
-                    && "Attenzione! Non si applica alle partite determinanti (es. turni di ritorno, partite secche, scontri diretti)"
-                    }
+                <p className="text-sm italic md:text-lg">
+                  {id === 26 &&
+                    "Attenzione! Imprevisto applicabile una sola volta per stagione"}
+                  {id === 28 &&
+                    "Attenzione! Non si applica alle partite determinanti (es. turni di ritorno, partite secche, scontri diretti)"}
                 </p>
               </>
             ) : (
@@ -90,8 +77,16 @@ const Prepartita = () => {
                 <FetchImprevisto />
               </>
             )}
-            {ultEstrazione && (id !== 21 && id !== 28) ? <SecondaEstrazione /> : ""}
-            {ultEstrazione && (id === 21 || id === 28) ? <SecondaEstrazioneDiretta numbExtrPlayer={numbExtrPlayer} /> : ""}
+            {ultEstrazione && id !== 21 && id !== 28 ? (
+              <SecondaEstrazione />
+            ) : (
+              ""
+            )}
+            {ultEstrazione && (id === 21 || id === 28) ? (
+              <SecondaEstrazioneDiretta numbExtrPlayer={numbExtrPlayer} />
+            ) : (
+              ""
+            )}
           </>
         )}
       </LayoutBase>
