@@ -1,77 +1,113 @@
-import React from "react";
 import { Link } from "react-router-dom";
-import mullin from "../assets/imgs/mullin.png";
-import ryanmac from "../assets/imgs/ryanmac.jpg";
-import logoStadio from "../assets/imgs/logo_stadio.jpg";
-import logoStadioMobile from "../assets/imgs/logo_stadio_mobile.jpg";
-import stadio from "../assets/imgs/stadio.jpg";
-import serieNegativa from "../assets/imgs/serienegativa.jpg";
-import rinnovi from "../assets/imgs/rinnovo.jpg";
 import { isMobile } from "react-device-detect";
-
-const dettagliImprevisti = [
-    { id: 1, impr: "Imprevisti prepartita", img: ryanmac, link: "/prepartita" },
-    { id: 2, impr: "Imprevisti Settimanali", img: stadio, link: "/settimana" },
-    {
-        id: 3,
-        impr: "Imprevisti serie negativa",
-        img: serieNegativa,
-        link: "/serie-negativa",
-    },
-    {
-        id: 4,
-        impr: "Imprevisti offerte mercato",
-        img: mullin,
-        link: "/offerte-mercato",
-    },
-    {
-        id: 5,
-        impr: "Imprevisti di ingaggio",
-        img: isMobile ? logoStadioMobile : logoStadio,
-        link: "/ingaggio",
-    },
-    { id: 6, impr: "Imprevisti sui Rinnovi", img: rinnovi, link: "/rinnovi" },
-];
+import Img1 from "../assets/imgs/img1.jpg";
+import Img2 from "../assets/imgs/img2.jpg";
+import Img2Mobile from "../assets/imgs/img2_mobile.jpg";
+import Img3 from "../assets/imgs/img3.jpg";
+import Img3Mobile from "../assets/imgs/img3_mobile.jpg";
+import Img4 from "../assets/imgs/img4.jpg";
+import Img5 from "../assets/imgs/img5.jpg";
+import rinnovi from "../assets/imgs/img5.jpg";
+import ingaggi from "../assets/imgs/ingaggi.jpg";
+import ingaggiMobile from "../assets/imgs/ingaggi_mobile.jpg";
+import mercato from "../assets/imgs/mercato.jpg";
+import WelcomeModal from "../Components/WelcomeModal";
+import { MdEdit } from "react-icons/md";
 
 const Home = () => {
-    return (
-        <section className="h-screen w-full bg-stone-950 flex flex-col md:flex-row flex-wrap md:flex-nowrap items-center justify-around font-bold text-gray-800 overflow-hidden">
-            {dettagliImprevisti.map((el) => (
-                <div
-                    key={el.id}
-                    style={{
-                        boxShadow: "-12px 0px 10px -3px rgba(2,2,2,0.5)",
-                        zIndex: el.id,
-                    }}
-                    className="group flex items-center justify-start w-full md:w-1/6 md:hover:w-full h-1/6 md:h-full md:hover:h-full cursor-pointer transition-all duration-500 ease-[cubic-bezier(0.770, 0.000, 0.175, 1.000)] hover:text-gray-300"
-                >
-                    <h2
-                        style={{
-                            writingMode: isMobile ? "" : "vertical-lr",
-                            transform: isMobile ? "" : "rotate(180deg)",
-                            textShadow: "rgb(34, 34, 34) 0px 4px 4px",
-                        }}
-                        className="w-1/6 flex items-center justify-center text-center md:justify-start group-hover:px-6 transition-all group-hover:w-2/6 md:w-auto md:group-hover:w-auto group-hover:border-l-[.35rem] md:group-hover:border-l-[.5rem] group-hover:border-[--clr-sec] uppercase font-bold text-[1.7vw] md:text-[2.2vw] md:ps-8 text-gray-200 drop-shadow-lg group-hover:bg-[--clr-prim] bg-[rgb(16,84,66,.95)] h-full px-4 md:px-2"
-                    >
-                        {el.impr}
-                    </h2>
-                    <div
-                        style={{
-                            backgroundImage: `url(${el.img})`,
-                            /* height: "100vh", */
-                        }}
-                        className="bg-top md:bg-center transition-all bg-cover bg-no-repeat grayscale group-hover:grayscale-0 group-hover:w-4/6 w-5/6 md:w-full md:group-hover:w-full h-full bg-black/20 flex justify-end items-end "
-                    >
-                        <Link
-                            to={el.link}
-                            className="w-full h-full block bg-transparent"
-                        >
-                        </Link>
-                    </div>
+  const dettagliImprevisti = [
+    {
+      id: 1,
+      impr: "Imprevisti prepartita",
+      img: Img1,
+      link: "/prepartita",
+    },
+    {
+      id: 2,
+      impr: "Imprevisti Settimanali",
+      img: isMobile ? Img2Mobile : Img2,
+      link: "/settimana",
+    },
+    {
+      id: 3,
+      impr: "Imprevisti serie negativa",
+      img: isMobile ? Img3Mobile : Img3,
+      link: "/serie-negativa",
+    },
+    {
+      id: 4,
+      impr: "Imprevisti Rinnovi",
+      img: rinnovi,
+      link: "/rinnovi",
+    },
+    {
+      id: 5,
+      impr: "Imprevisti Ingaggi",
+      img: isMobile ? ingaggiMobile : ingaggi,
+      link: "/ingaggi",
+    },
+    {
+      id: 6,
+      impr: "Imprevisti Mercato",
+      img: mercato,
+      link: "/mercato",
+    },
+    {
+      id: 7,
+      impr: "Saldo Punti",
+      img: Img4,
+      link: "/saldo-punti",
+    },
+    {
+      id: 8,
+      impr: "Editor Imprevisti",
+      img: Img5,
+      link: "/editor-imprevisti",
+    },
+  ];
+
+  return (
+    <>
+      <WelcomeModal />
+      <section
+        className={`flex h-full w-full flex-wrap bg-stone-950 font-bold text-gray-800`}
+      >
+        {dettagliImprevisti.map((el) => (
+          <div
+            key={el.id}
+            style={{
+              zIndex: el.id,
+            }}
+            className="ease-[cubic-bezier(0.770, 0.000, 0.175, 1.000)] group grow basis-1/2 cursor-pointer items-center justify-start overflow-hidden transition-all duration-500 [box-shadow:-12px_0px_10px_-3px_rgba(2,2,2,0.5)] hover:text-gray-300 md:basis-1/4"    
+          >
+            <Link to={el.link} className="flex h-full bg-transparent">
+              <h2
+                style={{}}
+                className={`flex rotate-180 items-center justify-center bg-[--clr-ter] px-4 text-center text-[.4rem] font-bold uppercase text-gray-200 drop-shadow-lg transition-all [text-shadow:rgb(34,34,34)_0px_4px_4px] [writing-mode:vertical-lr] group-hover:w-1/4 group-hover:border-l-[.35rem] group-hover:border-[--clr-prim] group-hover:bg-[--clr-sec] group-hover:px-6 md:justify-start md:px-2 md:ps-8 md:text-[1.5dvw] md:group-hover:w-auto md:group-hover:border-l-[1.5rem]`}
+              >
+                {el.impr}
+              </h2>
+              <div
+                style={{
+                  backgroundImage: `url(${el.img})`,
+                }}
+                className={`flex w-full items-end justify-end bg-black/20 bg-cover bg-center bg-no-repeat grayscale transition-all group-hover:w-full group-hover:scale-110 group-hover:grayscale-0 md:group-hover:w-full`}
+              >
+                <div className="absolute bottom-4 right-4 flex cursor-pointer items-center justify-center rounded-full p-1 hover:bg-gray-300/30 md:p-2">
+                  <MdEdit
+                    size={32}
+                    color="white"
+                    className="cursor-pointer fill-gray-300 hover:fill-gray-200"
+                    onClick={() => console.log("prova")}
+                  />
                 </div>
-            ))}
-        </section>
-    );
+              </div>
+            </Link>
+          </div>
+        ))}
+      </section>
+    </>
+  );
 };
 
 export default Home;
