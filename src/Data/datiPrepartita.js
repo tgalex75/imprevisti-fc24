@@ -2,7 +2,7 @@ const datiPrepartita = [
     {
         id: 1,
         title: "nessun imprevisto",
-        description: "",
+        description: "Mister non abbiamo scuse: vogliamo i 3 punti!",
         isImprev: false,
         ultEstrazione: false
     },
@@ -16,7 +16,7 @@ const datiPrepartita = [
     {
         id: 3,
         title: "nessun imprevisto",
-        description: "",
+        description: "Mister mettiamo la prima o la seconda maglia?",
         isImprev: false,
         ultEstrazione: false
     },
@@ -30,7 +30,7 @@ const datiPrepartita = [
     {
         id: 5,
         title: "nessun imprevisto",
-        description: "",
+        description: "Mister ricordati di controllare il METEO!",
         isImprev: false,
         ultEstrazione: false
     },
@@ -44,7 +44,7 @@ const datiPrepartita = [
     {
         id: 7,
         title: "nessun imprevisto",
-        description: "",
+        description: "Ogni maledetta domenica si vince o si perde, resta da vedere se si vince o si perde da uomini.",
         isImprev: false,
         ultEstrazione: false
     },
@@ -58,7 +58,7 @@ const datiPrepartita = [
     {
         id: 9,
         title: "nessun imprevisto",
-        description: "",
+        description: "Ogni maledetta domenica si vince o si perde, resta da vedere se si vince o si perde da uomini.",
         isImprev: false,
         ultEstrazione: false
     },
@@ -72,7 +72,7 @@ const datiPrepartita = [
     {
         id: 11,
         title: "nessun imprevisto",
-        description: "",
+        description: "... tanto je la paro!",
         isImprev: false,
         ultEstrazione: false
     },
@@ -86,7 +86,7 @@ const datiPrepartita = [
     {
         id: 13,
         title: "nessun imprevisto",
-        description: "",
+        description: "... tanto je la paro!",
         isImprev: false,
         ultEstrazione: false
     },
@@ -100,14 +100,14 @@ const datiPrepartita = [
     {
         id: 15,
         title: "nessun imprevisto",
-        description: "",
+        description: "Ogni maledetta domenica si vince o si perde, resta da vedere se si vince o si perde da uomini.",
         isImprev: false,
         ultEstrazione: false
     },
     {
         id: 16,
         title: "nessun imprevisto",
-        description: "",
+        description: "La Dea bendata ci sorride: rendiamola fiera di noi!",
         isImprev: false,
         ultEstrazione: false
     },
@@ -128,14 +128,14 @@ const datiPrepartita = [
     {
         id: 19,
         title: "nessun imprevisto",
-        description: "",
+        description: "Ogni maledetta domenica si vince o si perde, resta da vedere se si vince o si perde da uomini.",
         isImprev: false,
         ultEstrazione: false
     },
     {
         id: 20,
         title: "nessun imprevisto",
-        description: "",
+        description: "Ogni maledetta domenica si vince o si perde, resta da vedere se si vince o si perde da uomini.",
         isImprev: false,
         ultEstrazione: false
     },
@@ -149,7 +149,7 @@ const datiPrepartita = [
     {
         id: 22,
         title: "nessun imprevisto",
-        description: "",
+        description: "È il momento della verità?",
         isImprev: false,
         ultEstrazione: false
     },
@@ -170,7 +170,7 @@ const datiPrepartita = [
     {
         id: 25,
         title: "nessun imprevisto",
-        description: "",
+        description: "La Dea bendata ci sorride: rendiamola fiera di noi!",
         isImprev: false,
         ultEstrazione: false
     },
@@ -184,7 +184,7 @@ const datiPrepartita = [
     {
         id: 27,
         title: "nessun imprevisto",
-        description: "",
+        description: "È il football ragazzi, è tutto qui. Allora, che cosa volete fare?",
         isImprev: false,
         ultEstrazione: false
     },
@@ -198,7 +198,7 @@ const datiPrepartita = [
     {
         id: 29,
         title: "nessun imprevisto",
-        description: "",
+        description: "È il momento della verità? Non lo so, però...",
         isImprev: false,
         ultEstrazione: false
     },
@@ -212,14 +212,14 @@ const datiPrepartita = [
     {
         id: 31,
         title: "nessun imprevisto",
-        description: "",
+        description: "È il football ragazzi, è tutto qui. Allora, che cosa volete fare?",
         isImprev: false,
         ultEstrazione: false
     },
     {
         id: 32,
         title: "nessun imprevisto",
-        description: "",
+        description: "È il football ragazzi, è tutto qui. Allora, che cosa volete fare?",
         isImprev: false,
         ultEstrazione: false
     },
@@ -233,7 +233,7 @@ const datiPrepartita = [
     {
         id: 34,
         title: "nessun imprevisto",
-        description: "",
+        description: "È il football ragazzi, è tutto qui. Allora, che cosa volete fare?",
         isImprev: false,
         ultEstrazione: false
     },
@@ -247,14 +247,14 @@ const datiPrepartita = [
     {
         id: 36,
         title: "nessun imprevisto",
-        description: "",
+        description: "È il football ragazzi, è tutto qui. Allora, che cosa volete fare?",
         isImprev: false,
         ultEstrazione: false
     },
     {
         id: 37,
         title: "nessun imprevisto",
-        description: "",
+        description: "È il momento della verità? Non lo so, però...",
         isImprev: false,
         ultEstrazione: false
     },
